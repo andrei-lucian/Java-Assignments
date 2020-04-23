@@ -8,7 +8,7 @@ public class Room {
         description = roomDescription;
     }
 
-    public void roomDescription(){
+    public void getDescription(){
         System.out.println(description);
     }
 }
