@@ -16,6 +16,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
         Player player = new Player(name);
-        Room[] rooms;
+        player.setCurrentRoom();
+
+        System.out.println("What do you want to do? \n (0) Look around");
+        int option = scanner.nextInt();
+        if (option == 0) {
+            player.inspect();
+        }
     }
 }

@@ -9,7 +9,11 @@ public class Player {
         this.name = name;
     }
 
-    private void inspect(){
+    public void inspect(){
         currentRoom.getDescription();
+    }
+
+    public void setCurrentRoom(Room room){
+        this.currentRoom = room;
     }
 }
