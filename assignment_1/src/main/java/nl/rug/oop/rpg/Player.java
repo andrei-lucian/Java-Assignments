@@ -5,7 +5,7 @@ public class Player {
     protected String name;
     public Room currentRoom;
 
-    private Player(String name, Room room){
+    public Player(String name){
         this.name = name;
     }
 

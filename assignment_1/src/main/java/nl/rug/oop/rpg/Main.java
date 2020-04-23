@@ -14,7 +14,8 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
+        String name = scanner.nextLine();
+        Player player = new Player(name);
         Room[] rooms;
     }
 }
