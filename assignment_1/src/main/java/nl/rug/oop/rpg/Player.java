@@ -10,6 +10,7 @@ public class Player {
     }
 
     public void inspect(){
+        System.out.print("You see ");
         currentRoom.getDescription();
     }
 
