@@ -21,11 +21,20 @@ public class Main {
         player.setCurrentRoom(entry);
 
         while(true) {
-            System.out.println("What do you want to do? \n (0) Look around");
+            System.out.println("What do you want to do? \n " +
+                    "(0) Look around \n" +
+                    "(1) Look for a way out");
             int option = scanner.nextInt();
             if (option == 0) {
                 player.inspect();
             }
+            else if (option ==1) {
+                System.out.println("You look around for doors. You see: \n");
+                for (Door door : player.currentRoom.doorList){
+                    door.inspect();
+                }
+            }
         }
+
     }
 }

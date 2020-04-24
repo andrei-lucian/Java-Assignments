@@ -1,14 +1,27 @@
 package nl.rug.oop.rpg;
 
-public class Room {
+import java.util.ArrayList;
 
-    public String description;
+public class Room implements Inspectable {
 
-    public Room(String roomDescription){
-        description = roomDescription;
+    private String description;
+    public ArrayList<Door> doorList;
+
+    public Room(String description){
+        this.description = description;
+        doorList = new ArrayList<>();
     }
 
-    public void getDescription(){
+    public void inspect(){
         System.out.println(description);
+    }
+
+    public void addDoor(Door door){
+        if (door != null) {
+            doorList.add(door);
+        }
+        else {
+            System.out.println("Cannot add null door object");
+        }
     }
 }

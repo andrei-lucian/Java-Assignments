@@ -11,7 +11,7 @@ public class Player {
 
     public void inspect(){
         System.out.print("You see ");
-        currentRoom.getDescription();
+        currentRoom.inspect();
     }
 
     public void setCurrentRoom(Room room){
