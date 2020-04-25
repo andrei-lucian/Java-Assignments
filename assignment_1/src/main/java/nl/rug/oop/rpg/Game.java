@@ -35,7 +35,7 @@ public class Game {
     public void printMenu() {
         System.out.println("What do you want to do? \n" +
                             "(0) Look around \n" +
-                            "(1) Look for a way out +" +
+                            "(1) Look for a way out \n" +
                             "(2) Go back to the previous room");
     }
 
@@ -70,15 +70,11 @@ public class Game {
         }
 
         else { //move to room behind chosen door
-<<<<<<< HEAD
             //store the current room as the previous room in case we want to go back
             player.setPreviousRoom(player.getCurrentRoom());
 
             //move to next room
-            player.currentRoom.doorList.get(chosenDoor).interact(player);
-=======
             player.getCurrentRoom().getDoorList().get(chosenDoor).interact(player);
->>>>>>> 249fa3ee03fe1a11f46d3a21b3a178ac24a962e0
             System.out.println("You go through the door.");
             System.out.print("You are now in ");
             player.getCurrentRoom().inspect();
@@ -88,6 +84,9 @@ public class Game {
 
     //method to go back to the previous room
     public void option2(Player player){
+        System.out.print("You went back to the previous room \n" +
+                "You are now in ");
+        player.getCurrentRoom().inspect();
         player.goBack();
     }
 }

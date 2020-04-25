@@ -22,7 +22,7 @@ public class Main {
         //create the entry room and set it as they player's current room
         Room entry = new Room("a room lit by a candle with a door on one side and a tunnel on the other");
         player.setCurrentRoom(entry);
-        /*
+
         Room room_0 = new Room("room zero");
         Room room_1 = new Room("room one");
         Room room_2 = new Room("room two");
@@ -32,15 +32,9 @@ public class Main {
         entry.addDoor(entry_0);
         entry.addDoor(entry_1);
         entry.addDoor(entry_2);
-<<<<<<< HEAD
-        entry_0.nextRoom = room_0;
-        entry_1.nextRoom = room_1;
-        entry_2.nextRoom = room_2;*/
-=======
         entry_0.setNextRoom(room_0);
         entry_1.setNextRoom(room_1);
         entry_2.setNextRoom(room_2);
->>>>>>> 249fa3ee03fe1a11f46d3a21b3a178ac24a962e0
 
         //create a game with a player and run the game loop
         Game game = new Game(player);
