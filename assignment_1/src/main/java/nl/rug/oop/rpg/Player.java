@@ -10,11 +10,16 @@ public class Player {
     }
 
     public void inspect(){
-        System.out.print("You see ");
         currentRoom.inspect();
     }
 
+    //set a player's current room
     public void setCurrentRoom(Room room){
         this.currentRoom = room;
+    }
+
+    //return a player's current room
+    public Room getCurrentRoom(){
+        return this.currentRoom;
     }
 }
