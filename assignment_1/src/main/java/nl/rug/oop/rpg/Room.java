@@ -26,8 +26,8 @@ public class Room implements Inspectable {
         }
     }
 
-    public ArrayList<Door> getDoorList(Room room){
-        return room.doorList;
+    public ArrayList<Door> getDoorList(){
+        return this.doorList;
     }
 
 }

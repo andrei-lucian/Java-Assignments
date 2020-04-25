@@ -19,9 +19,11 @@ public class Game {
 
         while (true) {
             printMenu();
+
             int option = scanner.nextInt();
 
             //changed this from if statements to a switch because it's cleaner
+
             switch(option){
                 case 0: option0(player);
                 case 1: option1(player);
@@ -70,6 +72,10 @@ public class Game {
         }
 
         else { //move to room behind chosen door
+            //store the current room as the previous room in case we want to go back
+            player.setPreviousRoom(player.getCurrentRoom());
+
+            //move to next room
             player.currentRoom.doorList.get(chosenDoor).interact(player);
             System.out.println("You go through the door.");
             System.out.print("You are now in ");
@@ -78,8 +84,9 @@ public class Game {
         }
     }
 
+    //method to go back to the previous room
     public void option2(Player player){
-
+        player.goBack();
     }
 }
 
