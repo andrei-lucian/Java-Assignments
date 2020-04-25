@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Game {
 
-    protected Player player;
+    private Player player;
 
     //constructor giving the game a player
     public Game(Player player){
@@ -15,6 +15,7 @@ public class Game {
 
     //execute the main game loop
     public void gameLoop() {
+        Room entryRoom = player.getCurrentRoom();
 
         while (true) {
             printMenu();
@@ -27,34 +28,29 @@ public class Game {
                 case 0: option0(player);
                 case 1: option1(player);
                 case 2: option2(player);
+                case 3: option3(player);
             }
         }
     }
 
     //display the interaction menu
-    public void printMenu() {
-        /*if (currentRoom == entry) {
-            System.out.println("What do you want to do? \n" +
-                    "(0) Look around \n" +
-                    "(1) Look for a way out \n");
-        }
-        else {*/
+    private void printMenu() {
             System.out.println("What do you want to do? \n" +
                     "(0) Look around \n" +
                     "(1) Look for a way out \n" +
-                    "(2) Go back ");
-        //}
+                    "(2) Go back \n" +
+                    "(3) Look for company");
     }
 
     //the player chooses to inspect their surroundings
-    public void option0(Player player){
+    private void option0(Player player){
         System.out.print("You see ");
         player.inspect();
         gameLoop();
     }
 
     //the player selects a door to go through
-    public void option1(Player player){
+    private void option1(Player player){
 
         System.out.println("You look around for doors.\nYou see:");
 
@@ -95,14 +91,44 @@ public class Game {
     }
 
     //method to go back to the previous room
-    public void option2(Player player){
+    private void option2(Player player){
         System.out.print("You went back to the previous room \n" +
                 "You are now in ");
         player.goBack();
         player.getCurrentRoom().inspect();
     }
+
+    //option3 is almost identical to option1, we need to put these in new class
+    private void option3(Player player){
+        System.out.println("You look if there's someone here. \nYou see:");
+        Room currentRoom = player.getCurrentRoom();
+
+        ArrayList<Npc> npcList = currentRoom.getNpcList();
+
+        for (Npc npc : npcList){ //loop through npc's and print their descriptions
+            System.out.print("(" + npcList.indexOf(npc) + ") ");
+            npc.inspect();
+        }
+
+        System.out.println("Do you want to interact? (-1 : don't interact).");
+
+        int interact = scanner.nextInt(); //user input (integer)
+
+        if (interact > npcList.size() -1 || interact < -1) { //check bounds
+            System.out.println("Not a door, please choose a different option.");
+            option3(player);
+        }
+
+        else if (interact == -1) { //do not interact
+            gameLoop(); //exit the option3 method and go back to the original game loop
+        }
+
+        else{
+            //move to next room
+            Npc newNpc = npcList.get(interact);
+            newNpc.interact(player);
+            gameLoop();
+        }
+    }
+
 }
-
-
-
-

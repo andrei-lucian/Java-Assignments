@@ -5,49 +5,45 @@ import java.util.ArrayList;
 public class Room implements Inspectable {
 
     private String description;
-    private ArrayList<Door> doorList; //create the ArrayList
+    private ArrayList<Door> doorList; //create Door list
+    private ArrayList<Npc> npcList; //create NPC list
 
-    public Room(String description){
+    public Room(String description) {
         this.description = description;
         doorList = new ArrayList<>(); //initialise the ArrayList in the constructor
+        npcList = new ArrayList<>();
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
 
-    public void inspect(){
+    public void inspect() {
         System.out.println(description);
     }
 
     //add a door as long as it is not null
-    public void addDoor(Door door){
+    public void addDoor(Door door) {
         if (door != null) {
             doorList.add(door);
-        }
-        else {
+        } else {
             System.out.println("Cannot add null door object");
         }
     }
 
-    public ArrayList<Door> getDoorList(){
-        return this.doorList;
-    }
-
-    /*
-    @Override
-    public boolean equals(Object obj){
-        if (obj instanceof Room){
-            Room room = (Room)obj;
-            if (description.equals(room.getDescription())){
-                return true;
-            }
-            return false;
+    public void addNPC(Npc npc) {
+        if (npc != null) {
+            npcList.add(npc);
+        } else {
+            System.out.println("Cannot add null npc object");
         }
     }
 
-    @Override
-    public int hashCode(){
-        return description.hashCode();
-    }*/
+    public ArrayList<Door> getDoorList() {
+        return this.doorList;
+    }
+
+    public ArrayList<Npc> getNpcList() {
+        return this.npcList;
+    }
 }
