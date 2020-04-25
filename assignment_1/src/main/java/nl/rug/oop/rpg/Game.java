@@ -42,6 +42,14 @@ public class Game {
                     "(3) Look for company");
     }
 
+    private void moveToNextRoom(Player player, Door newDoor) {
+        newDoor.interact(player);
+        System.out.println("You go through the door.");
+        System.out.print("You are now in ");
+        player.getCurrentRoom().inspect();
+        gameLoop();
+    }
+
     //the player chooses to inspect their surroundings
     private void option0(Player player){
         System.out.print("You see ");
@@ -82,11 +90,7 @@ public class Game {
 
             //move to next room
             Door newDoor = doorList.get(chosenDoor);
-            newDoor.interact(player);
-            System.out.println("You go through the door.");
-            System.out.print("You are now in ");
-            player.getCurrentRoom().inspect();
-            gameLoop();
+            moveToNextRoom(player, newDoor);
         }
     }
 
@@ -96,6 +100,7 @@ public class Game {
                 "You are now in ");
         player.goBack();
         player.getCurrentRoom().inspect();
+        gameLoop();
     }
 
     //option3 is almost identical to option1, we need to put these in new class
@@ -105,30 +110,32 @@ public class Game {
 
         ArrayList<Npc> npcList = currentRoom.getNpcList();
 
-        for (Npc npc : npcList){ //loop through npc's and print their descriptions
-            System.out.print("(" + npcList.indexOf(npc) + ") ");
-            npc.inspect();
+        if(npcList.isEmpty()){
+            System.out.println("An empty room");
+            gameLoop();
+        }
+        else {
+            for (Npc npc : npcList) { //loop through npc's and print their descriptions
+                System.out.print("(" + npcList.indexOf(npc) + ") ");
+                npc.inspect();
+            }
         }
 
         System.out.println("Do you want to interact? (-1 : don't interact).");
-
         int interact = scanner.nextInt(); //user input (integer)
 
         if (interact > npcList.size() -1 || interact < -1) { //check bounds
-            System.out.println("Not a door, please choose a different option.");
+            System.out.println("Not an interaction, please choose a different option.");
             option3(player);
         }
-
         else if (interact == -1) { //do not interact
             gameLoop(); //exit the option3 method and go back to the original game loop
         }
-
         else{
-            //move to next room
+            //interact with npc
             Npc newNpc = npcList.get(interact);
             newNpc.interact(player);
             gameLoop();
         }
     }
-
 }
