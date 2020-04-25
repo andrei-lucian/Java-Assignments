@@ -12,6 +12,10 @@ public class Room implements Inspectable {
         doorList = new ArrayList<>(); //initialise the ArrayList in the constructor
     }
 
+    public String getDescription(){
+        return this.description;
+    }
+
     public void inspect(){
         System.out.println(description);
     }
@@ -30,4 +34,20 @@ public class Room implements Inspectable {
         return this.doorList;
     }
 
+    /*
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Room){
+            Room room = (Room)obj;
+            if (description.equals(room.getDescription())){
+                return true;
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode(){
+        return description.hashCode();
+    }*/
 }
