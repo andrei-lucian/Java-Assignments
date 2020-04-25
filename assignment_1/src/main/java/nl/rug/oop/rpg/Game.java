@@ -1,5 +1,4 @@
 package nl.rug.oop.rpg;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,7 +31,6 @@ public class Game {
 
     //display the interaction menu
     public void printMenu() {
-
         System.out.println("What do you want to do? \n" +
                             "(0) Look around \n" +
                             "(1) Look for a way out +" +
@@ -51,8 +49,8 @@ public class Game {
 
         System.out.println("You look around for doors.\nYou see:");
 
-        for (Door door : player.currentRoom.doorList){ //loop through doors and print their descriptions
-            System.out.print("(" + player.currentRoom.doorList.indexOf(door) + ") ");
+        for (Door door : player.getCurrentRoom().getDoorList()){ //loop through doors and print their descriptions
+            System.out.print("(" + player.getCurrentRoom().getDoorList().indexOf(door) + ") ");
             door.inspect();
         }
 
@@ -70,10 +68,10 @@ public class Game {
         }
 
         else { //move to room behind chosen door
-            player.currentRoom.doorList.get(chosenDoor).interact(player);
+            player.getCurrentRoom().getDoorList().get(chosenDoor).interact(player);
             System.out.println("You go through the door.");
             System.out.print("You are now in ");
-            player.currentRoom.inspect();
+            player.getCurrentRoom().inspect();
             gameLoop();
         }
     }

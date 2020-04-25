@@ -31,9 +31,9 @@ public class Main {
         entry.addDoor(entry_0);
         entry.addDoor(entry_1);
         entry.addDoor(entry_2);
-        entry_0.nextRoom = room_0;
-        entry_1.nextRoom = room_1;
-        entry_2.nextRoom = room_2;
+        entry_0.setNextRoom(room_0);
+        entry_1.setNextRoom(room_1);
+        entry_2.setNextRoom(room_2);
 
         //create a game with a player and run the game loop
         Game game = new Game(player);
