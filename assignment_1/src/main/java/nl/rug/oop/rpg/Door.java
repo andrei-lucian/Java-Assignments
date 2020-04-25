@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Door implements Inspectable, Interactable {
 
     private String description;
-    public Room nextRoom;
+    private Room nextRoom;
 
     //set the description of door
     public Door(String description) {

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Game {
 
-    public Player player;
+    private Player player;
 
     //constructor giving the game a player
     public Game(Player player){
@@ -25,6 +25,7 @@ public class Game {
             switch(option){
                 case 0: option0(player);
                 case 1: option1(player);
+                case 2: option2(player);
             }
         }
     }
@@ -34,7 +35,8 @@ public class Game {
 
         System.out.println("What do you want to do? \n" +
                             "(0) Look around \n" +
-                            "(1) Look for a way out");
+                            "(1) Look for a way out +" +
+                            "(2) Go back to the previous room");
     }
 
     //the player chooses to inspect their surroundings
@@ -58,7 +60,7 @@ public class Game {
 
         int chosenDoor = scanner.nextInt(); //user input (integer)
 
-        if (chosenDoor > player.currentRoom.doorList.size() -1 || chosenDoor < -1) { //check bounds
+        if (chosenDoor > player.getCurrentRoom().getDoorList().size() -1 || chosenDoor < -1) { //check bounds
             System.out.println("Not a door, please choose a different option.");
             option1(player);
         }
@@ -76,6 +78,9 @@ public class Game {
         }
     }
 
+    public void option2(Player player){
+
+    }
 }
 
 

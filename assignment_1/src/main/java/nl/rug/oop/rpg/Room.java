@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Room implements Inspectable {
 
     private String description;
-    public ArrayList<Door> doorList; //create the ArrayList
+    private ArrayList<Door> doorList; //create the ArrayList
 
     public Room(String description){
         this.description = description;
@@ -13,7 +13,7 @@ public class Room implements Inspectable {
     }
 
     public void inspect(){
-        System.out.println(description + ".");
+        System.out.println(description);
     }
 
     //add a door as long as it is not null
@@ -25,4 +25,9 @@ public class Room implements Inspectable {
             System.out.println("Cannot add null door object");
         }
     }
+
+    public ArrayList<Door> getDoorList(Room room){
+        return room.doorList;
+    }
+
 }

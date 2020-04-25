@@ -2,8 +2,9 @@ package nl.rug.oop.rpg;
 
 public class Player {
 
-    protected String name;
-    public Room currentRoom;
+    private String name;
+    private Room currentRoom;
+    private Room previousRoom;
 
     public Player(String name){
         this.name = name;
