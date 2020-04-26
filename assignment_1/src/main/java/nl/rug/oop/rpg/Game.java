@@ -25,10 +25,10 @@ public class Game {
             //changed this from if statements to a switch because it's cleaner
 
             switch(option){
-                case 0: option0(player);
-                case 1: option1(player);
-                case 2: option2(player);
-                case 3: option3(player);
+                case 0: lookAround(player);
+                case 1: lookForDoors(player);
+                case 2: lookForNpc(player);
+                case 3: goBack(player);
             }
         }
     }
@@ -38,8 +38,8 @@ public class Game {
             System.out.println("What do you want to do? \n" +
                     "(0) Look around \n" +
                     "(1) Look for a way out \n" +
-                    "(2) Go back \n" +
-                    "(3) Look for company");
+                    "(2) Look for company \n" +
+                    "(3) Go Back");
     }
 
     private void moveToNextRoom(Player player, Door newDoor) {
@@ -51,14 +51,14 @@ public class Game {
     }
 
     //the player chooses to inspect their surroundings
-    private void option0(Player player){
+    private void lookAround(Player player){
         System.out.print("You see ");
         player.inspect();
         gameLoop();
     }
 
     //the player selects a door to go through
-    private void option1(Player player){
+    private void lookForDoors(Player player){
 
         System.out.println("You look around for doors.\nYou see:");
 
@@ -76,7 +76,7 @@ public class Game {
 
         if (chosenDoor > doorList.size() -1 || chosenDoor < -1) { //check bounds
             System.out.println("Not a door, please choose a different option.");
-            option1(player);
+            lookForDoors(player);
         }
 
         else if (chosenDoor == -1) { //stay here
@@ -94,17 +94,8 @@ public class Game {
         }
     }
 
-    //method to go back to the previous room
-    private void option2(Player player){
-        System.out.print("You went back to the previous room \n" +
-                "You are now in ");
-        player.goBack();
-        player.getCurrentRoom().inspect();
-        gameLoop();
-    }
-
-    //option3 is almost identical to option1, we need to put these in new class
-    private void option3(Player player){
+    //lookForNpc is almost identical to lookForDoor, we need to put these in new class
+    private void lookForNpc(Player player){
         System.out.println("You look if there's someone here. \nYou see:");
         Room currentRoom = player.getCurrentRoom();
 
@@ -126,7 +117,7 @@ public class Game {
 
         if (interact > npcList.size() -1 || interact < -1) { //check bounds
             System.out.println("Not an interaction, please choose a different option.");
-            option3(player);
+            lookForNpc(player);
         }
         else if (interact == -1) { //do not interact
             gameLoop(); //exit the option3 method and go back to the original game loop
@@ -135,7 +126,20 @@ public class Game {
             //interact with npc
             Npc newNpc = npcList.get(interact);
             newNpc.interact(player);
+            //take damage if npc is Enemy
+            if(newNpc instanceof Enemy){
+                player.takeDamage(((Enemy) newNpc).dealDamage());
+            }
             gameLoop();
         }
+    }
+
+    //method to go back to the previous room
+    private void goBack(Player player){
+        System.out.print("You went back to the previous room \n" +
+                "You are now in ");
+        player.goBack();
+        player.getCurrentRoom().inspect();
+        gameLoop();
     }
 }

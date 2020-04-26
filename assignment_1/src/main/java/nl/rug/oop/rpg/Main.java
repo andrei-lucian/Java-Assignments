@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a name for your player");
         String name = scanner.nextLine();
-        Player player = new Player(name);
+        Player player = new Player(name, 69 , 420);
 
         //create the entry room and set it as they player's current room
         Room entry = new Room("a room lit by a candle with a door on one side and a tunnel on the other");
@@ -19,13 +19,13 @@ public class Main {
         Door entry_0 = new Door("A dark, shiny mahogany door");
         Door entry_1 = new Door("A heavy-looking metal door with a rusty handle");
         Door entry_2 = new Door("A thick curtain of tangled green vines");
-        Npc npc_1 = new Npc("Ginger dude");
-        Npc npc_2 = new Npc("Blonde bitch with air force's on");
-        Npc npc_3 = new Npc("Dude with a black and yellow shirt");
+        Enemy enemy_1 = new Enemy("Ginger dude", 40, 100);
+        Npc npc_2 = new Npc("Blonde bitch with air force's on", 76, 24);
+        Npc npc_3 = new Npc("Dude with a black and yellow shirt", 100, 200);
         entry.addDoor(entry_0);
         entry.addDoor(entry_1);
         entry.addDoor(entry_2);
-        entry.addNPC(npc_1);
+        entry.addNPC(enemy_1);
         entry.addNPC(npc_2);
         entry.addNPC(npc_3);
         entry_0.setNextRoom(room_0);
