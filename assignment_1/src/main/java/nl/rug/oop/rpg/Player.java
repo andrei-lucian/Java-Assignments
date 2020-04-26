@@ -1,13 +1,17 @@
 package nl.rug.oop.rpg;
 
-public class Player {
+public class Player implements Attackable{
 
     private String name;
+    private int damage;
+    private int health;
     private Room currentRoom;
     private Room previousRoom;
 
-    public Player(String name){
+    public Player(String name, int damage, int health){
         this.name = name;
+        this.damage = damage;
+        this.health = health;
     }
 
     //inspect the room that the player is currently in
@@ -33,5 +37,18 @@ public class Player {
     //go back to the previous room
     public void goBack(){
         this.setCurrentRoom(previousRoom);
+    }
+
+    //take damage and deal damage
+    @Override
+    public void takeDamage(int damage) {
+        this.health -= damage;
+        System.out.println("Cunt... \nMy health is: " +
+                this.health);
+    }
+
+    @Override
+    public int dealDamage() {
+        return this.damage;
     }
 }
