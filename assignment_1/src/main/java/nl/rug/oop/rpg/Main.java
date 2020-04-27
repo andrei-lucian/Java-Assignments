@@ -19,13 +19,13 @@ public class Main {
         Door entry_0 = new Door("A dark, shiny mahogany door");
         Door entry_1 = new Door("A heavy-looking metal door with a rusty handle");
         Door entry_2 = new Door("A thick curtain of tangled green vines");
-        NPC enemy_1 = new Enemy("A short ginger dude", 40, 100);
+        //NPC enemy_1 = new Enemy("A short ginger dude", 40, 100);
         NPC npc_2 = new NPC("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee", 76, 24);
         NPC npc_3 = new NPC("A man wearing a black and yellow shirt", 100, 200);
         entry.addDoor(entry_0);
         entry.addDoor(entry_1);
         entry.addDoor(entry_2);
-        entry.addNPC(enemy_1);
+        //entry.addNPC(enemy_1);
         entry.addNPC(npc_2);
         entry.addNPC(npc_3);
         entry_0.setNextRoom(room_0);

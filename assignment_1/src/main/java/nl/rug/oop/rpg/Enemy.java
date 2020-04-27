@@ -2,7 +2,7 @@ package nl.rug.oop.rpg;
 
 import java.util.Scanner;
 
-public class Enemy extends NPC implements Attackable{
+public abstract class Enemy extends NPC implements Attackable{
 
     Scanner scanner = new Scanner(System.in);
     /**
@@ -31,12 +31,5 @@ public class Enemy extends NPC implements Attackable{
     }
 
     @Override
-    public void interact(Player player){
-        System.out.println("Enemy: 'I'll hurt you!'\n" +
-                "Attack? (1) (-1 : don't interact).");
-        int attack = scanner.nextInt();
-        if(attack != -1){
-            this.takeDamage(player.dealDamage());
-        }
-    }
+    public abstract void interact(Player player);
 }
