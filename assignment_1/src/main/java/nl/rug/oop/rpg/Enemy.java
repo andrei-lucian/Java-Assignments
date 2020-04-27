@@ -39,10 +39,4 @@ public class Enemy extends NPC implements Attackable{
             this.takeDamage(player.dealDamage());
         }
     }
-
-    /** returns false because enemies are not friendly */
-    @Override
-    public boolean isFriendly() {
-        return false;
-    }
 }

@@ -89,8 +89,8 @@ public class Player implements Attackable{
         }
         else if (chosenDoor != -1){ //move to room behind chosen door
             this.setPreviousRoom(currentRoom); //store the current room as the previous room in case we want to go back
-            Door newDoor = doorList.get(chosenDoor); //move to next room
-            moveToNextRoom(newDoor);
+            Door currentDoor = doorList.get(chosenDoor); //move to next room
+            moveToNextRoom(currentDoor);
         }
     }
 
@@ -103,8 +103,8 @@ public class Player implements Attackable{
             selectNPC();
         }
         else if (chosenNPC != -1){
-            NPC newNpc = npcList.get(chosenNPC); //interact with npc
-            newNpc.interact(this);
+            NPC currentNpc = npcList.get(chosenNPC); //interact with npc
+            currentNpc.interact(this);
         }
     }
 
