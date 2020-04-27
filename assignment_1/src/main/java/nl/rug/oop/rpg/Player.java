@@ -26,32 +26,38 @@ public class Player implements Attackable{
         this.currentRoom = room;
     }
 
+    /** @return currentRoom: room that the player is in */
     public Room getCurrentRoom(){
         return this.currentRoom;
     }
 
+    /** set the previous room in case we want to go back */
     public void setPreviousRoom(Room room){
         this.previousRoom = room;
     }
 
+    /** @return health: the health of a player */
     public int getHealth(){
         return this.health;
     }
 
+    /** Player takes damage from an enemy
+     * if (health-damage) > 0. If this is not the case
+     * then the player is dead, so set isDead to true.
+     * Otherwise, decrement player's health. Also print a
+     * warning if health is too low. */
     @Override
     public void takeDamage(int damage) {
-        //take damage if it doesn't result in the player dying
         if (this.health-damage > 0){
             this.health -= damage;
-
             System.out.println("You: 'Rude...' \nYour health is: " + this.health);
 
-            if (this.health < 50){ //low health warning
+            if (this.health < 50){
                 System.out.println("Your health is critically low, look for a health wizard!");
             }
         }
         else {
-            this.isDead = true; //player dies because health <= 0
+            this.isDead = true;
 
         }
     }

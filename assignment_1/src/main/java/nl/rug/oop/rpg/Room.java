@@ -48,8 +48,8 @@ public class Room implements Inspectable {
         for (Door door : doorList){ //loop through doors and print their descriptions
             System.out.print("(" + doorList.indexOf(door) + ") ");
             door.inspect();
-            System.out.println("Which door do you take? (-1 : stay here).");
         }
+        System.out.println("Which door do you take? (-1 : stay here).");
         return this.doorList;
     }
 
@@ -64,8 +64,8 @@ public class Room implements Inspectable {
             for (NPC npc : npcList) { //loop through NPCs and print their descriptions
                 System.out.print("(" + npcList.indexOf(npc) + ") ");
                 npc.inspect();
-                System.out.println("Interact? (-1 : don't interact).");
             }
+            System.out.println("Interact? (-1 : don't interact).");
         }
         return this.npcList;
     }
