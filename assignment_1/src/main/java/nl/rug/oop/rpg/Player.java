@@ -104,7 +104,7 @@ public class Player implements Attackable{
         }
 
         else if (chosenDoor == -1) { //stay here
-            return; //exit the option1 method and go back to the original game loop
+            //exit the option1 method and go back to the original game loop
         }
 
         else { //move to room behind chosen door

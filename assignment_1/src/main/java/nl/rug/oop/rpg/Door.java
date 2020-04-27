@@ -1,9 +1,8 @@
 package nl.rug.oop.rpg;
-import java.util.ArrayList;
 
 public class Door implements Inspectable, Interactable {
 
-    private String description;
+    private final String description;
     private Room nextRoom;
 
     //set the description of door

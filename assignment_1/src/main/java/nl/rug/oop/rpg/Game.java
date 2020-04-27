@@ -1,14 +1,10 @@
 package nl.rug.oop.rpg;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
 
-    private Player player;
-
     //constructor giving the game a player
-    public Game(Player player){
-        this.player = player;
+    public Game(){
     }
 
     Scanner scanner = new Scanner(System.in);

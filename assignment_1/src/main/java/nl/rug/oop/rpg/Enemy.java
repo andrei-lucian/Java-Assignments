@@ -1,7 +1,5 @@
 package nl.rug.oop.rpg;
 
-import java.util.ArrayList;
-
 public class Enemy extends NPC implements Attackable{
 
     Enemy(String description, int damage, int health) {

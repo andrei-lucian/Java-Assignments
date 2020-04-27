@@ -1,8 +1,7 @@
 package nl.rug.oop.rpg;
-import java.util.ArrayList;
 
 public class NPC implements Inspectable, Interactable {
-    private String description;
+    private final String description;
     protected int damage;
     protected int health;
     protected boolean isFriendly;

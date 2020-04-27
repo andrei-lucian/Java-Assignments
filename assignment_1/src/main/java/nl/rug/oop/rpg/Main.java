@@ -33,7 +33,7 @@ public class Main {
         entry_2.setNextRoom(room_2);
 
         //create a game with a player and run the game loop
-        Game game = new Game(player);
+        Game game = new Game();
         game.gameLoop(player);
     }
 }
