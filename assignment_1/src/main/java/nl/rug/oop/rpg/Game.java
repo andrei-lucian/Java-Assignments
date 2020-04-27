@@ -3,10 +3,6 @@ import java.util.Scanner;
 
 public class Game {
 
-    //constructor giving the game a player
-    public Game(){
-    }
-
     Scanner scanner = new Scanner(System.in);
 
     //execute the main game loop

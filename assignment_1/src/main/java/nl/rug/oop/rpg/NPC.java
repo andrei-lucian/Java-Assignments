@@ -1,14 +1,14 @@
 package nl.rug.oop.rpg;
 
 public class NPC implements Inspectable, Interactable {
-    private final String description;
+    protected final String description;
     protected int damage;
     protected int health;
-    protected boolean isFriendly;
 
     public NPC(String description, int damage, int health){
         this.description = description;
-        isFriendly = true;
+        this.damage = damage;
+        this.health = health;
     }
 
     @Override

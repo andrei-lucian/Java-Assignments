@@ -102,11 +102,7 @@ public class Player implements Attackable{
             lookForDoors();
         }
 
-        else if (chosenDoor == -1) { //stay here
-            //exit the option1 method and go back to the original game loop
-        }
-
-        else { //move to room behind chosen door
+        else if (chosenDoor!=-1){ //move to room behind chosen door
             //store the current room as the previous room in case we want to go back
             this.setPreviousRoom(currentRoom);
             //move to next room
@@ -150,11 +146,8 @@ public class Player implements Attackable{
             System.out.println("Not an available option, please choose again.");
             lookForNPC();
         }
-        else if (chosenNPC == -1) { //do not interact
-            return; //exit the method and go back to the original game loop
-        }
 
-        else {
+        else if (chosenNPC!=-1){
             //interact with npc
             NPC newNpc = npcList.get(chosenNPC);
             newNpc.interact(this);
