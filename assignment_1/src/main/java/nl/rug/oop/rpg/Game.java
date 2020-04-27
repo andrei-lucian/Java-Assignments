@@ -84,12 +84,10 @@ public class Game {
             NPC newNpc = npcList.get(chosenNPC);
             newNpc.interact(player);
             //take damage if npc is Enemy
-            if(newNpc instanceof Enemy){
+            if(newNpc.isFriendly()){
                 player.takeDamage(((Enemy)newNpc).dealDamage());
             }
             gameLoop(player);
         }
     }
-
-
 }
