@@ -34,6 +34,6 @@ public class Main {
 
         //create a game with a player and run the game loop
         Game game = new Game(player);
-        game.gameLoop();
+        game.gameLoop(player);
     }
 }

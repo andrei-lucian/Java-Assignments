@@ -5,9 +5,11 @@ public class NPC implements Inspectable, Interactable {
     private String description;
     protected int damage;
     protected int health;
+    static boolean isFriendly;
 
     public NPC(String description, int damage, int health){
         this.description = description;
+        isFriendly = true;
     }
 
     @Override
