@@ -1,7 +1,10 @@
 package nl.rug.oop.rpg;
 
+import java.util.Scanner;
+
 public class Enemy extends NPC implements Attackable{
 
+    Scanner scanner = new Scanner(System.in);
     /**
      * Constructor:
      * @param description enemy description
@@ -27,11 +30,14 @@ public class Enemy extends NPC implements Attackable{
         return this.damage;
     }
 
-    /** @return damage: the amount of damage to be dealt */
     @Override
     public void interact(Player player){
         System.out.println("Enemy: 'I'll hurt you!'\n" +
                 "Attack? (1) (-1 : don't interact).");
+        int attack = scanner.nextInt();
+        if(attack != -1){
+            this.takeDamage(player.dealDamage());
+        }
     }
 
     /** returns false because enemies are not friendly */
