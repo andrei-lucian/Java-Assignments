@@ -5,7 +5,6 @@ import java.util.Scanner;
 public abstract class Enemy extends NPC implements Attackable{
     Scanner scanner = new Scanner(System.in);
     protected boolean isDead = false;
-    int exp;
 
     /**
      * Constructor:
@@ -13,11 +12,9 @@ public abstract class Enemy extends NPC implements Attackable{
      * @param damage enemy damage
      * @param health enemy health
      * @param room the room in which the char is
-     * @param exp the experience that the enemy is worth
      */
-    Enemy(String description, int damage, int health, Room room, int exp) {
+    Enemy(String description, int damage, int health, Room room) {
         super(description, damage, health, room);
-        this.exp = exp;
     }
 
     /** enemy takes damage when it is
@@ -29,7 +26,7 @@ public abstract class Enemy extends NPC implements Attackable{
             System.out.println("I died");
         }
         else {
-            System.out.println("Aww damn it, my health is now " + this.health);
+            System.out.println("Enemy: Aww damn it, my health is now " + this.health);
         }
     }
 
@@ -56,4 +53,6 @@ public abstract class Enemy extends NPC implements Attackable{
 
     @Override
     public abstract void interact(Player player);
+
+    protected abstract void printDialogue();
 }

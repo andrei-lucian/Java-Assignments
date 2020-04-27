@@ -9,6 +9,7 @@ public class Player implements Attackable{
     private int health = 100;
     private Room currentRoom;
     private Room previousRoom;
+    public int exp = 0;
     private boolean isDead = false;
     Scanner scanner = new Scanner(System.in);
 
@@ -41,6 +42,11 @@ public class Player implements Attackable{
         return this.health;
     }
 
+    public void setExp(int exp) {
+        this.exp += exp;
+        System.out.println("Your exp is: " + this.exp);
+    }
+
     public int getDamage(){ return this.damage; }
 
     /** Player takes damage from an enemy
@@ -60,7 +66,6 @@ public class Player implements Attackable{
         }
         else {
             this.isDead = true;
-
         }
     }
 
@@ -105,7 +110,7 @@ public class Player implements Attackable{
     /** select NPC and interact with NPC */
     public void selectNPC(){
         ArrayList<NPC> npcList = this.getCurrentRoom().findNPCs();
-        int chosenNPC = scanner.nextInt(); /** user input (integer) */
+        int chosenNPC = scanner.nextInt();
         if (chosenNPC > npcList.size() -1 || chosenNPC < -1) { //check bounds
             System.out.println("Not an available option, please choose again.");
             selectNPC();
