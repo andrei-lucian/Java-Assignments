@@ -11,6 +11,8 @@ public abstract class Enemy extends NPC implements Attackable{
      * @param damage enemy damage
      * @param health enemy health
      */
+    protected boolean isDead = false;
+
     Enemy(String description, int damage, int health) {
         super(description, damage, health);
     }
@@ -28,6 +30,11 @@ public abstract class Enemy extends NPC implements Attackable{
     public int dealDamage() {
         System.out.println("Damage taken: " + this.damage);
         return this.damage;
+    }
+
+    /** @return if the enemy is dead */
+    public boolean isDead(){
+        return this.isDead;
     }
 
     @Override

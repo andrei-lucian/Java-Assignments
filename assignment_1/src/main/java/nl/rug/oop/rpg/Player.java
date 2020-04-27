@@ -41,6 +41,8 @@ public class Player implements Attackable{
         return this.health;
     }
 
+    public int getDamage(){ return this.damage; }
+
     /** Player takes damage from an enemy
      * if (health-damage) > 0. If this is not the case
      * then the player is dead, so set isDead to true.
@@ -50,7 +52,7 @@ public class Player implements Attackable{
     public void takeDamage(int damage) {
         if (this.health-damage > 0){
             this.health -= damage;
-            System.out.println("You: 'Rude...' \nYour health is: " + this.health);
+            System.out.println("You: ''Rude...'' \n Your health is: " + this.health);
 
             if (this.health < 50){
                 System.out.println("Your health is critically low, look for a health wizard!");
@@ -60,6 +62,12 @@ public class Player implements Attackable{
             this.isDead = true;
 
         }
+    }
+
+    public void increaseHealth(int health){
+        this.health += health;
+        System.out.println("Nice! Your health increased by " +
+                health + " to " + this.health + "!");
     }
 
     /** @return if the player is dead */
