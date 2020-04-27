@@ -5,6 +5,8 @@ public class Enemy extends NPC implements Attackable{
     Enemy(String description, int damage, int health) {
         super(description, damage, health);
         isFriendly = false;
+        this.health = health;
+        this.damage = damage;
     }
 
     @Override
