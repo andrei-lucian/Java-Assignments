@@ -4,14 +4,8 @@ import java.util.ArrayList;
 
 public class Enemy extends NPC implements Attackable{
 
-    //list of types of attacks this enemy can carry out
-    private ArrayList<AttackAction> possibleAttacks;
-    protected int health;
-
     Enemy(String description, int damage, int health) {
-        super(description);
-        this.health = health;
-        possibleAttacks = new ArrayList<>();
+        super(description, damage, health);
     }
 
     @Override

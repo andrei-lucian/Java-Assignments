@@ -58,7 +58,7 @@ public class Game {
     //the player chooses to inspect their surroundings
     private void lookAround(Player player){
         System.out.print("You see ");
-        player.inspect();
+        player.getCurrentRoom().inspect();
         gameLoop();
     }
 
@@ -66,7 +66,6 @@ public class Game {
     private void lookForDoors(Player player){
 
         System.out.println("You look around for doors.\nYou see:");
-
 
         Room currentRoom = player.getCurrentRoom();
         ArrayList<Door> doorList = currentRoom.getDoorList();

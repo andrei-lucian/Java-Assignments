@@ -1,4 +1,7 @@
 package nl.rug.oop.rpg;
+import java.util.Scanner;
+
+import java.util.ArrayList;
 
 public class Player implements Attackable{
 
@@ -12,11 +15,6 @@ public class Player implements Attackable{
     public Player(String name, int damage){
         this.name = name;
         this.damage = damage;
-    }
-
-    //inspect the room that the player is currently in
-    public void inspect(){
-        currentRoom.inspect();
     }
 
     //set a player's current room
@@ -73,4 +71,5 @@ public class Player implements Attackable{
     public int dealDamage() {
         return this.damage;
     }
+
 }
