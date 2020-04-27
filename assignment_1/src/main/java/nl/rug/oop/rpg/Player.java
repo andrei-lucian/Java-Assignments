@@ -10,6 +10,7 @@ public class Player implements Attackable{
     private Room currentRoom;
     private Room previousRoom;
     private boolean isDead = false;
+    Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructor:
@@ -45,14 +46,13 @@ public class Player implements Attackable{
 
             System.out.println("You: 'Rude...' \nYour health is: " + this.health);
 
-            //low health warning
-            if (this.health < 50){
+            if (this.health < 50){ //low health warning
                 System.out.println("Your health is critically low, look for a health wizard!");
             }
         }
-        //player dies because health <= 0
         else {
-            this.isDead = true;
+            this.isDead = true; //player dies because health <= 0
+
         }
     }
 
@@ -74,60 +74,40 @@ public class Player implements Attackable{
     }
 
     /** select door and go to next room */
-    public void lookForDoors(){
-        ArrayList<Door> doorList = this.currentRoom.getDoorList();
-
-        System.out.println("Which door do you take? (-1 : stay here).");
-        Scanner scanner = new Scanner(System.in);
+    public void selectDoor(){
+        ArrayList<Door> doorList = this.currentRoom.findDoors();
         int chosenDoor = scanner.nextInt(); //user input (integer)
-
         if (chosenDoor > doorList.size() -1 || chosenDoor < -1) { //check bounds
             System.out.println("Not a door, please choose a different option.");
-            lookForDoors();
+            selectDoor();
         }
-
         else if (chosenDoor != -1){ //move to room behind chosen door
-            //store the current room as the previous room in case we want to go back
-            this.setPreviousRoom(currentRoom);
-            //move to next room
-            Door newDoor = doorList.get(chosenDoor);
+            this.setPreviousRoom(currentRoom); //store the current room as the previous room in case we want to go back
+            Door newDoor = doorList.get(chosenDoor); //move to next room
             moveToNextRoom(newDoor);
         }
     }
 
     /** select NPC and interact with NPC */
-    public void lookForNPC(){
-        ArrayList<NPC> npcList = this.getCurrentRoom().getNpcList();
-
-        System.out.println("Interact? (1) (-1 : don't interact).");
-        Scanner scanner = new Scanner(System.in);
-        int chosenNPC = scanner.nextInt(); //user input (integer)
-
+    public void selectNPC(){
+        ArrayList<NPC> npcList = this.getCurrentRoom().findNPCs();
+        int chosenNPC = scanner.nextInt(); /** user input (integer) */
         if (chosenNPC > npcList.size() -1 || chosenNPC < -1) { //check bounds
             System.out.println("Not an available option, please choose again.");
-            lookForNPC();
+            selectNPC();
         }
-
         else if (chosenNPC != -1){
-            //interact with npc
-            NPC newNpc = npcList.get(chosenNPC);
+            NPC newNpc = npcList.get(chosenNPC); //interact with npc
             newNpc.interact(this);
-            //take damage if npc is Enemy
             if(!newNpc.isFriendly()){
-                Enemy enemy = (Enemy) newNpc;
-                int attack = scanner.nextInt();
-                if(attack != -1){
-                    enemy.takeDamage(this.dealDamage());
-                }
-                System.out.println(newNpc);
+                this.takeDamage(((Enemy)newNpc).dealDamage()); //take damage if npc is Enemy
             }
         }
     }
 
     /** Method to go to previous room */
     public void goBack(){
-        System.out.print("You went back to the previous room \n" +
-                "You are now in ");
+        System.out.print("You went back to the previous room\n" + "You are now in ");
         this.setCurrentRoom(previousRoom);
         this.getCurrentRoom().inspect();
     }

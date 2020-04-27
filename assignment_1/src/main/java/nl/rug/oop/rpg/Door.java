@@ -4,7 +4,10 @@ public class Door implements Inspectable, Interactable {
 
     private final String description;
     private Room nextRoom;
-
+    /**
+     * Constructor:
+     * @param description door description
+     */
     //set the description of door
     public Door(String description) {
         this.description = description;
