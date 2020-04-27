@@ -11,7 +11,7 @@ public class Coward extends Enemy implements Attackable{
     }
 
     public void interact(Player player){
-        printDialogue();
+        printDialogue("I hope he doesn't see me");
         int attack = scanner.nextInt();
         if(attack != -1){
             if(attack == 1) {
@@ -23,11 +23,5 @@ public class Coward extends Enemy implements Attackable{
                 System.out.println("Not an option");
             }
         }
-    }
-
-    @Override
-    protected void printDialogue() {
-        System.out.println("Enemy: I hope he doesn't see me.'\n" +
-                "Attack? (1) (-1 : don't interact).");
     }
 }

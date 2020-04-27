@@ -13,15 +13,9 @@ public class DementiaDude extends Enemy implements Attackable{
         super(description, damage, health, room);
     }
 
-    @Override
-    protected void printDialogue() {
-        System.out.println("Enemy: Where am I?'\n" +
-                "Attack? (1) (-1 : don't interact).");
-    }
-
     /** This class deals a random amount of damage each time he attacks */
     public void interact(Player player){
-        printDialogue();
+        printDialogue("Where am I?");
         int attack = scanner.nextInt();
         if(attack != -1){
             if(attack == 1) {

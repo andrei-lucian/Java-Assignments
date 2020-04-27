@@ -54,5 +54,8 @@ public abstract class Enemy extends NPC implements Attackable{
     @Override
     public abstract void interact(Player player);
 
-    protected abstract void printDialogue();
+    protected void printDialogue(String uniqueLine){
+        System.out.println( "Enemy: " + uniqueLine + "\n"+
+                "Attack? (1) (-1 : don't interact).");
+    }
 }

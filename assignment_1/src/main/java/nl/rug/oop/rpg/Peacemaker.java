@@ -5,8 +5,8 @@ package nl.rug.oop.rpg;
 
 public class Peacemaker extends Enemy{
     /**
-     *@param exp experience that the class gives when it dies
-     * @param recognized checks if the class has been seen before
+     *@var exp experience that the class gives when it dies
+     * @var recognized checks if the class has been seen before
      */
 
     private boolean recognized = false;
@@ -25,7 +25,7 @@ public class Peacemaker extends Enemy{
     }
 
     public void interact(Player player){
-        printDialogue();
+        printDialogue("I won't hurt you");
         int attack = scanner.nextInt();
         if(attack != -1){
             if (attack ==1) {
@@ -40,11 +40,5 @@ public class Peacemaker extends Enemy{
                 System.out.println("Not an option, please select again");
             }
         }
-    }
-
-    @Override
-    protected void printDialogue() {
-        System.out.println("Peacemaker! \n" +
-                "Attack? (1) (-1 : don't interact).");
     }
 }

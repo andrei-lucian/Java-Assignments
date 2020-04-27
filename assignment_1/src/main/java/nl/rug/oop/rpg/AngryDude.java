@@ -7,19 +7,14 @@ public class AngryDude extends Enemy implements Attackable {
     /**
      *@param exp experience that the class gives when it dies
      */
+
     private static final int exp = 50;
     public AngryDude(String description, int damage, int health, Room room){
         super(description, damage, health, room);
     }
 
-    @Override
-    protected void printDialogue() {
-        System.out.println("Enemy: 'I'll hurt you!'\n" +
-                "Attack? (1) (-1 : don't interact).");
-    }
-
     public void interact(Player player){
-        printDialogue();
+        printDialogue("I'll hurt you");
         int attack = scanner.nextInt();
         if(attack!= -1){
             if (attack == 1) {
