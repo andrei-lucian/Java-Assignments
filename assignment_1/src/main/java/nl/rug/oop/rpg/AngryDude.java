@@ -5,8 +5,8 @@ package nl.rug.oop.rpg;
 
 public class AngryDude extends Enemy implements Attackable {
 
-    public AngryDude(String description, int damage, int health){
-        super(description, damage, health);
+    public AngryDude(String description, int damage, int health, Room room){
+        super(description, damage, health, room);
     }
 
     public void interact(Player player){
@@ -35,7 +35,6 @@ public class AngryDude extends Enemy implements Attackable {
                 System.out.println("Not an option, please select again");
                 interact(player);
             }
-
         }
     }
 }

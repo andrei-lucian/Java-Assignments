@@ -7,8 +7,16 @@ public class Peacemaker extends Enemy{
 
     private boolean recognized = false;
 
-    public Peacemaker(String description, int damage, int health){
-        super(description, damage, health);
+    public Peacemaker(String description, int damage, int health, Room room){
+        super(description, damage, health, room);
+    }
+
+    private void checkIfRecognized(){
+        if (!recognized) {
+            System.out.println("...what? My health increased when I attacked? " +
+                    "This must be a peacemaker type!");
+            this.recognized = true;
+        }
     }
 
     public void interact(Player player){
@@ -19,12 +27,8 @@ public class Peacemaker extends Enemy{
             if (attack ==1) {
                 this.takeDamage(player.dealDamage());
                 player.increaseHealth(this.damage);
-
-                if (!recognized) {
-                    System.out.println("...what? My health increased when I attacked? " +
-                            "This must be a peacemaker type!");
-                    this.recognized = true;
-                }
+                checkIfRecognized();
+                this.isDead(this.room);
             }
             else {
                 System.out.println("Not an option, please select again");

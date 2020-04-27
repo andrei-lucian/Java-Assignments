@@ -2,8 +2,8 @@ package nl.rug.oop.rpg;
 
 public class Coward extends Enemy implements Attackable{
 
-    public Coward(String description,int damage, int health){
-        super(description, damage, health);
+    public Coward(String description,int damage, int health, Room room){
+        super(description, damage, health, room);
     }
 
     public void interact(Player player){

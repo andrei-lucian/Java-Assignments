@@ -33,11 +33,20 @@ public class Room implements Inspectable {
     }
 
     /** add an NPC to a room (as long as it is not null) */
-    public void addNPC(NPC npc) {
+    public void addNpc(NPC npc) {
         if (npc != null) {
             npcList.add(npc);
         } else {
             System.out.println("Cannot add null npc object");
+        }
+    }
+
+    /** remove an npc from a room */
+    public void removeNPC(NPC npc){
+        if (npc != null) {
+            npcList.remove(npc);
+        } else {
+            System.out.println("Cannot remove null npc object");
         }
     }
 

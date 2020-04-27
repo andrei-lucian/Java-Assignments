@@ -4,8 +4,8 @@ import java.util.Random;
 public class DementiaDude extends Enemy implements Attackable{
     Random randInt = new Random();
 
-    public DementiaDude(String description,int damage, int health){
-        super(description, damage, health);
+    public DementiaDude(String description,int damage, int health, Room room){
+        super(description, damage, health, room);
     }
 
     public void interact(Player player){
