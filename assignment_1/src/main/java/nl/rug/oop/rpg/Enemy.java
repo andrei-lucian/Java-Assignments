@@ -24,4 +24,8 @@ public class Enemy extends NPC implements Attackable{
     public void interact(Player player){
         System.out.println("Enemy: 'I'll hurt you!'");
     }
+
+    public static boolean isFriendly() {
+        return false;
+    }
 }

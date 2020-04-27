@@ -19,4 +19,8 @@ public class NPC implements Inspectable, Interactable {
     public void interact(Player player) {
         System.out.println("Can you find my soul?");
     }
+
+    public static boolean isFriendly() {
+        return true;
+    }
 }
