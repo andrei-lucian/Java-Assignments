@@ -14,10 +14,6 @@ public class Room implements Inspectable {
         npcList = new ArrayList<>();
     }
 
-    public String getDescription() {
-        return this.description;
-    }
-
     public void inspect() {
         System.out.println("You see:\n" + this.description);
     }
@@ -40,15 +36,27 @@ public class Room implements Inspectable {
         }
     }
 
-    //getter for the list of doors attached to a room
     public ArrayList<Door> getDoorList() {
         System.out.println("You look around for doors.\nYou see:");
+        for (Door door : doorList){ //loop through doors and print their descriptions
+            System.out.print("(" + doorList.indexOf(door) + ") ");
+            door.inspect();
+        }
         return this.doorList;
     }
 
     //getter for the list of npcs attached to a room
     public ArrayList<NPC> getNpcList() {
         System.out.println("You look if there's someone here. \nYou see:");
+        if(npcList.isEmpty()){
+            System.out.println("An empty room");
+        }
+        else{
+            for (NPC npc : npcList) { //loop through NPCs and print their descriptions
+                System.out.print("(" + npcList.indexOf(npc) + ") ");
+                npc.inspect();
+            }
+        }
         return this.npcList;
     }
 }

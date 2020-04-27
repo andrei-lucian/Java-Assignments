@@ -75,13 +75,7 @@ public class Player implements Attackable{
 
     /** select door and go to next room */
     public void lookForDoors(){
-        Room currentRoom = this.getCurrentRoom();
-        ArrayList<Door> doorList = currentRoom.getDoorList();
-
-        for (Door door : doorList){ //loop through doors and print their descriptions
-            System.out.print("(" + doorList.indexOf(door) + ") ");
-            door.inspect();
-        }
+        ArrayList<Door> doorList = this.currentRoom.getDoorList();
 
         System.out.println("Which door do you take? (-1 : stay here).");
         Scanner scanner = new Scanner(System.in);
@@ -104,18 +98,6 @@ public class Player implements Attackable{
     /** select NPC and interact with NPC */
     public void lookForNPC(){
         ArrayList<NPC> npcList = this.getCurrentRoom().getNpcList();
-
-        //there are no NPCs in this room
-        if(npcList.isEmpty()){
-            System.out.println("An empty room");
-        }
-
-        else {
-            for (NPC npc : npcList) { //loop through NPCs and print their descriptions
-                System.out.print("(" + npcList.indexOf(npc) + ") ");
-                npc.inspect();
-            }
-        }
 
         System.out.println("Interact? (-1 : don't interact).");
         Scanner scanner = new Scanner(System.in);
