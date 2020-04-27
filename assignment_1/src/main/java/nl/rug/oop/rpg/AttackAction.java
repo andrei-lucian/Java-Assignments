@@ -6,10 +6,12 @@ public class AttackAction {
     private String description;
     private int amountOfDamage;
 
-    public AttackAction(String description, int amountOfDamage){
+    public AttackAction(String description, int amountOfDamage) {
         this.description = description;
         this.amountOfDamage = amountOfDamage;
     }
 
-
+    public int getAmountOfDamage(){
+        return amountOfDamage;
+    }
 }

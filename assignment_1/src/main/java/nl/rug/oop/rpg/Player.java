@@ -2,7 +2,7 @@ package nl.rug.oop.rpg;
 
 public class Player implements Attackable{
 
-    private String name;
+    private final String name;
     private int damage;
     private int health = 100;
     private Room currentRoom;
@@ -47,6 +47,7 @@ public class Player implements Attackable{
     @Override
     public void takeDamage(int damage) {
 
+        //take damage if it doesn't result in the player dying
         if (this.health-damage > 0){
             this.health -= damage;
 
@@ -57,6 +58,7 @@ public class Player implements Attackable{
                 System.out.println("Your health is critically low, look for a health wizard!");
             }
         }
+        //player dies because health <= 0
         else {
             this.isDead = true;
         }

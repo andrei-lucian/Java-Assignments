@@ -18,9 +18,11 @@ public class Game {
 
         while (true) {
 
-            //stop the loop if the player dies - currently not working
+            //stop the loop if the player dies
             if (player.isDead()){
-                break;
+                System.out.println("You died, game over :(");
+
+                System.exit(0);
             }
 
             printMenu();
