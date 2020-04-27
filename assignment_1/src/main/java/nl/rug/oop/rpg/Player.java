@@ -2,16 +2,16 @@ package nl.rug.oop.rpg;
 
 public class Player implements Attackable{
 
-    private String name;
+    private final String name;
     private int damage;
-    private int health;
+    private int health = 100;
     private Room currentRoom;
     private Room previousRoom;
+    private boolean isDead = false;
 
-    public Player(String name, int damage, int health){
+    public Player(String name, int damage){
         this.name = name;
         this.damage = damage;
-        this.health = health;
     }
 
     //inspect the room that the player is currently in
@@ -39,14 +39,36 @@ public class Player implements Attackable{
         this.setCurrentRoom(previousRoom);
     }
 
-    //take damage and deal damage
-    @Override
-    public void takeDamage(int damage) {
-        this.health -= damage;
-        System.out.println("Cunt... \nMy health is: " +
-                this.health);
+    public int getHealth(){
+        return this.health;
     }
 
+    //take damage
+    @Override
+    public void takeDamage(int damage) {
+
+        //take damage if it doesn't result in the player dying
+        if (this.health-damage > 0){
+            this.health -= damage;
+
+            System.out.println("You: 'Rude...' \nYour health is: " + this.health);
+
+            //low health warning
+            if (this.health < 50){
+                System.out.println("Your health is critically low, look for a health wizard!");
+            }
+        }
+        //player dies because health <= 0
+        else {
+            this.isDead = true;
+        }
+    }
+
+    public boolean isDead(){
+        return this.isDead;
+    }
+
+    //deal damage
     @Override
     public int dealDamage() {
         return this.damage;
