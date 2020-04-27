@@ -99,7 +99,7 @@ public class Player implements Attackable{
     public void lookForNPC(){
         ArrayList<NPC> npcList = this.getCurrentRoom().getNpcList();
 
-        System.out.println("Interact? (-1 : don't interact).");
+        System.out.println("Interact? (1) (-1 : don't interact).");
         Scanner scanner = new Scanner(System.in);
         int chosenNPC = scanner.nextInt(); //user input (integer)
 
@@ -114,7 +114,12 @@ public class Player implements Attackable{
             newNpc.interact(this);
             //take damage if npc is Enemy
             if(!newNpc.isFriendly()){
-                this.takeDamage(((Enemy)newNpc).dealDamage());
+                Enemy enemy = (Enemy) newNpc;
+                int attack = scanner.nextInt();
+                if(attack != -1){
+                    enemy.takeDamage(this.dealDamage());
+                }
+                System.out.println(newNpc);
             }
         }
     }

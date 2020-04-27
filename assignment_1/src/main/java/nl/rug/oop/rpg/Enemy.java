@@ -15,7 +15,7 @@ public class Enemy extends NPC implements Attackable{
     @Override
     public void takeDamage(int damage) {
         this.health = this.health - damage;
-        System.out.println("Aww damn it, my health is now" + this.health);
+        System.out.println("Aww damn it, my health is now " + this.health);
     }
 
     @Override
@@ -26,7 +26,8 @@ public class Enemy extends NPC implements Attackable{
 
     @Override
     public void interact(Player player){
-        System.out.println("Enemy: 'I'll hurt you!'");
+        System.out.println("Enemy: 'I'll hurt you!'\n" +
+                "Attack? (1) (-1 : don't interact).");
     }
 
     @Override
