@@ -5,6 +5,12 @@ public class NPC implements Inspectable, Interactable {
     protected int damage;
     protected int health;
 
+    /**
+     * Constructor:
+     * @param description NPC description
+     * @param damage NPC damage
+     * @param health NPC health
+     */
     public NPC(String description, int damage, int health){
         this.description = description;
         this.damage = damage;
@@ -21,6 +27,7 @@ public class NPC implements Inspectable, Interactable {
         System.out.println("Can you find my soul?");
     }
 
+    /** @return true if the npc is friendly */
     public boolean isFriendly() {
         return true;
     }

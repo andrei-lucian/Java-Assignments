@@ -11,22 +11,24 @@ public class Player implements Attackable{
     private Room previousRoom;
     private boolean isDead = false;
 
+    /**
+     * Constructor:
+     * @param name player name
+     * @param damage player damage
+     */
     public Player(String name, int damage){
         this.name = name;
         this.damage = damage;
     }
 
-    //set a player's current room
     public void setCurrentRoom(Room room){
         this.currentRoom = room;
     }
 
-    //return a player's current room
     public Room getCurrentRoom(){
         return this.currentRoom;
     }
 
-    //setter for the previous room
     public void setPreviousRoom(Room room){
         this.previousRoom = room;
     }
@@ -35,10 +37,8 @@ public class Player implements Attackable{
         return this.health;
     }
 
-    //take damage
     @Override
     public void takeDamage(int damage) {
-
         //take damage if it doesn't result in the player dying
         if (this.health-damage > 0){
             this.health -= damage;
@@ -56,35 +56,25 @@ public class Player implements Attackable{
         }
     }
 
-    //returns if the player is dead or not
+    /** @return if the player is dead */
     public boolean isDead(){
         return this.isDead;
     }
 
-    //deal damage
     @Override
     public int dealDamage() {
         return this.damage;
     }
 
-    //the player chooses to inspect their surroundings
-    public void lookAround(){
-        System.out.print("You see ");
-        this.getCurrentRoom().inspect();
-    }
-
-    //move to the next room
+    /** Moves player to next room */
     private void moveToNextRoom(Door newDoor) {
         newDoor.interact(this);
         System.out.println("You go through the door.");
-        System.out.print("You are now in ");
         this.getCurrentRoom().inspect();
     }
 
-    //the player selects a door to go through
+    /** select door and go to next room */
     public void lookForDoors(){
-        System.out.println("You look around for doors.\nYou see:");
-
         Room currentRoom = this.getCurrentRoom();
         ArrayList<Door> doorList = currentRoom.getDoorList();
 
@@ -102,7 +92,7 @@ public class Player implements Attackable{
             lookForDoors();
         }
 
-        else if (chosenDoor!=-1){ //move to room behind chosen door
+        else if (chosenDoor != -1){ //move to room behind chosen door
             //store the current room as the previous room in case we want to go back
             this.setPreviousRoom(currentRoom);
             //move to next room
@@ -111,20 +101,9 @@ public class Player implements Attackable{
         }
     }
 
-    //method to go back to the previous room
-    public void goBack(){
-        System.out.print("You went back to the previous room \n" +
-                "You are now in ");
-        this.setCurrentRoom(previousRoom);
-        this.getCurrentRoom().inspect();
-    }
-
-    //lookForNpc is almost identical to lookForDoor, we need to put these in new class
+    /** select NPC and interact with NPC */
     public void lookForNPC(){
-        System.out.println("You look if there's someone here. \nYou see:");
-        Room currentRoom = this.getCurrentRoom();
-
-        ArrayList<NPC> npcList = currentRoom.getNpcList();
+        ArrayList<NPC> npcList = this.getCurrentRoom().getNpcList();
 
         //there are no NPCs in this room
         if(npcList.isEmpty()){
@@ -147,7 +126,7 @@ public class Player implements Attackable{
             lookForNPC();
         }
 
-        else if (chosenNPC!=-1){
+        else if (chosenNPC != -1){
             //interact with npc
             NPC newNpc = npcList.get(chosenNPC);
             newNpc.interact(this);
@@ -156,5 +135,13 @@ public class Player implements Attackable{
                 this.takeDamage(((Enemy)newNpc).dealDamage());
             }
         }
+    }
+
+    /** Method to go to previous room */
+    public void goBack(){
+        System.out.print("You went back to the previous room \n" +
+                "You are now in ");
+        this.setCurrentRoom(previousRoom);
+        this.getCurrentRoom().inspect();
     }
 }

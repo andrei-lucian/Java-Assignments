@@ -1,6 +1,9 @@
 package nl.rug.oop.rpg;
 
-//class for various types of attack actions that can be linked to an enemy
+/**
+ * class for various types of attack actions
+ * that can be linked to an enemy
+ */
 
 public class AttackAction {
     private String description;

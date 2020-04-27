@@ -2,6 +2,12 @@ package nl.rug.oop.rpg;
 
 public class Enemy extends NPC implements Attackable{
 
+    /**
+     *
+     * @param description enemy description
+     * @param damage enemy damage
+     * @param health enemy health
+     */
     Enemy(String description, int damage, int health) {
         super(description, damage, health);
     }
@@ -23,6 +29,7 @@ public class Enemy extends NPC implements Attackable{
         System.out.println("Enemy: 'I'll hurt you!'");
     }
 
+    @Override
     public boolean isFriendly() {
         return false;
     }

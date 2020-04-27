@@ -19,7 +19,7 @@ public class Room implements Inspectable {
     }
 
     public void inspect() {
-        System.out.println(description);
+        System.out.println("You see:\n" + this.description);
     }
 
     //add a door as long as it is not null
@@ -42,11 +42,13 @@ public class Room implements Inspectable {
 
     //getter for the list of doors attached to a room
     public ArrayList<Door> getDoorList() {
+        System.out.println("You look around for doors.\nYou see:");
         return this.doorList;
     }
 
     //getter for the list of npcs attached to a room
     public ArrayList<NPC> getNpcList() {
+        System.out.println("You look if there's someone here. \nYou see:");
         return this.npcList;
     }
 }
