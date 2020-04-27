@@ -1,6 +1,5 @@
 package nl.rug.oop.rpg;
 import java.util.Scanner;
-
 import java.util.ArrayList;
 
 public class Player implements Attackable{
