@@ -6,7 +6,7 @@ public class Room implements Inspectable {
 
     private String description;
     private ArrayList<Door> doorList; //create Door list
-    private ArrayList<Npc> npcList; //create NPC list
+    private ArrayList<NPC> npcList; //create NPC list
 
     public Room(String description) {
         this.description = description;
@@ -31,7 +31,8 @@ public class Room implements Inspectable {
         }
     }
 
-    public void addNPC(Npc npc) {
+    //add an npc as long as it is not null
+    public void addNPC(NPC npc) {
         if (npc != null) {
             npcList.add(npc);
         } else {
@@ -39,11 +40,13 @@ public class Room implements Inspectable {
         }
     }
 
+    //getter for the list of doors attached to a room
     public ArrayList<Door> getDoorList() {
         return this.doorList;
     }
 
-    public ArrayList<Npc> getNpcList() {
+    //getter for the list of npcs attached to a room
+    public ArrayList<NPC> getNpcList() {
         return this.npcList;
     }
 }

@@ -21,6 +21,7 @@ public class Door implements Inspectable, Interactable {
         player.setCurrentRoom(nextRoom);
     }
 
+    //connect a door to its next room
     public void setNextRoom(Room room) {
         this.nextRoom = room;
     }
