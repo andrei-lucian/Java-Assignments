@@ -32,11 +32,6 @@ public class Player implements Attackable{
         this.previousRoom = room;
     }
 
-    //go back to the previous room
-    public void goBack(){
-        this.setCurrentRoom(previousRoom);
-    }
-
     public int getHealth(){
         return this.health;
     }
@@ -72,4 +67,59 @@ public class Player implements Attackable{
         return this.damage;
     }
 
+    //the player chooses to inspect their surroundings
+    public void lookAround(){
+        System.out.print("You see ");
+        this.getCurrentRoom().inspect();
+    }
+
+    private void moveToNextRoom(Door newDoor) {
+        newDoor.interact(this);
+        System.out.println("You go through the door.");
+        System.out.print("You are now in ");
+        this.getCurrentRoom().inspect();
+    }
+
+    //the player selects a door to go through
+    public void lookForDoors(){
+
+        System.out.println("You look around for doors.\nYou see:");
+
+        Room currentRoom = this.getCurrentRoom();
+        ArrayList<Door> doorList = currentRoom.getDoorList();
+
+        for (Door door : doorList){ //loop through doors and print their descriptions
+            System.out.print("(" + doorList.indexOf(door) + ") ");
+            door.inspect();
+        }
+
+        System.out.println("Which door do you take? (-1 : stay here).");
+        Scanner scanner = new Scanner(System.in);
+        int chosenDoor = scanner.nextInt(); //user input (integer)
+
+        if (chosenDoor > doorList.size() -1 || chosenDoor < -1) { //check bounds
+            System.out.println("Not a door, please choose a different option.");
+            lookForDoors();
+        }
+
+        else if (chosenDoor == -1) { //stay here
+            return; //exit the option1 method and go back to the original game loop
+        }
+
+        else { //move to room behind chosen door
+            //store the current room as the previous room in case we want to go back
+            this.setPreviousRoom(currentRoom);
+            //move to next room
+            Door newDoor = doorList.get(chosenDoor);
+            moveToNextRoom(newDoor);
+        }
+    }
+
+    //method to go back to the previous room
+    public void goBack(){
+        System.out.print("You went back to the previous room \n" +
+                "You are now in ");
+        this.setCurrentRoom(previousRoom);
+        this.getCurrentRoom().inspect();
+    }
 }
