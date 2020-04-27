@@ -13,6 +13,7 @@ public class Coward extends Enemy implements Attackable{
         if(attack != -1){
             if(attack == 1) {
                 System.out.println("The enemy ran away.");
+                this.removeFromRoom(this.room);
             }
             else{
                 System.out.println("Not an option");

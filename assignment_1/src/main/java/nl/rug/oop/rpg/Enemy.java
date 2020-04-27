@@ -5,15 +5,19 @@ import java.util.Scanner;
 public abstract class Enemy extends NPC implements Attackable{
     Scanner scanner = new Scanner(System.in);
     protected boolean isDead = false;
+    int exp;
 
     /**
      * Constructor:
      * @param description enemy description
      * @param damage enemy damage
      * @param health enemy health
+     * @param room the room in which the char is
+     * @param exp the experience that the enemy is worth
      */
-    Enemy(String description, int damage, int health, Room room) {
+    Enemy(String description, int damage, int health, Room room, int exp) {
         super(description, damage, health, room);
+        this.exp = exp;
     }
 
     /** enemy takes damage when it is
@@ -36,11 +40,16 @@ public abstract class Enemy extends NPC implements Attackable{
         return this.damage;
     }
 
-    /** @return if the enemy is dead */
-    public boolean isDead(Room room){
+    /** Remove npc from room*/
+    protected void removeFromRoom(Room room){
+        room.removeNPC(this);
+    }
+
+    /** @return the status of enemy and remove from room if health smaller than 0*/
+    public boolean isDead(){
         if(this.health <= 0){
             this.isDead = true;
-            room.removeNPC(this);
+            removeFromRoom(this.room);
         }
         return this.isDead;
     }

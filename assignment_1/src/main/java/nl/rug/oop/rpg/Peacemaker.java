@@ -11,6 +11,7 @@ public class Peacemaker extends Enemy{
         super(description, damage, health, room);
     }
 
+    /** Check if you've seen this class before */
     private void checkIfRecognized(){
         if (!recognized) {
             System.out.println("...what? My health increased when I attacked? " +
@@ -28,7 +29,7 @@ public class Peacemaker extends Enemy{
                 this.takeDamage(player.dealDamage());
                 player.increaseHealth(this.damage);
                 checkIfRecognized();
-                this.isDead(this.room);
+                this.isDead();
             }
             else {
                 System.out.println("Not an option, please select again");
