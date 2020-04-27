@@ -5,7 +5,7 @@ public class NPC implements Inspectable, Interactable {
     private String description;
     protected int damage;
     protected int health;
-    static boolean isFriendly;
+    protected boolean isFriendly;
 
     public NPC(String description, int damage, int health){
         this.description = description;
@@ -22,7 +22,7 @@ public class NPC implements Inspectable, Interactable {
         System.out.println("Can you find my soul?");
     }
 
-    public static boolean isFriendly() {
+    public boolean isFriendly() {
         return true;
     }
 }

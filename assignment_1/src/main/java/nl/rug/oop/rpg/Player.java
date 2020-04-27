@@ -57,6 +57,7 @@ public class Player implements Attackable{
         }
     }
 
+    //returns if the player is dead or not
     public boolean isDead(){
         return this.isDead;
     }
@@ -73,6 +74,7 @@ public class Player implements Attackable{
         this.getCurrentRoom().inspect();
     }
 
+    //move to the next room
     private void moveToNextRoom(Door newDoor) {
         newDoor.interact(this);
         System.out.println("You go through the door.");
@@ -82,7 +84,6 @@ public class Player implements Attackable{
 
     //the player selects a door to go through
     public void lookForDoors(){
-
         System.out.println("You look around for doors.\nYou see:");
 
         Room currentRoom = this.getCurrentRoom();
@@ -121,5 +122,47 @@ public class Player implements Attackable{
                 "You are now in ");
         this.setCurrentRoom(previousRoom);
         this.getCurrentRoom().inspect();
+    }
+
+    //lookForNpc is almost identical to lookForDoor, we need to put these in new class
+    public void lookForNPC(){
+        System.out.println("You look if there's someone here. \nYou see:");
+        Room currentRoom = this.getCurrentRoom();
+
+        ArrayList<NPC> npcList = currentRoom.getNpcList();
+
+        //there are no NPCs in this room
+        if(npcList.isEmpty()){
+            System.out.println("An empty room");
+        }
+
+        else {
+            for (NPC npc : npcList) { //loop through NPCs and print their descriptions
+                System.out.print("(" + npcList.indexOf(npc) + ") ");
+                npc.inspect();
+            }
+        }
+
+        System.out.println("Interact? (-1 : don't interact).");
+        Scanner scanner = new Scanner(System.in);
+        int chosenNPC = scanner.nextInt(); //user input (integer)
+
+        if (chosenNPC > npcList.size() -1 || chosenNPC < -1) { //check bounds
+            System.out.println("Not an available option, please choose again.");
+            lookForNPC();
+        }
+        else if (chosenNPC == -1) { //do not interact
+            return; //exit the method and go back to the original game loop
+        }
+
+        else {
+            //interact with npc
+            NPC newNpc = npcList.get(chosenNPC);
+            newNpc.interact(this);
+            //take damage if npc is Enemy
+            if(!newNpc.isFriendly()){
+                this.takeDamage(((Enemy)newNpc).dealDamage());
+            }
+        }
     }
 }
