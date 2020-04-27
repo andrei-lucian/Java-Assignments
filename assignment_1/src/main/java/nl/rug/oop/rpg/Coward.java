@@ -10,14 +10,19 @@ public class Coward extends Enemy implements Attackable{
         super(description, damage, health, room);
     }
 
+    @Override
+    protected void performAction(Player player) {
+        System.out.println("The enemy ran away.");
+        this.removeFromRoom(this.room);
+        player.setExp(exp);
+    }
+
     public void interact(Player player){
         printDialogue("I hope he doesn't see me");
-        int attack = scanner.nextInt();
-        if(attack != -1){
-            if(attack == 1) {
-                System.out.println("The enemy ran away.");
-                this.removeFromRoom(this.room);
-                player.setExp(exp);
+        this.interact = scanner.nextInt();
+        if(this.interact != -1){
+            if(this.interact == 1) {
+                performAction(player);
             }
             else{
                 System.out.println("Not an option");

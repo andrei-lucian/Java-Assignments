@@ -13,28 +13,34 @@ public class AngryDude extends Enemy implements Attackable {
         super(description, damage, health, room);
     }
 
+    @Override
+    protected void performAction(Player player) {
+        this.takeDamage(player.dealDamage());
+        System.out.println("Enemy: ''Grr... how dare you attack me?!" +
+                " I'll stop at nothing to kill you!'' \n " +
+                "You are now stuck in a loop, either kill the enemy or die. ");
+        while (this.health != 0 || player.getHealth() != 0) {
+            if (this.health - player.getDamage() <= 0) {
+                if(this.isDead()){
+                    System.out.println("You defeated the angry dude.");
+                    player.setExp(exp);
+                    this.interact = -1;
+                    break;
+                }
+            }
+            player.takeDamage(this.dealDamage());
+            System.out.println("You: ''Ow! Take this!''");
+            this.takeDamage(player.dealDamage());
+            System.out.println("Imbecile!");
+        }
+    }
+
     public void interact(Player player){
         printDialogue("I'll hurt you");
-        int attack = scanner.nextInt();
-        if(attack!= -1){
-            if (attack == 1) {
-                this.takeDamage(player.dealDamage());
-                System.out.println("Enemy: ''Grr... how dare you attack me?!" +
-                        " I'll stop at nothing to kill you!'' \n " +
-                        "You are now stuck in a loop, either kill the enemy or die. ");
-                while (this.health != 0 || player.getHealth() != 0) {
-                    if (this.health - player.getDamage() <= 0) {
-                        if(this.isDead()){
-                            System.out.println("You defeated the angry dude.");
-                            player.setExp(exp);
-                            break;
-                        }
-                    }
-                    player.takeDamage(this.dealDamage());
-                    System.out.println("You: ''Ow! Take this!''");
-                    this.takeDamage(player.dealDamage());
-                    System.out.println("Imbecile!");
-                }
+        this.interact = scanner.nextInt();
+        if(this.interact != -1){
+            if (this.interact == 1) {
+                performAction(player);
             }
             else {
                 System.out.println("Not an option, please select again");

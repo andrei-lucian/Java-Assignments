@@ -5,6 +5,7 @@ import java.util.Scanner;
 public abstract class Enemy extends NPC implements Attackable{
     Scanner scanner = new Scanner(System.in);
     protected boolean isDead = false;
+    protected int interact = 0;
 
     /**
      * Constructor:
@@ -58,4 +59,6 @@ public abstract class Enemy extends NPC implements Attackable{
         System.out.println( "Enemy: " + uniqueLine + "\n"+
                 "Attack? (1) (-1 : don't interact).");
     }
+
+    protected abstract void performAction(Player player);
 }

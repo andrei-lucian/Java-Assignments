@@ -24,17 +24,22 @@ public class Peacemaker extends Enemy{
         }
     }
 
+    @Override
+    protected void performAction(Player player) {
+        this.takeDamage(player.dealDamage());
+        player.increaseHealth(this.damage);
+        checkIfRecognized();
+        if (this.isDead()) {
+            player.setExp(exp);
+        }
+    }
+
     public void interact(Player player){
         printDialogue("I won't hurt you");
-        int attack = scanner.nextInt();
-        if(attack != -1){
-            if (attack ==1) {
-                this.takeDamage(player.dealDamage());
-                player.increaseHealth(this.damage);
-                checkIfRecognized();
-                if(this.isDead()){
-                    player.setExp(exp);
-                }
+        this.interact = scanner.nextInt();
+        if(this.interact != -1){
+            if (this.interact == 1) {
+                performAction(player);
             }
             else {
                 System.out.println("Not an option, please select again");
