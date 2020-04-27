@@ -17,7 +17,7 @@ public class Enemy extends NPC implements Attackable{
     @Override
     public void takeDamage(int damage) {
         this.health = this.health - damage;
-        System.out.println("Aww damn it, my health is now" + this.health);
+        System.out.println("Aww damn it, my health is now " + this.health);
     }
 
     /** @return damage: the amount of damage to be dealt */
@@ -30,9 +30,11 @@ public class Enemy extends NPC implements Attackable{
     /** @return damage: the amount of damage to be dealt */
     @Override
     public void interact(Player player){
-        System.out.println("Enemy: 'I'll hurt you!'");
+        System.out.println("Enemy: 'I'll hurt you!'\n" +
+                "Attack? (1) (-1 : don't interact).");
     }
 
+    /** returns false because enemies are not friendly */
     @Override
     public boolean isFriendly() {
         return false;

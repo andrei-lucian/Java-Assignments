@@ -106,7 +106,11 @@ public class Player implements Attackable{
             NPC newNpc = npcList.get(chosenNPC); //interact with npc
             newNpc.interact(this);
             if(!newNpc.isFriendly()){
-                this.takeDamage(((Enemy)newNpc).dealDamage()); //take damage if npc is Enemy
+                Enemy enemy = (Enemy) newNpc;
+                int attack = scanner.nextInt();
+                if(attack != -1){
+                    enemy.takeDamage(this.dealDamage());
+                }
             }
         }
     }

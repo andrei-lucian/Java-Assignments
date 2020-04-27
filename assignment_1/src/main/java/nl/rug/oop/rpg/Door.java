@@ -8,22 +8,22 @@ public class Door implements Inspectable, Interactable {
      * Constructor:
      * @param description door description
      */
-    //set the description of door
+    /** set the description of door */
     public Door(String description) {
         this.description = description;
     }
 
-    //inspect a door
+    /** inspect a door */
     public void inspect() {
         System.out.println(description);
     }
 
-    //move the player to the next room behind the selected door
+    /** move the player to the next room behind the selected door */
     public void interact(Player player) {
         player.setCurrentRoom(nextRoom);
     }
 
-    //connect a door to its next room
+    /** connect a door to its next room */
     public void setNextRoom(Room room) {
         this.nextRoom = room;
     }

@@ -17,17 +17,20 @@ public class NPC implements Inspectable, Interactable {
         this.health = health;
     }
 
+    /** inspect an NPC's description */
     @Override
     public void inspect() {
         System.out.println(description);
     }
 
+    /** interact with an NPC */
     @Override
     public void interact(Player player) {
         System.out.println("Can you find my soul?");
     }
 
-    /** @return true if the npc is friendly */
+    /** @return true if the npc is friendly
+     * which is is not if it is an enemy*/
     public boolean isFriendly() {
         return true;
     }
