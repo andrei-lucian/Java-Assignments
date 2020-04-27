@@ -15,13 +15,15 @@ public class DementiaDude extends Enemy implements Attackable{
 
     /** This class deals a random amount of damage each time he attacks */
     public void interact(Player player){
-        printDialogue("Where am I?");
-        int attack = scanner.nextInt();
-        if(attack != -1){
-            if(attack == 1) {
+        this.interact = 0;
+        while(this.interact != -1){
+            printDialogue("Where am I?");
+            this.interact = scanner.nextInt();
+            if(interact == 1) {
                 this.takeDamage(player.dealDamage());
                 if(this.isDead()){
                     player.setExp(exp);
+                    interact = -1;
                 }
                 else {
                     this.damage = randInt.nextInt(50);

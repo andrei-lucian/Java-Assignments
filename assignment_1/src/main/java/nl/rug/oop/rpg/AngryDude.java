@@ -14,10 +14,11 @@ public class AngryDude extends Enemy implements Attackable {
     }
 
     public void interact(Player player){
-        printDialogue("I'll hurt you");
-        int attack = scanner.nextInt();
-        if(attack!= -1){
-            if (attack == 1) {
+        this.interact = 0;
+        while(this.interact != -1){
+            printDialogue("I'll hurt you");
+            this.interact = scanner.nextInt();
+            if (interact == 1) {
                 this.takeDamage(player.dealDamage());
                 System.out.println("Enemy: ''Grr... how dare you attack me?!" +
                         " I'll stop at nothing to kill you!'' \n " +
@@ -27,6 +28,7 @@ public class AngryDude extends Enemy implements Attackable {
                         if(this.isDead()){
                             System.out.println("You defeated the angry dude.");
                             player.setExp(exp);
+                            this.interact = -1;
                             break;
                         }
                     }

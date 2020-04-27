@@ -3,8 +3,10 @@ package nl.rug.oop.rpg;
 import java.util.Scanner;
 
 public abstract class Enemy extends NPC implements Attackable{
+
     Scanner scanner = new Scanner(System.in);
     protected boolean isDead = false;
+    protected int interact;
 
     /**
      * Constructor:
@@ -23,7 +25,7 @@ public abstract class Enemy extends NPC implements Attackable{
     public void takeDamage(int damage) {
         this.health = this.health - damage;
         if(this.health <= 0){
-            System.out.println("I died");
+            System.out.println("The enemy died");
         }
         else {
             System.out.println("Enemy: Aww damn it, my health is now " + this.health);
@@ -37,7 +39,7 @@ public abstract class Enemy extends NPC implements Attackable{
         return this.damage;
     }
 
-    /** Remove npc from room*/
+    /** Remove npc from room */
     protected void removeFromRoom(Room room){
         room.removeNPC(this);
     }
@@ -56,6 +58,6 @@ public abstract class Enemy extends NPC implements Attackable{
 
     protected void printDialogue(String uniqueLine){
         System.out.println( "Enemy: " + uniqueLine + "\n"+
-                "Attack? (1) (-1 : don't interact).");
+                "Attack? (1) (-1 : go to main menu).");
     }
 }
