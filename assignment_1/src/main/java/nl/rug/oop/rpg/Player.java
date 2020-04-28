@@ -9,7 +9,7 @@ public class Player implements Attackable{
     private int health = 100;
     private Room currentRoom;
     private Room previousRoom;
-    public int exp = 0;
+    private int exp = 0;
     private boolean isDead = false;
     Scanner scanner = new Scanner(System.in);
 

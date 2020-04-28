@@ -6,6 +6,7 @@ public abstract class Enemy extends NPC implements Attackable{
     Scanner scanner = new Scanner(System.in);
     protected boolean isDead = false;
     protected int interact = 0;
+    protected String uniqueLine;
 
     /**
      * Constructor:
@@ -52,14 +53,20 @@ public abstract class Enemy extends NPC implements Attackable{
         return this.isDead;
     }
 
-    @Override
-    public abstract void interact(Player player);
-
     protected abstract void performAction(Player player);
 
-    protected void printDialogue(String uniqueLine){
+    protected void interact(String uniqueLine, Player player){
         System.out.println( "Enemy: " + uniqueLine + "\n"+
                 "Attack? (1) (-1 : don't interact).");
+        this.interact = scanner.nextInt();
+        if(this.interact != -1){
+            if (this.interact == 1) {
+                performAction(player);
+            }
+            else {
+                System.out.println("Not an option, please select again");
+                interact(player);
+            }
+        }
     }
-
 }

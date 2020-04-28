@@ -34,16 +34,4 @@ public class Peacemaker extends Enemy {
         }
     }
 
-    public void interact(Player player){
-        printDialogue("I won't hurt you");
-        this.interact = scanner.nextInt();
-        if(this.interact != -1){
-            if (this.interact == 1) {
-                performAction(player);
-            }
-            else {
-                System.out.println("Not an option, please select again");
-            }
-        }
-    }
 }

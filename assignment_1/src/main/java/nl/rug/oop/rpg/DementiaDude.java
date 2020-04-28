@@ -25,18 +25,4 @@ public class DementiaDude extends Enemy implements Attackable{
             player.takeDamage(this.dealDamage());
         }
     }
-
-    /** This class deals a random amount of damage each time he attacks */
-    public void interact(Player player){
-        printDialogue("Where am I?");
-        this.interact = scanner.nextInt();
-        if(this.interact != -1){
-            if(this.interact == 1) {
-                performAction(player);
-            }
-            else{
-                System.out.println("Not an option");
-            }
-        }
-    }
 }

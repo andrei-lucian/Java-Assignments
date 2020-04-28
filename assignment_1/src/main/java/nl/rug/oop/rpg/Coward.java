@@ -16,17 +16,4 @@ public class Coward extends Enemy implements Attackable{
         this.removeFromRoom(this.room);
         player.setExp(exp);
     }
-
-    public void interact(Player player){
-        printDialogue("I hope he doesn't see me");
-        this.interact = scanner.nextInt();
-        if(this.interact != -1){
-            if(this.interact == 1) {
-                performAction(player);
-            }
-            else{
-                System.out.println("Not an option");
-            }
-        }
-    }
 }
