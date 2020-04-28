@@ -10,6 +10,14 @@ public class Main {
         String name = scanner.nextLine();
         Player player = new Player(name, 70);
 
+        //create a game with a player and run the game loop
+        initiateWorld(player);
+        Game game = new Game();
+        game.gameLoop(player);
+    }
+
+    private static void initiateWorld(Player player){
+
         //create the entry room and set it as they player's current room
         Room entry = new Room("a room lit by a candle with a door on one side and a tunnel on the other");
         player.setCurrentRoom(entry);
@@ -31,9 +39,5 @@ public class Main {
         entry_0.setNextRoom(room_0);
         entry_1.setNextRoom(room_1);
         entry_2.setNextRoom(room_2);
-
-        //create a game with a player and run the game loop
-        Game game = new Game();
-        game.gameLoop(player);
     }
 }

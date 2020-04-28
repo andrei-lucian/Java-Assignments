@@ -3,7 +3,7 @@ package nl.rug.oop.rpg;
 /** this type of enemy actually increases the health
  * of the player every time the player attacks it */
 
-public class Peacemaker extends Enemy{
+public class Peacemaker extends Enemy {
     /**
      *@var exp experience that the class gives when it dies
      * @var recognized checks if the class has been seen before
