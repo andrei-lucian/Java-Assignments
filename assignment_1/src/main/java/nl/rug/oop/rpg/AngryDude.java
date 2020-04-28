@@ -16,9 +16,7 @@ public class AngryDude extends Enemy implements Attackable {
     @Override
     protected void performAction(Player player) {
         this.takeDamage(player.dealDamage());
-        System.out.println("Enemy: ''Grr... how dare you attack me?!" +
-                " I'll stop at nothing to kill you!'' \n " +
-                "You are now stuck in a loop, either kill the enemy or die. ");
+        System.out.println("Enemy: ''Grr... how dare you attack me?!");
         while (this.health != 0 || player.getHealth() != 0) {
             if (this.health - player.getDamage() <= 0) {
                 if(this.isDead()){
