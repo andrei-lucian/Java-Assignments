@@ -8,6 +8,7 @@ public class Coward extends Enemy implements Attackable{
 
     public Coward(String description,int damage, int health, Room room){
         super(description, damage, health, room);
+        this.uniqueLine = "Please don't hurt me!";
     }
 
     @Override

@@ -27,7 +27,7 @@ public class Main {
         Door entry_0 = new Door("A dark, shiny mahogany door");
         Door entry_1 = new Door("A heavy-looking metal door with a rusty handle");
         Door entry_2 = new Door("A thick curtain of tangled green vines");
-        NPC enemy_1 = new Coward("A short ginger dude that looks a little crazy", 40, 100, entry);
+        NPC enemy_1 = new AngryDude("A short ginger dude that looks a little crazy", 40, 100, entry);
         NPC npc_2 = new DementiaDude("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee", 76, 24, entry);
         NPC npc_3 = new DementiaDude("A man wearing a black and yellow shirt", 100, 200, entry);
         entry.addDoor(entry_0);

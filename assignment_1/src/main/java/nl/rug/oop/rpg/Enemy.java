@@ -25,7 +25,7 @@ public abstract class Enemy extends NPC implements Attackable{
     public void takeDamage(int damage) {
         this.health = this.health - damage;
         if(this.health <= 0){
-            System.out.println("I died");
+            System.out.println("You killed the enemy!");
         }
         else {
             System.out.println("Enemy: Aww damn it, my health is now " + this.health);
@@ -55,7 +55,7 @@ public abstract class Enemy extends NPC implements Attackable{
 
     protected abstract void performAction(Player player);
 
-    protected void interact(String uniqueLine, Player player){
+    public void interact(Player player){
         System.out.println( "Enemy: " + uniqueLine + "\n"+
                 "Attack? (1) (-1 : don't interact).");
         this.interact = scanner.nextInt();

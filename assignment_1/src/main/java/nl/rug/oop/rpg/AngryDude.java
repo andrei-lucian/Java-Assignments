@@ -11,6 +11,7 @@ public class AngryDude extends Enemy {
     private static final int exp = 50;
     public AngryDude(String description, int damage, int health, Room room){
         super(description, damage, health, room);
+        this.uniqueLine = "I'll hurt you!";
     }
 
     @Override

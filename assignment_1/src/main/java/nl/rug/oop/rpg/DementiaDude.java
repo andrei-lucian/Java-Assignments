@@ -11,6 +11,7 @@ public class DementiaDude extends Enemy implements Attackable{
 
     public DementiaDude(String description,int damage, int health, Room room){
         super(description, damage, health, room);
+        this.uniqueLine = "Uhh... where am I? Who are you?";
     }
 
     @Override

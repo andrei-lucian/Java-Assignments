@@ -14,6 +14,7 @@ public class Peacemaker extends Enemy {
 
     public Peacemaker(String description, int damage, int health, Room room){
         super(description, damage, health, room);
+        this.uniqueLine = "I won't hurt you...";
     }
 
     /** Check if you've seen this class before */

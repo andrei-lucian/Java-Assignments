@@ -26,6 +26,7 @@ public class NPC implements Inspectable, Interactable {
     }
 
     /** interact with an NPC */
+
     @Override
     public void interact(Player player) {
         System.out.println("Can you find my soul?");
