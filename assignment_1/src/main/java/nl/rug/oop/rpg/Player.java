@@ -58,7 +58,7 @@ public class Player implements Attackable{
     public void takeDamage(int damage) {
         if (this.health-damage > 0){
             this.health -= damage;
-            System.out.println("You: 'Rude...' \nYour health is: " + this.health);
+            System.out.println("Your health is: " + this.health);
             if (this.health < 50){
                 System.out.println("Your health is critically low, look for a health wizard!");
             }

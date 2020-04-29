@@ -34,5 +34,4 @@ public class Peacemaker extends Enemy {
             player.setExp(exp);
         }
     }
-
 }

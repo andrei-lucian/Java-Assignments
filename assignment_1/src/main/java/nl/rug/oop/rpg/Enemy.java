@@ -7,6 +7,8 @@ public abstract class Enemy extends NPC implements Attackable{
     protected boolean isDead = false;
     protected int interact = 0;
     protected String uniqueLine;
+    protected boolean currentlyInteracting;
+    protected boolean stillHere = true;
 
     /**
      * Constructor:
@@ -24,12 +26,8 @@ public abstract class Enemy extends NPC implements Attackable{
     @Override
     public void takeDamage(int damage) {
         this.health = this.health - damage;
-        if(this.health <= 0){
-            System.out.println("You killed the enemy!");
-        }
-        else {
-            System.out.println("Enemy: Aww damn it, my health is now " + this.health);
-        }
+            System.out.println("Damage dealt: " + damage +
+                    "\nEnemy's health:  " + this.health);
     }
 
     /** @return damage: the amount of damage to be dealt */
@@ -42,6 +40,7 @@ public abstract class Enemy extends NPC implements Attackable{
     /** Remove npc from room*/
     protected void removeFromRoom(Room room){
         room.removeNPC(this);
+        this.stillHere = false;
     }
 
     /** @return the status of enemy and remove from room if health smaller than 0*/
@@ -61,11 +60,8 @@ public abstract class Enemy extends NPC implements Attackable{
         this.interact = scanner.nextInt();
         if(this.interact != -1){
             if (this.interact == 1) {
+                this.currentlyInteracting = true;
                 performAction(player);
-            }
-            else {
-                System.out.println("Not an option, please select again");
-                interact(player);
             }
         }
     }

@@ -16,8 +16,8 @@ public class AngryDude extends Enemy {
 
     @Override
     protected void performAction(Player player) {
+        System.out.println("Enemy: Grr... how dare you attack me?!");
         this.takeDamage(player.dealDamage());
-        System.out.println("Enemy: ''Grr... how dare you attack me?!");
             if (this.health - player.getDamage() <= 0) {
                 if(this.isDead()){
                     System.out.println("You defeated the angry dude.");
@@ -25,9 +25,7 @@ public class AngryDude extends Enemy {
                     this.interact = -1;
                 }
             }
-            player.takeDamage(this.dealDamage());
-            System.out.println("You: ''Ow! Take this!''");
-            this.takeDamage(player.dealDamage());
-            System.out.println("Imbecile!");
+        System.out.println("Ouch! The angry dude attacked you back.");
+        player.takeDamage(this.dealDamage());
     }
 }
