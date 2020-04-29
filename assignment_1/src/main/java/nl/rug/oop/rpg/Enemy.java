@@ -54,7 +54,12 @@ public abstract class Enemy extends NPC implements Attackable{
                 "(1) Attack \n(-1) Don't interact");
         this.interact = scanner.nextInt();
         if (this.interact != -1) {
-            if (this.interact == 1) {
+            while (this.interact != 1) {
+                System.out.println("Not an option, please select again.\n" +
+                        "(1) Attack \n(-1) Don't interact");
+                this.interact = scanner.nextInt();
+            }
+            if (this.interact==1){
                 this.currentlyInteracting = true;
                 performAction(player);
                 if (!this.isDead){
