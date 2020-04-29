@@ -20,7 +20,7 @@ public class Room implements Inspectable {
 
     /** print a room's description */
     public void inspect() {
-        System.out.println("You see:\n" + this.description);
+        System.out.println("You see " + this.description);
     }
 
     /** add a door to a room (as long as it is not null) */
@@ -67,7 +67,7 @@ public class Room implements Inspectable {
     public ArrayList<NPC> findNPCs() {
         System.out.println("You look if there's someone here. \nYou see:");
         if(npcList.isEmpty()){
-            System.out.println("An empty room");
+            System.out.println("An empty room.");
         }
         else{
             for (NPC npc : npcList) { //loop through NPCs and print their descriptions

@@ -1,6 +1,6 @@
 package nl.rug.oop.rpg;
 
-public class NPC implements Inspectable, Interactable {
+public abstract class NPC implements Inspectable, Interactable {
     protected final String description;
     protected int damage;
     protected int health;
@@ -26,9 +26,6 @@ public class NPC implements Inspectable, Interactable {
     }
 
     /** interact with an NPC */
-
     @Override
-    public void interact(Player player) {
-        System.out.println("Can you find my soul?");
-    }
+    public abstract void interact(Player player);
 }

@@ -122,7 +122,7 @@ public class Player implements Attackable{
 
     /** Method to go to previous room */
     public void goBack(){
-        System.out.print("You went back to the previous room\n" + "You are now in ");
+        System.out.println("You went back to the previous room.");
         this.setCurrentRoom(previousRoom);
         this.getCurrentRoom().inspect();
     }
