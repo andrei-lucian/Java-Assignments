@@ -30,7 +30,7 @@ public class Peacemaker extends Enemy {
         this.takeDamage(player.dealDamage());
         player.increaseHealth(this.damage);
         checkIfRecognized();
-        if (this.isDead()) {
+        if (this.isDead) {
             player.setExp(exp);
         }
     }

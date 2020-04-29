@@ -8,7 +8,6 @@ public abstract class Enemy extends NPC implements Attackable{
     protected int interact = 0;
     protected String uniqueLine;
     protected boolean currentlyInteracting;
-    protected boolean stillHere = true;
 
     /**
      * Constructor:
@@ -26,8 +25,14 @@ public abstract class Enemy extends NPC implements Attackable{
     @Override
     public void takeDamage(int damage) {
         this.health = this.health - damage;
-            System.out.println("Damage dealt: " + damage +
-                    "\nEnemy's health:  " + this.health);
+            System.out.println("Damage dealt: " + damage);
+            if(this.health <= 0){
+                this.isDead = true;
+                removeFromRoom(this.room);
+            }
+            else {
+                System.out.println("Enemy's health:  " + this.health);
+            }
     }
 
     /** @return damage: the amount of damage to be dealt */
@@ -40,11 +45,10 @@ public abstract class Enemy extends NPC implements Attackable{
     /** Remove npc from room*/
     protected void removeFromRoom(Room room){
         room.removeNPC(this);
-        this.stillHere = false;
     }
 
     /** @return the status of enemy and remove from room if health smaller than 0*/
-    public boolean isDead(){
+    protected boolean die(){
         if(this.health <= 0){
             this.isDead = true;
             removeFromRoom(this.room);
@@ -56,12 +60,27 @@ public abstract class Enemy extends NPC implements Attackable{
 
     public void interact(Player player){
         System.out.println( "Enemy: " + uniqueLine + "\n"+
-                "Attack? (1) (-1 : don't interact).");
+                "(1) Attack \n(-1) Don't interact");
         this.interact = scanner.nextInt();
         if(this.interact != -1){
             if (this.interact == 1) {
                 this.currentlyInteracting = true;
-                performAction(player);
+                while(this.currentlyInteracting && !this.isDead) {
+                    performAction(player);
+                    if(!isDead){
+                        System.out.println("(1) Attack again \n(-1) Retreat");
+                        this.interact = scanner.nextInt();
+                        if(this.interact != -1){
+                            if(this.interact != 1 ){
+                                System.out.println("Not an option, please select again.");
+                            }
+                        }
+                        else {
+                            this.currentlyInteracting = false;
+                            System.out.println("You retreated away from the enemy.");
+                        }
+                    }
+                }
             }
         }
     }

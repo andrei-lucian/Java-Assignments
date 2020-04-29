@@ -6,7 +6,7 @@ public class Player implements Attackable{
 
     private final String name;
     private int damage;
-    private int health = 100;
+    private int health = 200;
     private Room currentRoom;
     private Room previousRoom;
     private int exp = 0;
