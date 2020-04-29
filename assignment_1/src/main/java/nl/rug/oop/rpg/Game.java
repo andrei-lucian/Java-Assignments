@@ -18,6 +18,7 @@ public class Game {
                 case 1: player.selectDoor(); gameLoop(player);
                 case 2: player.selectNPC(); gameLoop(player);
                 case 3: player.goBack(); gameLoop(player);
+                case 4: exitGame();
             }
         }
     }
@@ -28,6 +29,12 @@ public class Game {
                     "(0) Look around \n" +
                     "(1) Look for a way out \n" +
                     "(2) Look for company \n" +
-                    "(3) Go Back"); //to fix: this should not be an available option for the entry room
+                    "(3) Go Back\n" + //to fix: this should not be an available option for the entry room
+                    "(4) Exit the game");
+    }
+
+    private void exitGame(){
+        System.out.println("You exited the game.");
+        System.exit(0);
     }
 }
