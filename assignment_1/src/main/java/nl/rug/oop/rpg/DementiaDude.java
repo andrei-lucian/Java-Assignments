@@ -19,7 +19,7 @@ public class DementiaDude extends Enemy implements Attackable{
         this.takeDamage(player.dealDamage());
         if(this.isDead){
             player.setExp(exp);
-            this.interact  = -1;
+            System.out.println("You defeated the dementia dude");
         }
         else {
             this.damage = randInt.nextInt(50);
