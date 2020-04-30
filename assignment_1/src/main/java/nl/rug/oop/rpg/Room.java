@@ -67,7 +67,7 @@ public class Room implements Inspectable {
     public ArrayList<NPC> findNPCs() {
         System.out.println("You look if there's someone here. \nYou see:");
         if(npcList.isEmpty()){
-            System.out.println("An empty room.");
+            System.out.println("An empty room. (-1: Go back)");
         }
         else{
             for (NPC npc : npcList) { //loop through NPCs and print their descriptions
