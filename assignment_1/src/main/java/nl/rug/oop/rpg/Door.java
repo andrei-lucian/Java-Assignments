@@ -2,8 +2,8 @@ package nl.rug.oop.rpg;
 
 public class Door implements Inspectable, Interactable {
 
-    private final String description;
-    private Room nextRoom;
+    protected String description;
+    protected Room nextRoom;
     /**
      * Constructor:
      * @param description door description

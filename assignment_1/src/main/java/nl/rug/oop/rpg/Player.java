@@ -37,17 +37,18 @@ public class Player implements Attackable{
         this.previousRoom = room;
     }
 
-    /** @return health: the health of a player */
-    public int getHealth(){
-        return this.health;
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     public void setExp(int exp) {
         this.exp += exp;
         System.out.println("Your exp is: " + this.exp);
     }
-
-    public int getDamage(){ return this.damage; }
 
     /** Player takes damage from an enemy
      * if (health-damage) > 0. If this is not the case
