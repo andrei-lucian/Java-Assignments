@@ -127,4 +127,12 @@ public class Player implements Attackable{
         this.setCurrentRoom(previousRoom);
         this.getCurrentRoom().inspect();
     }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
 }

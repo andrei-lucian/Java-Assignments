@@ -19,16 +19,16 @@ public class Main {
     private static void initiateWorld(Player player){
 
         //create the entry room and set it as they player's current room
-        Room entry = new Room("a room lit by a candle with a door on one side and a tunnel on the other.", 1);
+        Room entry = new Room("a room lit by a candle with a door on one side and a tunnel on the other.");
         player.setCurrentRoom(entry);
-        Room room_0 = new Room("room zero.",1 );
-        Room room_1 = new Room("room one.", 0);
-        Room room_2 = new Room("room two.", 2);
+        Room room_0 = new Room("room zero.");
+        Room room_1 = new Room("room one.");
+        Room room_2 = new Room("room two.");
         Door entry_0 = new PowerDoor("A stronk door.");
         Door entry_1 = new Door("A heavy-looking metal door with a rusty handle.");
         Door entry_2 = new Door("A thick curtain of tangled green vines.");
         NPC enemy_1 = new AngryDude("A short ginger dude that looks a little crazy.", 40, 200, entry);
-        NPC npc_2 = new Coward("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", 76, 24, entry);
+        NPC npc_2 = new Healer("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", 76, 24, entry);
         NPC npc_3 = new DementiaDude("A man wearing a black and yellow shirt.", 100, 200, entry);
         entry.addDoor(entry_0);
         entry.addDoor(entry_1);

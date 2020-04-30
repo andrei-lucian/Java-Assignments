@@ -5,6 +5,8 @@ public abstract class NPC implements Inspectable, Interactable {
     protected int damage;
     protected int health;
     protected Room room;
+    protected int interact = 0;
+    protected boolean currentlyInteracting;
 
     /**
      * Constructor:
