@@ -87,4 +87,9 @@ public class Room implements Inspectable {
             return false;
         }
     }
+
+    public String getDescription() {
+        return description;
+    }
+
 }
