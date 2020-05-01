@@ -1,37 +1,39 @@
 package nl.rug.oop.rpg;
 
+import java.util.Scanner;
+
 /** this type of enemy actually increases the health
  * of the player every time the player attacks it */
 
-public class Peacemaker extends Enemy {
+public class Peacemaker extends NPC {
+    Scanner scanner = new Scanner(System.in);
     /**
      *@var exp experience that the class gives when it dies
      * @var recognized checks if the class has been seen before
      */
-
-    private boolean recognized = false;
     private static final int exp = 5;
 
     public Peacemaker(String description, int damage, int health, Room room){
         super(description, damage, health, room);
-        this.uniqueLine = "I won't hurt you...";
-    }
-
-    /** Check if you've seen this class before */
-    private void checkIfRecognized(){
-        if (!recognized) {
-            System.out.println("...what? My health increased when I attacked? ");
-            this.recognized = true;
-        }
     }
 
     @Override
-    protected void performAction(Player player) {
-        this.takeDamage(player.dealDamage());
-        player.increaseHealth(this.damage);
-        checkIfRecognized();
-        if (this.isDead) {
-            player.setExp(exp);
+    public void interact(Player player) {
+        System.out.println("Do you want my heart? \n" +
+                "(1) Take heart \n(-1) Don't interact");
+        this.interact = scanner.nextInt();
+        if (this.interact != -1) {
+            while (this.interact != 1) {
+                System.out.println("Not an option, please select again.\n" +
+                        "(1) Take heart \n(-1) Don't interact");
+                this.interact = scanner.nextInt();
+                if(this.interact == -1){
+                    return;
+                }
+            }
+            player.setMaxHealth(25);
+            removeFromRoom(player.getCurrentRoom());
+            System.out.println("The peacemaker died. ");
         }
     }
 }

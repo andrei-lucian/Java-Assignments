@@ -7,6 +7,7 @@ public class Player implements Attackable{
     private final String name;
     private int damage;
     private int health = 100;
+    private int maxHealth = 100;
     private Room currentRoom;
     private Room previousRoom;
     private int exp = 0;
@@ -82,6 +83,11 @@ public class Player implements Attackable{
         }
     }
 
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth += maxHealth;
+        System.out.println("Your max health increased to: " + this.maxHealth);
+    }
+
     /** @return if the player is dead */
     public boolean isDead(){
         return this.isDead;
@@ -131,14 +137,6 @@ public class Player implements Attackable{
         System.out.println("You went back to the previous room.");
         this.setCurrentRoom(previousRoom);
         this.getCurrentRoom().inspect();
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
     }
 
     public int getExp() {
