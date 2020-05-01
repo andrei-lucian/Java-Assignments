@@ -34,7 +34,7 @@ public class Main {
         Door e1 = new Door("A heavy-looking metal door with a rusty handle.");
         Door e2 = new Door("A thick curtain of tangled green vines.");
         Door e3 = new PowerDoor("A stronk door.");
-        Door one1 = new Door("A wooden door");
+        Door one1 = new LockedDoor("A wooden door");
         Door two1 = new Door("A white opalescent door");
         Door two2 = new Door("A muddy underground tunnel");
         Door three1 = new Door("A sliding glass door with cracks in it");

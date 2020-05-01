@@ -19,12 +19,11 @@ public class Healer extends NPC{
                 System.out.println("Not an option, please select again.\n" +
                         "(1) Heal \n(-1) Don't interact");
                 this.interact = scanner.nextInt();
+                if(this.interact == -1){
+                    return;
+                }
             }
-            if (this.interact==1){
-                player.setHealth(player.getHealth() + 50);
-                System.out.println("You've been healed by 50, your health is: " +
-                        player.getHealth());
-            }
+                player.increaseHealth(50);
         }
     }
 }

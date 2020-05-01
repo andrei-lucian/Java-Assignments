@@ -6,7 +6,7 @@ public class Player implements Attackable{
 
     private final String name;
     private int damage;
-    private int health = 200;
+    private int health = 100;
     private Room currentRoom;
     private Room previousRoom;
     private int exp = 0;
@@ -18,6 +18,7 @@ public class Player implements Attackable{
      * @param name player name
      * @param damage player damage
      */
+
     public Player(String name, int damage){
         this.name = name;
         this.damage = damage;
@@ -70,9 +71,15 @@ public class Player implements Attackable{
     }
 
     public void increaseHealth(int health){
-        this.health += health;
-        System.out.println("Nice! Your health increased by " +
-                health + " to " + this.health + "!");
+        if(this.health+health>=100){
+            this.health = 100;
+            System.out.println("Maximum health reached - you can't heal anymore.");
+        }
+        else {
+            this.health += health;
+            System.out.println("Nice! Your health increased by " +
+                    health + " to " + this.health + "!");
+        }
     }
 
     /** @return if the player is dead */
