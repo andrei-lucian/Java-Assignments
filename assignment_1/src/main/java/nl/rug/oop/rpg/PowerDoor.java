@@ -18,6 +18,6 @@ public class PowerDoor extends Door{
         player.setCurrentRoom(nextRoom);
         player.setDamage(player.getDamage() + extraDamage);
         System.out.println("The magic of the door gave you " +
-                extraDamage + "extra damage.");
+                extraDamage + " extra damage.");
     }
 }
