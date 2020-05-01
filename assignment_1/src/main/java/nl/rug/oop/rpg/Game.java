@@ -29,7 +29,7 @@ public class Game {
                     "(0) Look around \n" +
                     "(1) Look for a way out \n" +
                     "(2) Look for company \n" +
-                    "(3) Go Back\n" + //to fix: this should not be an available option for the entry room
+                    "(3) Go back to the previous room\n" + //to fix: this should not be an available option for the entry room
                     "(4) Exit the game");
     }
 

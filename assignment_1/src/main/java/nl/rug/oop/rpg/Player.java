@@ -135,4 +135,10 @@ public class Player implements Attackable{
     public void setHealth(int health) {
         this.health = health;
     }
+
+    private void win(){
+        if (this.exp >= 500){
+
+        }
+    }
 }
