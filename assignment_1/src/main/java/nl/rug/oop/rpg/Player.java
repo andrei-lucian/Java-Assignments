@@ -88,8 +88,6 @@ public class Player implements Attackable{
     /** Moves player to next room */
     private void moveToNextRoom(Door newDoor) {
         newDoor.interact(this);
-        System.out.println("You go through the door.");
-        this.getCurrentRoom().inspect();
     }
 
     /** select door and go to next room */

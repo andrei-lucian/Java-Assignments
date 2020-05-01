@@ -21,6 +21,7 @@ public class Door implements Inspectable, Interactable {
     /** move the player to the next room behind the selected door */
     public void interact(Player player) {
         player.setCurrentRoom(nextRoom);
+        System.out.println("You go through the door.");
     }
 
     /** connect a door to its next room */
