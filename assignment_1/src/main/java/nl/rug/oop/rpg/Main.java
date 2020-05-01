@@ -74,7 +74,7 @@ public class Main {
         eight1.setNextRoom(end);
 
         NPC entry_enemy_1 = new AngryDude("A short ginger dude that looks a little crazy.", 40, 200, entry);
-        NPC entry_healer = new Healer("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", 76, 24, entry);
+        NPC entry_healer = new Peacemaker("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", 76, 24, entry);
         NPC entry_enemy_2 = new Coward("A man wearing a black and yellow shirt.", 100, 200, entry);
         entry.addNpc(entry_enemy_1);
         entry.addNpc(entry_healer);

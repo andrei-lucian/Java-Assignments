@@ -40,11 +40,6 @@ public abstract class Enemy extends NPC implements Attackable{
         return this.damage;
     }
 
-    /** Remove npc from room*/
-    protected void removeFromRoom(Room room){
-        room.removeNPC(this);
-    }
-
     protected abstract void performAction(Player player);
 
     public void interact(Player player) {

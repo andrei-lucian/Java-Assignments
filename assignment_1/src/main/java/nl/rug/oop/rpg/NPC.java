@@ -27,6 +27,11 @@ public abstract class NPC implements Inspectable, Interactable {
         System.out.println(description);
     }
 
+    /** Remove npc from room*/
+    protected void removeFromRoom(Room room){
+        room.removeNPC(this);
+    }
+
     /** interact with an NPC */
     @Override
     public abstract void interact(Player player);
