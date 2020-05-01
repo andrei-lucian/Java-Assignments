@@ -32,7 +32,7 @@ public class Main {
         Room end = new Room("the end.");
 
         Door e1 = new Door("A heavy-looking metal door with a rusty handle.");
-        Door e2 = new Door("A thick curtain of tangled green vines.");
+        Door e2 = new HealingDoor("A thick curtain of tangled green vines.");
         Door e3 = new PowerDoor("A stronk door.");
         Door one1 = new LockedDoor("A wooden door");
         Door two1 = new Door("A white opalescent door");
@@ -74,7 +74,7 @@ public class Main {
         eight1.setNextRoom(end);
 
         NPC entry_enemy_1 = new AngryDude("A short ginger dude that looks a little crazy.", 40, 200, entry);
-        NPC entry_healer = new Peacemaker("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", 76, 24, entry);
+        NPC entry_healer = new Healer("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", 76, 24, entry);
         NPC entry_enemy_2 = new Coward("A man wearing a black and yellow shirt.", 100, 200, entry);
         entry.addNpc(entry_enemy_1);
         entry.addNpc(entry_healer);

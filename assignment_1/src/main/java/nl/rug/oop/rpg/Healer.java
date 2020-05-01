@@ -1,7 +1,7 @@
 package nl.rug.oop.rpg;
 import java.util.Scanner;
 
-public class Healer extends NPC{
+public class Healer extends NPC implements Heal{
     Scanner scanner = new Scanner(System.in);
 
     Healer(String description, int damage, int health, Room room) {
@@ -23,7 +23,12 @@ public class Healer extends NPC{
                     return;
                 }
             }
-                player.increaseHealth(50);
+                heal(player, player.getMaxHealth());
         }
+    }
+
+    @Override
+    public void heal(Player player, int health) {
+        player.increaseHealth(health);
     }
 }

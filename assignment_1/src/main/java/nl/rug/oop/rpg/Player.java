@@ -72,9 +72,10 @@ public class Player implements Attackable{
     }
 
     public void increaseHealth(int health){
-        if(this.health+health>=100){
-            this.health = 100;
-            System.out.println("Maximum health reached - you can't heal anymore.");
+        if(this.health+health>=maxHealth){
+            this.health = maxHealth;
+            System.out.println("Maximum health reached - you can't heal anymore." +
+                    " Your health is: " + maxHealth);
         }
         else {
             this.health += health;
@@ -141,5 +142,9 @@ public class Player implements Attackable{
 
     public int getExp() {
         return exp;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
     }
 }
