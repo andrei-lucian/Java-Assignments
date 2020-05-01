@@ -61,7 +61,7 @@ public class Main {
 
         e1.setNextRoom(room1);
         e2.setNextRoom(room2);
-        e2.setNextRoom(room3);
+        e3.setNextRoom(room3);
         one1.setNextRoom(room4);
         two1.setNextRoom(room5);
         two2.setNextRoom(room6);
