@@ -29,7 +29,7 @@ public class Main {
         Room room6 = new Room("room 6.");
         Room room7 = new Room("room 7.");
         Room room8 = new Room("room 8.");
-        Room end = new Room("the end!!.");
+        Room end = new Room("the end.");
 
         Door e1 = new Door("A heavy-looking metal door with a rusty handle.");
         Door e2 = new Door("A thick curtain of tangled green vines.");
@@ -85,35 +85,34 @@ public class Main {
         room1.addNpc(room1_coward);
         room1.addNpc(room1_enemy1);
 
-        NPC room2_healer = new Healer("An old lady with bags full of grain", 0, 0, room2);
+        NPC room2_healer = new Healer("An old lady wearing a rainbow tracksuit and giant sunglasses", 0, 0, room2);
         room2.addNpc(room2_healer);
 
         NPC room3_enemy1 = new AngryDude("A girl with short red hair and a leather bag", 20, 130, room3);
-        NPC room3_enemy2 = new DementiaDude();
-        NPC room3_enemy3 = new DementiaDude();
+        NPC room3_enemy2 = new DementiaDude("A centaur", 40, 80, room3);
+        NPC room3_enemy3 = new DementiaDude("John Cena", 80, 150, room3);
         room3.addNpc(room3_enemy1);
         room3.addNpc(room3_enemy2);
         room3.addNpc(room3_enemy3);
 
-        NPC room4_coward1 = new Coward();
-        NPC room4_coward2 = new Coward();
+        NPC room4_coward1 = new Coward("A blue smurf", 0, 10, room4);
+        NPC room4_coward2 = new Coward("Grumpy cat", 0, 10, room4);
         room4.addNpc(room4_coward1);
         room4.addNpc(room4_coward2);
 
-        NPC room6_dementiadude = new DementiaDude();
-        NPC room6_healer = new Healer();
-        NPC room6_coward = new Coward();
-        room6.addNpc(room6_dementiadude);
+        NPC room6_enemy = new DementiaDude("Perry the platypus", 30, 200, room6);
+        NPC room6_healer = new Healer("A fluffy golden retriever", 0, 10,room6);
+        NPC room6_coward = new Coward("A giant spider", 0, 10, room6);
+        room6.addNpc(room6_enemy);
         room6.addNpc(room6_healer);
         room6.addNpc(room6_coward);
 
-        NPC room7_healer = new Healer();
+        NPC room7_healer = new Healer("A man with a man-bun wearing a flannel shirt and glasses", 10,10,room7);
         room7.addNpc(room7_healer);
 
-        NPC room8_angrydude = new AngryDude();
-        NPC room8_dementiadude = new DementiaDude();
+        NPC room8_angrydude = new AngryDude("Godzilla, but he's old now", 50, 170, room8);
+        NPC room8_dementiadude = new DementiaDude("Luigi", 30, 90, room8);
         room8.addNpc(room8_angrydude);
         room8.addNpc(room8_dementiadude);
-
     }
 }
