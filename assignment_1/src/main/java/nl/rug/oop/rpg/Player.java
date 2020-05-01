@@ -23,7 +23,7 @@ public class Player implements Attackable{
         this.damage = damage;
     }
 
-    public void setCurrentRoom(Room room){
+    private void setCurrentRoom(Room room){
         this.currentRoom = room;
     }
 
