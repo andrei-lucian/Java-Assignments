@@ -78,4 +78,13 @@ public class Room implements Inspectable {
         }
         return this.npcList;
     }
+
+    public boolean emptyRoom(){
+        if(npcList.isEmpty()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
