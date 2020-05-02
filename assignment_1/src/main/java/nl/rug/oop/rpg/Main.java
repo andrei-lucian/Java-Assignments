@@ -19,12 +19,12 @@ public class Main {
     private static void initiateWorld(Player player){
 
         //create the entry room and set it as they player's current room
-        Room entry = new Room("a room lit by a candle with a door on one side and a tunnel on the other.");
+        Room entry = new Room("a room dimly lit by a candle.");
         player.setCurrentRoom(entry);
-        Room room1 = new Room("room 1.");
-        Room room2 = new Room("room 2.");
-        Room room3 = new Room("room 3.");
-        Room room4 = new Room("room 4.");
+        Room room1 = new Room("a concrete bunker with large scratches on the walls.");
+        Room room2 = new Room("a dark stone cave with water streams running down the walls.");
+        Room room3 = new Room("a library filled with old books and scrolls");
+        Room room4 = new Room("a ");
         Room room5 = new Room("room 5.");
         Room room6 = new Room("room 6.");
         Room room7 = new Room("room 7.");
@@ -34,8 +34,9 @@ public class Main {
         Door e1 = new PowerDoor("A heavy-looking metal door with a rusty handle.");
         Door e2 = new Door("A thick curtain of tangled green vines.");
         Door e3 = new PowerDoor("A stronk door.");
-        Door one1 = new LockedDoor("A wooden door");
-        Door two1 = new HealerDoor("A white opalescent door");
+        Door one1 = new Door("A wooden door");
+        Door one2 = new HealingDoor("Door");
+        Door two1 = new HealingDoor("A white opalescent door");
         Door two2 = new PowerDoor("A muddy underground tunnel");
         Door three1 = new PowerDoor("A sliding glass door with cracks in it");
         Door four1 = new Door("A blue door with graffiti on it - you hear music from the other side");
@@ -49,6 +50,7 @@ public class Main {
         entry.addDoor(e2);
         entry.addDoor(e3);
         room1.addDoor(one1);
+        room1.addDoor(one2);
         room2.addDoor(two1);
         room2.addDoor(two2);
         room3.addDoor(three1);
@@ -63,6 +65,7 @@ public class Main {
         e2.setNextRoom(room2);
         e3.setNextRoom(room3);
         one1.setNextRoom(room4);
+        one2.setNextRoom(room3);
         two1.setNextRoom(room5);
         two2.setNextRoom(room6);
         three1.setNextRoom(room7);
@@ -74,63 +77,61 @@ public class Main {
         eight1.setNextRoom(end);
 
         NPC entry_ad = new AngryDude("A short ginger dude that looks a little crazy.", 40, 200, entry);
-        NPC entry_healer = new Healer("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", 76, 24, entry);
+        NPC entry_healer = new Healer("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", 0, 0, entry);
         NPC entry_coward = new Coward("A man wearing a black and yellow shirt.", 100, 200, entry);
         entry.addNpc(entry_ad);
         entry.addNpc(entry_healer);
         entry.addNpc(entry_coward);
 
-        NPC room1_ad = new AngryDude("A very large troll", 0, 0, room1);
-        NPC room1_pm = new Peacemaker("An elf with sharp ears and long braided black hair", 50, 150, room1);
-        NPC room1_dd = new DementiaDude("An elf with sharp ears and long braided black hair", 50, 150, room1);
-        room1.addNpc(room1_ad);
+        NPC room1_pm = new Peacemaker("A surfer dude with dreadlocks and a shell necklace", 0, 50, room1);
+        NPC room1_dd = new DementiaDude("An elf with sharp ears and long braided black hair", 50, 120, room1);
         room1.addNpc(room1_pm);
         room1.addNpc(room1_dd);
 
         NPC room2_pm = new Peacemaker("An old lady wearing a rainbow tracksuit and giant sunglasses", 0, 0, room2);
         room2.addNpc(room2_pm);
 
-        NPC room3_coward = new Coward("A girl with short red hair and a leather bag", 20, 130, room3);
-        NPC room3_dd = new DementiaDude("A centaur", 40, 80, room3);
-        NPC room3_healer = new Healer("John Cena", 80, 150, room3);
-        room3.addNpc(room3_coward);
+        NPC room3_pm = new Peacemaker("A girl with short red hair and a leather bag", 0, 10, room3);
+        NPC room3_dd = new DementiaDude("A centaur", 45, 95, room3);
+        NPC room3_healer = new Healer("John Cena", 0, 10, room3);
+        room3.addNpc(room3_pm);
         room3.addNpc(room3_dd);
         room3.addNpc(room3_healer);
 
         NPC room4_coward = new Coward("A blue smurf", 0, 10, room4);
         NPC room4_healer = new Healer("Grumpy cat", 0, 10, room4);
-        NPC room4_ad = new AngryDude("A giant squid", 0, 10, room4);
+        NPC room4_ad = new AngryDude("A giant squid", 32, 150, room4);
         room4.addNpc(room4_coward);
         room4.addNpc(room4_healer);
         room4.addNpc(room4_ad);
 
-        NPC room5_ad1 = new AngryDude("angry dude 1", 30, 210, room5);
-        NPC room5_ad2 = new AngryDude("angry dude 2", 40, 160, room5);
+        NPC room5_ad1 = new AngryDude("A very large troll", 30, 210, room5);
+        NPC room5_ad2 = new AngryDude("", 40, 160, room5);
         NPC room5_dd = new DementiaDude("dementia dude", 10, 123, room5);
-        NPC room5_coward = new Coward("pussy", 0, 10, room5);
+        NPC room5_coward = new Coward("Mark Zuckerberg", 0, 10, room5);
         room5.addNpc(room5_ad1);
         room5.addNpc(room5_ad2);
         room5.addNpc(room5_dd);
         room5.addNpc(room5_coward);
 
-        NPC room6_dd = new DementiaDude("Perry the platypus", 30, 200, room6);
+        NPC room6_dd = new DementiaDude("Perry the platypus", 40, 200, room6);
         NPC room6_healer = new Healer("A fluffy golden retriever", 0, 10,room6);
         NPC room6_coward = new Coward("A giant spider", 0, 10, room6);
         room6.addNpc(room6_dd);
         room6.addNpc(room6_healer);
         room6.addNpc(room6_coward);
 
-        NPC room7_ad1 = new AngryDude("A man with a man-bun wearing a flannel shirt and glasses", 10,10,room7);
-        NPC room7_dd1 = new DementiaDude("dementia dude", 10, 112, room7);
-        NPC room7_dd2 = new DementiaDude("dementia dude", 10, 288, room7);
+        NPC room7_ad1 = new AngryDude("A man with a man-bun wearing a flannel shirt and glasses", 20,100,room7);
+        NPC room7_dd1 = new DementiaDude("dementia dude", 20, 100, room7);
+        NPC room7_dd2 = new DementiaDude("dementia dude", 40, 100, room7);
         room7.addNpc(room7_ad1);
         room7.addNpc(room7_dd1);
         room7.addNpc(room7_dd2);
 
-        NPC room8_ad1 = new AngryDude("Godzilla, but he's old now", 50, 170, room8);
-        NPC room8_ad2 = new AngryDude("A purple goblin", 50, 170, room8);
-        NPC room8_dd = new DementiaDude("Luigi", 30, 90, room8);
-        NPC room8_coward = new Coward("Mario", 30, 90, room8);
+        NPC room8_ad1 = new AngryDude("Godzilla, but he's old now", 12, 120, room8);
+        NPC room8_ad2 = new AngryDude("A purple goblin", 35, 80, room8);
+        NPC room8_dd = new DementiaDude("Luigi", 25, 100, room8);
+        NPC room8_coward = new Coward("Mario", 0, 90, room8);
         room8.addNpc(room8_ad1);
         room8.addNpc(room8_ad2);
         room8.addNpc(room8_dd);

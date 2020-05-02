@@ -23,12 +23,11 @@ public class Healer extends NPC implements Heal{
                     return;
                 }
             }
-                heal(player, player.getMaxHealth());
+                heal(player);
         }
     }
 
-    @Override
-    public void heal(Player player, int health) {
-        player.increaseHealth(health);
+    public void heal(Player player) {
+        player.increaseHealth();
     }
 }

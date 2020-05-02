@@ -14,12 +14,11 @@ public class HealingDoor extends Door implements Heal{
     public void interact(Player player){
         player.setCurrentRoom(nextRoom);
         System.out.println("It's a healing door.");
-        heal(player, 25);
+        heal(player);
         System.out.println("You go through the door.");
     }
 
-    @Override
-    public void heal(Player player, int health) {
-        player.increaseHealth(health);
+    public void heal(Player player) {
+        player.increaseHealth();
     }
 }

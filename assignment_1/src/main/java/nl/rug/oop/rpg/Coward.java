@@ -13,7 +13,7 @@ public class Coward extends Enemy implements Attackable{
 
     @Override
     protected void performAction(Player player) {
-        System.out.println("The enemy ran away.");
+        System.out.println("The coward ran away. What a loser.");
         this.removeFromRoom(this.room);
         this.isDead = true;
         player.setExp(exp);

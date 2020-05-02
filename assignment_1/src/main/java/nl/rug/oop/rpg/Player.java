@@ -71,16 +71,14 @@ public class Player implements Attackable{
         }
     }
 
-    public void increaseHealth(int health){
-        if(this.health+health>=maxHealth){
-            this.health = maxHealth;
+    public void increaseHealth(){
+        if(this.health == this.maxHealth){
             System.out.println("Maximum health reached - you can't heal anymore." +
                     " Your health is: " + maxHealth);
         }
         else {
-            this.health += health;
-            System.out.println("Nice! Your health increased by " +
-                    health + " to " + this.health + "!");
+            this.health = this.maxHealth;
+            System.out.println("Nice! Your health is back at " + this.health + "!");
         }
     }
 

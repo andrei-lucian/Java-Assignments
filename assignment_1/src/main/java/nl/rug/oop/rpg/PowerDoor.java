@@ -3,7 +3,6 @@ package nl.rug.oop.rpg;
 public class PowerDoor extends Door{
 
 
-    private final int extraDamage = 50;
     /**
      * set the description of door
      *
@@ -16,8 +15,8 @@ public class PowerDoor extends Door{
     @Override
     public void interact(Player player){
         player.setCurrentRoom(nextRoom);
-        player.setDamage(player.getDamage() + extraDamage);
+        player.setDamage(player.getDamage() + 20);
         System.out.println("The magic of the door gave you " +
-                extraDamage + " extra damage.");
+                20 + " extra damage.");
     }
 }
