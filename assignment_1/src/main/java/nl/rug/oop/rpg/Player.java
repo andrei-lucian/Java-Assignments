@@ -9,7 +9,7 @@ public class Player implements Attackable{
     private int health = 100;
     private int maxHealth = 100;
     private Room currentRoom;
-    private Room previousRoom;
+    //private Room previousRoom;
     private int exp = 0;
     private boolean isDead = false;
     Scanner scanner = new Scanner(System.in);
@@ -35,9 +35,9 @@ public class Player implements Attackable{
     }
 
     /** set the previous room in case we want to go back */
-    public void setPreviousRoom(Room room){
+    /*public void setPreviousRoom(Room room){
         this.previousRoom = room;
-    }
+    }*/
 
     public void setDamage(int damage) {
         this.damage = damage;
@@ -111,7 +111,7 @@ public class Player implements Attackable{
             selectDoor();
         }
         else if (chosenDoor != -1){ //move to room behind chosen door
-            this.setPreviousRoom(currentRoom); //store the current room as the previous room in case we want to go back
+            //this.setPreviousRoom(currentRoom); //store the current room as the previous room in case we want to go back
             Door currentDoor = doorList.get(chosenDoor); //move to next room
             moveToNextRoom(currentDoor);
         }
@@ -132,11 +132,11 @@ public class Player implements Attackable{
     }
 
     /** Method to go to previous room */
-    public void goBack(){
+    /*public void goBack(){
         System.out.println("You went back to the previous room.");
         this.setCurrentRoom(previousRoom);
         this.getCurrentRoom().inspect();
-    }
+    }*/
 
     public int getExp() {
         return exp;
