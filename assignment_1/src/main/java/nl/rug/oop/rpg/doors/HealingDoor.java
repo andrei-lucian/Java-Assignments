@@ -1,11 +1,15 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.doors;
 
-public class HealingDoor extends Door implements Heal{
+import nl.rug.oop.rpg.Player;
+import nl.rug.oop.rpg.util.Heal;
+
+public class HealingDoor extends Door implements Heal {
     /**
      * set the description of door
      *
      * @param description
      */
+    private static final long serialVersionUID = 21L;
     public HealingDoor(String description) {
         super(description);
     }

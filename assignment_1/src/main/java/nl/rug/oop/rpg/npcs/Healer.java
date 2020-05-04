@@ -1,10 +1,15 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.npcs;
+import nl.rug.oop.rpg.Player;
+import nl.rug.oop.rpg.Room;
+import nl.rug.oop.rpg.util.Heal;
+
 import java.util.Scanner;
 
-public class Healer extends NPC implements Heal{
-    Scanner scanner = new Scanner(System.in);
+public class Healer extends NPC implements Heal {
+    private static final long serialVersionUID = 42L;
+    transient Scanner scanner = new Scanner(System.in);
 
-    Healer(String description, int damage, int health, Room room) {
+    public Healer(String description, int damage, int health, Room room) {
         super(description, damage, health, room);
     }
 

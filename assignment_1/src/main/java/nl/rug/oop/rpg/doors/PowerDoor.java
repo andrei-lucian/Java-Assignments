@@ -1,4 +1,6 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.doors;
+
+import nl.rug.oop.rpg.Player;
 
 public class PowerDoor extends Door{
 
@@ -8,6 +10,7 @@ public class PowerDoor extends Door{
      *
      * @param description description of door
      */
+    private static final long serialVersionUID = 23L;
     public PowerDoor(String description) {
         super(description);
     }

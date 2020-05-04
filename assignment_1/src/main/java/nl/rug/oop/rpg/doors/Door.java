@@ -1,7 +1,14 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.doors;
 
-public class Door implements Inspectable, Interactable {
+import nl.rug.oop.rpg.Player;
+import nl.rug.oop.rpg.Room;
+import nl.rug.oop.rpg.util.Inspectable;
+import nl.rug.oop.rpg.util.Interactable;
+import java.io.Serializable;
 
+public class Door implements Inspectable, Interactable, Serializable {
+
+    private static final long serialVersionUID = 2L;
     protected String description;
     protected Room nextRoom;
     /**

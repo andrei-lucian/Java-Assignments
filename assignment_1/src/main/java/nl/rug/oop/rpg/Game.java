@@ -1,10 +1,12 @@
 package nl.rug.oop.rpg;
+import nl.rug.oop.rpg.io.Serializer;
+
+import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;
 
-public class Game implements Serializable{
-    private static final int serialVersionUID = 1;
-    transient Scanner scanner = new Scanner(System.in);
+public class Game {
+    Scanner scanner = new Scanner(System.in);
 
     /** Executes game loop */
     public void gameLoop(Player player) {
@@ -17,8 +19,9 @@ public class Game implements Serializable{
                 case 0: player.getCurrentRoom().inspect(); gameLoop(player);
                 case 1: player.selectDoor(); gameLoop(player);
                 case 2: player.selectNPC(); gameLoop(player);
-                //case 3: player.goBack(); gameLoop(player);
-                case 4: exitGame();
+                case 3: Serializer.savePlayer(player, "quicksave"); gameLoop(player);
+                case 4: loadPlayer(player); gameLoop(player);
+                case 5: exitGame();
             }
         }
     }
@@ -45,7 +48,8 @@ public class Game implements Serializable{
                     "(2) Look for company \n" +
                     //"(3) Go back to the previous room\n" + //to fix: this should not be an available option for the entry room
                     "(3) Quicksave \n" +
-                    "(4) Quickload \n");
+                    "(4) Quickload \n" +
+                    "(5) Exit the game\n");
     }
 
     private void exitGame(){
@@ -53,12 +57,15 @@ public class Game implements Serializable{
         System.exit(0);
     }
 
-    private void quickSave(){
-        File saveDirectory = new File("savedgames");
-        saveDirectory.mkdir();
-    }
+    public void loadPlayer(Player player){
+        try {
+            player = Serializer.loadPlayer("quicksave");
+            System.out.println("Game loaded.");
 
-    private void quickLoad(){
-
+        } catch (IOException e) {
+            System.out.println("Could not load from the file");
+        } catch (ClassNotFoundException e) {
+            System.out.println("The savefile could not be used to load a playaaaa");
+        }
     }
 }

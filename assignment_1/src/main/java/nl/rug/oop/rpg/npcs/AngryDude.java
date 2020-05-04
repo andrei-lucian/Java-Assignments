@@ -1,4 +1,7 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.npcs;
+
+import nl.rug.oop.rpg.Player;
+import nl.rug.oop.rpg.Room;
 
 /** this type of enemy always attacks back
  * until either it or the player is dead */
@@ -7,6 +10,7 @@ public class AngryDude extends Enemy {
     /**
      *@param exp experience that the class gives when it dies
      */
+    private static final long serialVersionUID = 411L;
     private static final int exp = 50;
 
     public AngryDude(String description, int damage, int health, Room room){

@@ -1,4 +1,4 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.util;
 
 public interface Inspectable {
     void inspect();

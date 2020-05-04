@@ -1,9 +1,14 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.npcs;
+
+import nl.rug.oop.rpg.Player;
+import nl.rug.oop.rpg.Room;
+import nl.rug.oop.rpg.util.Attackable;
 
 import java.util.Scanner;
 
-public abstract class Enemy extends NPC implements Attackable{
-    Scanner scanner = new Scanner(System.in);
+public abstract class Enemy extends NPC implements Attackable {
+    private static final long serialVersionUID = 41L;
+    transient Scanner scanner = new Scanner(System.in);
     protected boolean isDead = false;
     protected String uniqueLine;
 

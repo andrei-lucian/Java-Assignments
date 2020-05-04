@@ -1,4 +1,7 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.npcs;
+
+import nl.rug.oop.rpg.Player;
+import nl.rug.oop.rpg.Room;
 
 import java.util.Scanner;
 
@@ -6,7 +9,9 @@ import java.util.Scanner;
  * of the player every time the player attacks it */
 
 public class Peacemaker extends NPC {
-    Scanner scanner = new Scanner(System.in);
+
+    private static final long serialVersionUID = 43L;
+    transient Scanner scanner = new Scanner(System.in);
     /**
      *@var exp experience that the class gives when it dies
      * @var recognized checks if the class has been seen before

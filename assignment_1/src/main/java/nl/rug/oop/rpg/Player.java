@@ -1,8 +1,14 @@
 package nl.rug.oop.rpg;
+import nl.rug.oop.rpg.doors.Door;
+import nl.rug.oop.rpg.npcs.NPC;
+import nl.rug.oop.rpg.util.Attackable;
+
+import java.io.Serializable;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Player implements Attackable{
+public class Player implements Attackable, Serializable {
+    private static final long serialVersionUID = 1L;
 
     private final String name;
     private int damage;
@@ -12,7 +18,7 @@ public class Player implements Attackable{
     //private Room previousRoom;
     private int exp = 0;
     private boolean isDead = false;
-    Scanner scanner = new Scanner(System.in);
+    transient Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructor:
