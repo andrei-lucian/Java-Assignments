@@ -2,9 +2,7 @@ package nl.rug.oop.rpg;
 import nl.rug.oop.rpg.doors.Door;
 import nl.rug.oop.rpg.npcs.NPC;
 import nl.rug.oop.rpg.util.Attackable;
-
 import java.io.Serializable;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Player implements Attackable, Serializable {
@@ -16,7 +14,6 @@ public class Player implements Attackable, Serializable {
     private int maxHealth = 100;
     private Room currentRoom;
     private boolean isDead = false;
-    transient Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructor:
@@ -100,7 +97,7 @@ public class Player implements Attackable, Serializable {
     public void selectDoor(){
         ArrayList<Door> doorList = this.currentRoom.findDoors();
         System.out.println("hello");
-        int chosenDoor = 0; //user input (integer)
+        int chosenDoor = Main.scanner.nextInt(); //user input (integer)
         if (chosenDoor > doorList.size() -1 || chosenDoor < -1) { //check bounds
             System.out.println("Not a door, please choose a different option.");
             selectDoor();
@@ -115,7 +112,7 @@ public class Player implements Attackable, Serializable {
     /** select NPC and interact with NPC */
     public void selectNPC(){
         ArrayList<NPC> npcList = this.getCurrentRoom().findNPCs();
-        int chosenNPC = scanner.nextInt();
+        int chosenNPC = Main.scanner.nextInt();
         if (chosenNPC > npcList.size() -1 || chosenNPC < -1) { //check bounds
             System.out.println("Not an available option, please choose again.");
             selectNPC();
