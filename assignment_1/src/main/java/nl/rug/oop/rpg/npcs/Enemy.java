@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public abstract class Enemy extends NPC implements Attackable {
     private static final long serialVersionUID = 41L;
-    transient Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
     protected boolean isDead = false;
     protected String uniqueLine;
 
@@ -56,13 +56,14 @@ public abstract class Enemy extends NPC implements Attackable {
                 System.out.println("Not an option, please select again.\n" +
                         "(1) Attack \n(-1) Don't interact");
                 this.interact = scanner.nextInt();
-            }
-            if (this.interact==1){
-                this.currentlyInteracting = true;
-                performAction(player);
-                if (!this.isDead){
-                    attackLoop(player);
+                if(this.interact == -1){
+                    return;
                 }
+            }
+            this.currentlyInteracting = true;
+            performAction(player);
+            if (!this.isDead){
+                attackLoop(player);
             }
         }
     }
