@@ -9,9 +9,8 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
-        //initialise a player object with a name
         Scanner scanner = new Scanner(System.in);
+        //initialise a player object with a name
         System.out.println("Enter a name for your player");
         String name = scanner.nextLine();
         Player player = new Player(name, 70);

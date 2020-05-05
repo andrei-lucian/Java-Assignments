@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public abstract class Enemy extends NPC implements Attackable {
     private static final long serialVersionUID = 41L;
-    Scanner scanner = new Scanner(System.in);
+    transient Scanner scanner = new Scanner(System.in);
     protected boolean isDead = false;
     protected String uniqueLine;
 

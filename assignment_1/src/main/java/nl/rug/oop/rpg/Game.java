@@ -81,7 +81,7 @@ public class Game {
     /** File name cannot have more than 20 characters,
      * a file extension, only alphanumeric characters**/
     private void customSave(Player player){
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         boolean saved = false;
         System.out.println("Please enter a name for your file (! to abort):");
         while(!saved){
@@ -103,8 +103,9 @@ public class Game {
         }
     }
 
+
     private void customLoad(Player player){
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         boolean loaded = false;
         ArrayList<String> al = Serializer.listFiles();
         for(String s : al){
@@ -118,7 +119,6 @@ public class Game {
             else if (chosen != -1) {
                 String fileName = al.get(chosen);
                 removeExtension(fileName);
-                fileName.replaceAll(".ser", "");
                 System.out.println(fileName);
                 loadPlayer(player, fileName);
                 loaded = true;
