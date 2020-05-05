@@ -35,15 +35,4 @@ public class Serializer {
             return player;
         }
     }
-
-    public static ArrayList<String> listFiles(){
-        ArrayList<String> results = new ArrayList<>();
-        File[] files = new File("savedGames").listFiles();
-        for (File file : files) {
-            if (file.isFile()) {
-                results.add(file.getName());
-            }
-        }
-        return results;
-    }
 }
