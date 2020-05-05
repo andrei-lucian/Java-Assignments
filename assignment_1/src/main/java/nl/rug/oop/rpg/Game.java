@@ -7,7 +7,6 @@ import java.util.regex.*;
 
 public class Game {
 
-    Scanner scanner = new Scanner(System.in);
     private boolean exitGame = false;
 
     /** Executes game loop */
@@ -16,7 +15,7 @@ public class Game {
             checkLoseCondition(player);
             checkWinCondition(player);
             printMenu();
-            int option = scanner.nextInt();
+            int option = Main.scanner.nextInt();
             switch(option){
                 case 0: player.getCurrentRoom().inspect(); gameLoop(player);
                 case 1: player.selectDoor(); gameLoop(player);
@@ -84,11 +83,11 @@ public class Game {
     /** File name cannot have more than 20 characters,
      * a file extension, only alphanumeric characters**/
     private void customSave(Player player){
-        scanner = new Scanner(System.in);
+        Main.scanner = new Scanner(System.in);
         boolean saved = false;
         System.out.println("Please enter a name for your file (! to abort):");
         while(!saved){
-            String s = scanner.nextLine();
+            String s = Main.scanner.nextLine();
             System.out.println(s);
             if (s.equals("!")) {
                 System.out.println("Save aborted.");
@@ -115,7 +114,7 @@ public class Game {
             System.out.println("(" + al.indexOf(s) + ") " +  s);
         }
         while(!loaded) {
-            int chosen = scanner.nextInt();
+            int chosen = Main.scanner.nextInt();
             if (chosen > al.size() - 1 || chosen < -1) { //check bounds
                 System.out.println("Not an option, please choose a different file.");
             }

@@ -4,12 +4,12 @@ import nl.rug.oop.rpg.doors.HealingDoor;
 import nl.rug.oop.rpg.doors.LockedDoor;
 import nl.rug.oop.rpg.doors.PowerDoor;
 import nl.rug.oop.rpg.npcs.*;
-
 import java.util.*;
 
 public class Main {
+    public static transient Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         //initialise a player object with a name
         System.out.println("Enter a name for your player");
         String name = scanner.nextLine();

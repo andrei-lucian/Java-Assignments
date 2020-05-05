@@ -37,7 +37,7 @@ public class Player implements Attackable, Serializable {
     public Room getCurrentRoom(){
         return this.currentRoom;
     }
-    
+
     public void setDamage(int damage) {
         this.damage = damage;
     }
@@ -99,7 +99,8 @@ public class Player implements Attackable, Serializable {
     /** select door and go to next room */
     public void selectDoor(){
         ArrayList<Door> doorList = this.currentRoom.findDoors();
-        int chosenDoor = scanner.nextInt(); //user input (integer)
+        System.out.println("hello");
+        int chosenDoor = 0; //user input (integer)
         if (chosenDoor > doorList.size() -1 || chosenDoor < -1) { //check bounds
             System.out.println("Not a door, please choose a different option.");
             selectDoor();
@@ -124,11 +125,4 @@ public class Player implements Attackable, Serializable {
             currentNpc.interact(this);
         }
     }
-
-    /** Method to go to previous room */
-    /*public void goBack(){
-        System.out.println("You went back to the previous room.");
-        this.setCurrentRoom(previousRoom);
-        this.getCurrentRoom().inspect();
-    }*/
 }
