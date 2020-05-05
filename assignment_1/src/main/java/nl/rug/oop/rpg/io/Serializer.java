@@ -6,6 +6,13 @@ import nl.rug.oop.rpg.doors.Door;
 import nl.rug.oop.rpg.npcs.NPC;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Serializer {
 
@@ -40,4 +47,20 @@ public class Serializer {
             return player;
         }
     }
+
+    public static ArrayList listFiles(){
+        try (Stream<Path> walk = Files.walk(Paths.get("savedgames"))) {
+
+            List<String> list = walk.filter(Files::isRegularFile)
+                    .map(x -> x.toString()).collect(Collectors.toList());
+
+            ArrayList<String> arrayList = new ArrayList<String>(list);
+            return arrayList;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
