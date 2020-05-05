@@ -19,7 +19,7 @@ public class Serializer {
 
         /* write object to a file */
         try(FileOutputStream fileOutputStream = new FileOutputStream(saveDirectory + File.separator + fileName + ".ser");
-            ObjectOutputStream playerOutputStream = new ObjectOutputStream(fileOutputStream);) {
+            ObjectOutputStream playerOutputStream = new ObjectOutputStream(fileOutputStream)) {
             playerOutputStream.writeObject(player);
             System.out.println("Save successful!");
         } catch (FileNotFoundException e) {
