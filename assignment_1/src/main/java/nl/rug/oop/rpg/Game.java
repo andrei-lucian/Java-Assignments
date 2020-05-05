@@ -118,7 +118,7 @@ public class Game {
             }
             else if (chosen != -1) {
                 String fileName = al.get(chosen);
-                removeExtension(fileName);
+                fileName = fileName.substring(0, fileName.lastIndexOf("."));
                 System.out.println(fileName);
                 loadPlayer(player, fileName);
                 loaded = true;
@@ -126,14 +126,6 @@ public class Game {
             else {
                 break;
             }
-        }
-    }
-
-    public static String removeExtension(String fileName) {
-        if (fileName.indexOf(".") > 0) {
-            return fileName.substring(0, fileName.lastIndexOf("."));
-        } else {
-            return fileName;
         }
     }
 }
