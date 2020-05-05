@@ -1,9 +1,5 @@
 package nl.rug.oop.rpg.io;
-import nl.rug.oop.rpg.Game;
 import nl.rug.oop.rpg.Player;
-import nl.rug.oop.rpg.Room;
-import nl.rug.oop.rpg.doors.Door;
-import nl.rug.oop.rpg.npcs.NPC;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -23,10 +19,7 @@ public class Serializer {
 
         /* write object to a file */
         try(FileOutputStream fileOutputStream = new FileOutputStream(saveDirectory + File.separator + fileName + ".ser");
-            ObjectOutputStream playerOutputStream = new ObjectOutputStream(fileOutputStream);
-            /*ObjectOutputStream roomOutputStream = new ObjectOutputStream(fileOutputStream);
-            ObjectOutputStream doorOutputStream = new ObjectOutputStream(fileOutputStream);
-            ObjectOutputStream npcOutputStream = new ObjectOutputStream(fileOutputStream)*/) {
+            ObjectOutputStream playerOutputStream = new ObjectOutputStream(fileOutputStream);) {
             playerOutputStream.writeObject(player);
             System.out.println("Save successful!");
         } catch (FileNotFoundException e) {
@@ -40,7 +33,7 @@ public class Serializer {
     public static Player loadPlayer(String fileName) throws IOException, ClassNotFoundException {
         File saveDirectory = new File("savedGames");
 
-        try(FileInputStream fileInputStream = new FileInputStream(saveDirectory + File.separator + fileName+ ".ser");
+        try(FileInputStream fileInputStream = new FileInputStream(saveDirectory + File.separator + fileName + ".ser");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
 
             Player player = (Player)objectInputStream.readObject();
@@ -49,18 +42,13 @@ public class Serializer {
     }
 
     public static ArrayList listFiles(){
-        try (Stream<Path> walk = Files.walk(Paths.get("savedgames"))) {
-
-            List<String> list = walk.filter(Files::isRegularFile)
-                    .map(x -> x.toString()).collect(Collectors.toList());
-
-            ArrayList<String> arrayList = new ArrayList<String>(list);
-            return arrayList;
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        ArrayList<String> results = new ArrayList<>();
+        File[] files = new File("savedGames").listFiles();
+        for (File file : files) {
+            if (file.isFile()) {
+                results.add(file.getName());
+            }
         }
-        return null;
+        return results;
     }
-
 }
