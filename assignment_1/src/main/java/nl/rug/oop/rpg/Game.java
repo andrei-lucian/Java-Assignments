@@ -29,7 +29,7 @@ public class Game {
     }
 
     private void checkWinCondition(Player player){
-        if (player.getExp() >= 500 || player.getCurrentRoom().getDescription().equals("the end!")){
+        if (player.getCurrentRoom().getDescription().equals("the end!")){
             System.out.println("You win the game.");
             System.exit(0);
         }

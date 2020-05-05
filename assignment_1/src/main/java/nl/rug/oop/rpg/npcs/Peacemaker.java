@@ -12,11 +12,6 @@ public class Peacemaker extends NPC {
 
     private static final long serialVersionUID = 43L;
     transient Scanner scanner = new Scanner(System.in);
-    /**
-     *@var exp experience that the class gives when it dies
-     * @var recognized checks if the class has been seen before
-     */
-    private static final int exp = 5;
 
     public Peacemaker(String description, int damage, int health, Room room){
         super(description, damage, health, room);

@@ -21,6 +21,5 @@ public class Coward extends Enemy implements Attackable {
         System.out.println("The coward ran away. What a loser.");
         this.removeFromRoom(this.room);
         this.isDead = true;
-        player.setExp(exp);
     }
 }

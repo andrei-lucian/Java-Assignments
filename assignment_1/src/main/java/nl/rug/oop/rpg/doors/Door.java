@@ -11,10 +11,7 @@ public class Door implements Inspectable, Interactable, Serializable {
     private static final long serialVersionUID = 2L;
     protected String description;
     protected Room nextRoom;
-    /**
-     * Constructor:
-     * @param description door description
-     */
+
     /** set the description of door */
     public Door(String description) {
         this.description = description;

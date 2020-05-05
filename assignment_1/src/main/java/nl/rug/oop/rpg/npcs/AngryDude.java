@@ -24,7 +24,6 @@ public class AngryDude extends Enemy {
         this.takeDamage(player.dealDamage());
             if(this.isDead){
                 System.out.println("You defeated the angry dude.");
-                player.setExp(exp);
             }
             else {
                 System.out.println("Ouch! The angry dude attacked you back.");

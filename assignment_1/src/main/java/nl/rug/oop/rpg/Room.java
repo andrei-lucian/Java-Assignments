@@ -3,16 +3,15 @@ package nl.rug.oop.rpg;
 import nl.rug.oop.rpg.doors.Door;
 import nl.rug.oop.rpg.npcs.NPC;
 import nl.rug.oop.rpg.util.Inspectable;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Room implements Inspectable, Serializable {
 
     private static final long serialVersionUID = 3L;
-    private String description;
-    private ArrayList<Door> doorList; //create Door list
-    private ArrayList<NPC> npcList; //create NPC list
+    private final String description;
+    private final ArrayList<Door> doorList; //create Door list
+    private final ArrayList<NPC> npcList; //create NPC list
 
     /**
      * Constructor:

@@ -15,8 +15,6 @@ public class Player implements Attackable, Serializable {
     private int health = 100;
     private int maxHealth = 100;
     private Room currentRoom;
-    //private Room previousRoom;
-    private int exp = 0;
     private boolean isDead = false;
     transient Scanner scanner = new Scanner(System.in);
 
@@ -51,11 +49,6 @@ public class Player implements Attackable, Serializable {
 
     public int getDamage() {
         return damage;
-    }
-
-    public void setExp(int exp) {
-        this.exp += exp;
-        System.out.println("Your exp is: " + this.exp);
     }
 
     /** Player takes damage from an enemy
@@ -143,12 +136,4 @@ public class Player implements Attackable, Serializable {
         this.setCurrentRoom(previousRoom);
         this.getCurrentRoom().inspect();
     }*/
-
-    public int getExp() {
-        return exp;
-    }
-
-    public int getMaxHealth() {
-        return maxHealth;
-    }
 }
