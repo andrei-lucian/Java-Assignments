@@ -1,7 +1,6 @@
 package nl.rug.oop.rpg;
 
 import nl.rug.oop.rpg.io.Serializer;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,7 +41,6 @@ public class SaveAndLoad {
      * a file extension, only alphanumeric characters**/
 
     public static void customSave(Player player){
-        Main.scanner = new Scanner(System.in);
         boolean saved = false;
         System.out.println("Please enter a name for your file (! to abort):");
         while(!saved){
@@ -65,7 +63,6 @@ public class SaveAndLoad {
     }
 
     public static Player customLoad(Player player){
-        //Scanner scanner = new Scanner(System.in);
         boolean loaded = false;
         ArrayList<String> al = listFiles();
         for(String s : al){

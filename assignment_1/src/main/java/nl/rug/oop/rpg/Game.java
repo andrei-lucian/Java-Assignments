@@ -1,9 +1,5 @@
 package nl.rug.oop.rpg;
 import nl.rug.oop.rpg.io.Serializer;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.regex.*;
 
 public class Game {
 
