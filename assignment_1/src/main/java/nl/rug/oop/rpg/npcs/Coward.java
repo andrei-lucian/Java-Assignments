@@ -8,7 +8,6 @@ public class Coward extends Enemy implements Attackable {
     /**
      *@param exp experience that the class gives when it dies
      */
-    private static final int exp = 10;
     private static final long serialVersionUID = 413L;
 
     public Coward(String description,int damage, int health, Room room){

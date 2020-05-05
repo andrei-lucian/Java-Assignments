@@ -12,7 +12,6 @@ public class DementiaDude extends Enemy implements Attackable {
      */
     private static final long serialVersionUID = 412L;
     Random randInt = new Random();
-    private static final int exp = 50;
 
     public DementiaDude(String description,int damage, int health, Room room){
         super(description, damage, health, room);
@@ -23,7 +22,6 @@ public class DementiaDude extends Enemy implements Attackable {
     protected void performAction(Player player) {
         this.takeDamage(player.dealDamage());
         if(this.isDead){
-            player.setExp(exp);
             System.out.println("You defeated the dementia dude");
         }
         else {
