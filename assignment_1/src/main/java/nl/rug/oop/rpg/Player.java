@@ -37,12 +37,7 @@ public class Player implements Attackable, Serializable {
     public Room getCurrentRoom(){
         return this.currentRoom;
     }
-
-    /** set the previous room in case we want to go back */
-    /*public void setPreviousRoom(Room room){
-        this.previousRoom = room;
-    }*/
-
+    
     public void setDamage(int damage) {
         this.damage = damage;
     }

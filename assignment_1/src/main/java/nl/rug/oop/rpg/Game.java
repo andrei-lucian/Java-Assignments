@@ -6,11 +6,13 @@ import java.util.Scanner;
 import java.util.regex.*;
 
 public class Game {
+
     Scanner scanner = new Scanner(System.in);
+    private boolean exitGame = false;
 
     /** Executes game loop */
     public void gameLoop(Player player) {
-        while (true) {
+        while (!exitGame) {
             checkLoseCondition(player);
             checkWinCondition(player);
             printMenu();
@@ -22,7 +24,7 @@ public class Game {
                 case 3: Serializer.savePlayer(player, "quicksave"); gameLoop(player);
                 case 4: player = loadPlayer(player, "quicksave"); gameLoop(player);
                 case 5: customSave(player); gameLoop(player);
-                case 6: customLoad(player); gameLoop(player);
+                case 6: player = customLoad(player); gameLoop(player);
                 case 7: exitGame();
             }
         }
@@ -58,6 +60,7 @@ public class Game {
     private void exitGame(){
         System.out.println("You exited the game.");
         System.exit(0);
+        exitGame = true;
     }
 
     public Player loadPlayer(Player player, String fileName){
@@ -104,7 +107,7 @@ public class Game {
     }
 
 
-    private void customLoad(Player player){
+    private Player customLoad(Player player){
         //Scanner scanner = new Scanner(System.in);
         boolean loaded = false;
         ArrayList<String> al = Serializer.listFiles();
@@ -120,12 +123,13 @@ public class Game {
                 String fileName = al.get(chosen);
                 fileName = fileName.substring(0, fileName.lastIndexOf("."));
                 System.out.println(fileName);
-                loadPlayer(player, fileName);
+                player = loadPlayer(player, fileName);
                 loaded = true;
             }
             else {
                 break;
             }
         }
+        return player;
     }
 }

@@ -41,7 +41,7 @@ public class Serializer {
         }
     }
 
-    public static ArrayList listFiles(){
+    public static ArrayList<String> listFiles(){
         ArrayList<String> results = new ArrayList<>();
         File[] files = new File("savedGames").listFiles();
         for (File file : files) {
