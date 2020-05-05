@@ -1,9 +1,8 @@
 package nl.rug.oop.rpg;
 import nl.rug.oop.rpg.io.Serializer;
-
 import java.io.IOException;
 import java.util.Scanner;
-import java.io.File;
+import java.util.regex.*;
 
 public class Game {
     Scanner scanner = new Scanner(System.in);
@@ -20,8 +19,10 @@ public class Game {
                 case 1: player.selectDoor(); gameLoop(player);
                 case 2: player.selectNPC(); gameLoop(player);
                 case 3: Serializer.savePlayer(player, "quicksave"); gameLoop(player);
-                case 4: loadPlayer(player); gameLoop(player);
-                case 5: exitGame();
+                case 4: player = loadPlayer(player); gameLoop(player);
+                case 5: customSave(player); gameLoop(player);
+                case 6: ;
+                case 7: exitGame();
             }
         }
     }
@@ -46,10 +47,11 @@ public class Game {
                     "(0) Look around \n" +
                     "(1) Look for a way out \n" +
                     "(2) Look for company \n" +
-                    //"(3) Go back to the previous room\n" + //to fix: this should not be an available option for the entry room
                     "(3) Quicksave \n" +
                     "(4) Quickload \n" +
-                    "(5) Exit the game\n");
+                    "(5) Save \n" +
+                    "(6) Load \n" +
+                    "(7) Exit the game");
     }
 
     private void exitGame(){
@@ -57,15 +59,50 @@ public class Game {
         System.exit(0);
     }
 
-    public void loadPlayer(Player player){
+    public Player loadPlayer(Player player){
         try {
             player = Serializer.loadPlayer("quicksave");
-            System.out.println("Game loaded.");
-
+            System.out.println("Previous game loaded.");
+            return player;
         } catch (IOException e) {
             System.out.println("Could not load from the file");
         } catch (ClassNotFoundException e) {
             System.out.println("The savefile could not be used to load a playaaaa");
         }
+        System.out.println("Could not load previous game, starting from scratch instead.");
+        return player;
+    }
+
+    public static boolean isAlphaNumeric(String s) {
+        return s != null && s.matches("^[a-zA-Z0-9]*$");
+    }
+
+    /** File name cannot have more than 20 characters,
+     * a file extension, only alphanumeric characters**/
+    private void customSave(Player player){
+        Scanner scanner = new Scanner(System.in);
+        boolean saved = false;
+        System.out.println("Please enter a name for your file (! to abort):");
+        while(!saved){
+            String s = scanner.nextLine();
+            System.out.println(s);
+            if (s.equals("!")) {
+                System.out.println("Save aborted.");
+                break;
+            }
+            else if (s.length() > 0 && s.length() < 21 &&
+                isAlphaNumeric(s)){
+                Serializer.savePlayer(player, s);
+                saved = true;
+            }
+            else {
+                System.out.println("File name does not meet requirements, " +
+                        "please try again (! to abort)");
+            }
+        }
+    }
+
+    private Player customLoad(Player player){
+
     }
 }
