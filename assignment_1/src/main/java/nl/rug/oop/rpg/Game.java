@@ -1,4 +1,5 @@
 package nl.rug.oop.rpg;
+import nl.rug.oop.rpg.io.SaveAndLoad;
 import nl.rug.oop.rpg.io.Serializer;
 
 public class Game {
@@ -7,17 +8,12 @@ public class Game {
 
     /** Executes game loop */
     public void gameLoop(Player player) {
-        int option = Main.scanner.nextInt();
-        switch(option){
-            case 0: break;
-            case 1: ;
-            case 2: ;
-        }
+        System.out.println("Hello ma dude, your name is: " + player.getName());
         while (!exitGame) {
             checkLoseCondition(player);
             checkWinCondition(player);
             printMenu();
-            option = Main.scanner.nextInt();
+            int option = Main.scanner.nextInt();
             switch(option){
                 case 0: player.getCurrentRoom().inspect(); gameLoop(player);
                 case 1: player.selectDoor(); gameLoop(player);
@@ -58,12 +54,7 @@ public class Game {
                     "(7) Exit the game");
     }
 
-    public void printConfigMenu(){
-        System.out.println("You are about to start the game, what do you want to do? \n" +
-                "(0) Play normally \n" +
-                "(1) Initialise from config \n" +
-                "(2) Set default config \n");
-    }
+
 
     private void exitGame(){
         System.out.println("You exited the game.");

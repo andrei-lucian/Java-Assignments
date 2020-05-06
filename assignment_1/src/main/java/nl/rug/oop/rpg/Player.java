@@ -7,8 +7,7 @@ import java.util.ArrayList;
 
 public class Player implements Attackable, Serializable {
     private static final long serialVersionUID = 1L;
-
-    private final String name;
+    private String name = "Bob";
     private int damage;
     private int health = 100;
     private int maxHealth = 100;
@@ -17,12 +16,10 @@ public class Player implements Attackable, Serializable {
 
     /**
      * Constructor:
-     * @param name player name
      * @param damage player damage
      */
 
-    public Player(String name, int damage){
-        this.name = name;
+    public Player(int damage){
         this.damage = damage;
     }
 
@@ -121,5 +118,13 @@ public class Player implements Attackable, Serializable {
             NPC currentNpc = npcList.get(chosenNPC); //interact with npc
             currentNpc.interact(this);
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

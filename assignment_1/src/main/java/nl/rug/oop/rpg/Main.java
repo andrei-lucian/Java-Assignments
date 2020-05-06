@@ -4,22 +4,46 @@ import nl.rug.oop.rpg.doors.HealingDoor;
 import nl.rug.oop.rpg.doors.LockedDoor;
 import nl.rug.oop.rpg.doors.PowerDoor;
 import nl.rug.oop.rpg.npcs.*;
+import nl.rug.oop.rpg.io.Initialiser;
+
+import java.io.IOException;
 import java.util.*;
 
 public class Main {
     public static transient Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        //initialise a player object with a name
-        System.out.println("Enter a name for your player");
-        String name = scanner.nextLine();
-        Player player = new Player(name, 70);
+    public static void main(String[] args){
+
+        Player player = new Player(70);
+        Initialiser.createProperties("gameProp");
 
         //create a game with a player and run the game loop
-        initiateWorld(player);
+        printConfigMenu();
+        int option = Main.scanner.nextInt();
+        switch(option){
+            case 0: initiateWorld(player);
+            case 1: loadFromConfig(player);
+            case 2: ;
+        }
+
         Game game = new Game();
-        game.printConfigMenu();
         game.gameLoop(player);
+
+    }
+
+    private static void loadFromConfig(Player player){
+        try {
+            Initialiser.initGameFromProps("gameProp", player);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void printConfigMenu(){
+        System.out.println("You are about to start the game, what do you want to do? \n" +
+                "(0) Play normally \n" +
+                "(1) Initialise from config \n" +
+                "(2) Set default config \n");
     }
 
     private static void initiateWorld(Player player){
