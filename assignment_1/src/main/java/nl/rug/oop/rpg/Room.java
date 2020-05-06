@@ -29,11 +29,9 @@ public class Room implements Inspectable, Serializable {
      */
     public Room(String description) {
         this.description = description;
-        doorList = new ArrayList<>(); //initialise the ArrayList in the constructor
+        doorList = new ArrayList<>();
         npcList = new ArrayList<>();
     }
-
-
 
     /** print a room's description */
     public void inspect() {
@@ -97,16 +95,10 @@ public class Room implements Inspectable, Serializable {
     }
 
     public boolean emptyRoom(){
-        if(npcList.isEmpty()){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return npcList.isEmpty();
     }
 
     public String getDescription() {
         return description;
     }
-
 }

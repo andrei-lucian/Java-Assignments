@@ -1,5 +1,6 @@
 package nl.rug.oop.rpg.npcs;
 
+import nl.rug.oop.rpg.Main;
 import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.Room;
 
@@ -11,7 +12,7 @@ import java.util.Scanner;
 public class Peacemaker extends NPC {
 
     private static final long serialVersionUID = 43L;
-    transient Scanner scanner = new Scanner(System.in);
+    transient Scanner scanner = Main.scanner;
 
     public Peacemaker(String description, Room room){
         super(description, room);

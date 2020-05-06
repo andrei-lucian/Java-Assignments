@@ -22,12 +22,9 @@ public class DementiaDude extends Enemy implements Attackable {
     @Override
     protected void performAction(Player player) {
         this.takeDamage(player.dealDamage());
-        if(this.isDead){
-            System.out.println("You defeated the dementia dude");
-        }
-        else {
-            this.damage = randInt.nextInt(damage);
+        if(!isDead){
             player.takeDamage(this.dealDamage());
+            System.out.println("Enemy: I have no idea what I'm doing");
         }
     }
 }

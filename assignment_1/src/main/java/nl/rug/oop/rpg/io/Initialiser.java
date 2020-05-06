@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 public class Initialiser {
-
     public static void createProperties(String fileName){
         int maxHealth = 50;
         int enemyDamage = 200;
@@ -63,11 +62,8 @@ public class Initialiser {
                     }
                     ArrayList<Door> doors = room.getDoorList();
                     for (Door door : doors){
-                        if (door.isPowerDoor()){
-                            ((PowerDoor) (Door) (PowerDoor)door).setPower(doorPower);
-                        }
+                        if (door.isPowerDoor()) ((PowerDoor) door).setPower(doorPower);
                     }
-
                 }
         }
     }

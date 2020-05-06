@@ -9,17 +9,7 @@ public class Player implements Attackable, Serializable {
     private static final long serialVersionUID = 1L;
     private String name = "Bob";
     private int damage;
-
-    public int getMaxHealth() {
-        return maxHealth;
-    }
-
     private int maxHealth = 100;
-
-    public int getHealth() {
-        return health;
-    }
-
     private int health = maxHealth;
     private Room currentRoom;
     private boolean isDead = false;
@@ -69,30 +59,14 @@ public class Player implements Attackable, Serializable {
         }
     }
 
-    public void increaseHealth(){
-        if(this.health == this.maxHealth){
-            System.out.println("Maximum health reached - you can't heal anymore." +
-                    " Your health is: " + maxHealth);
-        }
-        else {
-            this.health = this.maxHealth;
-            System.out.println("Nice! Your health is back at " + this.health + "!");
-        }
-    }
-
-    public void increaseMaxHealth(int maxHealth) {
-        this.maxHealth += maxHealth;
-        System.out.println("Your max health increased to: " + this.maxHealth);
+    @Override
+    public int dealDamage() {
+        return this.damage;
     }
 
     /** @return if the player is dead */
     public boolean isDead(){
         return this.isDead;
-    }
-
-    @Override
-    public int dealDamage() {
-        return this.damage;
     }
 
     /** Moves player to next room */
@@ -139,6 +113,21 @@ public class Player implements Attackable, Serializable {
 
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
-        this.health = maxHealth;
+    }
+
+    public void increaseHealth(){
+        if(this.health == this.maxHealth){
+            System.out.println("Maximum health reached - you can't heal anymore." +
+                    " Your health is: " + maxHealth);
+        }
+        else {
+            this.health = this.maxHealth;
+            System.out.println("Nice! Your health is: " + this.health + "!");
+        }
+    }
+
+    public void increaseMaxHealth(int maxHealth) {
+        this.maxHealth += maxHealth;
+        System.out.println("Your max health increased to: " + this.maxHealth);
     }
 }

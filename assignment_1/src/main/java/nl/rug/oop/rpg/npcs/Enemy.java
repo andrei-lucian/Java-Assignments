@@ -6,11 +6,6 @@ import nl.rug.oop.rpg.util.Attackable;
 
 public abstract class Enemy extends NPC implements Attackable {
     private static final long serialVersionUID = 41L;
-
-    public int getBaseDamage() {
-        return baseDamage;
-    }
-
     protected int baseDamage = 20;
     protected int baseHealth = 100;
 
@@ -24,18 +19,23 @@ public abstract class Enemy extends NPC implements Attackable {
         this.isEnemy = true;
     }
 
-    /** enemy takes damage when it is
-     * attacked and health is reduced */
+    protected boolean isDead(){
+        System.out.println("You defeated the enemy.");
+        removeFromRoom(this.room);
+        isDead = true;
+        return true;
+    }
+
+    /** enemy takes damage and dies if health is bellow 0 */
     @Override
     public void takeDamage(int damage) {
         this.baseHealth = this.baseHealth - damage;
             System.out.println("Damage dealt: " + damage);
             if(this.baseHealth <= 0){
-                this.isDead = true;
-                removeFromRoom(this.room);
+                isDead();
             }
             else {
-                System.out.println("Enemy's health:  " + this.baseHealth);
+                System.out.println("Enemy's health: " + this.baseHealth);
             }
     }
 

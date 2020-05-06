@@ -28,8 +28,4 @@ public class PowerDoor extends Door{
         System.out.println("The magic of the door gave you " +
                 power + " extra damage.");
     }
-
-    public int getPower() {
-        return power;
-    }
 }
