@@ -2,8 +2,6 @@ package nl.rug.oop.rpg.io;
 import nl.rug.oop.rpg.Player;
 
 import java.io.*;
-import java.util.ArrayList;
-
 
 public class Serializer {
 

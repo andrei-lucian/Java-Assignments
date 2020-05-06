@@ -18,6 +18,7 @@ public class Main {
         //create a game with a player and run the game loop
         initiateWorld(player);
         Game game = new Game();
+        game.printConfigMenu();
         game.gameLoop(player);
     }
 
