@@ -1,5 +1,7 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.io;
 
+import nl.rug.oop.rpg.Main;
+import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.io.Serializer;
 import java.io.File;
 import java.io.IOException;

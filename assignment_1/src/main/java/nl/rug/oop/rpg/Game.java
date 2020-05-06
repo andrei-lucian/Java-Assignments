@@ -1,4 +1,5 @@
 package nl.rug.oop.rpg;
+import nl.rug.oop.rpg.io.SaveAndLoad;
 import nl.rug.oop.rpg.io.Serializer;
 
 public class Game {
