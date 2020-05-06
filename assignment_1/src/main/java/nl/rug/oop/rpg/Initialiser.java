@@ -27,7 +27,7 @@ public class Initialiser {
     public void initGameFromProps(String fileName){
         File configDirectory = new File("config");
         try (FileReader fileReader = new FileReader(configDirectory + File.separator + fileName);{
-                
+
         }
 
 }
