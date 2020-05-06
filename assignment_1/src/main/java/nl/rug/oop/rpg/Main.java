@@ -22,7 +22,7 @@ public class Main {
         int option = Main.scanner.nextInt();
         switch(option){
             case 0: initiateWorld(player);
-            case 1: loadFromConfig(player);
+            case 1: initiateWorld(player); loadFromConfig(player);
             case 2: ;
         }
 
@@ -43,7 +43,7 @@ public class Main {
         System.out.println("You are about to start the game, what do you want to do? \n" +
                 "(0) Play normally \n" +
                 "(1) Initialise from config \n" +
-                "(2) Set default config \n");
+                "(2) Set default config ");
     }
 
     private static void initiateWorld(Player player){
