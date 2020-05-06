@@ -11,6 +11,11 @@ public class Room implements Inspectable, Serializable {
     private static final long serialVersionUID = 3L;
     private final String description;
     private final ArrayList<Door> doorList; //create Door list
+
+    public ArrayList<NPC> getNpcList() {
+        return npcList;
+    }
+
     private final ArrayList<NPC> npcList; //create NPC list
 
     /**
@@ -22,6 +27,8 @@ public class Room implements Inspectable, Serializable {
         doorList = new ArrayList<>(); //initialise the ArrayList in the constructor
         npcList = new ArrayList<>();
     }
+
+
 
     /** print a room's description */
     public void inspect() {

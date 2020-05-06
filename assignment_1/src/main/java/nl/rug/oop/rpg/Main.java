@@ -17,6 +17,7 @@ public class Main {
         Player player = new Player(70);
         Room[] rooms = initiateWorld();
         player.setCurrentRoom(rooms[0]);
+        check(player);
         Initialiser.createProperties("gameProp");
 
         //create a game with a player and run the game loop
@@ -45,6 +46,15 @@ public class Main {
     }
 
     private static void check(Player player){
+        Room rooms[] = initiateWorld();
+        for (Room room : rooms){
+            ArrayList<NPC> npcs = room.getNpcList();
+            for (NPC npc : npcs){
+                if (npc.isEnemy()){
+                    npc.inspect();
+                }
+            }
+        }
     }
 
     public static void printConfigMenu(){

@@ -18,6 +18,11 @@ public abstract class NPC implements Inspectable, Interactable, Serializable {
     protected boolean currentlyInteracting;
     protected String uniqueLine;
     protected boolean isDead = false;
+
+    public boolean isEnemy() {
+        return isEnemy;
+    }
+
     protected boolean isEnemy = false;
 
     /**
