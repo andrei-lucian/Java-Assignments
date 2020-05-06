@@ -11,6 +11,11 @@ public class Door implements Inspectable, Interactable, Serializable {
     private static final long serialVersionUID = 2L;
     protected String description;
     protected Room nextRoom;
+
+    public boolean isPowerDoor() {
+        return isPowerDoor;
+    }
+
     protected boolean isPowerDoor = false;
 
     /** set the description of door */

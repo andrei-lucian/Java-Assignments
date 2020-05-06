@@ -2,6 +2,7 @@ package nl.rug.oop.rpg.io;
 
 import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.doors.Door;
+import nl.rug.oop.rpg.npcs.NPC;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -28,7 +29,8 @@ public class Initialiser {
         }
     }
 
-    public static void initGameFromProps(String fileName, Player player) throws IOException {
+    public static void initGameFromProps(String fileName, Player player,
+                                         ArrayList<NPC> enemies, ArrayList<Door> powerDoors) throws IOException {
         File configDirectory = new File("config");
         try (FileReader fileReader = new FileReader(configDirectory + File.separator +
                 fileName + ".properties")){
@@ -38,6 +40,8 @@ public class Initialiser {
                 int maxHealth = Integer.parseInt(gameProperties.getProperty("maxHealth"));
                 player.setName(playerName);
                 player.setMaxHealth(maxHealth);
+
+
 
         }
     }

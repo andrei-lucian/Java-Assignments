@@ -17,7 +17,6 @@ public class Main {
         Player player = new Player(70);
         Room[] rooms = initiateWorld();
         player.setCurrentRoom(rooms[0]);
-        check(player);
         Initialiser.createProperties("gameProp");
 
         //create a game with a player and run the game loop
@@ -38,23 +37,42 @@ public class Main {
 
     private static void loadFromConfig(Player player){
         initiateWorld();
+        ArrayList<NPC> enemies = enemies(player);
+        ArrayList<Door> powerDoors = powerDoors(player);
+
         try {
-            Initialiser.initGameFromProps("gameProp", player);
+            Initialiser.initGameFromProps("gameProp", player, enemies, powerDoors);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void check(Player player){
+    private static ArrayList<NPC> enemies(Player player){
+        ArrayList<NPC> enemies = new ArrayList<>();
         Room rooms[] = initiateWorld();
         for (Room room : rooms){
             ArrayList<NPC> npcs = room.getNpcList();
             for (NPC npc : npcs){
                 if (npc.isEnemy()){
-                    npc.inspect();
+                    enemies.add(npc);
                 }
             }
         }
+        return enemies;
+    }
+
+    private static ArrayList<Door> powerDoors(Player player){
+        ArrayList<Door> powerDoors = new ArrayList<>();
+        Room rooms[] = initiateWorld();
+        for (Room room : rooms){
+            ArrayList<Door> doors = room.getDoorList();
+            for (Door door : doors){
+                if (door.isPowerDoor()){
+                    powerDoors.add(door);
+                }
+            }
+        }
+        return powerDoors;
     }
 
     public static void printConfigMenu(){
