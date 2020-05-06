@@ -18,6 +18,7 @@ public abstract class Enemy extends NPC implements Attackable {
         super(description, room);
         this.health = baseHealth;
         this.damage = baseDamage;
+        this.isEnemy = true;
     }
 
     /** enemy takes damage when it is

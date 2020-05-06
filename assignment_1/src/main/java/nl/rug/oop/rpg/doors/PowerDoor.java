@@ -14,6 +14,7 @@ public class PowerDoor extends Door{
 
     public PowerDoor(String description) {
         super(description);
+        this.isPowerDoor = true;
     }
 
     @Override
