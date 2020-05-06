@@ -13,8 +13,8 @@ public class Peacemaker extends NPC {
     private static final long serialVersionUID = 43L;
     transient Scanner scanner = new Scanner(System.in);
 
-    public Peacemaker(String description, int damage, int health, Room room){
-        super(description, damage, health, room);
+    public Peacemaker(String description, Room room){
+        super(description, room);
     }
 
     @Override

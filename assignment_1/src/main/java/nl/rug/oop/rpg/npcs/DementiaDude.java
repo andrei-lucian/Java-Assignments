@@ -13,8 +13,8 @@ public class DementiaDude extends Enemy implements Attackable {
     private static final long serialVersionUID = 412L;
     Random randInt = new Random();
 
-    public DementiaDude(String description,int damage, int health, Room room){
-        super(description, damage, health, room);
+    public DementiaDude(String description, Room room){
+        super(description, room);
         this.uniqueLine = "Uhh... where am I? Who are you?";
     }
 

@@ -6,18 +6,18 @@ import nl.rug.oop.rpg.util.Attackable;
 
 public abstract class Enemy extends NPC implements Attackable {
     private static final long serialVersionUID = 41L;
-    protected boolean isDead = false;
-    protected String uniqueLine;
+    protected int baseDamage = 20;
+    protected int baseHealth = 20;
 
     /**
      * Constructor:
      * @param description enemy description
-     * @param damage enemy damage
-     * @param health enemy health
      * @param room the room in which the char is
      */
-    Enemy(String description, int damage, int health, Room room) {
-        super(description, damage, health, room);
+    Enemy(String description, Room room) {
+        super(description, room);
+        this.health = baseHealth;
+        this.damage = baseDamage;
     }
 
     /** enemy takes damage when it is

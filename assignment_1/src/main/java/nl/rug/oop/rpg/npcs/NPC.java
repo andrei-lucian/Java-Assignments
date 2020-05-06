@@ -16,17 +16,17 @@ public abstract class NPC implements Inspectable, Interactable, Serializable {
     protected Room room;
     protected int interact = 0;
     protected boolean currentlyInteracting;
+    protected String uniqueLine;
+    protected boolean isDead = false;
 
     /**
      * Constructor:
      * @param description NPC description
-     * @param damage NPC damage
-     * @param health NPC health
      */
-    public NPC(String description, int damage, int health, Room room){
+    public NPC(String description, Room room){
         this.description = description;
-        this.damage = damage;
-        this.health = health;
+        this.damage = 0;
+        this.health = 0;
         this.room = room;
     }
 
