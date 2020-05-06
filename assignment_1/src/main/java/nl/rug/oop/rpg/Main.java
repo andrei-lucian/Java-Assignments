@@ -47,8 +47,8 @@ public class Main {
     private static void initiateWorld(Player player){
 
         //create the entry room and set it as they player's current room
-        Room entry = new Room("a room dimly lit by a candle.");
-        player.setCurrentRoom(entry);
+        Room room0 = new Room("a room dimly lit by a candle.");
+        player.setCurrentRoom(room0);
         Room room1 = new Room("a concrete bunker.");
         Room room2 = new Room("a dark stone cave with water streams running down the walls.");
         Room room3 = new Room("a library filled with old books and scrolls.");
@@ -59,9 +59,9 @@ public class Main {
         Room room8 = new Room("a fancy kitchen.");
         Room end = new Room("the end!");
 
-        Door e1 = new PowerDoor("A heavy-looking metal door with a rusty handle.");
-        Door e2 = new Door("A thick curtain of tangled green vines.");
-        Door e3 = new PowerDoor("A stronk door.");
+        Door zero1 = new PowerDoor("A heavy-looking metal door with a rusty handle.");
+        Door zero2 = new Door("A thick curtain of tangled green vines.");
+        Door zero3 = new PowerDoor("A stronk door.");
         Door one1 = new Door("A wooden door");
         Door one2 = new HealingDoor("A door");
         Door two1 = new HealingDoor("A white opalescent door");
@@ -74,9 +74,9 @@ public class Main {
         Door seven1 = new LockedDoor("An extremely boring beige-painted door");
         Door eight1 = new LockedDoor("A bright yellow door with sunbeams coming out from under it");
 
-        entry.addDoor(e1);
-        entry.addDoor(e2);
-        entry.addDoor(e3);
+        room0.addDoor(zero1);
+        room0.addDoor(zero2);
+        room0.addDoor(zero3);
         room1.addDoor(one1);
         room1.addDoor(one2);
         room2.addDoor(two1);
@@ -89,9 +89,9 @@ public class Main {
         room7.addDoor(seven1);
         room8.addDoor(eight1);
 
-        e1.setNextRoom(room1);
-        e2.setNextRoom(room2);
-        e3.setNextRoom(room3);
+        zero1.setNextRoom(room1);
+        zero2.setNextRoom(room2);
+        zero3.setNextRoom(room3);
         one1.setNextRoom(room4);
         one2.setNextRoom(room3);
         two1.setNextRoom(room5);
@@ -104,12 +104,12 @@ public class Main {
         seven1.setNextRoom(end);
         eight1.setNextRoom(end);
 
-        NPC entry_ad = new AngryDude("A short ginger dude that looks a little crazy.", entry);
-        NPC entry_healer = new Healer("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", entry);
-        NPC entry_coward = new Coward("A man wearing a black and yellow shirt.", entry);
-        entry.addNpc(entry_ad);
-        entry.addNpc(entry_healer);
-        entry.addNpc(entry_coward);
+        NPC entry_ad = new AngryDude("A short ginger dude that looks a little crazy.", room0);
+        NPC entry_healer = new Healer("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", room0);
+        NPC entry_coward = new Coward("A man wearing a black and yellow shirt.", room0);
+        room0.addNpc(entry_ad);
+        room0.addNpc(entry_healer);
+        room0.addNpc(entry_coward);
 
         NPC room1_pm = new Peacemaker("A surfer dude with dreadlocks and a shell necklace", room1);
         NPC room1_dd = new DementiaDude("An elf with sharp ears and long braided black hair", room1);
