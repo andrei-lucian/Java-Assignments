@@ -15,13 +15,15 @@ public class Main {
     public static void main(String[] args){
 
         Player player = new Player(70);
+        Room[] rooms = initiateWorld();
+        player.setCurrentRoom(rooms[0]);
         Initialiser.createProperties("gameProp");
 
         //create a game with a player and run the game loop
         printConfigMenu();
         int option = Main.scanner.nextInt();
         switch(option){
-            case 0: initiateWorld(player); break;
+            case 0: initiateWorld(); break;
             case 1: loadFromConfig(player);
             case 2: ;
         }
@@ -34,12 +36,15 @@ public class Main {
     }
 
     private static void loadFromConfig(Player player){
-        initiateWorld(player);
+        initiateWorld();
         try {
             Initialiser.initGameFromProps("gameProp", player);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void check(Player player){
     }
 
     public static void printConfigMenu(){
@@ -49,11 +54,10 @@ public class Main {
                 "(2) Set default config ");
     }
 
-    private static void initiateWorld(Player player){
+    private static Room[] initiateWorld(){
 
         //create the entry room and set it as they player's current room
         Room room0 = new Room("a room dimly lit by a candle.");
-        player.setCurrentRoom(room0);
         Room room1 = new Room("a concrete bunker.");
         Room room2 = new Room("a dark stone cave with water streams running down the walls.");
         Room room3 = new Room("a library filled with old books and scrolls.");
@@ -169,5 +173,7 @@ public class Main {
         room8.addNpc(room8_ad2);
         room8.addNpc(room8_dd);
         room8.addNpc(room8_coward);
+        Room[] rooms = {room0, room1, room2, room3, room4, room5, room6, room7, room8};
+        return rooms;
     }
 }
