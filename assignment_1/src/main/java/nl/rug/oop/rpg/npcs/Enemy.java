@@ -7,7 +7,7 @@ import nl.rug.oop.rpg.util.Attackable;
 public abstract class Enemy extends NPC implements Attackable {
     private static final long serialVersionUID = 41L;
     protected int baseDamage = 20;
-    protected int baseHealth = 20;
+    protected int baseHealth = 100;
 
     /**
      * Constructor:

@@ -2,7 +2,6 @@ package nl.rug.oop.rpg.npcs;
 import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.Room;
 import nl.rug.oop.rpg.util.Attackable;
-
 import java.util.Random;
 
 public class DementiaDude extends Enemy implements Attackable {
@@ -15,6 +14,8 @@ public class DementiaDude extends Enemy implements Attackable {
 
     public DementiaDude(String description, Room room){
         super(description, room);
+        this.damage += 30;
+        this.health += 15;
         this.uniqueLine = "Uhh... where am I? Who are you?";
     }
 
