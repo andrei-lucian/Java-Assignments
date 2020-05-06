@@ -31,7 +31,7 @@ public class Peacemaker extends NPC {
                     return;
                 }
             }
-            player.setMaxHealth(25);
+            player.increaseMaxHealth(25);
             removeFromRoom(player.getCurrentRoom());
             System.out.println("The peacemaker died. ");
         }

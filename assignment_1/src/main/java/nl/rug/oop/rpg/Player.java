@@ -10,6 +10,11 @@ public class Player implements Attackable, Serializable {
     private String name = "Bob";
     private int damage;
     private int health = 100;
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
     private int maxHealth = 100;
     private Room currentRoom;
     private boolean isDead = false;
@@ -70,7 +75,7 @@ public class Player implements Attackable, Serializable {
         }
     }
 
-    public void setMaxHealth(int maxHealth) {
+    public void increaseMaxHealth(int maxHealth) {
         this.maxHealth += maxHealth;
         System.out.println("Your max health increased to: " + this.maxHealth);
     }
@@ -126,5 +131,9 @@ public class Player implements Attackable, Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
     }
 }
