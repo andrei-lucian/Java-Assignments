@@ -8,7 +8,6 @@ public class Game {
 
     /** Executes game loop */
     public void gameLoop(Player player) {
-        System.out.println("Hello ma dude, your name is: " + player.getName());
         while (!exitGame) {
             checkLoseCondition(player);
             checkWinCondition(player);

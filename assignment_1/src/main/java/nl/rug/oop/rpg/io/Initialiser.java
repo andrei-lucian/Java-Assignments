@@ -13,6 +13,8 @@ public class Initialiser {
 
         Properties gameProperties = new Properties();
         gameProperties.setProperty("playerName", "jake");
+        int maxHealth = 50;
+        gameProperties.setProperty("maxHealth", String.valueOf(maxHealth));
 
         try (FileWriter fileWriter = new FileWriter(configDirectory + File.separator
                 + fileName + ".properties")){
@@ -31,7 +33,10 @@ public class Initialiser {
                 Properties gameProperties = new Properties();
                 gameProperties.load(fileReader);
                 String playerName = gameProperties.getProperty("playerName");
+                int maxHealth = Integer.parseInt(gameProperties.getProperty("maxHealth"));
                 player.setName(playerName);
+                player.setMaxHealth(maxHealth);
+
         }
     }
 }

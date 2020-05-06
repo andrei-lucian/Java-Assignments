@@ -22,14 +22,19 @@ public class Main {
         int option = Main.scanner.nextInt();
         switch(option){
             case 0: initiateWorld(player);
-            case 1: initiateWorld(player); loadFromConfig(player);
+            case 1: loadFromConfig(player);
             case 2: ;
         }
+        
+        System.out.println("Hello ma dude, your name is: " + player.getName());
+        System.out.println(player.getMaxHealth());
+
         Game game = new Game();
         game.gameLoop(player);
     }
 
     private static void loadFromConfig(Player player){
+        initiateWorld(player);
         try {
             Initialiser.initGameFromProps("gameProp", player);
         } catch (IOException e) {
