@@ -28,7 +28,7 @@ public class Initialiser {
         }
     }
 
-    public static void initGameFromProps(String fileName, Player player, ArrayList<Door> powerDoorList) throws IOException {
+    public static void initGameFromProps(String fileName, Player player) throws IOException {
         File configDirectory = new File("config");
         try (FileReader fileReader = new FileReader(configDirectory + File.separator +
                 fileName + ".properties")){
