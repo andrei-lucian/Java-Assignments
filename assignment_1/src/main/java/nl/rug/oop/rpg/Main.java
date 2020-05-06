@@ -21,7 +21,7 @@ public class Main {
         printConfigMenu();
         int option = Main.scanner.nextInt();
         switch(option){
-            case 0: initiateWorld(player);
+            case 0: initiateWorld(player); break;
             case 1: loadFromConfig(player);
             case 2: ;
         }
