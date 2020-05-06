@@ -11,7 +11,6 @@ import java.util.*;
 
 public class Main {
     public static transient Scanner scanner = new Scanner(System.in);
-    private static ArrayList<Door> powerDoorList;
 
     public static void main(String[] args){
 
@@ -22,8 +21,8 @@ public class Main {
         printConfigMenu();
         int option = Main.scanner.nextInt();
         switch(option){
-            case 0: initiateWorld(player);
-            case 1: loadFromConfig(player, powerDoorList);
+            case 0: initiateWorld(player); break;
+            case 1: loadFromConfig(player);
             case 2: ;
         }
         
@@ -34,10 +33,10 @@ public class Main {
         game.gameLoop(player);
     }
 
-    private static void loadFromConfig(Player player, ArrayList<Door> powerDoorList){
+    private static void loadFromConfig(Player player){
         initiateWorld(player);
         try {
-            Initialiser.initGameFromProps("gameProp", player, powerDoorList);
+            Initialiser.initGameFromProps("gameProp", player);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,14 +47,6 @@ public class Main {
                 "(0) Play normally \n" +
                 "(1) Initialise from config \n" +
                 "(2) Set default config ");
-    }
-
-    private static void addPowerDoorToList(Door door, ArrayList<Door> powerDoorList) {
-        if (door != null) {
-            powerDoorList.add(door);
-        } else {
-            System.out.println("Cannot add null door object");
-        }
     }
 
     private static void initiateWorld(Player player){
@@ -87,11 +78,6 @@ public class Main {
         Door six1 = new Door("A red mahogany door");
         Door seven1 = new LockedDoor("An extremely boring beige-painted door");
         Door eight1 = new LockedDoor("A bright yellow door with sunbeams coming out from under it");
-
-        addPowerDoorToList(zero1, powerDoorList);
-        addPowerDoorToList(zero3, powerDoorList);
-        addPowerDoorToList(two2, powerDoorList);
-        addPowerDoorToList(three1, powerDoorList);
 
         room0.addDoor(zero1);
         room0.addDoor(zero2);
