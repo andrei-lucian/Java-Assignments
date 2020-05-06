@@ -9,8 +9,8 @@ public class Healer extends NPC implements Heal {
     private static final long serialVersionUID = 42L;
     transient Scanner scanner = new Scanner(System.in);
 
-    public Healer(String description, int damage, int health, Room room) {
-        super(description, damage, health, room);
+    public Healer(String description, Room room) {
+        super(description, room);
     }
 
     @Override
