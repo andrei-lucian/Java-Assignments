@@ -85,4 +85,12 @@ public abstract class Enemy extends NPC implements Attackable {
             }
         }
     }
+
+    public void setBaseHealth(int baseHealth) {
+        this.baseHealth = baseHealth;
+    }
+
+    public void setBaseDamage(int baseDamage) {
+        this.baseDamage = baseDamage;
+    }
 }
