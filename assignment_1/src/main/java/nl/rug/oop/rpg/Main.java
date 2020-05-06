@@ -24,55 +24,24 @@ public class Main {
         int option = Main.scanner.nextInt();
         switch(option){
             case 0: initiateWorld(); break;
-            case 1: loadFromConfig(player);
+            case 1: loadFromConfig(player, rooms);
             case 2: ;
         }
 
         System.out.println("Hello ma dude, your name is: " + player.getName());
-        System.out.println(player.getMaxHealth());
+       // System.out.println(player.getMaxHealth());
 
         Game game = new Game();
         game.gameLoop(player);
     }
 
-    private static void loadFromConfig(Player player){
-        initiateWorld();
-        ArrayList<NPC> enemies = enemies(player);
-        ArrayList<Door> powerDoors = powerDoors(player);
-
+    private static void loadFromConfig(Player player, Room[] rooms){
         try {
-            Initialiser.initGameFromProps("gameProp", player, enemies, powerDoors);
+            Initialiser.initGameFromProps("gameProp", player, rooms);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
-    private static ArrayList<NPC> enemies(Player player){
-        ArrayList<NPC> enemies = new ArrayList<>();
-        Room rooms[] = initiateWorld();
-        for (Room room : rooms){
-            ArrayList<NPC> npcs = room.getNpcList();
-            for (NPC npc : npcs){
-                if (npc.isEnemy()){
-                    enemies.add(npc);
-                }
-            }
-        }
-        return enemies;
-    }
-
-    private static ArrayList<Door> powerDoors(Player player){
-        ArrayList<Door> powerDoors = new ArrayList<>();
-        Room rooms[] = initiateWorld();
-        for (Room room : rooms){
-            ArrayList<Door> doors = room.getDoorList();
-            for (Door door : doors){
-                if (door.isPowerDoor()){
-                    powerDoors.add(door);
-                }
-            }
-        }
-        return powerDoors;
     }
 
     public static void printConfigMenu(){
@@ -201,7 +170,6 @@ public class Main {
         room8.addNpc(room8_ad2);
         room8.addNpc(room8_dd);
         room8.addNpc(room8_coward);
-        Room[] rooms = {room0, room1, room2, room3, room4, room5, room6, room7, room8};
-        return rooms;
+        return new Room[]{room0, room1, room2, room3, room4, room5, room6, room7, room8};
     }
 }

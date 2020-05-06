@@ -1,6 +1,7 @@
 package nl.rug.oop.rpg.io;
 
 import nl.rug.oop.rpg.Player;
+import nl.rug.oop.rpg.Room;
 import nl.rug.oop.rpg.doors.Door;
 import nl.rug.oop.rpg.doors.PowerDoor;
 import nl.rug.oop.rpg.npcs.Enemy;
@@ -14,8 +15,8 @@ public class Initialiser {
 
     public static void createProperties(String fileName){
         int maxHealth = 50;
-        int enemyDamage = 20;
-        int enemyHealth = 50;
+        int enemyDamage = 200;
+        int enemyHealth = 500;
         int doorPower = 30;
 
         File configDirectory = new File("config");
@@ -38,8 +39,7 @@ public class Initialiser {
         }
     }
 
-    public static void initGameFromProps(String fileName, Player player,
-                                         ArrayList<NPC> enemies, ArrayList<Door> powerDoors) throws IOException {
+    public static void initGameFromProps(String fileName, Player player, Room[] rooms) throws IOException {
         File configDirectory = new File("config");
         try (FileReader fileReader = new FileReader(configDirectory + File.separator +
                 fileName + ".properties")){
@@ -52,14 +52,22 @@ public class Initialiser {
                 int doorPower = Integer.parseInt(gameProperties.getProperty("doorPower"));
                 player.setName(playerName);
                 player.setMaxHealth(maxHealth);
-                for(NPC enemy: enemies){
-                    Enemy newEnemy = (Enemy)enemy;
-                    newEnemy.setBaseDamage(enemyDamage);
-                    newEnemy.setBaseHealth(enemyHealth);
-                }
-                for(Door door: powerDoors){
-                    PowerDoor powerDoor = (PowerDoor)door;
-                    powerDoor.setPower(doorPower);
+                for (Room room : rooms){
+                    ArrayList<NPC> npcs = room.getNpcList();
+                    for (NPC npc : npcs){
+                        if (npc.isEnemy()){
+                            Enemy newEnemy = (Enemy)npc;
+                            newEnemy.setBaseDamage(enemyDamage);
+                            newEnemy.setBaseHealth(enemyHealth);
+                        }
+                    }
+                    ArrayList<Door> doors = room.getDoorList();
+                    for (Door door : doors){
+                        if (door.isPowerDoor()){
+                            ((PowerDoor) (Door) (PowerDoor)door).setPower(doorPower);
+                        }
+                    }
+
                 }
         }
     }

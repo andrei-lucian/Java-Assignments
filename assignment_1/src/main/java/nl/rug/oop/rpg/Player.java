@@ -9,13 +9,18 @@ public class Player implements Attackable, Serializable {
     private static final long serialVersionUID = 1L;
     private String name = "Bob";
     private int damage;
-    private int health = 100;
 
     public int getMaxHealth() {
         return maxHealth;
     }
 
     private int maxHealth = 100;
+
+    public int getHealth() {
+        return health;
+    }
+
+    private int health = maxHealth;
     private Room currentRoom;
     private boolean isDead = false;
 
@@ -98,7 +103,6 @@ public class Player implements Attackable, Serializable {
     /** select door and go to next room */
     public void selectDoor(){
         ArrayList<Door> doorList = this.currentRoom.findDoors();
-        System.out.println("hello");
         int chosenDoor = Main.scanner.nextInt(); //user input (integer)
         if (chosenDoor > doorList.size() -1 || chosenDoor < -1) { //check bounds
             System.out.println("Not a door, please choose a different option.");
@@ -135,5 +139,6 @@ public class Player implements Attackable, Serializable {
 
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
+        this.health = maxHealth;
     }
 }

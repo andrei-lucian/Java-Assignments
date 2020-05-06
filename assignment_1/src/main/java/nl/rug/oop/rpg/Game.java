@@ -9,7 +9,6 @@ public class Game {
     /** Executes game loop */
     public void gameLoop(Player player) {
         while (!exitGame) {
-            checkLoseCondition(player);
             checkWinCondition(player);
             printMenu();
             int option = Main.scanner.nextInt();
@@ -29,13 +28,6 @@ public class Game {
     private void checkWinCondition(Player player){
         if (player.getCurrentRoom().getDescription().equals("the end!")){
             System.out.println("You win the game.");
-            System.exit(0);
-        }
-    }
-
-    private void checkLoseCondition(Player player){
-        if (player.isDead()){
-            System.out.println("You died, game over :(");
             System.exit(0);
         }
     }

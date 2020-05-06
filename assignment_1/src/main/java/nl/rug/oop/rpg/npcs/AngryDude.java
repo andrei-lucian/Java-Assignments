@@ -15,8 +15,8 @@ public class AngryDude extends Enemy {
 
     public AngryDude(String description, Room room){
         super(description, room);
-        this.damage += 20;
-        this.health += 30;
+        this.baseDamage += 20;
+        this.baseHealth += 30;
         this.uniqueLine = "I'll hurt you!";
     }
 

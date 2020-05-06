@@ -14,8 +14,8 @@ public class DementiaDude extends Enemy implements Attackable {
 
     public DementiaDude(String description, Room room){
         super(description, room);
-        this.damage += 30;
-        this.health += 15;
+        this.baseDamage += 30;
+        this.baseHealth += 15;
         this.uniqueLine = "Uhh... where am I? Who are you?";
     }
 
