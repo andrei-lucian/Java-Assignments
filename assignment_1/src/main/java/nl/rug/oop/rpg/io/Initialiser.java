@@ -1,4 +1,4 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.io;
 
 import java.io.File;
 import java.io.FileReader;
