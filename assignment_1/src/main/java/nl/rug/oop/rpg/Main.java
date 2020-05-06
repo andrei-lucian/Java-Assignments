@@ -10,10 +10,7 @@ public class Main {
     public static transient Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        //initialise a player object with a name
-        System.out.println("Enter a name for your player");
-        String name = scanner.nextLine();
-        Player player = new Player(name, 70);
+        Player player = new Player(70);
 
         //create a game with a player and run the game loop
         initiateWorld(player);

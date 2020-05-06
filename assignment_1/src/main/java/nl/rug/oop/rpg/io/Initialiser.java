@@ -1,9 +1,6 @@
 package nl.rug.oop.rpg.io;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class Initialiser {
@@ -12,11 +9,11 @@ public class Initialiser {
         File configDirectory = new File("config");
         configDirectory.mkdir();
 
-        Properties props = new Properties();
-        props.setProperty("playerName", "jake");
+        Properties gameProperties = new Properties();
+        gameProperties.setProperty("playerName", "jake");
 
-        try (FileWriter fileWriter = new FileWriter(configDirectory + File.separator + fileName);{
-            props.store(fileWriter, "Game properties");
+        try (FileWriter fileWriter = new FileWriter(configDirectory + File.separator + fileName)){
+            gameProperties.store(fileWriter, "Game properties");
         }
         catch(IOException e){
             e.printStackTrace();
@@ -24,10 +21,13 @@ public class Initialiser {
         }
     }
 
-    public void initGameFromProps(String fileName){
+    public void initGameFromProps(String fileName) throws IOException {
         File configDirectory = new File("config");
-        try (FileReader fileReader = new FileReader(configDirectory + File.separator + fileName);{
-                
+        try (FileReader fileReader = new FileReader(configDirectory + File.separator +
+                fileName + ".properties")){
+                Properties gameProperties = new Properties();
+                gameProperties.load(fileReader);
+                String playerName = gameProperties.getProperty("playerName");
         }
-
+    }
 }

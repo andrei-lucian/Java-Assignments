@@ -14,6 +14,7 @@ public class Game {
             case 1: ;
             case 2: ;
         }
+        System.out.println("Hello ma dude, your name is: " + player.getName());
         while (!exitGame) {
             checkLoseCondition(player);
             checkWinCondition(player);
