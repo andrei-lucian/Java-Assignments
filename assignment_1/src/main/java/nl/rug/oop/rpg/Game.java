@@ -54,8 +54,6 @@ public class Game {
                     "(7) Exit the game");
     }
 
-
-
     private void exitGame(){
         System.out.println("You exited the game.");
         System.exit(0);

@@ -25,10 +25,8 @@ public class Main {
             case 1: initiateWorld(player); loadFromConfig(player);
             case 2: ;
         }
-
         Game game = new Game();
         game.gameLoop(player);
-
     }
 
     private static void loadFromConfig(Player player){
