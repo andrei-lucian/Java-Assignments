@@ -14,7 +14,8 @@ public class Initialiser {
         Properties gameProperties = new Properties();
         gameProperties.setProperty("playerName", "jake");
 
-        try (FileWriter fileWriter = new FileWriter(configDirectory + File.separator + fileName)){
+        try (FileWriter fileWriter = new FileWriter(configDirectory + File.separator
+                + fileName + ".properties")){
             gameProperties.store(fileWriter, "Game properties");
         }
         catch(IOException e){
