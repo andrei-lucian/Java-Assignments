@@ -1,5 +1,7 @@
 package nl.rug.oop.rpg.io;
 
+import nl.rug.oop.rpg.Player;
+
 import java.io.*;
 import java.util.Properties;
 
@@ -21,13 +23,14 @@ public class Initialiser {
         }
     }
 
-    public void initGameFromProps(String fileName) throws IOException {
+    public static void initGameFromProps(String fileName, Player player) throws IOException {
         File configDirectory = new File("config");
         try (FileReader fileReader = new FileReader(configDirectory + File.separator +
                 fileName + ".properties")){
                 Properties gameProperties = new Properties();
                 gameProperties.load(fileReader);
                 String playerName = gameProperties.getProperty("playerName");
+                player.setName(playerName);
         }
     }
 }
