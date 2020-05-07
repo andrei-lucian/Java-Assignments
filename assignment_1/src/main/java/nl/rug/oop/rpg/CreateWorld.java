@@ -25,7 +25,7 @@ public class CreateWorld {
         switch(option){
             case 0: initiateWorld(); break;
             case 1: loadFromConfig(player, rooms); break;
-            case 2: setDefaultConfig(); System.out.println("Default configuration set."); System.exit(0);
+            case 2: setDefaultConfig(); System.out.println("Default configuration set."); loadFromConfig(player, rooms); break;
         }
     }
 
@@ -162,7 +162,7 @@ public class CreateWorld {
      * @param player Player object to be changed.
      * @param rooms List of rooms so its doors and NPCs can be accessed.
      */
-    public static void loadFromConfig(Player player, Room[] rooms){
+    private static void loadFromConfig(Player player, Room[] rooms){
         try {
             Initialiser.initGameFromProps("gameProp", player, rooms);
         } catch (IOException e) {
@@ -173,8 +173,7 @@ public class CreateWorld {
     /**
      * Set a default configuration.
      */
-    public static void setDefaultConfig(){
+    private static void setDefaultConfig(){
         Initialiser.createProperties("gameProp");
     }
-
 }

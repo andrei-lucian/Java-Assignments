@@ -77,7 +77,7 @@ public class SaveAndLoad {
      * @return an ArrayList of the names of all the
      * files in the savedGames directory.
      */
-    public static ArrayList<String> listFiles(){
+    private static ArrayList<String> listFiles(){
         ArrayList<String> results = new ArrayList<>();
         File[] files = new File("savedGames").listFiles();
         for (File file : files != null ? files : new File[0]) {
