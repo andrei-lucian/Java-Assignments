@@ -1,6 +1,4 @@
 package nl.rug.oop.rpg.npcs;
-import nl.rug.oop.rpg.Game;
-import nl.rug.oop.rpg.Main;
 import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.Room;
 import nl.rug.oop.rpg.util.Attackable;
@@ -8,8 +6,8 @@ import nl.rug.oop.rpg.util.CatchNonInts;
 
 public abstract class Enemy extends NPC implements Attackable {
     private static final long serialVersionUID = 41L;
-    protected int baseDamage = 20;
-    protected int baseHealth = 100;
+    protected int baseDamage = 0;
+    protected int baseHealth = 80;
 
     /**
      * Constructor:

@@ -88,33 +88,18 @@ public class Initialiser {
     }
 
     /**
-     * Set the extra health of an enemy according to difficulty level.
+     * Set the extra health/damage of an enemy according to difficulty level.
      * @param diff Chosen difficulty from setNpcDifficulty()
-     * @return Extra health of the enemy.
+     * @return Extra health/damage of the enemy.
      */
-    private static int setExtraEnemyDamage(int diff){
-        int extraEnemyDamage = 0;
+    private static int setExtraEnemyX(int diff){
+        int extraEnemyX = 0;
         switch(diff){
-            case 0: extraEnemyDamage = 0; break;
-            case 1: extraEnemyDamage = 10; break;
-            case 2: extraEnemyDamage = 20; break;
+            case 0: extraEnemyX = 0; break;
+            case 1: extraEnemyX = 20; break;
+            case 2: extraEnemyX = 40; break;
         }
-        return extraEnemyDamage;
-    }
-
-    /**
-     * Set the extra damage of an enemy according to difficulty level.
-     * @param diff Chosen difficulty from setNpcDifficulty()
-     * @return Extra damage of the enemy.
-     */
-    private static int setExtraEnemyHealth(int diff){
-        int extraEnemyHealth = 0;
-        switch(diff){
-            case 0: extraEnemyHealth = 0; break;
-            case 1: extraEnemyHealth = 10; break;
-            case 2: extraEnemyHealth = 20; break;
-        }
-        return extraEnemyHealth;
+        return extraEnemyX;
     }
 
     /**
@@ -150,8 +135,10 @@ public class Initialiser {
         String playerName = namePlayer(false);
         int maxHealth = setMaxHealth(false);
         int diff = setNpcDifficulty(false);
-        int extraEnemyDamage = setExtraEnemyDamage(diff);
-        int extraEnemyHealth = setExtraEnemyHealth(diff);
+
+        int extraEnemyDamage = setExtraEnemyX(diff);
+        int extraEnemyHealth = setExtraEnemyX(diff) + 20;
+
         int doorPower = setDoorPower(false);
 
         File configDirectory = new File("config");
@@ -179,35 +166,39 @@ public class Initialiser {
      * @param fileName Properties file to be read from.
      * @param player Player to be modified based on properties.
      * @param rooms All the rooms in a game (to access doors and NPCs).
-     * @throws IOException
+     * @throws IOException to CreateWorld class.
      */
     public static void initGameFromProps(String fileName, Player player, Room[] rooms) throws IOException {
         File configDirectory = new File("config");
         try (FileReader fileReader = new FileReader(configDirectory + File.separator +
                 fileName + ".properties")){
-                Properties gameProperties = new Properties();
-                gameProperties.load(fileReader);
-                String playerName = gameProperties.getProperty("playerName");
-                int maxHealth = Integer.parseInt(gameProperties.getProperty("maxHealth"));
-                int extraEnemyDamage = Integer.parseInt(gameProperties.getProperty("extraEnemyDamage"));
-                int extraEnemyHealth = Integer.parseInt(gameProperties.getProperty("extraEnemyHealth"));
-                int doorPower = Integer.parseInt(gameProperties.getProperty("doorPower"));
-                player.setName(playerName);
-                player.setMaxHealth(maxHealth);
-                for (Room room : rooms){
-                    ArrayList<NPC> npcs = room.getNpcList();
-                    for (NPC npc : npcs){
-                        if (npc.isEnemy()){
-                            Enemy enemy = (Enemy)npc;
-                            enemy.setBaseDamage(extraEnemyDamage);
-                            enemy.setBaseHealth(extraEnemyHealth);
-                        }
-                    }
-                    ArrayList<Door> doors = room.getDoorList();
-                    for (Door door : doors){
-                        if (door.isPowerDoor()) ((PowerDoor) door).setPower(doorPower);
-                    }
+            Properties gameProperties = new Properties();
+            gameProperties.load(fileReader);
+            String playerName = gameProperties.getProperty("playerName");
+            int maxHealth = Integer.parseInt(gameProperties.getProperty("maxHealth"));
+            int extraEnemyDamage = Integer.parseInt(gameProperties.getProperty("extraEnemyDamage"));
+            int extraEnemyHealth = Integer.parseInt(gameProperties.getProperty("extraEnemyHealth"));
+            int doorPower = Integer.parseInt(gameProperties.getProperty("doorPower"));
+            player.setName(playerName);
+            player.setMaxHealth(maxHealth);
+            setDamageHealthPower(rooms, extraEnemyDamage, extraEnemyHealth, doorPower);
+        }
+    }
+
+    private static void setDamageHealthPower(Room[] rooms, int ed, int eh, int dp){
+        for (Room room : rooms){
+            ArrayList<NPC> npcs = room.getNpcList();
+            for (NPC npc : npcs){
+                if (npc.isEnemy()){
+                    Enemy enemy = (Enemy)npc;
+                    enemy.setBaseDamage(ed);
+                    enemy.setBaseHealth(eh);
                 }
+            }
+            ArrayList<Door> doors = room.getDoorList();
+            for (Door door : doors){
+                if (door.isPowerDoor()) ((PowerDoor) door).setPower(dp);
+            }
         }
     }
 }
