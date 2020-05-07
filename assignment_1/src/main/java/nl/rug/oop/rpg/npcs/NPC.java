@@ -31,8 +31,6 @@ public abstract class NPC implements Inspectable, Interactable, Serializable {
      */
     public NPC(String description, Room room){
         this.description = description;
-        this.damage = 0;
-        this.health = 0;
         this.room = room;
     }
 

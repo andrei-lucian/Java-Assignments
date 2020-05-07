@@ -14,8 +14,8 @@ public class Initialiser {
 
     public static void createProperties(String fileName){
         int maxHealth = 50;
-        int enemyDamage = 20;
-        int enemyHealth = 50;
+        int enemyDamage = 2000;
+        int enemyHealth = 5000;
         int doorPower = 30;
 
         File configDirectory = new File("config");
