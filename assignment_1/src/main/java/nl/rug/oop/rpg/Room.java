@@ -6,25 +6,19 @@ import nl.rug.oop.rpg.util.Inspectable;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Class for making a room in the game.
+ */
 public class Room implements Inspectable, Serializable {
 
     private static final long serialVersionUID = 3L;
     private final String description;
-
-    public ArrayList<Door> getDoorList() {
-        return doorList;
-    }
-
-    private final ArrayList<Door> doorList; //create Door list
-
-    public ArrayList<NPC> getNpcList() {
-        return npcList;
-    }
-
-    private final ArrayList<NPC> npcList; //create NPC list
+    private final ArrayList<Door> doorList;
+    private final ArrayList<NPC> npcList;
 
     /**
-     * Constructor:
+     * Constructor: Create a room with a description,
+     * list of doors connected to it, and list of NPCs in it.
      * @param description room description
      */
     public Room(String description) {
@@ -33,12 +27,22 @@ public class Room implements Inspectable, Serializable {
         npcList = new ArrayList<>();
     }
 
-    /** print a room's description */
+    public ArrayList<NPC> getNpcList() {
+        return npcList;
+    }
+
+    public ArrayList<Door> getDoorList() {
+        return doorList;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public void inspect() {
         System.out.println("You see " + this.description);
     }
 
-    /** add a door to a room (as long as it is not null) */
     public void addDoor(Door door) {
         if (door != null) {
             doorList.add(door);
@@ -47,7 +51,6 @@ public class Room implements Inspectable, Serializable {
         }
     }
 
-    /** add an NPC to a room (as long as it is not null) */
     public void addNpc(NPC npc) {
         if (npc != null) {
             npcList.add(npc);
@@ -56,13 +59,16 @@ public class Room implements Inspectable, Serializable {
         }
     }
 
-    /** remove an npc from a room */
     public void removeNPC(NPC npc){
         if (npc != null) {
             npcList.remove(npc);
         } else {
             System.out.println("Cannot remove null npc object");
         }
+    }
+
+    public boolean emptyRoom(){
+        return npcList.isEmpty();
     }
 
     /** print all the doors connected to a room
@@ -77,7 +83,7 @@ public class Room implements Inspectable, Serializable {
         return this.doorList;
     }
 
-    /** print all the doors connected to a room
+    /** print all the NPCs connected to a room
      * in an interactable way for the player */
     public ArrayList<NPC> findNPCs() {
         System.out.println("You look if there's someone here. \nYou see:");
@@ -92,13 +98,5 @@ public class Room implements Inspectable, Serializable {
             System.out.println("Interact? (-1 : don't interact).");
         }
         return this.npcList;
-    }
-
-    public boolean emptyRoom(){
-        return npcList.isEmpty();
-    }
-
-    public String getDescription() {
-        return description;
     }
 }

@@ -6,6 +6,7 @@ import nl.rug.oop.rpg.util.Heal;
 
 import java.util.Scanner;
 
+/** Healer heals a player to their maximum health */
 public class Healer extends NPC implements Heal {
 
     private static final long serialVersionUID = 42L;
@@ -15,6 +16,7 @@ public class Healer extends NPC implements Heal {
         super(description, room);
     }
 
+    /** Interact with a player */
     @Override
     public void interact(Player player) {
         System.out.println("Hello ma dude, I'm a health wizard" +
@@ -34,6 +36,7 @@ public class Healer extends NPC implements Heal {
         }
     }
 
+    /** Increase a player's health */
     public void heal(Player player) {
         player.increaseHealth();
     }

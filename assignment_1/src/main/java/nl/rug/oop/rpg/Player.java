@@ -15,35 +15,70 @@ public class Player implements Attackable, Serializable {
     private boolean isDead = false;
 
     /**
-     * Constructor:
-     * @param damage player damage
+     * Constructor: Create a player.
+     * @param damage Player damage.
      */
     public Player(int damage){
         this.damage = damage;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Room getCurrentRoom(){
+        return this.currentRoom;
     }
 
     public void setCurrentRoom(Room room){
         this.currentRoom = room;
     }
 
-    /** @return currentRoom: room that the player is in */
-    public Room getCurrentRoom(){
-        return this.currentRoom;
+    public int getDamage() {
+        return damage;
     }
 
     public void setDamage(int damage) {
         this.damage = damage;
     }
 
-    public int getDamage() {
-        return damage;
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
     }
 
-    /** Player takes damage from an enemy
-     * if (health-damage) > 0. If this is not the case
-     * then the player is dead, so set isDead to true.
-     * Otherwise, decrement player's health. Also print a
-     * warning if health is too low. */
+    public void increaseHealth(){
+        if(this.health == this.maxHealth){
+            System.out.println("Maximum health reached - you can't heal anymore." +
+                    " Your health is: " + maxHealth);
+        }
+        else {
+            this.health = this.maxHealth;
+            System.out.println("Nice! Your health is: " + this.health + "!");
+        }
+    }
+
+    public void increaseMaxHealth(int maxHealth) {
+        this.maxHealth += maxHealth;
+        System.out.println("Your max health increased to: " + this.maxHealth);
+    }
+
+    private void moveToNextRoom(Door newDoor) {
+        newDoor.interact(this);
+    }
+
+    public boolean isDead(){
+        return this.isDead;
+    }
+
+    /**
+     * Take damage from an enemy. This either decrements the player's health
+     * or kills the player. Also prints a warning if health is too low.
+     * @param damage The amount of damage that the player takes.
+     */
     @Override
     public void takeDamage(int damage) {
         if (this.health-damage > 0){
@@ -61,16 +96,6 @@ public class Player implements Attackable, Serializable {
     @Override
     public int dealDamage() {
         return this.damage;
-    }
-
-    /** @return if the player is dead */
-    public boolean isDead(){
-        return this.isDead;
-    }
-
-    /** Moves player to next room */
-    private void moveToNextRoom(Door newDoor) {
-        newDoor.interact(this);
     }
 
     /** select door and go to next room */
@@ -102,31 +127,4 @@ public class Player implements Attackable, Serializable {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    }
-
-    public void increaseHealth(){
-        if(this.health == this.maxHealth){
-            System.out.println("Maximum health reached - you can't heal anymore." +
-                    " Your health is: " + maxHealth);
-        }
-        else {
-            this.health = this.maxHealth;
-            System.out.println("Nice! Your health is: " + this.health + "!");
-        }
-    }
-
-    public void increaseMaxHealth(int maxHealth) {
-        this.maxHealth += maxHealth;
-        System.out.println("Your max health increased to: " + this.maxHealth);
-    }
 }

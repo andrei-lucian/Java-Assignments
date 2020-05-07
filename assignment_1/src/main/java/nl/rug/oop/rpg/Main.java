@@ -1,12 +1,4 @@
 package nl.rug.oop.rpg;
-import nl.rug.oop.rpg.doors.Door;
-import nl.rug.oop.rpg.doors.HealingDoor;
-import nl.rug.oop.rpg.doors.LockedDoor;
-import nl.rug.oop.rpg.doors.PowerDoor;
-import nl.rug.oop.rpg.npcs.*;
-import nl.rug.oop.rpg.io.Initialiser;
-
-import java.io.IOException;
 import java.util.*;
 
 public class Main {

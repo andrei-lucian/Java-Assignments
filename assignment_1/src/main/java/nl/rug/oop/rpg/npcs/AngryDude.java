@@ -3,13 +3,10 @@ package nl.rug.oop.rpg.npcs;
 import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.Room;
 
-/** this type of enemy always attacks back
- * until either it or the player is dead */
+/** An AngryDude attacks a player with a set amount of damage */
 
 public class AngryDude extends Enemy {
-    /**
-     *@param exp experience that the class gives when it dies
-     */
+
     private static final long serialVersionUID = 411L;
 
     public AngryDude(String description, Room room){
@@ -19,6 +16,7 @@ public class AngryDude extends Enemy {
         this.uniqueLine = "I'll hurt you!";
     }
 
+    /** Attack a player back with set amount of damage if the player attacks */
     @Override
     protected void performAction(Player player) {
         System.out.println("Enemy: Grr... how dare you attack me?!");

@@ -8,6 +8,13 @@ import java.io.IOException;
 
 public class CreateWorld {
 
+    /**
+     * Display and interact with the first menu where the user can
+     * choose to play normally, initialise a game from the default
+     * configuration, or set a default configuration.
+     * @param player Needed for loadFromConfig()
+     * @param rooms Needed for loadFromConfig()
+     */
     public static void runConfigMenu(Player player, Room[] rooms){
         System.out.println("You are about to start the game, what do you want to do? \n" +
                 "(0) Play normally \n" +
@@ -21,6 +28,10 @@ public class CreateWorld {
         }
     }
 
+    /**
+     * Initiate the world.
+     * @return An array of rooms objects (with their doors and NPCs).
+     */
     public static Room[] initiateWorld(){
 
         //create the entry room and set it as they player's current room
@@ -143,6 +154,11 @@ public class CreateWorld {
         return new Room[]{room0, room1, room2, room3, room4, room5, room6, room7, room8};
     }
 
+    /**
+     * Load a game from a default configuration.
+     * @param player Player object to be changed.
+     * @param rooms List of rooms so its doors and NPCs can be accessed.
+     */
     public static void loadFromConfig(Player player, Room[] rooms){
         try {
             Initialiser.initGameFromProps("gameProp", player, rooms);
@@ -151,6 +167,9 @@ public class CreateWorld {
         }
     }
 
+    /**
+     * Set a default configuration.
+     */
     public static void setDefaultConfig(){
         Initialiser.createProperties("gameProp");
     }

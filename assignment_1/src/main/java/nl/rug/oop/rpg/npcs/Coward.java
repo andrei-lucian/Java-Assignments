@@ -4,6 +4,8 @@ import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.Room;
 import nl.rug.oop.rpg.util.Attackable;
 
+/** This NPC just runs away if the player attacks it */
+
 public class Coward extends NPC {
     private static final long serialVersionUID = 413L;
 
@@ -12,6 +14,7 @@ public class Coward extends NPC {
         this.uniqueLine = "Please don't hurt me!";
     }
 
+    /** Run away if attacked */
     @Override
     public void interact(Player player) {
         System.out.println("The coward ran away. What a loser.");
