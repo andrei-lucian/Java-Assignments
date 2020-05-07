@@ -2,13 +2,14 @@ package nl.rug.oop.rpg.io;
 
 import nl.rug.oop.rpg.Main;
 import nl.rug.oop.rpg.Player;
-import nl.rug.oop.rpg.io.Serializer;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SaveAndLoad {
+    private static boolean saved = false;
+    private static boolean loaded = false;
 
     public static ArrayList<String> listFiles(){
         ArrayList<String> results = new ArrayList<>();
@@ -44,7 +45,6 @@ public class SaveAndLoad {
 
     public static void customSave(Player player){
         Main.scanner = new Scanner(System.in);
-        boolean saved = false;
         System.out.println("Please enter a name for your file (! to abort):");
         while(!saved){
             String s = Main.scanner.nextLine();
@@ -66,7 +66,6 @@ public class SaveAndLoad {
     }
 
     public static Player customLoad(Player player){
-        boolean loaded = false;
         ArrayList<String> al = listFiles();
         for(String s : al){
             System.out.println("(" + al.indexOf(s) + ") " +  s);

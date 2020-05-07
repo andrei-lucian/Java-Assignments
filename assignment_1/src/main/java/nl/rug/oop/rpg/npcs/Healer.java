@@ -1,4 +1,5 @@
 package nl.rug.oop.rpg.npcs;
+import nl.rug.oop.rpg.Main;
 import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.Room;
 import nl.rug.oop.rpg.util.Heal;
@@ -6,8 +7,9 @@ import nl.rug.oop.rpg.util.Heal;
 import java.util.Scanner;
 
 public class Healer extends NPC implements Heal {
+
     private static final long serialVersionUID = 42L;
-    transient Scanner scanner = new Scanner(System.in);
+    transient Scanner scanner = Main.scanner;
 
     public Healer(String description, Room room) {
         super(description, room);

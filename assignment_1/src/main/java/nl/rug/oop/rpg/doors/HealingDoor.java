@@ -9,6 +9,7 @@ public class HealingDoor extends Door implements Heal {
      *
      * @param description
      */
+
     private static final long serialVersionUID = 21L;
     public HealingDoor(String description) {
         super(description);

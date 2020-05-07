@@ -10,11 +10,15 @@ public class PowerDoor extends Door{
      */
 
     private static final long serialVersionUID = 23L;
-    private int power;
+    private int power = 20;
 
     public PowerDoor(String description) {
         super(description);
         this.isPowerDoor = true;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
     }
 
     @Override
@@ -23,13 +27,5 @@ public class PowerDoor extends Door{
         player.setDamage(player.getDamage() + power);
         System.out.println("The magic of the door gave you " +
                 power + " extra damage.");
-    }
-
-    public void setPower(int power) {
-        this.power = power;
-    }
-
-    public int getPower() {
-        return power;
     }
 }

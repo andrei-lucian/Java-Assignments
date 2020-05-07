@@ -29,8 +29,7 @@ public class Serializer {
         try(FileInputStream fileInputStream = new FileInputStream(saveDirectory + File.separator + fileName + ".ser");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
 
-            Player player = (Player)objectInputStream.readObject();
-            return player;
+            return (Player)objectInputStream.readObject();
         }
     }
 }

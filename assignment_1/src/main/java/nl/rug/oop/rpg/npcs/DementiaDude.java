@@ -14,20 +14,17 @@ public class DementiaDude extends Enemy implements Attackable {
 
     public DementiaDude(String description, Room room){
         super(description, room);
-        this.damage += 30;
-        this.health += 15;
+        this.baseDamage += 30;
+        this.baseHealth += 15;
         this.uniqueLine = "Uhh... where am I? Who are you?";
     }
 
     @Override
     protected void performAction(Player player) {
         this.takeDamage(player.dealDamage());
-        if(this.isDead){
-            System.out.println("You defeated the dementia dude");
-        }
-        else {
-            this.damage = randInt.nextInt(damage);
+        if(!isDead){
             player.takeDamage(this.dealDamage());
+            System.out.println("Enemy: I have no idea what I'm doing");
         }
     }
 }

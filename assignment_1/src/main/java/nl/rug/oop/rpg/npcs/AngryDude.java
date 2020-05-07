@@ -15,8 +15,8 @@ public class AngryDude extends Enemy {
 
     public AngryDude(String description, Room room){
         super(description, room);
-        this.damage += 20;
-        this.health += 30;
+        this.baseDamage += 20;
+        this.baseHealth += 30;
         this.uniqueLine = "I'll hurt you!";
     }
 
@@ -24,12 +24,9 @@ public class AngryDude extends Enemy {
     protected void performAction(Player player) {
         System.out.println("Enemy: Grr... how dare you attack me?!");
         this.takeDamage(player.dealDamage());
-            if(this.isDead){
-                System.out.println("You defeated the angry dude.");
-            }
-            else {
-                System.out.println("Ouch! The angry dude attacked you back.");
-                player.takeDamage(this.dealDamage());
-            }
+        if(!isDead){
+            player.takeDamage(this.dealDamage());
+            System.out.println("Ouch! The angry dude attacked you back.");
+        }
     }
 }

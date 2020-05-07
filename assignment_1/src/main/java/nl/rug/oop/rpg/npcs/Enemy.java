@@ -16,31 +16,34 @@ public abstract class Enemy extends NPC implements Attackable {
      */
     Enemy(String description, Room room) {
         super(description, room);
-        this.health = baseHealth;
-        this.damage = baseDamage;
         this.isEnemy = true;
     }
 
-    /** enemy takes damage when it is
-     * attacked and health is reduced */
+    protected boolean isDead(){
+        System.out.println("You defeated the enemy.");
+        removeFromRoom(this.room);
+        isDead = true;
+        return true;
+    }
+
+    /** enemy takes damage and dies if health is bellow 0 */
     @Override
     public void takeDamage(int damage) {
-        this.health = this.health - damage;
+        this.baseHealth = this.baseHealth - damage;
             System.out.println("Damage dealt: " + damage);
-            if(this.health <= 0){
-                this.isDead = true;
-                removeFromRoom(this.room);
+            if(this.baseHealth <= 0){
+                isDead();
             }
             else {
-                System.out.println("Enemy's health:  " + this.health);
+                System.out.println("Enemy's health: " + this.baseHealth);
             }
     }
 
     /** @return damage: the amount of damage to be dealt */
     @Override
     public int dealDamage() {
-        System.out.println("Damage taken: " + this.damage);
-        return this.damage;
+        System.out.println("Damage taken: " + baseDamage);
+        return this.baseDamage;
     }
 
     protected abstract void performAction(Player player);
@@ -60,9 +63,17 @@ public abstract class Enemy extends NPC implements Attackable {
             }
             this.currentlyInteracting = true;
             performAction(player);
+            checkLoseCondition(player);
             if (!this.isDead){
                 attackLoop(player);
             }
+        }
+    }
+
+    private void checkLoseCondition(Player player){
+        if (player.isDead()){
+            System.out.println("You died, game over :(");
+            System.exit(0);
         }
     }
 

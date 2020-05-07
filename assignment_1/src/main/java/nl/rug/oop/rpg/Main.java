@@ -36,9 +36,9 @@ public class Main {
     }
 
     private static void loadFromConfig(Player player){
+        initiateWorld();
         ArrayList<NPC> enemies = enemies(player);
         ArrayList<Door> powerDoors = powerDoors(player);
-        initiateWorld();
 
         try {
             Initialiser.initGameFromProps("gameProp", player, enemies, powerDoors);
