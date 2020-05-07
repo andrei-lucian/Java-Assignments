@@ -8,7 +8,7 @@ public class Game {
 
     /**
      * Runs the main game loop.
-     * @param player
+     * @param player Player to call methods on.
      */
     public void gameLoop(Player player) {
         while (!exitGame) {
@@ -30,7 +30,7 @@ public class Game {
 
     /**
      * Checks if the player has reached the last room (winning condition).
-     * @param player
+     * @param player Check this player's current room.
      */
     private void checkWinCondition(Player player){
         if (player.getCurrentRoom().getDescription().equals("the end!")){
@@ -39,9 +39,6 @@ public class Game {
         }
     }
 
-    /**
-     * Prints the main interaction menu.
-     */
     private void printMenu() {
             System.out.println("What do you want to do? \n" +
                     "(0) Look around \n" +
@@ -53,7 +50,6 @@ public class Game {
                     "(6) Load \n" +
                     "(7) Exit the game");
     }
-
 
     private void exitGame(){
         System.out.println("You exited the game.");
