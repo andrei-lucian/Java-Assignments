@@ -1,20 +1,25 @@
 package nl.rug.oop.rpg.io;
 
-import nl.rug.oop.rpg.Main;
-import nl.rug.oop.rpg.Player;
-import nl.rug.oop.rpg.Room;
-import nl.rug.oop.rpg.doors.Door;
-import nl.rug.oop.rpg.doors.PowerDoor;
-import nl.rug.oop.rpg.npcs.Enemy;
-import nl.rug.oop.rpg.npcs.NPC;
+import nl.rug.oop.rpg.*;
+import nl.rug.oop.rpg.doors.*;
+import nl.rug.oop.rpg.npcs.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.Scanner;
+import java.util.*;
 
+/**
+ * Class to store methods for creating a properties file,
+ * as well as initializing a game from it.
+ */
 public class Initialiser {
 
+    /**
+     * Name a player.
+     * @param printed Used to flag if the first print has
+     *                been printed or not (it should not be
+     *                printed after the first iteration)
+     * @return The name of the player that the user sets.
+     */
     private static String namePlayer(boolean printed){
         if(!printed) {
             System.out.println("Configure player's name (! to skip):");
@@ -35,6 +40,11 @@ public class Initialiser {
         return name;
     }
 
+    /**
+     * Set the max health of a player according to 3 possible levels.
+     * @param printed same as namePlayer().
+     * @return Chosen max health.
+     */
     private static int setMaxHealth(boolean printed){
         if(!printed){
             System.out.println("Set player's max health:\n" +
@@ -53,6 +63,11 @@ public class Initialiser {
         return maxHealth;
     }
 
+    /**
+     * Set the difficulty level of a game according to 3 possible levels.
+     * @param printed same as namePlayer().
+     * @return Chosen difficulty level.
+     */
     private static int setNpcDifficulty(boolean printed) {
         if(!printed){
             System.out.println("Set NPC difficulty level:\n" +
@@ -71,6 +86,11 @@ public class Initialiser {
         return chosen;
     }
 
+    /**
+     * Set the extra health of an enemy according to difficulty level.
+     * @param diff Chosen difficulty from setNpcDifficulty()
+     * @return Extra health of the enemy.
+     */
     private static int setExtraEnemyDamage(int diff){
         int extraEnemyDamage = 0;
         switch(diff){
@@ -81,6 +101,11 @@ public class Initialiser {
         return extraEnemyDamage;
     }
 
+    /**
+     * Set the extra damage of an enemy according to difficulty level.
+     * @param diff Chosen difficulty from setNpcDifficulty()
+     * @return Extra damage of the enemy.
+     */
     private static int setExtraEnemyHealth(int diff){
         int extraEnemyHealth = 0;
         switch(diff){
@@ -91,6 +116,11 @@ public class Initialiser {
         return extraEnemyHealth;
     }
 
+    /**
+     * Set the power of a powerDoor according to 3 possible levels.
+     * @param printed same as namePlayer().
+     * @return Chosen door power.
+     */
     private static int setDoorPower(boolean printed){
         if(!printed){
             System.out.println("Set the power door's power level:\n" +
@@ -109,6 +139,11 @@ public class Initialiser {
         return doorPower;
     }
 
+    /**
+     * Create a properties file with the chosen
+     * values of properties input by the user.
+     * @param fileName same as namePlayer().
+     */
     public static void createProperties(String fileName){
         Main.scanner = new Scanner(System.in);
         String playerName = namePlayer(false);
@@ -138,6 +173,13 @@ public class Initialiser {
         }
     }
 
+    /**
+     * Initiate a game from a properties file.
+     * @param fileName Properties file to be read from.
+     * @param player Player to be modified based on properties.
+     * @param rooms All the rooms in a game (to access doors and NPCs).
+     * @throws IOException
+     */
     public static void initGameFromProps(String fileName, Player player, Room[] rooms) throws IOException {
         File configDirectory = new File("config");
         try (FileReader fileReader = new FileReader(configDirectory + File.separator +

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Main {
+    /** Main scanner used for everything */
     public static transient Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args){

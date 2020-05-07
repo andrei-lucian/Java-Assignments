@@ -7,21 +7,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class that stores all methods for saving and loading.
+ */
 public class SaveAndLoad {
     private static boolean saved = false;
     private static boolean loaded = false;
 
-    public static ArrayList<String> listFiles(){
-        ArrayList<String> results = new ArrayList<>();
-        File[] files = new File("savedGames").listFiles();
-        for (File file : files) {
-            if (file.isFile()) {
-                results.add(file.getName());
-            }
-        }
-        return results;
-    }
-
+    /**
+     * Load a player from a saved file.
+     * @param player Original player created in the main class.
+     * @param fileName The name of the file to be loaded.
+     * @return A player (either the original player if the game
+     * could not be loaded, or a new player loaded from a saved game.
+     */
     public static Player loadPlayer(Player player, String fileName){
         try {
             player = Serializer.loadPlayer(fileName);
@@ -30,19 +29,25 @@ public class SaveAndLoad {
         } catch (IOException e) {
             System.out.println("Could not load from the file");
         } catch (ClassNotFoundException e) {
-            System.out.println("The savefile could not be used to load a playaaaa");
+            System.out.println("The savefile could not be used to load a player");
         }
         System.out.println("Could not load previous game, starting from scratch instead.");
         return player;
     }
 
+    /**
+     * Check if a string is alphanumeric (using regex).
+     * @param s String to be checked.
+     * @return if s is alphanumeric or not (boolean).
+     */
     public static boolean isAlphaNumeric(String s) {
         return s != null && s.matches("^[a-zA-Z0-9]*$");
     }
 
-    /** File name cannot have more than 20 characters,
-     * a file extension, only alphanumeric characters**/
-
+    /**
+     * Save a game with a file name that the user inputs.
+     * @param player Save this player's state.
+     */
     public static void customSave(Player player){
         Main.scanner = new Scanner(System.in);
         System.out.println("Please enter a name for your file (! to abort):");
@@ -65,6 +70,29 @@ public class SaveAndLoad {
         }
     }
 
+    /**
+     * @return an ArrayList of the names of all the
+     * files in the savedGames directory.
+     */
+    public static ArrayList<String> listFiles(){
+        ArrayList<String> results = new ArrayList<>();
+        File[] files = new File("savedGames").listFiles();
+        for (File file : files) {
+            if (file.isFile()) {
+                results.add(file.getName());
+            }
+        }
+        return results;
+    }
+
+    /**
+     *
+     * @param player Player object to be changed by loading.
+     * @return Player that has either been changed by loading
+     * the player from a file, or the original player passed in
+     * to the function (if the user decides to abort the load
+     * by entering -1).
+     */
     public static Player customLoad(Player player){
         ArrayList<String> al = listFiles();
         for(String s : al){
@@ -83,6 +111,7 @@ public class SaveAndLoad {
                 loaded = true;
             }
             else {
+                System.out.println("Load aborted");
                 break;
             }
         }
