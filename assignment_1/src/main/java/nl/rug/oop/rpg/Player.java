@@ -9,11 +9,6 @@ public class Player implements Attackable, Serializable {
     private static final long serialVersionUID = 1L;
     private String name = "Bob";
     private int damage;
-
-    public int getMaxHealth() {
-        return maxHealth;
-    }
-
     private int maxHealth = 100;
     private int health = maxHealth;
     private Room currentRoom;
@@ -23,7 +18,6 @@ public class Player implements Attackable, Serializable {
      * Constructor:
      * @param damage player damage
      */
-
     public Player(int damage){
         this.damage = damage;
     }
