@@ -28,8 +28,10 @@ public class Main {
             case 2: ;
         }
 
-        System.out.println("Hello ma dude, your name is: " + player.getName());
-       // System.out.println(player.getMaxHealth());
+        System.out.println("Hello ma dude, your name is: " + player.getName() +
+                            "Your max health is " + player.getMaxHealth() +
+                            "Power door power is " + PowerDoor.getPower()
+                );
 
         Game game = new Game();
         game.gameLoop(player);

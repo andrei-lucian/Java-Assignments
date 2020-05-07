@@ -10,7 +10,12 @@ public class PowerDoor extends Door{
      */
 
     private static final long serialVersionUID = 23L;
-    private int power = 20;
+
+    private static int power = 20;
+
+    public static int getPower() {
+        return power;
+    }
 
     public PowerDoor(String description) {
         super(description);
