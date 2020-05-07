@@ -80,7 +80,7 @@ public class SaveAndLoad {
     public static ArrayList<String> listFiles(){
         ArrayList<String> results = new ArrayList<>();
         File[] files = new File("savedGames").listFiles();
-        for (File file : files) {
+        for (File file : files != null ? files : new File[0]) {
             if (file.isFile()) {
                 results.add(file.getName());
             }

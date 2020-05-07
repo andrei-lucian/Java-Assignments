@@ -9,6 +9,7 @@ import nl.rug.oop.rpg.util.Heal;
 public class HealingDoor extends Door implements Heal {
 
     private static final long serialVersionUID = 21L;
+
     public HealingDoor(String description) {
         super(description);
     }

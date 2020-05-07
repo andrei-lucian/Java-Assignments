@@ -1,11 +1,8 @@
 package nl.rug.oop.rpg.npcs;
 
-import nl.rug.oop.rpg.Main;
 import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.Room;
 import nl.rug.oop.rpg.util.CatchNonInts;
-
-import java.util.Scanner;
 
 /** A peacemaker gives the player their heart to increase the player's
  * maximum health, then dies because it can only do this once. */
@@ -13,7 +10,6 @@ import java.util.Scanner;
 public class Peacemaker extends NPC {
 
     private static final long serialVersionUID = 43L;
-    transient Scanner scanner = Main.scanner;
 
     public Peacemaker(String description, Room room){
         super(description, room);

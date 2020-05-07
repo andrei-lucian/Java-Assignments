@@ -3,9 +3,6 @@ import nl.rug.oop.rpg.io.SaveAndLoad;
 import nl.rug.oop.rpg.io.Serializer;
 import nl.rug.oop.rpg.util.CatchNonInts;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class Game implements CatchNonInts {
 
     private boolean exitGame = false;

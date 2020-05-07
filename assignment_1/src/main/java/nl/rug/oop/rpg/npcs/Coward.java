@@ -2,7 +2,6 @@ package nl.rug.oop.rpg.npcs;
 
 import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.Room;
-import nl.rug.oop.rpg.util.Attackable;
 
 /** This NPC just runs away if the player attacks it */
 

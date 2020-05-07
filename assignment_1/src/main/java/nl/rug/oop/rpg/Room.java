@@ -75,7 +75,7 @@ public class Room implements Inspectable, Serializable {
      * in an interactable way for the player */
     public ArrayList<Door> findDoors() {
         System.out.println("You look around for doors.\nYou see:");
-        for (Door door : doorList){ //loop through doors and print their descriptions
+        for (Door door : doorList){
             System.out.print("(" + doorList.indexOf(door) + ") ");
             door.inspect();
         }
@@ -91,7 +91,7 @@ public class Room implements Inspectable, Serializable {
             System.out.println("An empty room. (-1: Go back)");
         }
         else{
-            for (NPC npc : npcList) { //loop through NPCs and print their descriptions
+            for (NPC npc : npcList) {
                 System.out.print("(" + npcList.indexOf(npc) + ") ");
                 npc.inspect();
             }

@@ -8,7 +8,7 @@ import nl.rug.oop.rpg.Player;
  */
 public class PowerDoor extends Door{
 
-    private final long serialVersionUID = 23L;
+    private static final long serialVersionUID = 23L;
     private int power = 20;
 
     public PowerDoor(String description) {
