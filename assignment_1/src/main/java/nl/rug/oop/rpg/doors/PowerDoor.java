@@ -9,13 +9,9 @@ public class PowerDoor extends Door{
      * @param description description of door
      */
 
-    private static final long serialVersionUID = 23L;
+    private final long serialVersionUID = 23L;
 
-    private static int power = 20;
-
-    public static int getPower() {
-        return power;
-    }
+    private int power = 20;
 
     public PowerDoor(String description) {
         super(description);

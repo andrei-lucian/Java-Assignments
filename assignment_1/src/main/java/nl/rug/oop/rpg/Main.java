@@ -29,9 +29,7 @@ public class Main {
         }
 
         System.out.println("Hello ma dude, your name is: " + player.getName() +
-                            "Your max health is " + player.getMaxHealth() +
-                            "Power door power is " + PowerDoor.getPower()
-                );
+                            "Your max health is " + player.getMaxHealth());
 
         Game game = new Game();
         game.gameLoop(player);
