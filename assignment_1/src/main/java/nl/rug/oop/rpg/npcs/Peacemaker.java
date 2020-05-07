@@ -3,6 +3,7 @@ package nl.rug.oop.rpg.npcs;
 import nl.rug.oop.rpg.Main;
 import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.Room;
+import nl.rug.oop.rpg.util.CatchNonInts;
 
 import java.util.Scanner;
 
@@ -23,12 +24,11 @@ public class Peacemaker extends NPC {
     public void interact(Player player) {
         System.out.println("Do you want my heart? \n" +
                 "(1) Take heart \n(-1) Don't interact");
-        this.interact = scanner.nextInt();
+        this.interact = CatchNonInts.inputOption();
         if (this.interact != -1) {
             while (this.interact != 1) {
-                System.out.println("Not an option, please select again.\n" +
-                        "(1) Take heart \n(-1) Don't interact");
-                this.interact = scanner.nextInt();
+                System.out.println("Not an option, try again");
+                this.interact = CatchNonInts.inputOption();
                 if(this.interact == -1){
                     return;
                 }

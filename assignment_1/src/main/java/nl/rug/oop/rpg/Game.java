@@ -1,8 +1,12 @@
 package nl.rug.oop.rpg;
 import nl.rug.oop.rpg.io.SaveAndLoad;
 import nl.rug.oop.rpg.io.Serializer;
+import nl.rug.oop.rpg.util.CatchNonInts;
 
-public class Game {
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Game implements CatchNonInts {
 
     private boolean exitGame = false;
 
@@ -14,11 +18,11 @@ public class Game {
         while (!exitGame) {
             checkWinCondition(player);
             printMenu();
-            int option = Main.scanner.nextInt();
+            int option = CatchNonInts.inputOption();
             switch(option){
                 case 0: player.getCurrentRoom().inspect(); gameLoop(player);
-                case 1: player.selectDoor(); gameLoop(player);
-                case 2: player.selectNPC(); gameLoop(player);
+                case 1: player.selectDoor(false); gameLoop(player);
+                case 2: player.selectNPC(false); gameLoop(player);
                 case 3: Serializer.savePlayer(player, "quicksave"); gameLoop(player);
                 case 4: player = SaveAndLoad.loadPlayer(player, "quicksave"); gameLoop(player);
                 case 5: SaveAndLoad.customSave(player); gameLoop(player);
@@ -56,4 +60,6 @@ public class Game {
         System.exit(0);
         exitGame = true;
     }
+    
+
 }

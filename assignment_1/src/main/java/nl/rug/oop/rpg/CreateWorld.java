@@ -3,6 +3,7 @@ package nl.rug.oop.rpg;
 import nl.rug.oop.rpg.doors.*;
 import nl.rug.oop.rpg.io.Initialiser;
 import nl.rug.oop.rpg.npcs.*;
+import nl.rug.oop.rpg.util.CatchNonInts;
 
 import java.io.IOException;
 
@@ -20,7 +21,7 @@ public class CreateWorld {
                 "(0) Play normally \n" +
                 "(1) Initialise from config \n" +
                 "(2) Set default config ");
-        int option = Main.scanner.nextInt();
+        int option = CatchNonInts.inputOption();
         switch(option){
             case 0: initiateWorld(); break;
             case 1: loadFromConfig(player, rooms); break;
@@ -91,7 +92,7 @@ public class CreateWorld {
         seven1.setNextRoom(end);
         eight1.setNextRoom(end);
 
-        NPC entry_ad = new AngryDude("A short ginger dude that looks a little crazy.", room0);
+        NPC entry_ad = new Terrorist("A short ginger dude that looks a little crazy.", room0);
         NPC entry_healer = new Healer("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", room0);
         NPC entry_coward = new Coward("A man wearing a black and yellow shirt.", room0);
         room0.addNpc(entry_ad);
@@ -173,4 +174,5 @@ public class CreateWorld {
     public static void setDefaultConfig(){
         Initialiser.createProperties("gameProp");
     }
+
 }

@@ -3,6 +3,7 @@ package nl.rug.oop.rpg.io;
 import nl.rug.oop.rpg.*;
 import nl.rug.oop.rpg.doors.*;
 import nl.rug.oop.rpg.npcs.*;
+import nl.rug.oop.rpg.util.CatchNonInts;
 
 import java.io.*;
 import java.util.*;
@@ -53,7 +54,7 @@ public class Initialiser {
                     "(2) Easy: 150");
         }
         int maxHealth = 100;
-        int chosen = Main.scanner.nextInt();
+        int chosen = CatchNonInts.inputOption();
         switch(chosen){
             case 0: maxHealth = 50; break;
             case 1: maxHealth = 100; break;
@@ -75,7 +76,7 @@ public class Initialiser {
                     "(1) Medium\n" +
                     "(2) Easy");
         }
-        int chosen = Main.scanner.nextInt();
+        int chosen = CatchNonInts.inputOption();
         if (chosen<0 || chosen > 2){
             System.out.println("Not an option, please choose again");
             setNpcDifficulty(true);
@@ -129,7 +130,7 @@ public class Initialiser {
                     "(2) 30");
         }
         int doorPower = 20;
-        int chosen = Main.scanner.nextInt();
+        int chosen =  CatchNonInts.inputOption();
         switch(chosen){
             case 0: doorPower = 10; break;
             case 1: doorPower = 20; break;

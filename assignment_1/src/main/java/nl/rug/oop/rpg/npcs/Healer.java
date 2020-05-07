@@ -2,6 +2,7 @@ package nl.rug.oop.rpg.npcs;
 import nl.rug.oop.rpg.Main;
 import nl.rug.oop.rpg.Player;
 import nl.rug.oop.rpg.Room;
+import nl.rug.oop.rpg.util.CatchNonInts;
 import nl.rug.oop.rpg.util.Heal;
 
 import java.util.Scanner;
@@ -22,12 +23,11 @@ public class Healer extends NPC implements Heal {
         System.out.println("Hello ma dude, I'm a health wizard" +
                 ", want some health? \n" +
                 "(1) Heal \n(-1) Don't interact");
-        this.interact = scanner.nextInt();
+        this.interact = CatchNonInts.inputOption();
         if (this.interact != -1) {
             while (this.interact != 1) {
-                System.out.println("Not an option, please select again.\n" +
-                        "(1) Heal \n(-1) Don't interact");
-                this.interact = scanner.nextInt();
+                System.out.println("Not an option, try again");
+                this.interact = CatchNonInts.inputOption();
                 if(this.interact == -1){
                     return;
                 }

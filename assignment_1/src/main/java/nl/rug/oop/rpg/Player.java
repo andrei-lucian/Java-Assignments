@@ -2,6 +2,8 @@ package nl.rug.oop.rpg;
 import nl.rug.oop.rpg.doors.Door;
 import nl.rug.oop.rpg.npcs.NPC;
 import nl.rug.oop.rpg.util.Attackable;
+import nl.rug.oop.rpg.util.CatchNonInts;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -99,32 +101,42 @@ public class Player implements Attackable, Serializable {
     }
 
     /** select door and go to next room */
-    public void selectDoor(){
-        ArrayList<Door> doorList = this.currentRoom.findDoors();
-        int chosenDoor = Main.scanner.nextInt(); //user input (integer)
+    public void selectDoor(boolean printed){
+        ArrayList<Door> doorList;
+        if (!printed) {
+            doorList = this.getCurrentRoom().findDoors();
+        }
+        else {
+            doorList = this.currentRoom.getDoorList();
+        }
+        int chosenDoor = CatchNonInts.inputOption(); //user input (integer)
         if (chosenDoor > doorList.size() -1 || chosenDoor < -1) { //check bounds
             System.out.println("Not a door, please choose a different option.");
-            selectDoor();
+            selectDoor(true);
         }
         else if (chosenDoor != -1){ //move to room behind chosen door
-            //this.setPreviousRoom(currentRoom); //store the current room as the previous room in case we want to go back
             Door currentDoor = doorList.get(chosenDoor); //move to next room
             moveToNextRoom(currentDoor);
         }
     }
 
     /** select NPC and interact with NPC */
-    public void selectNPC(){
-        ArrayList<NPC> npcList = this.getCurrentRoom().findNPCs();
-        int chosenNPC = Main.scanner.nextInt();
+    public void selectNPC(boolean printed){
+        ArrayList<NPC> npcList;
+        if (!printed) {
+            npcList = this.getCurrentRoom().findNPCs();
+        }
+        else {
+            npcList = this.currentRoom.getNpcList();
+        }
+        int chosenNPC = CatchNonInts.inputOption();
         if (chosenNPC > npcList.size() -1 || chosenNPC < -1) { //check bounds
             System.out.println("Not an available option, please choose again.");
-            selectNPC();
+            selectNPC(true);
         }
         else if (chosenNPC != -1){
             NPC currentNpc = npcList.get(chosenNPC); //interact with npc
             currentNpc.interact(this);
         }
     }
-
 }

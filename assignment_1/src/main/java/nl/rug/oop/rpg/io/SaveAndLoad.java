@@ -2,6 +2,8 @@ package nl.rug.oop.rpg.io;
 
 import nl.rug.oop.rpg.Main;
 import nl.rug.oop.rpg.Player;
+import nl.rug.oop.rpg.util.CatchNonInts;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,8 +13,8 @@ import java.util.Scanner;
  * Class that stores all methods for saving and loading.
  */
 public class SaveAndLoad {
-    private static boolean saved = false;
-    private static boolean loaded = false;
+    public static boolean saved = false;
+    public static boolean loaded = false;
 
     /**
      * Load a player from a saved file.
@@ -49,6 +51,7 @@ public class SaveAndLoad {
      * @param player Save this player's state.
      */
     public static void customSave(Player player){
+        saved = false;
         Main.scanner = new Scanner(System.in);
         System.out.println("Please enter a name for your file (! to abort):");
         while(!saved){
@@ -94,19 +97,19 @@ public class SaveAndLoad {
      * by entering -1).
      */
     public static Player customLoad(Player player){
+        loaded = false;
         ArrayList<String> al = listFiles();
         for(String s : al){
             System.out.println("(" + al.indexOf(s) + ") " +  s);
         }
         while(!loaded) {
-            int chosen = Main.scanner.nextInt();
+            int chosen = CatchNonInts.inputOption();
             if (chosen > al.size() - 1 || chosen < -1) { //check bounds
                 System.out.println("Not an option, please choose a different file.");
             }
             else if (chosen != -1) {
                 String fileName = al.get(chosen);
                 fileName = fileName.substring(0, fileName.lastIndexOf("."));
-                System.out.println(fileName);
                 player = loadPlayer(player, fileName);
                 loaded = true;
             }

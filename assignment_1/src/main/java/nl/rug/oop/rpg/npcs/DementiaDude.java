@@ -22,7 +22,7 @@ public class DementiaDude extends Enemy implements Attackable {
     protected void performAction(Player player) {
         this.takeDamage(player.dealDamage());
         if(!isDead){
-            player.takeDamage(this.dealDamage());
+            player.takeDamage(randInt.nextInt(this.baseDamage));
             System.out.println("Enemy: I have no idea what I'm doing");
         }
     }

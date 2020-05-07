@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * Class for making doors.
  */
-public class Door implements Inspectable, Interactable, Serializable {
+public class Door implements Inspectable, Interactable, Serializable{
 
     private static final long serialVersionUID = 2L;
     protected String description;
