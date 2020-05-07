@@ -11,8 +11,8 @@ public class Main {
         player.setCurrentRoom(rooms[0]);
 
         CreateWorld.runConfigMenu(player, rooms);
-
-        System.out.println("Hello ma dude, your name is: " + player.getName());
+        Game.printGameRules();
+        System.out.println("Hello " + player.getName());
         Game game = new Game();
         game.gameLoop(player);
     }

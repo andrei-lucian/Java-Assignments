@@ -7,7 +7,7 @@ import nl.rug.oop.rpg.util.CatchNonInts;
 public abstract class Enemy extends NPC implements Attackable {
     private static final long serialVersionUID = 41L;
     protected int baseDamage = 0;
-    protected int baseHealth = 80;
+    protected int baseHealth = 70;
 
     /**
      * Constructor:

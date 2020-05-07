@@ -8,7 +8,7 @@ import nl.rug.oop.rpg.Room;
 public class Terrorist extends Enemy {
     public Terrorist(String description, Room room){
         super(description, room);
-        this.baseDamage += 30;
+        this.baseDamage += 10;
         this.uniqueLine = "ALLAHU AKBAR!!111!1!1! *yeet*";
     }
 

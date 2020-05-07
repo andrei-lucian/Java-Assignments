@@ -92,7 +92,7 @@ public class CreateWorld {
         seven1.setNextRoom(end);
         eight1.setNextRoom(end);
 
-        NPC entry_ad = new Terrorist("A short ginger dude that looks a little crazy.", room0);
+        NPC entry_ad = new AngryDude("A short ginger dude that looks a little crazy.", room0);
         NPC entry_healer = new Healer("A blonde girl wearing Nike air force sneakers and drinking Starbucks coffee.", room0);
         NPC entry_coward = new Coward("A man wearing a black and yellow shirt.", room0);
         room0.addNpc(entry_ad);
@@ -100,9 +100,9 @@ public class CreateWorld {
         room0.addNpc(entry_coward);
 
         NPC room1_pm = new Peacemaker("A surfer dude with dreadlocks and a shell necklace", room1);
-        NPC room1_dd = new DementiaDude("An elf with sharp ears and long braided black hair", room1);
+        NPC room1_t = new Terrorist("An elf with sharp ears and long braided black hair", room1);
         room1.addNpc(room1_pm);
-        room1.addNpc(room1_dd);
+        room1.addNpc(room1_t);
 
         NPC room2_pm = new Peacemaker("An old lady wearing a rainbow tracksuit and giant sunglasses", room2);
         room2.addNpc(room2_pm);
@@ -110,9 +110,11 @@ public class CreateWorld {
         NPC room3_pm = new Peacemaker("A girl with short red hair and a leather bag", room3);
         NPC room3_dd = new DementiaDude("A centaur", room3);
         NPC room3_healer = new Healer("John Cena", room3);
+        NPC room3_t = new Terrorist("Bill Nye the Science Guy", room3);
         room3.addNpc(room3_pm);
         room3.addNpc(room3_dd);
         room3.addNpc(room3_healer);
+        room3.addNpc(room3_t);
 
         NPC room4_coward = new Coward("A blue smurf", room4);
         NPC room4_healer = new Healer("Grumpy cat",  room4);
@@ -122,11 +124,11 @@ public class CreateWorld {
         room4.addNpc(room4_ad);
 
         NPC room5_ad1 = new AngryDude("A very large troll", room5);
-        NPC room5_ad2 = new AngryDude("A horse-sized duck", room5);
+        NPC room5_t = new Terrorist("A horse-sized duck", room5);
         NPC room5_dd = new DementiaDude("Mark Zuckerberg", room5);
         NPC room5_coward = new Coward("A duck-sized horse", room5);
         room5.addNpc(room5_ad1);
-        room5.addNpc(room5_ad2);
+        room5.addNpc(room5_t);
         room5.addNpc(room5_dd);
         room5.addNpc(room5_coward);
 
@@ -138,19 +140,19 @@ public class CreateWorld {
         room6.addNpc(room6_coward);
 
         NPC room7_ad1 = new AngryDude("A man with a man-bun wearing a flannel shirt and glasses", room7);
-        NPC room7_dd1 = new DementiaDude("Santa", room7);
+        NPC room7_t = new Terrorist("Santa", room7);
         NPC room7_dd2 = new DementiaDude("Kanye West", room7);
         room7.addNpc(room7_ad1);
-        room7.addNpc(room7_dd1);
+        room7.addNpc(room7_t);
         room7.addNpc(room7_dd2);
 
         NPC room8_ad1 = new AngryDude("Godzilla, but he's old now", room8);
         NPC room8_ad2 = new AngryDude("A purple goblin", room8);
-        NPC room8_dd = new DementiaDude("Luigi", room8);
+        NPC room8_t = new Terrorist("Luigi", room8);
         NPC room8_coward = new Coward("Mario",  room8);
         room8.addNpc(room8_ad1);
         room8.addNpc(room8_ad2);
-        room8.addNpc(room8_dd);
+        room8.addNpc(room8_t);
         room8.addNpc(room8_coward);
         return new Room[]{room0, room1, room2, room3, room4, room5, room6, room7, room8};
     }

@@ -96,8 +96,8 @@ public class Initialiser {
         int extraEnemyX = 0;
         switch(diff){
             case 0: extraEnemyX = 0; break;
-            case 1: extraEnemyX = 20; break;
-            case 2: extraEnemyX = 40; break;
+            case 1: extraEnemyX = 15; break;
+            case 2: extraEnemyX = 30; break;
         }
         return extraEnemyX;
     }
