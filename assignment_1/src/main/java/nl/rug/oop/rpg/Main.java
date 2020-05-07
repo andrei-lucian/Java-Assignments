@@ -17,15 +17,14 @@ public class Main {
         Player player = new Player(70);
         Room[] rooms = initiateWorld();
         player.setCurrentRoom(rooms[0]);
-        Initialiser.createProperties("gameProp");
 
         //create a game with a player and run the game loop
         printConfigMenu();
         int option = Main.scanner.nextInt();
         switch(option){
             case 0: initiateWorld(); break;
-            case 1: loadFromConfig(player, rooms);
-            case 2: ;
+            case 1: loadFromConfig(player, rooms); break;
+            case 2: setDefaultConfig(); System.out.println("Default configuration set."); System.exit(0);
         }
 
         System.out.println("Hello ma dude, your name is: " + player.getName() +
@@ -33,14 +32,6 @@ public class Main {
 
         Game game = new Game();
         game.gameLoop(player);
-    }
-
-    private static void loadFromConfig(Player player, Room[] rooms){
-        try {
-            Initialiser.initGameFromProps("gameProp", player, rooms);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void printConfigMenu(){
@@ -170,5 +161,17 @@ public class Main {
         room8.addNpc(room8_dd);
         room8.addNpc(room8_coward);
         return new Room[]{room0, room1, room2, room3, room4, room5, room6, room7, room8};
+    }
+
+    private static void loadFromConfig(Player player, Room[] rooms){
+        try {
+            Initialiser.initGameFromProps("gameProp", player, rooms);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void setDefaultConfig(){
+        Initialiser.createProperties("gameProp");
     }
 }

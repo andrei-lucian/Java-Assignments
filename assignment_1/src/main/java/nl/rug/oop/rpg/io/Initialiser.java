@@ -114,8 +114,8 @@ public class Initialiser {
         String playerName = namePlayer(false);
         int maxHealth = setMaxHealth(false);
         int diff = setNpcDifficulty(false);
-        int enemyDamage = setExtraEnemyDamage(diff);
-        int enemyHealth = setExtraEnemyHealth(diff);
+        int extraEnemyDamage = setExtraEnemyDamage(diff);
+        int extraEnemyHealth = setExtraEnemyHealth(diff);
         int doorPower = setDoorPower(false);
 
         File configDirectory = new File("config");
@@ -124,8 +124,8 @@ public class Initialiser {
         Properties gameProperties = new Properties();
         gameProperties.setProperty("playerName", playerName);
         gameProperties.setProperty("maxHealth", String.valueOf(maxHealth));
-        gameProperties.setProperty("enemyDamage", String.valueOf(enemyDamage));
-        gameProperties.setProperty("enemyHealth", String.valueOf(enemyHealth));
+        gameProperties.setProperty("extraEnemyDamage", String.valueOf(extraEnemyDamage));
+        gameProperties.setProperty("extraEnemyHealth", String.valueOf(extraEnemyHealth));
         gameProperties.setProperty("doorPower", String.valueOf(doorPower));
 
         try (FileWriter fileWriter = new FileWriter(configDirectory + File.separator
@@ -146,8 +146,8 @@ public class Initialiser {
                 gameProperties.load(fileReader);
                 String playerName = gameProperties.getProperty("playerName");
                 int maxHealth = Integer.parseInt(gameProperties.getProperty("maxHealth"));
-                int enemyDamage = Integer.parseInt(gameProperties.getProperty("enemyDamage"));
-                int enemyHealth = Integer.parseInt(gameProperties.getProperty("enemyHealth"));
+                int extraEnemyDamage = Integer.parseInt(gameProperties.getProperty("extraEnemyDamage"));
+                int extraEnemyHealth = Integer.parseInt(gameProperties.getProperty("extraEnemyHealth"));
                 int doorPower = Integer.parseInt(gameProperties.getProperty("doorPower"));
                 player.setName(playerName);
                 player.setMaxHealth(maxHealth);
@@ -155,9 +155,9 @@ public class Initialiser {
                     ArrayList<NPC> npcs = room.getNpcList();
                     for (NPC npc : npcs){
                         if (npc.isEnemy()){
-                            Enemy newEnemy = (Enemy)npc;
-                            newEnemy.setBaseDamage(enemyDamage);
-                            newEnemy.setBaseHealth(enemyHealth);
+                            Enemy enemy = (Enemy)npc;
+                            enemy.setBaseDamage(extraEnemyDamage);
+                            enemy.setBaseHealth(extraEnemyHealth);
                         }
                     }
                     ArrayList<Door> doors = room.getDoorList();

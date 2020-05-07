@@ -11,7 +11,6 @@ public class AngryDude extends Enemy {
      *@param exp experience that the class gives when it dies
      */
     private static final long serialVersionUID = 411L;
-    private static final int exp = 50;
 
     public AngryDude(String description, Room room){
         super(description, room);
