@@ -5,9 +5,9 @@ public class Animal {
     private String name;
     private int energy;
 
-    public Animal(String name, int energy){
-        this.name = name;
-        this.energy = energy;
+    public Animal(String animalName, int animalEnergy){
+        this.name = animalName;
+        this.energy = animalEnergy;
     }
 
     public Animal(String name) {

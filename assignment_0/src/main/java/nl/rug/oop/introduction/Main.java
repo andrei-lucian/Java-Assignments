@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner bob = new Scanner(System.in);
 
         Animal[] animals;
 
@@ -34,9 +34,9 @@ public class Main {
             animals = initAnimals(args);
         }
 
-        while (scanner.hasNextLine()) {
+        while (bob.hasNextLine()) {
 
-            String line = scanner.nextLine();
+            String line = bob.nextLine();
 
             for (Animal animal : animals) {
                 if (line.equals("eat")) {
