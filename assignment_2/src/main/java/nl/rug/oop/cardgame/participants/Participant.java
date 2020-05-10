@@ -3,12 +3,11 @@ import nl.rug.oop.cardgame.elements.Card;
 import nl.rug.oop.cardgame.elements.Deck;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /** Superclass of Player and Computer */
 public abstract class Participant {
 
-    protected List<Card> cardList;
+    protected ArrayList<Card> cardList;
 
     public Participant(){
         this.cardList = new ArrayList<>();

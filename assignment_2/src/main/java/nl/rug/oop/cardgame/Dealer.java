@@ -10,7 +10,7 @@ public class Dealer {
     public static Deck newFaceDownDeck(){
         Deck FaceDownDeck = new Deck();
         FaceDownDeck.addCards();
-        FaceDownDeck.shuffle();
+        //FaceDownDeck.shuffle();
         return FaceDownDeck;
     }
 
@@ -32,7 +32,7 @@ public class Dealer {
      * FaceUpDeck to FaceDownDeck in case FaceDownDeck runs out*/
     public static void transferDeck(Deck faceUp, Deck faceDown){
         Card savedCard = faceUp.draw();
-        System.out.println("\n \n CHECK SIZE!!!" + faceUp.getCards().size() + "\n \n");
+        //System.out.println("\n \n CHECK SIZE!!!" + faceUp.getCards().size() + "\n \n");
         int size = faceUp.getCards().size();
         for (int i = 0; i < size; i++) {
             faceDown.addOnTop(faceUp.draw());

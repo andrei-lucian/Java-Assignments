@@ -46,5 +46,10 @@ public class Deck {
         return null;
     }
 
-}
+    public void printDeck(){
+        for (Card card : this.getCards()){
+            System.out.println(card);
+        }
+    }
 
+}
