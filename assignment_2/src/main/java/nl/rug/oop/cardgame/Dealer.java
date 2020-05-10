@@ -10,7 +10,7 @@ public class Dealer {
     public static Deck newFaceDownDeck(){
         Deck FaceDownDeck = new Deck();
         FaceDownDeck.addCards();
-        //FaceDownDeck.shuffle();
+        FaceDownDeck.shuffle();
         return FaceDownDeck;
     }
 
