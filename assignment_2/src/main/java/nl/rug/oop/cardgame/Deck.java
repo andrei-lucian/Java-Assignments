@@ -18,7 +18,7 @@ public class Deck {
 
     /** Add a card to the top of the deck */
     public void addOnTop(Card card) {
-        cards.add(card);
+        cards.push(card);
     }
 
     /** Return all the cards in a deck */

@@ -5,7 +5,7 @@ package nl.rug.oop.cardgame;
 public class Dealer {
 
     public static Deck FaceDownDeck = createFaceDownDeck();
-    public static Deck FaceUpDeck = createFaceUpDeck();
+    public static Deck FaceUpDeck = new Deck();
 
     public static Deck createFaceDownDeck(){
         Deck FaceDownDeck = new Deck();
@@ -14,22 +14,30 @@ public class Dealer {
         return FaceDownDeck;
     }
 
-    public static Deck createFaceUpDeck(){
-        Deck FaceUpDeck = new Deck();
-        return FaceUpDeck;
+    /** Deals 5 cards to each player at the beginning of the game */
+    public static void deal5Cards(Player player, Computer computer){
+        for (int i = 0; i < 5; i++) {
+            player.drawCard(FaceDownDeck);
+            computer.drawCard(FaceDownDeck);
+        }
     }
 
-    public static void deal5Cards(Player player, Computer computer, Deck deck){
-    }
-
-    /** Moves the top card of FaceDownDeck to the top of FaceUpDeck */
+    /** Moves the top card of FaceDownDeck to the top of FaceUpDeck and returns the card*/
     public static Card revealCard(){
+        Card newCard = FaceDownDeck.draw();
+        FaceUpDeck.addOnTop(newCard);
+        return newCard;
     }
 
     /** Moves all the cards (except the top one) in
      * FaceUpDeck to FaceDownDeck in case FaceDownDeck runs out*/
-    public static void resetDeck(){
-
+    public static void transferDeck(){
+        Card savedCard = FaceUpDeck.draw();
+        for (Card card: FaceUpDeck.getCards()){
+            FaceDownDeck.addOnTop(FaceUpDeck.draw());
+            FaceDownDeck.shuffle();
+            FaceUpDeck.addOnTop(savedCard);
+        }
     }
 
 }

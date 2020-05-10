@@ -5,7 +5,7 @@ import java.util.List;
 public class Player extends Participant {
 
     /** Player chooses a suit in case they put down an 8 */
-    protected Card.Suit chooseSuit(){
+    public Card.Suit chooseSuit(){
         Card.Suit suit;
         System.out.println("Choose a suit: \n" +
                 "(0) Hearts\n" +
@@ -23,10 +23,10 @@ public class Player extends Participant {
         return null;
     }
 
-    /** Method to view all a player's cards in terminal */
+    /** Method to view all a player's cards in terminal and their index */
     public void inspectAllCards(List<Card> ownedCards){
         for (Card card : ownedCards) {
-            System.out.println(card);
+            System.out.println("(" + ownedCards.indexOf(card) + card);
         }
     }
 }
