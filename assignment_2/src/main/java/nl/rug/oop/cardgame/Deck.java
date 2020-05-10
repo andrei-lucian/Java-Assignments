@@ -1,13 +1,10 @@
 package nl.rug.oop.cardgame;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Deck {
 
-    protected List<Card> cards;
+    protected Stack<Card> cards;
     private Random random;
 
     private static int seed = 42;
@@ -17,19 +14,18 @@ public class Deck {
     }
 
     public Deck() {
-        cards = new ArrayList<>();
+        cards = new Stack<>();
         random = new Random(nextSeed());
         addCards();
     }
 
     /** Add all the cards to a deck */
     protected void addCards() {
-        for (Card card : Card.values())
-            cards.add(card);
+        cards.addAll(Arrays.asList(Card.values()));
     }
 
     /** Return all the cards in a deck */
-    public List<Card> getCards() {
+    public Stack<Card> getCards() {
         return cards;
     }
 
@@ -38,6 +34,9 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
+    public Card getTopCard(){
+        return cards.pop();
+    }
 
 }
 
