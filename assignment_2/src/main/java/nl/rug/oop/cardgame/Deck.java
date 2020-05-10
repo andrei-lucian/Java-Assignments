@@ -24,6 +24,10 @@ public class Deck {
         cards.addAll(Arrays.asList(Card.values()));
     }
 
+    public void addOnTop(Card card) {
+        cards.add(card);
+    }
+
     /** Return all the cards in a deck */
     public Stack<Card> getCards() {
         return cards;
@@ -33,9 +37,21 @@ public class Deck {
     public void shuffle() {
         Collections.shuffle(cards);
     }
-
+    /** Get the top card */
     public Card getTopCard(){
         return cards.pop();
+    }
+
+    /** Return if deck is empty */
+    public boolean isEmpty() {
+        return cards.isEmpty();
+    }
+
+    /** Draw a card from a deck */
+    public Card draw() {
+        if (!isEmpty())
+            return cards.remove(cards.size() - 1);
+        return null;
     }
 
 }
