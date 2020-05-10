@@ -16,6 +16,6 @@ public class Main {
             System.out.println(card);
         }
 
-        System.out.println("Top card is " + deck.getTopCard());
+        System.out.println("Top card is " + deck.draw());
     }
 }

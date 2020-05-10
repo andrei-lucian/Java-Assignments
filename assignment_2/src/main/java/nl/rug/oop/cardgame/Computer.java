@@ -1,13 +1,18 @@
 package nl.rug.oop.cardgame;
 
-import java.util.List;
-
 public class Computer extends Participant {
 
-    /** Choose the suit that appears the most in a computer's stack of cards */
-    protected Card.Suit chooseSuit(){
+    /** NOT IMPLEMENTED YET
+     * Choose the suit that appears the most in a computer's stack of cards*/
+    public Card.Suit chooseSuit(){
         Card.Suit suit = null;
         return suit;
+    }
+
+    /** NOT IMPLEMENTED YET
+     * Compare a card's suit and face to all the cards that the computer has */
+    public void compare(Card card){
+
     }
 
 }

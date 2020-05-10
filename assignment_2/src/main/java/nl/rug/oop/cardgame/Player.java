@@ -24,7 +24,7 @@ public class Player extends Participant {
     }
 
     /** Method to view all a player's cards in terminal */
-    private void inspectAllCards(List<Card> ownedCards){
+    public void inspectAllCards(List<Card> ownedCards){
         for (Card card : ownedCards) {
             System.out.println(card);
         }
