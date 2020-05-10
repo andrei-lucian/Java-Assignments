@@ -26,15 +26,15 @@ public class Dealer {
 
     /** Moves all the cards (except the top one) in
      * FaceUpDeck to FaceDownDeck in case FaceDownDeck runs out*/
-    public static void transferDeck(Deck empty, Deck full){
-        Card savedCard = full.draw();
-        System.out.println("\n \n CHECK SIZE!!!" + full.getCards().size() + "\n \n");
-        int size = full.getCards().size();
+    public static void transferDeck(Deck faceUp, Deck faceDown){
+        Card savedCard = faceUp.draw();
+        System.out.println("\n \n CHECK SIZE!!!" + faceUp.getCards().size() + "\n \n");
+        int size = faceUp.getCards().size();
         for (int i = 0; i < size; i++) {
-            empty.addOnTop(full.draw());
+            faceDown.addOnTop(faceUp.draw());
         }
-        //faceDown.shuffle();
-        full.addOnTop(savedCard);
+        faceDown.shuffle();
+        faceUp.addOnTop(savedCard);
     }
 
 }

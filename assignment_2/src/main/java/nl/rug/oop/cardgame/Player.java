@@ -1,7 +1,5 @@
 package nl.rug.oop.cardgame;
 
-import java.util.List;
-
 public class Player extends Participant {
 
     /** Player chooses a suit in case they put down an 8 */
