@@ -1,13 +1,9 @@
 package nl.rug.oop.cardgame;
 
-
 /** Dealer class - holds all the methods to set up and maintain the game */
 public class Dealer {
 
-    public static Deck FaceDownDeck = createFaceDownDeck();
-    public static Deck FaceUpDeck = new Deck();
-
-    public static Deck createFaceDownDeck(){
+    public static Deck newFaceDownDeck(){
         Deck FaceDownDeck = new Deck();
         FaceDownDeck.addCards();
         FaceDownDeck.shuffle();
@@ -15,29 +11,30 @@ public class Dealer {
     }
 
     /** Deals 5 cards to each player at the beginning of the game */
-    public static void deal5Cards(Player player, Computer computer){
+    public static void deal5Cards(Player player, Computer computer, Deck faceDown){
         for (int i = 0; i < 5; i++) {
-            player.drawCard(FaceDownDeck);
-            computer.drawCard(FaceDownDeck);
+            player.drawCard(faceDown);
+            computer.drawCard(faceDown);
         }
     }
 
-    /** Moves the top card of FaceDownDeck to the top of FaceUpDeck and returns the card*/
-    public static Card revealCard(){
-        Card newCard = FaceDownDeck.draw();
-        FaceUpDeck.addOnTop(newCard);
-        return newCard;
+    /** Moves the top card of FaceDownDeck to the top of FaceUpDeck */
+    public static void revealCard(Deck faceDown, Deck faceUp){
+        Card newCard = faceDown.draw();
+        faceUp.addOnTop(newCard);
     }
 
     /** Moves all the cards (except the top one) in
      * FaceUpDeck to FaceDownDeck in case FaceDownDeck runs out*/
-    public static void transferDeck(){
-        Card savedCard = FaceUpDeck.draw();
-        for (Card card: FaceUpDeck.getCards()){
-            FaceDownDeck.addOnTop(FaceUpDeck.draw());
-            FaceDownDeck.shuffle();
-            FaceUpDeck.addOnTop(savedCard);
+    public static void transferDeck(Deck empty, Deck full){
+        Card savedCard = full.draw();
+        System.out.println("\n \n CHECK SIZE!!!" + full.getCards().size() + "\n \n");
+        int size = full.getCards().size();
+        for (int i = 0; i < size; i++) {
+            empty.addOnTop(full.draw());
         }
+        //faceDown.shuffle();
+        full.addOnTop(savedCard);
     }
 
 }

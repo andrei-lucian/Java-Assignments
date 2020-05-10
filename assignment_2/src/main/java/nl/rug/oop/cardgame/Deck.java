@@ -2,11 +2,12 @@ package nl.rug.oop.cardgame;
 
 import java.util.*;
 
-/** A deck of cards with all the types of cards in it */
+/** A deck of cards with all the types of cards in it - implemented as a stack */
 public class Deck {
 
     protected Stack<Card> cards;
 
+    /** Constructor */
     public Deck() {
         cards = new Stack<>();
     }
@@ -38,8 +39,10 @@ public class Deck {
 
     /** Draw a card from a deck */
     public Card draw() {
-        if (!isEmpty())
-            return cards.pop();
+        if (!isEmpty()) {
+            Card card = cards.pop();
+            return card;
+        }
         return null;
     }
 

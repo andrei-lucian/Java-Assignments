@@ -22,11 +22,4 @@ public class Player extends Participant {
         }
         return null;
     }
-
-    /** Method to view all a player's cards in terminal and their index */
-    public void inspectAllCards(List<Card> ownedCards){
-        for (Card card : ownedCards) {
-            System.out.println("(" + ownedCards.indexOf(card) + card);
-        }
-    }
 }
