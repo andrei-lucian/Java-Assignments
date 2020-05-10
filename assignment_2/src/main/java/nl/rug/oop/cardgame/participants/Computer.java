@@ -75,29 +75,18 @@ public class Computer extends Participant {
     /** Choose a card from the list of available cards
      * Draws a card if if there are no matching cards
      * Chooses the non-8 card if there is more than one option */
-    public Card chooseCard(ArrayList<Card> cardOptions, Deck deck){
+    public Card playCard(ArrayList<Card> cardOptions, Deck deck) {
         Card card;
         int noOfEights = countEights(cardOptions); //count the number of 8s in their hand
 
-        if (cardOptions.size() == 1){ //if there is only one card then play that card
+        if (cardOptions.size() == 1) { //if there is only one card then play that card
             return cardOptions.get(0);
         }
 
-        /* if there is more than one card then pick a non-8 one
-        as long as there is a card that is not an 8 */
         else if (cardOptions.size() > 1) {
-            Random r = new Random();
-            int rand = r.nextInt(cardOptions.size() - 1);
-            card = cardOptions.get(rand);
-
-            while (card.getFace() == Card.Face.EIGHT && noOfEights != cardOptions.size()) {
-                rand = r.nextInt(cardOptions.size() - 1);
-                card = cardOptions.get(rand);
-            }
-            System.out.println("The computer played: " + card);
-            return card;
+            return chooseCard(cardOptions, noOfEights);
         }
-        //draw a card if there is no available card
+
         else {
             this.drawCard(deck);
             System.out.println("The computer drew a card");
@@ -105,4 +94,16 @@ public class Computer extends Participant {
         }
     }
 
+    public Card chooseCard(ArrayList<Card> cardOptions, int eights){
+        Random r = new Random();
+        int rand = r.nextInt(cardOptions.size() - 1);
+        Card card = cardOptions.get(rand);
+
+        while (card.getFace() == Card.Face.EIGHT && eights != cardOptions.size()) {
+            rand = r.nextInt(cardOptions.size() - 1);
+            card = cardOptions.get(rand);
+        }
+        System.out.println("The computer played: " + card);
+        return card;
+    }
 }

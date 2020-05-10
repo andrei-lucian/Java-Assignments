@@ -18,11 +18,10 @@ public class Main {
         Player player = new Player();
         Dealer.deal5Cards(player, computer, FaceDownDeck);
         computer.inspectAllCards();
-        //player.inspectAllCards();
-        //ArrayList<Card> options = computer.findCardOptions(Card.Suit.SPADES, Card.Face.TEN);
-        //System.out.println(computer.chooseCard(options, FaceDownDeck));
-        Card.Suit suit = computer.chooseSuit();
-        System.out.println(suit);
+        ArrayList<Card> options = computer.findCardOptions(Card.Suit.SPADES, Card.Face.TEN);
+        System.out.println(computer.playCard(options, FaceDownDeck));
+        //Card.Suit suit = computer.chooseSuit();
+        //System.out.println(suit);
 
     }
 }
