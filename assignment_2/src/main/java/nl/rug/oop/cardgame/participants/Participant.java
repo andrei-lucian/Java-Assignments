@@ -1,4 +1,7 @@
-package nl.rug.oop.cardgame;
+package nl.rug.oop.cardgame.participants;
+import nl.rug.oop.cardgame.elements.Card;
+import nl.rug.oop.cardgame.elements.Deck;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package nl.rug.oop.cardgame;
 
+import nl.rug.oop.cardgame.elements.Deck;
 import java.util.Scanner;
 
 public class Main {

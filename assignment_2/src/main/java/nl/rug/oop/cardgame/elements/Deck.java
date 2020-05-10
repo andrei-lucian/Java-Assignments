@@ -1,4 +1,4 @@
-package nl.rug.oop.cardgame;
+package nl.rug.oop.cardgame.elements;
 
 import java.util.*;
 
@@ -13,7 +13,7 @@ public class Deck {
     }
 
     /** Add all the cards to a deck */
-    protected void addCards() {
+    public void addCards() {
         cards.addAll(Arrays.asList(Card.values()));
     }
 

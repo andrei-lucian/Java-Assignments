@@ -1,4 +1,6 @@
-package nl.rug.oop.cardgame;
+package nl.rug.oop.cardgame.participants;
+
+import nl.rug.oop.cardgame.elements.Card;
 
 public class Computer extends Participant {
 

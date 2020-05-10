@@ -1,5 +1,6 @@
-package nl.rug.oop.cardgame;
+package nl.rug.oop.cardgame.utils;
 
+import nl.rug.oop.cardgame.Main;
 import java.util.InputMismatchException;
 
 /** Interface for scanning integers and catching InputMismatchExceptions */

@@ -1,4 +1,4 @@
-package nl.rug.oop.cardgame;
+package nl.rug.oop.cardgame.elements;
 
 /**
  * Represents the kinds of playing cards found in ubiquitous 54-card decks
