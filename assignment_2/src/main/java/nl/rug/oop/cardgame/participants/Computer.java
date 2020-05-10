@@ -14,19 +14,14 @@ public class Computer extends Participant {
         int[] freq = new int[4];
         for (Card card : this.cardList){
             Card.Suit suit = card.getSuit();
-            System.out.println(suit);
             switch(suit){
-                case HEARTS: freq[0]++; //System.out.println(freq[0] + " hearts");
-                case SPADES: freq[1]++; //System.out.println(freq[1] + " spades");
-                case CLUBS: freq[2]++; //System.out.println(freq[2] + " clubs");
-                case DIAMONDS: freq[3]++; //System.out.println(freq[3] + " diamonds");
+                case HEARTS: freq[0]++; break;
+                case SPADES: freq[1]++; break;
+                case CLUBS: freq[2]++; break;
+                case DIAMONDS: freq[3]++; break;
             }
         }
-        for (int x = 0; x < freq.length; x++){
-            System.out.println(freq[x]);
-        }
         int max = findMaxElement(freq);
-        //System.out.println(max);
         switch (max){
             case 0: return Card.Suit.HEARTS;
             case 1: return Card.Suit.SPADES;
