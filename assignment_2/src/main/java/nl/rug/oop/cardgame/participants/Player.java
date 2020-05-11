@@ -25,7 +25,14 @@ public class Player extends Participant {
         return null;
     }
 
-    /** Choose a card to play. Only allows a card that matches either the face or suit, or is an 8. */
+    /**
+     * Choose a card to play. Only allows a card that matches either the face or suit, or is an 8.
+     * @param printed If the first print has already been printed or not.
+     * @param faceDown The face down deck.
+     * @param faceUp The face up deck.
+     * @param face The face to be matched.
+     * @param suit The suit to be matched.
+     */
     public void playCard(boolean printed, Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit){
         if(!printed) {
             System.out.println("Which card do you want to play? (-1) Draw a card.");

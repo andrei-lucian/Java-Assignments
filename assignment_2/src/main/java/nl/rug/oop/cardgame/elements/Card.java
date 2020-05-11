@@ -2,6 +2,7 @@ package nl.rug.oop.cardgame.elements;
 
 /**
  * Represents the kinds of playing cards found in ubiquitous 54-card decks
+ * This deck has no jokers since they are not used in our game
  *
  * WARNING: enum types implement toString by default. This information is
  * used to load textures in view. If you override toString you may break
