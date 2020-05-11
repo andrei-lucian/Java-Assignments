@@ -6,10 +6,15 @@ import java.util.*;
 public class Deck {
 
     protected Stack<Card> cards;
+    Random random = new Random();
 
     /** Constructor */
     public Deck() {
         cards = new Stack<>();
+    }
+
+    public Card peekTopCard(){
+        return cards.peek();
     }
 
     /** Add all the cards to a deck */
@@ -20,6 +25,10 @@ public class Deck {
     /** Add a card to the top of the deck */
     public void addOnTop(Card card) {
         cards.push(card);
+    }
+
+    public void addAnywhere(Card card) {
+        cards.add(random.nextInt(cards.size()), card);
     }
 
     /** Return all the cards in a deck */

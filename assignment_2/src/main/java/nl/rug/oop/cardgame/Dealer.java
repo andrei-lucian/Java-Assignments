@@ -25,7 +25,12 @@ public class Dealer {
     /** Moves the top card of FaceDownDeck to the top of FaceUpDeck */
     public static void revealCard(Deck faceDown, Deck faceUp){
         Card newCard = faceDown.draw();
+        if (newCard.getFace() == Card.Face.EIGHT){
+            faceDown.addAnywhere(newCard);
+            revealCard(faceDown, faceUp);
+        }
         faceUp.addOnTop(newCard);
+        System.out.println("The card to match is: " + newCard);
     }
 
     /** Moves all the cards (except the top one) in

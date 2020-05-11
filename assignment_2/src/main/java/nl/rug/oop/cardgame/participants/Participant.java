@@ -26,6 +26,7 @@ public abstract class Participant {
     /** Put a card onto the FaceUp deck */
     public void putDownCard(Deck deck, Card card){
         deck.addOnTop(card);
+        this.cardList.remove(card);
     }
 
     /** Choose a suit - via interaction in Player, via algorithm in Computer */

@@ -61,9 +61,10 @@ public class Computer extends Participant {
                 cardOptions.add(myCard);
             }
         }
+        /*System.out.println("Computer response options:");
         for (Card card : cardOptions){
             System.out.println(card);
-        }
+        }*/
         return cardOptions;
     }
 
@@ -89,7 +90,7 @@ public class Computer extends Participant {
      * @param suit Suit to be matched.
      * @param face Face to be matched.
      */
-    public void playCard(Deck faceUp, Deck faceDown, Card.Suit suit, Card.Face face) {
+    public Card playCard(Deck faceUp, Deck faceDown, Card.Suit suit, Card.Face face) {
         ArrayList<Card> cardOptions = this.findCardOptions(suit, face);
         Card card;
         int noOfEights = countEights(cardOptions); //count the number of 8s in their hand
@@ -98,16 +99,19 @@ public class Computer extends Participant {
             card = cardOptions.get(0);
             this.putDownCard(faceUp, card);
             System.out.println("The computer played: " + card);
+            return card;
         }
 
         else if (cardOptions.size() > 1) {
             card = chooseCard(cardOptions, noOfEights);
             this.putDownCard(faceUp, card);
             System.out.println("The computer played: " + card);
+            return card;
         }
         else {
             this.drawCard(faceDown);
             System.out.println("The computer drew a card");
+            return null;
         }
     }
 
