@@ -13,6 +13,10 @@ public abstract class Participant {
         this.cardList = new ArrayList<>();
     }
 
+    public int noOfCards(){
+        return this.cardList.size();
+    }
+
     /** Draw a card from the FaceDown deck */
     public void drawCard(Deck deck){
         Card drawnCard = deck.draw();

@@ -19,7 +19,7 @@ public class Main {
         Dealer.deal5Cards(player, computer, FaceDownDeck);
         computer.inspectAllCards();
         ArrayList<Card> options = computer.findCardOptions(Card.Suit.SPADES, Card.Face.TEN);
-        System.out.println(computer.playCard(options, FaceDownDeck));
+        computer.playCard(FaceUpDeck, FaceDownDeck, Card.Suit.SPADES, Card.Face.TEN);
         //Card.Suit suit = computer.chooseSuit();
         //System.out.println(suit);
 

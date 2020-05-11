@@ -7,8 +7,7 @@ import java.util.Random;
 
 public class Computer extends Participant {
 
-    /** NOT IMPLEMENTED YET
-     * Choose the suit that appears the most in a computer's
+    /** Choose the suit that appears the most in a computer's
      * stack of cards, in case it deals an 8 */
     public Card.Suit chooseSuit(){
         int[] freq = new int[4];
@@ -44,8 +43,7 @@ public class Computer extends Participant {
         return index;
     }
 
-    /** NOT IMPLEMENTED YET
-     * Compare a card's suit and face to all the cards that the computer has
+    /** Compare a card's suit and face to all the cards that the computer has
      * and return a list of all the cards that can be used */
     public ArrayList<Card> findCardOptions(Card.Suit suit, Card.Face face) {
         ArrayList<Card> cardOptions = new ArrayList<>();
@@ -75,22 +73,25 @@ public class Computer extends Participant {
     /** Choose a card from the list of available cards
      * Draws a card if if there are no matching cards
      * Chooses the non-8 card if there is more than one option */
-    public Card playCard(ArrayList<Card> cardOptions, Deck deck) {
+    public void playCard(Deck faceUp, Deck faceDown, Card.Suit suit, Card.Face face) {
+        ArrayList<Card> cardOptions = this.findCardOptions(suit, face);
         Card card;
         int noOfEights = countEights(cardOptions); //count the number of 8s in their hand
 
         if (cardOptions.size() == 1) { //if there is only one card then play that card
-            return cardOptions.get(0);
+            card = cardOptions.get(0);
+            this.putDownCard(faceUp, card);
+            System.out.println("The computer played: " + card);
         }
 
         else if (cardOptions.size() > 1) {
-            return chooseCard(cardOptions, noOfEights);
+            card = chooseCard(cardOptions, noOfEights);
+            this.putDownCard(faceUp, card);
+            System.out.println("The computer played: " + card);
         }
-
         else {
-            this.drawCard(deck);
+            this.drawCard(faceDown);
             System.out.println("The computer drew a card");
-            return null;
         }
     }
 
@@ -103,7 +104,6 @@ public class Computer extends Participant {
             rand = r.nextInt(cardOptions.size() - 1);
             card = cardOptions.get(rand);
         }
-        System.out.println("The computer played: " + card);
         return card;
     }
 }
