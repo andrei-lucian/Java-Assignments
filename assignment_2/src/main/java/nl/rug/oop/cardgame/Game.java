@@ -9,28 +9,40 @@ public class Game {
     private static boolean exitGame = false;
     static Card playerCard;
     static Card computerCard;
+    static Card.Suit previousSuit;
+    static Card.Face previousFace;
 
     public static void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown,
                          Card.Face currentFace, Card.Suit currentSuit){
         while(!exitGame){
-            playerCard = player.playCard(false, faceDown, faceUp, currentFace, currentSuit);
-            checkWinCondition(player, computer);
-            if (faceDown.isEmpty()){
+            System.out.println("Card to match: "+ currentFace + "_" + currentSuit);
+            playerCard = player.playCard(false, faceDown, faceUp, currentFace, currentSuit); //player either puts down or draws a card
+            checkWinCondition(player, computer); //check if this results in the player winning
+            previousSuit = currentSuit;
+            previousFace = currentFace;
+            if (faceDown.isEmpty()){ //reset the deck if it's empty
                 Dealer.transferDeck(faceUp, faceDown);
                 System.out.println("Face down deck ran out, dealer switched it.");
             }
-            if (playerCard!= null && playerCard.getFace() == Card.Face.EIGHT){
+            if (playerCard!= null && playerCard.getFace() == Card.Face.EIGHT){ //choose a suit if an 8 is played
                 currentSuit = player.chooseSuit();
                 currentFace = null;
                 System.out.println("The suit has been switched to: " + currentSuit);
             }
             else {
-                currentSuit = faceUp.peekTopCard().getSuit();
-                currentFace = faceUp.peekTopCard().getFace();
+                if (playerCard != null){
+                    currentSuit = playerCard.getSuit();
+                    currentFace = playerCard.getFace();
+                }
+                else {
+                    currentSuit = previousSuit;
+                    currentFace = previousFace;
+                }
             }
-
-            computerCard = computer.playCard(faceUp, faceDown, currentSuit, currentFace);
+            computerCard = computer.playCard(faceUp, faceDown, currentSuit, currentFace); //same process as above but for computer
             checkWinCondition(player, computer);
+            previousSuit = currentSuit;
+            previousFace = currentFace;
             if (faceDown.isEmpty()){
                 Dealer.transferDeck(faceUp, faceDown);
                 System.out.println("Face down deck ran out, dealer reset it.");
@@ -38,11 +50,17 @@ public class Game {
             if (computerCard!= null && computerCard.getFace() == Card.Face.EIGHT){
                 currentSuit = computer.chooseSuit();
                 currentFace = null;
-                System.out.println("The computer played an 8 - the new suit is: " + currentSuit);
+                System.out.println("The suit has been switched to: " + currentSuit);
             }
             else {
-                currentSuit = faceUp.peekTopCard().getSuit();
-                currentFace = faceUp.peekTopCard().getFace();
+                if (computerCard != null){
+                    currentSuit = computerCard.getSuit();
+                    currentFace = computerCard.getFace();
+                }
+                else {
+                    currentSuit = previousSuit;
+                    currentFace = previousFace;
+                }
             }
         }
     }

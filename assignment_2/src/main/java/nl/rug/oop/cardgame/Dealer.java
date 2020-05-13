@@ -29,8 +29,10 @@ public class Dealer {
             faceDown.addAnywhere(newCard);
             revealCard(faceDown, faceUp);
         }
-        faceUp.addOnTop(newCard);
-        System.out.println("The card to match is: " + newCard);
+        else {
+            faceUp.addOnTop(newCard);
+            //System.out.println("First card: " + newCard);
+        }
     }
 
     /** Moves all the cards (except the top one) in

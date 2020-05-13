@@ -57,6 +57,4 @@ public class Game implements CatchNonInts {
         System.exit(0);
         exitGame = true;
     }
-    
-
 }
