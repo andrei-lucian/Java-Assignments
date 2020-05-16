@@ -29,6 +29,8 @@ public class Player extends Participant {
         boolean outOfBounds = true;
         int option = 0;
         while (outOfBounds) {
+            System.out.println("Which card do you want to play? (-1) Draw a card.");
+            this.inspectAllCards();
             option = CatchNonInts.inputOption();
             if (option < -1 || option >= this.noOfCards()) {
                 System.out.println("Not an option, try again.");
@@ -58,8 +60,6 @@ public class Player extends Participant {
      */
     public Card playCard(Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit) {
         while (true) {
-            System.out.println("Which card do you want to play? (-1) Draw a card.");
-            this.inspectAllCards();
             int option = chosenOption();
             if (option == -1) {
                 System.out.println("You drew a card");
