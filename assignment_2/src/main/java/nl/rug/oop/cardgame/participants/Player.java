@@ -25,6 +25,7 @@ public class Player extends Participant {
         return null;
     }
 
+    /** Player chooses a card from the terminal (within bounds) */
     private int chosenOption() {
         boolean outOfBounds = true;
         int option = 0;
@@ -41,6 +42,7 @@ public class Player extends Participant {
         return option;
     }
 
+    /** Makes sure the player selects a valid card */
     private boolean accordingToRules(Card card, Card.Face face, Card.Suit suit){
         if (card.getFace() == face || card.getSuit() == suit || card.getFace() == Card.Face.EIGHT) {
             return true;

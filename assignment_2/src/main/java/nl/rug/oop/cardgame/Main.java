@@ -1,5 +1,4 @@
 package nl.rug.oop.cardgame;
-import nl.rug.oop.cardgame.elements.Card;
 import nl.rug.oop.cardgame.elements.Deck;
 import nl.rug.oop.cardgame.participants.Computer;
 import nl.rug.oop.cardgame.participants.Player;

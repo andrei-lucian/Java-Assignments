@@ -31,7 +31,6 @@ public class Dealer {
         }
         else {
             faceUp.addOnTop(newCard);
-            //System.out.println("First card: " + newCard);
         }
     }
 

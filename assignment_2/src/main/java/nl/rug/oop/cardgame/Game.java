@@ -11,6 +11,7 @@ public class Game {
     static Card participantCard;
     static CurrentCard currentCard = new CurrentCard();
 
+    /** The main game loop where player and computer take turns */
     private static void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
             System.out.println("Card to match: "+ currentCard.getFace() + "_" + currentCard.getSuit());
@@ -19,6 +20,8 @@ public class Game {
         }
     }
 
+    /** Sets up the game (deals cards, reveals the top card,
+     * sets the current face and suit) and calls the game loop */
     public static void startGame(Player player, Computer computer, Deck faceUp, Deck faceDown){
         Dealer.deal5Cards(player, computer, faceDown);
         Dealer.revealCard(faceDown, faceUp);
@@ -27,6 +30,11 @@ public class Game {
         gameLoop(player, computer, faceUp, faceDown);
     }
 
+    /** A participant in the game takes a turn.
+     * 1. The participant places down or draws a card
+     * 2. The winning condition is checked
+     * 3. The faceDown deck is reset if it is empty
+     * 4. The new values for currentCard are set */
     private static void turn(Participant participant, CurrentCard currentCard, Deck faceDown, Deck faceUp){
         participantCard = participant.playCard(faceDown, faceUp, currentCard.getFace(), currentCard.getSuit()); //player either puts down or draws a card
         checkWinCondition(participant); //check if this results in the player winning
@@ -37,6 +45,8 @@ public class Game {
         setNewValues(currentCard, participant);
     }
 
+    /** Sets the new values (face and suit) for the currentCard object,
+     * depending on what the participant's action is */
     private static void setNewValues(CurrentCard currentCard, Participant participant) {
         if (participantCard != null) {
             currentCard.setFace(participantCard.getFace());

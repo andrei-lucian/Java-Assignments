@@ -61,10 +61,6 @@ public class Computer extends Participant {
                 cardOptions.add(myCard);
             }
         }
-        /*System.out.println("Computer response options:");
-        for (Card card : cardOptions){
-            System.out.println(card);
-        }*/
         return cardOptions;
     }
 
