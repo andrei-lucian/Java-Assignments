@@ -25,41 +25,55 @@ public class Player extends Participant {
         return null;
     }
 
+    private int chosenOption() {
+        boolean outOfBounds = true;
+        int option = 0;
+        while (outOfBounds) {
+            System.out.println("Which card do you want to play? (-1) Draw a card.");
+            this.inspectAllCards();
+            option = CatchNonInts.inputOption();
+            if (option < -1 || option >= this.noOfCards()) {
+                System.out.println("Not an option, try again.");
+            } else {
+                outOfBounds = false;
+            }
+        }
+        return option;
+    }
+
+    private boolean accordingToRules(Card card, Card.Face face, Card.Suit suit){
+        if (card.getFace() == face || card.getSuit() == suit || card.getFace() == Card.Face.EIGHT) {
+            return true;
+        }
+        else {
+            System.out.println("This card does not match the requirements, try again.");
+            return false;
+        }
+    }
+
     /**
      * Choose a card to play. Only allows a card that matches either the face or suit, or is an 8.
-     * @param printed If the first print has already been printed or not.
      * @param faceDown The face down deck.
      * @param faceUp The face up deck.
      * @param face The face to be matched.
      * @param suit The suit to be matched.
      */
-    public Card playCard(boolean printed, Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit){
-        if(!printed) {
-            System.out.println("Which card do you want to play? (-1) Draw a card.");
-            this.inspectAllCards();
-        }
-        int option = CatchNonInts.inputOption();
-        if (option < -1 || option >= this.noOfCards()){
-            System.out.println("Not an option, try again.");
-            playCard(true, faceDown, faceUp, face, suit);
-        }
-        else if (option == -1){
-            this.drawCard(faceDown);
-            System.out.println("You drew a card");
-            return null;
-        }
-        else {
-            Card card = this.cardList.get(option);
-            if (card.getFace() == face || card.getSuit() == suit || card.getFace() == Card.Face.EIGHT) {
-                this.putDownCard(faceUp, card);
-                System.out.println("You played:  " + card);
-                return card;
-            }
-            else {
-                System.out.println("This card does not match the requirements, try again.");
-                playCard(true, faceDown, faceUp, face, suit);
+    public Card playCard(Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit) {
+        while (true) {
+            int option = chosenOption();
+            if (option == -1) {
+                System.out.println("You drew a card");
+                this.drawCard(faceDown);
+                return null;
+            } else {
+                Card card = this.cardList.get(option);
+                if (accordingToRules(card, face, suit)) {
+                    this.putDownCard(faceUp, card);
+                    System.out.println("You played:  " + card);
+                    return card;
+                }
             }
         }
-        return null;
     }
+
 }
