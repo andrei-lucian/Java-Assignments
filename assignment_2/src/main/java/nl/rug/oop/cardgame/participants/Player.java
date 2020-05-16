@@ -62,6 +62,7 @@ public class Player extends Participant {
             this.inspectAllCards();
             int option = chosenOption();
             if (option == -1) {
+                System.out.println("You drew a card");
                 this.drawCard(faceDown);
                 return null;
             } else {
@@ -70,10 +71,9 @@ public class Player extends Participant {
                     this.putDownCard(faceUp, card);
                     System.out.println("You played:  " + card);
                     return card;
-                } else {
-                    continue;
                 }
             }
         }
     }
+
 }
