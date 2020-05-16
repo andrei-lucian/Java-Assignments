@@ -16,7 +16,7 @@ public class Game {
                          Card.Face currentFace, Card.Suit currentSuit){
         while(!exitGame){
             System.out.println("Card to match: "+ currentFace + "_" + currentSuit);
-            playerCard = player.playCard(false, faceDown, faceUp, currentFace, currentSuit); //player either puts down or draws a card
+            playerCard = player.playCard(faceDown, faceUp, currentFace, currentSuit); //player either puts down or draws a card
             checkWinCondition(player, computer); //check if this results in the player winning
             previousSuit = currentSuit;
             previousFace = currentFace;
