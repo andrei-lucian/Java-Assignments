@@ -17,11 +17,6 @@ public class Main {
         Deck FaceUpDeck = new Deck();
         Dealer.deal5Cards(player, computer, FaceDownDeck);
         Dealer.revealCard(FaceDownDeck, FaceUpDeck);
-        /*System.out.println("Computer cards:");
-        computer.inspectAllCards();
-        System.out.println("\nPlayer cards:");
-        player.inspectAllCards();*/
-
         Card.Suit currentSuit = FaceUpDeck.peekTopCard().getSuit();
         Card.Face currentFace = FaceUpDeck.peekTopCard().getFace();
 
