@@ -90,7 +90,7 @@ public class Computer extends Participant {
      * @param suit Suit to be matched.
      * @param face Face to be matched.
      */
-    public Card playCard(Deck faceUp, Deck faceDown, Card.Suit suit, Card.Face face) {
+    public Card playCard(Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit) {
         ArrayList<Card> cardOptions = this.findCardOptions(suit, face);
         Card card;
         int noOfEights = countEights(cardOptions); //count the number of 8s in their hand
