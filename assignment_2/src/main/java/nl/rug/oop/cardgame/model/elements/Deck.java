@@ -3,7 +3,7 @@ package nl.rug.oop.cardgame.model.elements;
 import java.util.*;
 
 /** A deck of cards with all the types of cards in it - implemented as a stack */
-public class Deck {
+public class Deck{
 
     protected Stack<Card> cards;
     Random random = new Random();

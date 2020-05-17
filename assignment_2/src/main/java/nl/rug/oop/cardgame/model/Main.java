@@ -10,11 +10,9 @@ public class Main {
 
     public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        new GameFrame();
-        Player player = new Player();
-        Computer computer = new Computer();
-        Deck FaceDownDeck = Dealer.newFaceDownDeck();
-        Deck FaceUpDeck = new Deck();
-        Game.startGame(player, computer, FaceUpDeck, FaceDownDeck);
+        Game game = new Game();
+        game.startGame();
+        System.out.println(game.faceUp.peekTopCard());
+        new GameFrame(game);
     }
 }

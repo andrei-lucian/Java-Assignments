@@ -28,7 +28,7 @@ public class CardBackTextures {
         textures = new EnumMap<>(CardBack.class);
         for (CardBack back : CardBack.values()) {
             BufferedImage texture = null;
-            String fileName = "target/classes/textures/" + back + ".png";
+            String fileName = "src/resources/textures/" + back + ".png";
             try {
                 File imgFile = new File(fileName);
                 texture = ImageIO.read(imgFile);
