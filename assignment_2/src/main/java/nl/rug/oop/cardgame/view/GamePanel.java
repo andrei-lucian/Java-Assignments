@@ -45,13 +45,17 @@ public class GamePanel extends JPanel implements Observer {
 
     private void paintFaceUpDeck(Graphics g) {
         int depth = 0;
+
         for (Card card : game.getFaceUp().getCards()) {
-            System.out.println(card);
+
             int posX = getWidth() - getSpacing() - cardWidth()
                     + depth - Card.values().length;
+
             int posY = getSpacing() + Y_OFFSET - CARD_SPACING * depth;
+
             g.drawImage(CardTextures.getTexture(card)
                     , posX, posY, cardWidth(), cardHeight(), this);
+
             g.drawRect(posX, posY, cardWidth(), cardHeight());
             ++depth;
         }
@@ -62,12 +66,14 @@ public class GamePanel extends JPanel implements Observer {
         BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
 
         for (depth = 0; depth < game.getFaceDown().getCards().size(); depth++) {
+
             int posX = getSpacing() + depth;
             int posY = getSpacing() + Y_OFFSET - CARD_SPACING * depth;
+
             g.drawImage(cardBackTexture, posX, posY, cardWidth(), cardHeight(), this);
             g.drawRect(posX, posY, cardWidth(), cardHeight());
         }
-/*
+        /*
         MovableCard dependency = drawGame.getMovableCard();
         if (dependency == null) {
             return;
@@ -76,7 +82,7 @@ public class GamePanel extends JPanel implements Observer {
         movableX = getSpacing() + depth + dependency.getRelativeX();
         movableY = getSpacing() + Y_OFFSET - CARD_SPACING * depth + dependency.getRelativeY();
         g.drawImage(cardBackTexture, movableX, movableY, cardWidth(), cardHeight(), this);
-        g.drawRect(movableX, movableY, cardWidth(), cardHeight());*/
+        g.drawRect(movableX, movableY, cardWidth(), cardHeight()); */
     }
 
     @Override
@@ -84,7 +90,6 @@ public class GamePanel extends JPanel implements Observer {
         super.paintComponent(g);
         paintAreas(g);
         paintFaceUpDeck(g);
-        System.out.println("hello");
         paintFaceDownDeck(g);
     }
 
@@ -111,6 +116,7 @@ public class GamePanel extends JPanel implements Observer {
      * width is 436, and cards are scaled depending on which dimension limits
      * their relative dimensions
      */
+
     public int cardHeight() {
         if ((getHeight() * CARD_HEIGHT) / (getWidth() * CARD_WIDTH) > 1.0)
             return (int) ((cardWidth() * CARD_HEIGHT) / CARD_WIDTH);

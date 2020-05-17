@@ -10,6 +10,7 @@ public class GameFrame extends JFrame {
     public GameFrame(Game game) {
         super("Crazy Eights");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         GamePanel panel = new GamePanel(game);
         add(panel);
         setPreferredSize(new Dimension(800, 600));

@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
         game.startGame();
-        System.out.println(game.faceUp.peekTopCard());
+        //System.out.println(game.faceUp.peekTopCard());
         new GameFrame(game);
     }
 }
