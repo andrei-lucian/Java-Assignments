@@ -30,7 +30,7 @@ public class CardTextures {
         textures = new EnumMap<>(Card.class);
         for (Card card : Card.values()) {
             BufferedImage texture = null;
-            String fileName = "target/classes/textures/" + card + ".png";
+            String fileName = "src/resources/textures/" + card + ".png";
             try {
                 File imgFile = new File(fileName);
                 texture = ImageIO.read(imgFile);

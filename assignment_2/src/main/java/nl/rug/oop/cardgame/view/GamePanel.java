@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Observer {
 
     private void paintFaceUpDeck(Graphics g) {
         int depth = 0;
-        for (Card card : game.getFaceDown().getCards()) {
+        for (Card card : game.getFaceUp().getCards()) {
             System.out.println(card);
             int posX = getWidth() - getSpacing() - cardWidth()
                     + depth - Card.values().length;
@@ -83,7 +83,7 @@ public class GamePanel extends JPanel implements Observer {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         paintAreas(g);
-       // paintFaceDownDeck(g);
+        paintFaceUpDeck(g);
         System.out.println("hello");
         paintFaceDownDeck(g);
     }
