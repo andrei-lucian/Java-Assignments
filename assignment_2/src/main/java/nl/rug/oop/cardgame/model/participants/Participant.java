@@ -9,6 +9,10 @@ public abstract class Participant {
 
     protected ArrayList<Card> cardList;
 
+    public ArrayList<Card> getCardList() {
+        return cardList;
+    }
+
     public Participant(){
         this.cardList = new ArrayList<>();
     }

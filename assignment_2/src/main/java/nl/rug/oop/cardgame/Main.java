@@ -1,4 +1,5 @@
-package nl.rug.oop.cardgame.model;
+package nl.rug.oop.cardgame;
+import nl.rug.oop.cardgame.model.Game;
 import nl.rug.oop.cardgame.view.GameFrame;
 import nl.rug.oop.cardgame.model.elements.Deck;
 import nl.rug.oop.cardgame.model.participants.Computer;
@@ -13,6 +14,6 @@ public class Main {
         Game game = new Game();
         game.startGame();
         //System.out.println(game.faceUp.peekTopCard());
-        new GameFrame(game);
+        //new GameFrame(game);
     }
 }

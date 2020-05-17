@@ -4,6 +4,8 @@ import nl.rug.oop.cardgame.model.elements.Deck;
 import nl.rug.oop.cardgame.model.participants.Computer;
 import nl.rug.oop.cardgame.model.participants.Participant;
 import nl.rug.oop.cardgame.model.participants.Player;
+import nl.rug.oop.cardgame.view.GameFrame;
+import nl.rug.oop.cardgame.view.GamePanel;
 
 import java.util.Observable;
 
@@ -27,13 +29,15 @@ public class Game extends Observable {
     Deck faceUp = new Deck();
 
     /** The main game loop where player and computer take turns */
-    /*private static void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
+    private void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
+        GameFrame gameFrame = new GameFrame(this);
         while(!exitGame){
             System.out.println("Card to match: "+ currentCard.getFace() + "_" + currentCard.getSuit());
             turn(player, currentCard, faceDown, faceUp);
             turn(computer, currentCard, faceDown, faceUp);
+            gameFrame.repaint();
         }
-    }*/
+    }
 
     /** Sets up the game (deals cards, reveals the top card,
      * sets the current face and suit) and calls the game loop */
@@ -42,6 +46,7 @@ public class Game extends Observable {
         Dealer.revealCard(faceDown, faceUp);
         currentCard.setFace(faceUp.peekTopCard().getFace());
         currentCard.setSuit(faceUp.peekTopCard().getSuit());
+        gameLoop(player, computer, faceUp, faceDown);
     }
 
     /** A participant in the game takes a turn.

@@ -13,7 +13,7 @@ public class GameFrame extends JFrame {
         setResizable(false);
         GamePanel panel = new GamePanel(game);
         add(panel);
-        setPreferredSize(new Dimension(800, 600));
+        setPreferredSize(new Dimension(1200, 800));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);

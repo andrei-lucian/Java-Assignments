@@ -16,10 +16,10 @@ public class GamePanel extends JPanel implements Observer {
 
     private static final Color BACKGROUND_COLOR = new Color(10, 120, 81, 255);
     private Game game;
-    private static final int CARD_SPACING = 2;
+    private static final int CARD_SPACING = 1;
     private static final int Y_OFFSET = Card.values().length * CARD_SPACING;
-    private static final double CARD_WIDTH = 436.0;
-    private static final double CARD_HEIGHT = 600.0;
+    private static final double CARD_WIDTH = 43.6;
+    private static final double CARD_HEIGHT = 60.0;
 
     public GamePanel(Game game) {
         this.game = game;
@@ -59,6 +59,10 @@ public class GamePanel extends JPanel implements Observer {
             g.drawRect(posX, posY, cardWidth(), cardHeight());
             ++depth;
         }
+    }
+
+    public void updateFrame(){
+        repaint();
     }
 
     private void paintFaceDownDeck(Graphics g) {
