@@ -7,6 +7,7 @@ import nl.rug.oop.cardgame.model.participants.Player;
 import nl.rug.oop.cardgame.view.GameFrame;
 import nl.rug.oop.cardgame.view.GamePanel;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 public class Game extends Observable {
@@ -23,6 +24,16 @@ public class Game extends Observable {
 
     public Deck getFaceUp() {
         return faceUp;
+    }
+
+    public ArrayList<Card> playerHand() {
+        ArrayList<Card> playerHand = player.getCardList();
+        return playerHand;
+    }
+
+    public ArrayList<Card> computerHand() {
+        ArrayList<Card> computerHand = player.getCardList();
+        return computerHand;
     }
 
     Deck faceDown = Dealer.newFaceDownDeck();

@@ -61,10 +61,6 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
-    public void updateFrame(){
-        repaint();
-    }
-
     private void paintFaceDownDeck(Graphics g) {
         int depth;
         BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
