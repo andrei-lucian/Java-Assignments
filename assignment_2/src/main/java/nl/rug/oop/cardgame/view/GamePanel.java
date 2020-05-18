@@ -109,7 +109,7 @@ public class GamePanel extends JPanel implements Observer {
 
             g.drawRect(drawPosX + move, posY, cardWidth(), cardHeight());
 
-            int boundPosX = (int) ((getWidth() / 2));
+            int boundPosX = (int) ((getWidth() / 2) + (cardWidth()/4));
             Rectangle bounds = new Rectangle(boundPosX - move, posY, cardWidth(), cardHeight());
             mapCards.put(boundCard, bounds);
             move += cardWidth() / 2;
