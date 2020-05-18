@@ -72,7 +72,6 @@ public class CardClicker extends MouseInputAdapter implements ReverseArrayList {
             }
         }
     }
-    }
 
     /**
      * When the top card is released with the mouse in the discard square,

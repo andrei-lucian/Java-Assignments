@@ -42,6 +42,7 @@ public class GamePanel extends JPanel implements Observer {
         setBackground(BACKGROUND_COLOR);
         setVisible(true);
         setOpaque(true);
+        addMouseListener(new CardClicker(this.game, this));
         game.addObserver(this);
     }
 
