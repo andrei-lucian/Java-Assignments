@@ -35,7 +35,7 @@ public class Game extends Observable {
     }
 
     public ArrayList<Card> getComputerHand() {
-        return player.getCardList();
+        return computer.getCardList();
     }
 
     Deck faceDown = Dealer.newFaceDownDeck();

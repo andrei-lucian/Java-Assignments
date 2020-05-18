@@ -46,12 +46,12 @@ public class CardClicker extends MouseInputAdapter {
                 break;
             }
         }
-//        Rectangle deckBounds;
-//        deckBounds = panel.getDrawBounds().get(panel.getLastCard());
-//        if (deckBounds.contains(event.getPoint())){
-//            game.getPlayer().drawCard(game.getFaceDown());
-//            panel.repaint();
-//        }
+        Rectangle deckBounds;
+        deckBounds = panel.getDrawBounds().get(panel.getLastCard());
+        if (deckBounds.contains(event.getPoint())){
+            game.getPlayer().drawCard(game.getFaceDown());
+            panel.repaint();
+        }
     }
 
 }
