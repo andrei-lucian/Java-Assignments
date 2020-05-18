@@ -26,6 +26,10 @@ public class Game extends Observable {
         return faceUp;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
     public ArrayList<Card> getPlayerHand() {
         return player.getCardList();
     }
@@ -95,4 +99,3 @@ public class Game extends Observable {
         }
     }
 }
-

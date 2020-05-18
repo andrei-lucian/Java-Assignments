@@ -17,12 +17,13 @@ import java.util.Observer;
 public class GamePanel extends JPanel implements Observer {
 
     private static final Color BACKGROUND_COLOR = new Color(10, 120, 81, 255);
-    private Game game;
+    private final Game game;
     private static final int CARD_SPACING = 1;
     private static final int Y_OFFSET = Card.values().length * CARD_SPACING;
     private static final double CARD_WIDTH = 43.6;
     private static final double CARD_HEIGHT = 60.0;
-    private Map<Card, Rectangle> mapCards;
+    private final Map<Card, Rectangle> mapCards;
+    private HashMap drawCards;
     private Card selected;
 
     public Card getSelected() {
@@ -45,21 +46,12 @@ public class GamePanel extends JPanel implements Observer {
         addMouseListener(new CardClicker(this.game, this));
         game.addObserver(this);
         mapCards = new HashMap<>(game.getPlayerHand().size()* 5);
+        drawCards = new HashMap<>();
     }
 
     public void update(Observable observed, Object message) {
         repaint();
     }
-
-    private void paintAreas(Graphics g) {
-        g.setColor(Color.YELLOW);
-//        g.drawRect(0, 0, getWidth() / 2, getHeight() - 1);
-//        g.drawString("Deck Area", getWidth() / 4, 10);
-//        g.drawRect(getWidth() / 2, 0, getWidth() / 2 - 1, getHeight() - 1);
-//        g.drawString("Discard Area", 3 * (getWidth() / 4), 10);
-        g.setColor(Color.BLACK);
-    }
-
 
     private void paintFaceUpDeck(Graphics g) {
         int depth = 0;
@@ -79,40 +71,62 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
+    public Map<Card, Rectangle> getDrawBounds() {
+        return drawCards;
+    }
+
+    private Card lastCard;
+
+    public Card getLastCard() {
+        return lastCard;
+    }
+
     private void paintFaceDownDeck(Graphics g) {
-        int depth;
+        int depth = 0;
         BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
+        int posX = 0;
+        int posY = 0;
 
-        for (depth = 0; depth < game.getFaceDown().getCards().size(); depth++) {
+        for (Card card : game.getFaceDown().getCards()) {
 
-            int posX = getSpacing() + depth;
-            int posY = getSpacing() + Y_OFFSET - CARD_SPACING * depth;
+            posX = getSpacing() + depth;
+            posY = getSpacing() + Y_OFFSET - CARD_SPACING * depth;
 
             g.drawImage(cardBackTexture, posX, posY, cardWidth(), cardHeight(), this);
             g.drawRect(posX, posY, cardWidth(), cardHeight());
+
+//            drawCards.put(card, bounds);
+            lastCard = card;
+            depth++;
+        }
+        Rectangle bounds = new Rectangle(posX, posY, cardWidth(), cardHeight());
+        drawCards.put(lastCard, bounds);
+        System.out.println(bounds);
+    }
+
+    public void paintPlayerHand() {
+        mapCards.clear();
+        int move = cardWidth() / 2;
+        int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
+        int posY = (getHeight() - 20) - cardHeight();
+        for (Card card : game.getPlayerHand()) {
+
+            Rectangle bounds = new Rectangle(posX + move, posY, cardWidth(), cardHeight());
+            mapCards.put(card, bounds);
+            posX += cardWidth() / 2;
         }
     }
 
-    private void paintPlayerHand(Graphics g) {
-        int move = 0;
-        int size = game.getPlayerHand().size();
-        for (int x = 0; x < size; x++){
-            Card drawCard = game.getPlayerHand().get(x);
+    private void paintCard(Graphics g){
+        paintPlayerHand();
+        for (Card card : game.getPlayerHand()) {
+            Rectangle bounds = mapCards.get(card);
+            if (bounds != null) {
+                g.drawImage(CardTextures.getTexture(card)
+                        , bounds.x, bounds.y, cardWidth(), cardHeight(), this);
 
-            Card boundCard = game.getPlayerHand().get(size-1-x);
-
-            int drawPosX = (int) ((getWidth() / 2) - (cardWidth() * (size / 4.0)));
-            int posY = (getHeight() - 20) - cardHeight();
-
-            g.drawImage(CardTextures.getTexture(drawCard)
-                    , drawPosX + move, posY, cardWidth(), cardHeight(), this);
-
-            g.drawRect(drawPosX + move, posY, cardWidth(), cardHeight());
-
-            int boundPosX = (int) ((getWidth() / 2) + (cardWidth()/4));
-            Rectangle bounds = new Rectangle(boundPosX - move, posY, cardWidth(), cardHeight());
-            mapCards.put(boundCard, bounds);
-            move += cardWidth() / 2;
+                g.drawRect(bounds.x, bounds.y, cardWidth(), cardHeight());
+            }
         }
     }
 
@@ -134,8 +148,7 @@ public class GamePanel extends JPanel implements Observer {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        paintAreas(g);
-        paintPlayerHand(g);
+        paintCard(g);
         paintComputerHand(g);
         paintFaceDownDeck(g);
         paintFaceUpDeck(g);
