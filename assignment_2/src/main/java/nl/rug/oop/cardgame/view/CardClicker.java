@@ -28,21 +28,11 @@ public class CardClicker extends MouseInputAdapter implements ReverseArrayList {
     public CardClicker(Game game, GamePanel panel) {
         this.game = game;
         this.panel = panel;
-        panel.addMouseListener(this);
-        panel.addMouseMotionListener(this);
     }
 
-    /**
-     * If the mouse button is pressed in the area where the top card is
-     * drawn (obviously a lack of drawable cards makes this impossible)
-     * that card is 'selected' so it can be dragged.
-     *
-     * @param event The MouseEvent needed to locate the position of the cursor
-     */
     @Override
     public void mousePressed(MouseEvent event) {
         if (panel.getSelected() != null) {
-            System.out.println(panel.getSelected());
             Rectangle bounds = panel.getMapCards().get(panel.getSelected());
             bounds.y += 20;
             panel.repaint();
@@ -51,10 +41,14 @@ public class CardClicker extends MouseInputAdapter implements ReverseArrayList {
         // This is done backwards, as the last card is on
         // top.  Of course you could render the cards
         // in reverse order, but you get the idea
-        for (Card card : ReverseArrayList.reverse(game.getPlayerHand())) {
+        for (Card card : game.getPlayerHand()) {
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
                 panel.setSelected(card);
+                System.out.println(panel.getSelected());
+                int counter = 0;
+                counter += 1;
+                System.out.println(counter);
                 bounds.y -= 20;
                 panel.repaint();
                 break;
