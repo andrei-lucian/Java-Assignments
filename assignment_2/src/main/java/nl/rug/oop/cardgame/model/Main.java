@@ -1,4 +1,4 @@
-package nl.rug.oop.cardgame;
+package nl.rug.oop.cardgame.model;
 import nl.rug.oop.cardgame.model.Game;
 import nl.rug.oop.cardgame.view.GameFrame;
 import nl.rug.oop.cardgame.model.elements.Deck;

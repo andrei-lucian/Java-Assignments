@@ -5,7 +5,6 @@ import nl.rug.oop.cardgame.model.participants.Computer;
 import nl.rug.oop.cardgame.model.participants.Participant;
 import nl.rug.oop.cardgame.model.participants.Player;
 import nl.rug.oop.cardgame.view.GameFrame;
-import nl.rug.oop.cardgame.view.GamePanel;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -17,6 +16,7 @@ public class Game extends Observable {
     CurrentCard currentCard = new CurrentCard();
     Player player = new Player();
     Computer computer = new Computer();
+    private GameFrame gameFrame = new GameFrame(this);
 
     public Deck getFaceDown() {
         return faceDown;
@@ -41,12 +41,10 @@ public class Game extends Observable {
 
     /** The main game loop where player and computer take turns */
     private void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
-        GameFrame gameFrame = new GameFrame(this);
         while(!exitGame){
             System.out.println("Card to match: "+ currentCard.getFace() + "_" + currentCard.getSuit());
             turn(player, currentCard, faceDown, faceUp);
             turn(computer, currentCard, faceDown, faceUp);
-            gameFrame.repaint();
         }
     }
 
@@ -73,6 +71,7 @@ public class Game extends Observable {
             System.out.println("Face down deck ran out, dealer switched it.");
         }
         setNewValues(currentCard, participant);
+        gameFrame.repaint();
     }
 
     /** Sets the new values (face and suit) for the currentCard object,

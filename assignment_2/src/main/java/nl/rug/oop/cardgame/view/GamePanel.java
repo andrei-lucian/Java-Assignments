@@ -61,31 +61,6 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
-    private void paintPlayerHand(Graphics g) {
-        int move = 0;
-        for (Card card : game.getPlayerHand()) {
-
-            int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
-            int posY = (getHeight() - 20) - cardHeight();
-
-            g.drawImage(CardTextures.getTexture(card)
-                    , posX + move, posY, cardWidth(), cardHeight(), this);
-
-            g.drawRect(posX + move, posY, cardWidth(), cardHeight());
-            move += cardWidth() / 2;
-        }
-
-
-    }
-
-    private void paintComputerHand(Graphics g) {
-
-        for (Card card : game.getComputerHand()) {
-
-
-        }
-    }
-
     private void paintFaceDownDeck(Graphics g) {
         int depth;
         BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
@@ -110,13 +85,45 @@ public class GamePanel extends JPanel implements Observer {
         g.drawRect(movableX, movableY, cardWidth(), cardHeight()); */
     }
 
+    private void paintPlayerHand(Graphics g) {
+        int move = 0;
+        for (Card card : game.getPlayerHand()) {
+
+            int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
+            int posY = (getHeight() - 20) - cardHeight();
+
+            g.drawImage(CardTextures.getTexture(card)
+                    , posX + move, posY, cardWidth(), cardHeight(), this);
+
+            g.drawRect(posX + move, posY, cardWidth(), cardHeight());
+            move += cardWidth() / 2;
+        }
+    }
+
+    private void paintComputerHand(Graphics g) {
+        BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
+        int move = 0;
+        for (Card card : game.getComputerHand()) {
+
+            int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
+            int posY = 20;
+
+            g.drawImage(cardBackTexture
+                    , posX + move, posY, cardWidth(), cardHeight(), this);
+
+            g.drawRect(posX + move, posY, cardWidth(), cardHeight());
+            move += cardWidth() / 2;
+        }
+    }
+
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         paintAreas(g);
-        paintFaceUpDeck(g);
-        paintFaceDownDeck(g);
         paintPlayerHand(g);
+        paintComputerHand(g);
+        paintFaceDownDeck(g);
+        paintFaceUpDeck(g);
     }
 
     /**
