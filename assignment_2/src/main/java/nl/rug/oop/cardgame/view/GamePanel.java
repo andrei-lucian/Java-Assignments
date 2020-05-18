@@ -9,6 +9,8 @@ import nl.rug.oop.cardgame.view.textures.CardTextures;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -20,6 +22,20 @@ public class GamePanel extends JPanel implements Observer {
     private static final int Y_OFFSET = Card.values().length * CARD_SPACING;
     private static final double CARD_WIDTH = 43.6;
     private static final double CARD_HEIGHT = 60.0;
+    private Map<Card, Rectangle> mapCards;
+    private Card selected;
+
+    public Card getSelected() {
+        return selected;
+    }
+
+    public Map<Card, Rectangle> getMapCards() {
+        return this.mapCards;
+    }
+
+    public void setSelected(Card selected) {
+        this.selected = selected;
+    }
 
     public GamePanel(Game game) {
         this.game = game;
@@ -96,6 +112,9 @@ public class GamePanel extends JPanel implements Observer {
                     , posX + move, posY, cardWidth(), cardHeight(), this);
 
             g.drawRect(posX + move, posY, cardWidth(), cardHeight());
+
+            Rectangle bounds = new Rectangle(posX + move, posY, cardWidth(), cardHeight());
+            mapCards.put(card, bounds);
             move += cardWidth() / 2;
         }
     }
@@ -105,7 +124,7 @@ public class GamePanel extends JPanel implements Observer {
         int move = 0;
         for (Card card : game.getComputerHand()) {
 
-            int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
+            int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getComputerHand().size() / 4.0)));
             int posY = 20;
 
             g.drawImage(cardBackTexture

@@ -27,13 +27,11 @@ public class Game extends Observable {
     }
 
     public ArrayList<Card> getPlayerHand() {
-        ArrayList<Card> playerHand = player.getCardList();
-        return playerHand;
+        return player.getCardList();
     }
 
     public ArrayList<Card> getComputerHand() {
-        ArrayList<Card> computerHand = player.getCardList();
-        return computerHand;
+        return player.getCardList();
     }
 
     Deck faceDown = Dealer.newFaceDownDeck();
