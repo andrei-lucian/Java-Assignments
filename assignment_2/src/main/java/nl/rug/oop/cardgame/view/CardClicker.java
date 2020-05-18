@@ -7,7 +7,6 @@ import nl.rug.oop.cardgame.model.utils.ReverseArrayList;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.util.Collections;
 
 public class CardClicker extends MouseInputAdapter implements ReverseArrayList {
 
@@ -18,16 +17,6 @@ public class CardClicker extends MouseInputAdapter implements ReverseArrayList {
      * Boolean denoting whether a card is selected.
      */
     private boolean selected;
-
-    /**
-     * Starting x position of a mousePressed. Used for dragging.
-     */
-    private int startX;
-
-    /**
-     * Starting y position of a mousePressed. Used for dragging.
-     */
-    private int startY;
 
     /**
      * Create a new card dragger that receives mouse events from the DrawPanel

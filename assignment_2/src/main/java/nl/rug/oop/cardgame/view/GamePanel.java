@@ -91,16 +91,6 @@ public class GamePanel extends JPanel implements Observer {
             g.drawImage(cardBackTexture, posX, posY, cardWidth(), cardHeight(), this);
             g.drawRect(posX, posY, cardWidth(), cardHeight());
         }
-        /*
-        MovableCard dependency = drawGame.getMovableCard();
-        if (dependency == null) {
-            return;
-        }
-
-        movableX = getSpacing() + depth + dependency.getRelativeX();
-        movableY = getSpacing() + Y_OFFSET - CARD_SPACING * depth + dependency.getRelativeY();
-        g.drawImage(cardBackTexture, movableX, movableY, cardWidth(), cardHeight(), this);
-        g.drawRect(movableX, movableY, cardWidth(), cardHeight()); */
     }
 
     private void paintPlayerHand(Graphics g) {
@@ -124,8 +114,7 @@ public class GamePanel extends JPanel implements Observer {
     private void paintComputerHand(Graphics g) {
         BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
         int move = 0;
-        for (Card card : game.getComputerHand()) {
-
+        for(int x = 0; x <= game.getComputerHand().size(); x++) {
             int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getComputerHand().size() / 4.0)));
             int posY = 20;
 
