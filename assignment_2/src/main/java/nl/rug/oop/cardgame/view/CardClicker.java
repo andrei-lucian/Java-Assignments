@@ -2,13 +2,14 @@ package nl.rug.oop.cardgame.view;
 
 import nl.rug.oop.cardgame.model.Game;
 import nl.rug.oop.cardgame.model.elements.Card;
+import nl.rug.oop.cardgame.model.utils.ReverseArrayList;
 
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.Collections;
 
-public class CardClicker extends MouseInputAdapter {
+public class CardClicker extends MouseInputAdapter implements ReverseArrayList {
 
     private Game game;
     private GamePanel panel;
@@ -61,7 +62,7 @@ public class CardClicker extends MouseInputAdapter {
         // This is done backwards, as the last card is on
         // top.  Of course you could render the cards
         // in reverse order, but you get the idea
-        for (Card card : Collections.reverse( )) {
+        for (Card card : ReverseArrayList.reverse(game.getPlayerHand())) {
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
                 panel.setSelected(card);
