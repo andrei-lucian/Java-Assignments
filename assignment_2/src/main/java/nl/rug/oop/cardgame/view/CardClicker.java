@@ -46,9 +46,6 @@ public class CardClicker extends MouseInputAdapter implements ReverseArrayList {
             if (bounds.contains(event.getPoint())) {
                 panel.setSelected(card);
                 System.out.println(panel.getSelected());
-                int counter = 0;
-                counter += 1;
-                System.out.println(counter);
                 bounds.y -= 20;
                 panel.repaint();
                 break;
