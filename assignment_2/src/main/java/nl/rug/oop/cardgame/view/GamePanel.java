@@ -62,7 +62,7 @@ public class GamePanel extends JPanel implements Observer {
     }
 
     private void paintPlayerHand(Graphics g) {
-        int move = cardWidth() / 2;
+        int move = 0;
         for (Card card : game.getPlayerHand()) {
 
             int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
