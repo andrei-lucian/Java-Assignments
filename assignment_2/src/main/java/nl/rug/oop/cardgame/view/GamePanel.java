@@ -9,7 +9,7 @@ import nl.rug.oop.cardgame.view.textures.CardTextures;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -44,6 +44,7 @@ public class GamePanel extends JPanel implements Observer {
         setOpaque(true);
         addMouseListener(new CardClicker(this.game, this));
         game.addObserver(this);
+        mapCards = new HashMap<>(game.getPlayerHand().size()* 5);
     }
 
     public void update(Observable observed, Object message) {
