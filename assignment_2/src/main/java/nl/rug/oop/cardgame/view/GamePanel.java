@@ -102,7 +102,7 @@ public class GamePanel extends JPanel implements Observer {
 
             g.drawImage(CardTextures.getTexture(card)
                     , posX + move, posY, cardWidth(), cardHeight(), this);
-
+            System.out.println("player cards drawn");
             g.drawRect(posX + move, posY, cardWidth(), cardHeight());
 
             Rectangle bounds = new Rectangle(posX + move, posY, cardWidth(), cardHeight());
