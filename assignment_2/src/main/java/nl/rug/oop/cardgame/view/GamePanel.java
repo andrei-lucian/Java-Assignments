@@ -35,10 +35,10 @@ public class GamePanel extends JPanel implements Observer {
 
     private void paintAreas(Graphics g) {
         g.setColor(Color.YELLOW);
-        g.drawRect(0, 0, getWidth() / 2, getHeight() - 1);
-        g.drawString("Deck Area", getWidth() / 4, 10);
-        g.drawRect(getWidth() / 2, 0, getWidth() / 2 - 1, getHeight() - 1);
-        g.drawString("Discard Area", 3 * (getWidth() / 4), 10);
+//        g.drawRect(0, 0, getWidth() / 2, getHeight() - 1);
+//        g.drawString("Deck Area", getWidth() / 4, 10);
+//        g.drawRect(getWidth() / 2, 0, getWidth() / 2 - 1, getHeight() - 1);
+//        g.drawString("Discard Area", 3 * (getWidth() / 4), 10);
         g.setColor(Color.BLACK);
     }
 
@@ -58,6 +58,29 @@ public class GamePanel extends JPanel implements Observer {
 
             g.drawRect(posX, posY, cardWidth(), cardHeight());
             ++depth;
+        }
+    }
+
+    private void paintPlayerHand(Graphics g) {
+
+        for (Card card : game.getPlayerHand()) {
+
+            int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
+            int posY = (getHeight() - 20) - cardHeight();
+
+            g.drawImage(CardTextures.getTexture(card)
+                    , posX, posY, cardWidth(), cardHeight(), this);
+
+            g.drawRect(posX, posY, cardWidth(), cardHeight());
+        }
+
+    }
+
+    private void paintComputerHand(Graphics g) {
+
+        for (Card card : game.getComputerHand()) {
+
+
         }
     }
 
@@ -91,6 +114,7 @@ public class GamePanel extends JPanel implements Observer {
         paintAreas(g);
         paintFaceUpDeck(g);
         paintFaceDownDeck(g);
+        paintPlayerHand(g);
     }
 
     /**

@@ -26,12 +26,12 @@ public class Game extends Observable {
         return faceUp;
     }
 
-    public ArrayList<Card> playerHand() {
+    public ArrayList<Card> getPlayerHand() {
         ArrayList<Card> playerHand = player.getCardList();
         return playerHand;
     }
 
-    public ArrayList<Card> computerHand() {
+    public ArrayList<Card> getComputerHand() {
         ArrayList<Card> computerHand = player.getCardList();
         return computerHand;
     }
