@@ -95,18 +95,23 @@ public class GamePanel extends JPanel implements Observer {
 
     private void paintPlayerHand(Graphics g) {
         int move = 0;
-        for (Card card : game.getPlayerHand()) {
+        int size = game.getPlayerHand().size();
+        for (int x = 0; x < size; x++){
+            Card drawCard = game.getPlayerHand().get(x);
 
-            int posX = (int) ((getWidth() / 2) + (cardWidth() * (game.getPlayerHand().size() / 4.0)));
+            Card boundCard = game.getPlayerHand().get(size-1-x);
+
+            int drawPosX = (int) ((getWidth() / 2) - (cardWidth() * (size / 4.0)));
             int posY = (getHeight() - 20) - cardHeight();
 
-            g.drawImage(CardTextures.getTexture(card)
-                    , posX - move, posY, cardWidth(), cardHeight(), this);
+            g.drawImage(CardTextures.getTexture(drawCard)
+                    , drawPosX + move, posY, cardWidth(), cardHeight(), this);
 
-            g.drawRect(posX - move, posY, cardWidth(), cardHeight());
+            g.drawRect(drawPosX + move, posY, cardWidth(), cardHeight());
 
-            Rectangle bounds = new Rectangle(posX - move, posY, cardWidth(), cardHeight());
-            mapCards.put(card, bounds);
+            int boundPosX = (int) ((getWidth() / 2));
+            Rectangle bounds = new Rectangle(boundPosX - move, posY, cardWidth(), cardHeight());
+            mapCards.put(boundCard, bounds);
             move += cardWidth() / 2;
         }
     }
