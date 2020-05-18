@@ -30,7 +30,6 @@ public class CardClicker extends MouseInputAdapter implements ReverseArrayList {
         this.panel = panel;
         panel.addMouseListener(this);
         panel.addMouseMotionListener(this);
-        selected = false;
     }
 
     /**
@@ -43,7 +42,8 @@ public class CardClicker extends MouseInputAdapter implements ReverseArrayList {
     @Override
     public void mousePressed(MouseEvent event) {
         if (panel.getSelected() != null) {
-            Rectangle bounds = panel.getMapCards().get(selected);
+            System.out.println(panel.getSelected());
+            Rectangle bounds = panel.getMapCards().get(panel.getSelected());
             bounds.y += 20;
             panel.repaint();
         }
