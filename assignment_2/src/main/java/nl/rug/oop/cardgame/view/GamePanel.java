@@ -9,12 +9,9 @@ import nl.rug.oop.cardgame.view.textures.CardTextures;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
-public class GamePanel extends JPanel implements Observer {
+public class GamePanel extends JPanel implements Observer{
 
     private static final Color BACKGROUND_COLOR = new Color(10, 120, 81, 255);
     private final Game game;
@@ -22,22 +19,11 @@ public class GamePanel extends JPanel implements Observer {
     private static final int Y_OFFSET = Card.values().length * CARD_SPACING;
     private static final double CARD_WIDTH = 43.6;
     private static final double CARD_HEIGHT = 60.0;
-    private final Map<Card, Rectangle> mapCards;
-    private final HashMap<Card, Rectangle> drawCards;
-    private Card selected;
-    private Card lastCard;
-
-    public Card getSelected() {
-        return selected;
-    }
-
-    public Map<Card, Rectangle> getMapCards() {
-        return this.mapCards;
-    }
-
-    public void setSelected(Card selected) {
-        this.selected = selected;
-    }
+    private Map<ClickableCard, Rectangle> playerCards;
+    private HashMap<Card, Rectangle> drawCards;
+    private ClickableCard selected;
+    private Card hovered;
+    private Card topCard;
 
     public GamePanel(Game game) {
         this.game = game;
@@ -46,8 +32,42 @@ public class GamePanel extends JPanel implements Observer {
         setOpaque(true);
         addMouseListener(new CardClicker(this.game, this));
         game.addObserver(this);
-        mapCards = new HashMap<>(game.getPlayerHand().size()* 5);
+        playerCards = new HashMap<>(game.getPlayerCards().size()* 5);
         drawCards = new HashMap<>();
+    }
+
+    /** Return the HashMap of cards and the
+     * rectangle defining their bounds */
+    public Map<ClickableCard, Rectangle> getPlayerCards() {
+        return this.playerCards;
+    }
+
+    /** Return the bounds of a card */
+    public Map<Card, Rectangle> getDrawBounds() {
+        return drawCards;
+    }
+
+    /** Return the selected card */
+    public ClickableCard getSelected() {
+        return selected;
+    }
+
+    /** Set the selected card */
+    public void setSelected(ClickableCard selected) {
+        this.selected = selected;
+    }
+
+    public Card getHovered() {
+        return hovered;
+    }
+
+    public void setHovered(Card hovered) {
+        this.hovered = hovered;
+    }
+
+    /** Return the last card of the faceDown deck */
+    public Card getTopCard() {
+        return topCard;
     }
 
     private void paintFaceUpDeck(Graphics g) {
@@ -68,35 +88,25 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
-    public Map<Card, Rectangle> getDrawBounds() {
-        return drawCards;
-    }
-
-    public Card getLastCard() {
-        return lastCard;
-    }
-
     private void paintFaceDownDeck(Graphics g) {
         int depth = 0;
         BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
         int posX = 0;
         int posY = 0;
-
-        for (Card card : game.getFaceDown().getCards()) {
+        int size = game.getFaceDown().getCards().size();
+        for (int x = 0; x < size; x++) {
 
             posX = getSpacing() + depth;
             posY = getSpacing() + Y_OFFSET - CARD_SPACING * depth;
 
             g.drawImage(cardBackTexture, posX, posY, cardWidth(), cardHeight(), this);
             g.drawRect(posX, posY, cardWidth(), cardHeight());
-
-            lastCard = card;
             depth++;
         }
-        //storing last card and its bounds in order to draw from deck
+        topCard = game.getFaceDown().peekTopCard();
         Rectangle bounds = new Rectangle(posX, posY, cardWidth(), cardHeight());
-        drawCards.put(lastCard, bounds);
-        System.out.println(bounds);
+        drawCards.put(topCard, bounds);
+        //System.out.println(bounds);
     }
 
     /**
@@ -108,24 +118,31 @@ public class GamePanel extends JPanel implements Observer {
      * overridden in the paintCard method before they get drawn
     * */
     public void paintPlayerHand() {
-        mapCards.clear();
+        this.playerCards.clear();
         int move = cardWidth() / 2;
-        int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
-        int posY = (getHeight() - 20) - cardHeight();
-        for (Card card : game.getPlayerHand()) {
+        int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerCards().size() / 4.0)));
 
+        for (ClickableCard card : game.getClickableCards()) {
+            System.out.println(card.getCard());
+            int posY = (getHeight() - 20) - cardHeight() + card.getRelativeY();
             Rectangle bounds = new Rectangle(posX + move, posY, cardWidth(), cardHeight());
-            mapCards.put(card, bounds);
+            playerCards.put(card, bounds);
             posX += cardWidth() / 2;
+            System.out.println(bounds);
         }
     }
 
     private void paintCard(Graphics g){
         paintPlayerHand();
-        for (Card card : game.getPlayerHand()) {
-            Rectangle bounds = mapCards.get(card);
+        System.out.println("map made");
+        for (Map.Entry<ClickableCard, Rectangle> entry : playerCards.entrySet()) {
+            System.out.println(entry.getKey()+" : "+entry.getValue());
+        }
+        for (ClickableCard card : game.getClickableCards()) {
+            System.out.println(card);
+            Rectangle bounds = playerCards.get(card);
             if (bounds != null) {
-                g.drawImage(CardTextures.getTexture(card)
+                g.drawImage(CardTextures.getTexture(card.getCard())
                         , bounds.x, bounds.y, cardWidth(), cardHeight(), this);
 
                 g.drawRect(bounds.x, bounds.y, cardWidth(), cardHeight());

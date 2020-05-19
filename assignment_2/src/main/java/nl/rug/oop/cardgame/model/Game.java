@@ -4,6 +4,7 @@ import nl.rug.oop.cardgame.model.elements.Deck;
 import nl.rug.oop.cardgame.model.participants.Computer;
 import nl.rug.oop.cardgame.model.participants.Participant;
 import nl.rug.oop.cardgame.model.participants.Player;
+import nl.rug.oop.cardgame.view.ClickableCard;
 import nl.rug.oop.cardgame.view.GameFrame;
 
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class Game extends Observable {
     Player player = new Player();
     Computer computer = new Computer();
     private GameFrame gameFrame = new GameFrame(this);
+    Deck faceDown = Dealer.newFaceDownDeck();
+    Deck faceUp = new Deck();
+    ArrayList<ClickableCard> cc;
 
     public Deck getFaceDown() {
         return faceDown;
@@ -30,19 +34,25 @@ public class Game extends Observable {
         return player;
     }
 
-    public ArrayList<Card> getPlayerHand() {
+    public ArrayList<Card> getPlayerCards(){
         return player.getCardList();
+    }
+
+    public ArrayList<ClickableCard> getClickableCards() {
+        ArrayList<ClickableCard> clickableCards = new ArrayList<>();
+        for (Card card: player.getCardList()){
+            ClickableCard click = new ClickableCard(card);
+            clickableCards.add(click);
+        }
+        return clickableCards;
     }
 
     public ArrayList<Card> getComputerHand() {
         return computer.getCardList();
     }
 
-    Deck faceDown = Dealer.newFaceDownDeck();
-    Deck faceUp = new Deck();
-
     /** The main game loop where player and computer take turns */
-    private void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
+    public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
             System.out.println("Card to match: "+ currentCard.getFace() + "_" + currentCard.getSuit());
             turn(player, currentCard, faceDown, faceUp);
