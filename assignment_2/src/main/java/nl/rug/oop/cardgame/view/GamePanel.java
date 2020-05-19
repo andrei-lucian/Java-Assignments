@@ -23,8 +23,9 @@ public class GamePanel extends JPanel implements Observer {
     private static final double CARD_WIDTH = 43.6;
     private static final double CARD_HEIGHT = 60.0;
     private final Map<Card, Rectangle> mapCards;
-    private HashMap drawCards;
+    private final HashMap<Card, Rectangle> drawCards;
     private Card selected;
+    private Card lastCard;
 
     public Card getSelected() {
         return selected;
@@ -49,10 +50,6 @@ public class GamePanel extends JPanel implements Observer {
         drawCards = new HashMap<>();
     }
 
-    public void update(Observable observed, Object message) {
-        repaint();
-    }
-
     private void paintFaceUpDeck(Graphics g) {
         int depth = 0;
 
@@ -75,8 +72,6 @@ public class GamePanel extends JPanel implements Observer {
         return drawCards;
     }
 
-    private Card lastCard;
-
     public Card getLastCard() {
         return lastCard;
     }
@@ -95,15 +90,23 @@ public class GamePanel extends JPanel implements Observer {
             g.drawImage(cardBackTexture, posX, posY, cardWidth(), cardHeight(), this);
             g.drawRect(posX, posY, cardWidth(), cardHeight());
 
-//            drawCards.put(card, bounds);
             lastCard = card;
             depth++;
         }
+        //storing last card and its bounds in order to draw from deck
         Rectangle bounds = new Rectangle(posX, posY, cardWidth(), cardHeight());
         drawCards.put(lastCard, bounds);
         System.out.println(bounds);
     }
 
+    /**
+     * Separated paintPlayerHand and paintCard
+     * trying to get the cards to lift up
+     * didn't work tho...
+     * the problem is that the bounds update
+     * in the cardClicker but it ends up being
+     * overridden in the paintCard method before they get drawn
+    * */
     public void paintPlayerHand() {
         mapCards.clear();
         int move = cardWidth() / 2;
@@ -184,4 +187,8 @@ public class GamePanel extends JPanel implements Observer {
         return (getHeight() - getSpacing() * 2 - 2 * Card.values().length);
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        repaint();
+    }
 }

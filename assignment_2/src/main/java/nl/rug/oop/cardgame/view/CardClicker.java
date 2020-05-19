@@ -46,6 +46,7 @@ public class CardClicker extends MouseInputAdapter {
                 break;
             }
         }
+        //draw from deck
         Rectangle deckBounds;
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());
         if (deckBounds.contains(event.getPoint())){
