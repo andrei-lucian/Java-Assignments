@@ -6,10 +6,13 @@ import nl.rug.oop.cardgame.model.participants.Participant;
 import nl.rug.oop.cardgame.model.participants.Player;
 import nl.rug.oop.cardgame.view.GameFrame;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
-public class Game extends Observable {
+public class Game extends Observable implements Observer {
 
     private static boolean exitGame = false;
     Card participantCard;
@@ -17,6 +20,17 @@ public class Game extends Observable {
     Player player = new Player();
     Computer computer = new Computer();
     private GameFrame gameFrame = new GameFrame(this);
+    private Card chosenCard;
+    Deck faceDown = Dealer.newFaceDownDeck();
+    Deck faceUp = new Deck();
+
+    public Card getChosenCard() {
+        return chosenCard;
+    }
+
+    public void setChosenCard(Card chosenCard) {
+        this.chosenCard = chosenCard;
+    }
 
     public Deck getFaceDown() {
         return faceDown;
@@ -38,15 +52,12 @@ public class Game extends Observable {
         return computer.getCardList();
     }
 
-    Deck faceDown = Dealer.newFaceDownDeck();
-    Deck faceUp = new Deck();
-
     /** The main game loop where player and computer take turns */
     private void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
             System.out.println("Card to match: "+ currentCard.getFace() + "_" + currentCard.getSuit());
-            turn(player, currentCard, faceDown, faceUp);
-            turn(computer, currentCard, faceDown, faceUp);
+            playerTurn(chosenCard, player, currentCard, faceDown, faceUp);
+            computerTurn(computer, currentCard, faceDown, faceUp);
         }
     }
 
@@ -60,20 +71,33 @@ public class Game extends Observable {
         gameLoop(player, computer, faceUp, faceDown);
     }
 
+    private void playerTurn(Card card, Player player, CurrentCard currentCard, Deck faceDown, Deck faceUp){
+        participantCard = player.playCard(card, faceDown, faceUp, currentCard.getFace(), currentCard.getSuit());
+        checkWinCondition(player);
+        if (faceDown.isEmpty()){
+            Dealer.transferDeck(faceUp, faceDown);
+            System.out.println("Face down deck ran out, dealer switched it.");
+        }
+        setNewValues(currentCard, player);
+        setChanged();
+        notifyObservers();
+    }
+
     /** A participant in the game takes a turn.
      * 1. The participant places down or draws a card
      * 2. The winning condition is checked
      * 3. The faceDown deck is reset if it is empty
      * 4. The new values for currentCard are set */
-    private void turn(Participant participant, CurrentCard currentCard, Deck faceDown, Deck faceUp){
-        participantCard = participant.playCard(faceDown, faceUp, currentCard.getFace(), currentCard.getSuit()); //player either puts down or draws a card
-        checkWinCondition(participant); //check if this results in the player winning
+    private void computerTurn(Computer computer, CurrentCard currentCard, Deck faceDown, Deck faceUp){
+        participantCard = computer.playCard(faceDown, faceUp, currentCard.getFace(), currentCard.getSuit()); //player either puts down or draws a card
+        checkWinCondition(computer); //check if this results in the player winning
         if (faceDown.isEmpty()){
             Dealer.transferDeck(faceUp, faceDown);
             System.out.println("Face down deck ran out, dealer switched it.");
         }
-        setNewValues(currentCard, participant);
-        gameFrame.repaint();
+        setNewValues(currentCard, computer);
+        setChanged();
+        notifyObservers();
     }
 
     /** Sets the new values (face and suit) for the currentCard object,
@@ -97,5 +121,11 @@ public class Game extends Observable {
             exitGame = true;
             System.exit(0);
         }
+    }
+
+    @Override
+    public void update(Observable observable, Object message) {
+        setChanged();
+        notifyObservers();
     }
 }

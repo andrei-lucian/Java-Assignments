@@ -32,17 +32,14 @@ public class CardClicker extends MouseInputAdapter {
             panel.repaint();
         }
         panel.setSelected(null);
-        // This is done backwards, as the last card is on
-        // top.  Of course you could render the cards
-        // in reverse order, but you get the idea
         for (int i = game.getPlayerHand().size() - 1; i >= 0; i--) {
             Card card = game.getPlayerHand().get(i);
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
-                panel.setSelected(card);
-                System.out.println(panel.getSelected());
-                bounds.y -= 20;
-                panel.repaint();
+                System.out.println(card);
+                game.setChosenCard(card);
+                //System.out.println(panel.getSelected());
+                //bounds.y -= 20;
                 break;
             }
         }
@@ -50,9 +47,8 @@ public class CardClicker extends MouseInputAdapter {
         Rectangle deckBounds;
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());
         if (deckBounds.contains(event.getPoint())){
-            game.getPlayer().drawCard(game.getFaceDown());
-            panel.repaint();
+            game.setChosenCard(game.getFaceDown().peekTopCard());
+            //game.getPlayer().drawCard(game.getFaceDown());
         }
     }
-
 }

@@ -37,7 +37,7 @@ public abstract class Participant {
         this.cardList.remove(card);
     }
 
-    public abstract Card playCard(Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit);
+    //public abstract Card playCard(Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit);
 
     /** Choose a suit - via interaction in Player, via algorithm in Computer */
     public abstract Card.Suit chooseSuit();

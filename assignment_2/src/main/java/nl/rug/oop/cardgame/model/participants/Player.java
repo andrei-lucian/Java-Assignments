@@ -26,7 +26,7 @@ public class Player extends Participant {
     }
 
     /** Player chooses a card from the terminal (within bounds) */
-    private int chosenOption() {
+    /*private int chosenOption() {
         boolean outOfBounds = true;
         int option = 0;
         while (outOfBounds) {
@@ -40,7 +40,7 @@ public class Player extends Participant {
             }
         }
         return option;
-    }
+    }*/
 
     /** Makes sure the player selects a valid card */
     private boolean accordingToRules(Card card, Card.Face face, Card.Suit suit){
@@ -60,15 +60,19 @@ public class Player extends Participant {
      * @param face The face to be matched.
      * @param suit The suit to be matched.
      */
-    public Card playCard(Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit) {
+    public Card playCard(Card card, Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit) {
         while (true) {
-            int option = chosenOption();
+            /*(int option = chosenOption();
             if (option == -1) {
                 System.out.println("You drew a card");
                 this.drawCard(faceDown);
                 return null;
-            } else {
-                Card card = this.cardList.get(option);
+            } else {*/
+            if (card == faceDown.peekTopCard()) {
+                drawCard(faceDown);
+                return null;
+            }
+            else {
                 if (accordingToRules(card, face, suit)) {
                     this.putDownCard(faceUp, card);
                     System.out.println("You played:  " + card);
@@ -77,5 +81,4 @@ public class Player extends Participant {
             }
         }
     }
-
 }
