@@ -34,7 +34,7 @@ public class Game extends Observable {
         return player;
     }
 
-    public ArrayList<Card> getPlayerCards(){
+    public ArrayList<Card> getPlayerHand(){
         return player.getCardList();
     }
 
