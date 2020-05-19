@@ -4,6 +4,7 @@ import nl.rug.oop.cardgame.model.elements.Deck;
 import nl.rug.oop.cardgame.model.participants.Computer;
 import nl.rug.oop.cardgame.model.participants.Participant;
 import nl.rug.oop.cardgame.model.participants.Player;
+import nl.rug.oop.cardgame.view.ClickableCard;
 import nl.rug.oop.cardgame.view.GameFrame;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ public class Game extends Observable implements Observer {
     Player player = new Player();
     Computer computer = new Computer();
     private GameFrame gameFrame = new GameFrame(this);
+
     private Card chosenCard;
     Deck faceDown = Dealer.newFaceDownDeck();
     Deck faceUp = new Deck();
@@ -44,8 +46,17 @@ public class Game extends Observable implements Observer {
         return player;
     }
 
-    public ArrayList<Card> getPlayerHand() {
+    public ArrayList<Card> getPlayerHand(){
         return player.getCardList();
+    }
+
+    public ArrayList<ClickableCard> getClickableCards() {
+        ArrayList<ClickableCard> clickableCards = new ArrayList<>();
+        for (Card card: player.getCardList()){
+            ClickableCard click = new ClickableCard(card);
+            clickableCards.add(click);
+        }
+        return clickableCards;
     }
 
     public ArrayList<Card> getComputerHand() {
@@ -53,7 +64,7 @@ public class Game extends Observable implements Observer {
     }
 
     /** The main game loop where player and computer take turns */
-    private void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
+    public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
             System.out.println("Card to match: "+ currentCard.getFace() + "_" + currentCard.getSuit());
             playerTurn(chosenCard, player, currentCard, faceDown, faceUp);

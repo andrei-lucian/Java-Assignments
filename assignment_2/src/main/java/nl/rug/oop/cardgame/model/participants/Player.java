@@ -31,7 +31,7 @@ public class Player extends Participant {
         int option = 0;
         while (outOfBounds) {
             System.out.println("Which card do you want to play? (-1) Draw a card.");
-            this.inspectAllCards();
+            //this.inspectAllCards();
             option = CatchNonInts.inputOption();
             if (option < -1 || option >= this.noOfCards()) {
                 System.out.println("Not an option, try again.");

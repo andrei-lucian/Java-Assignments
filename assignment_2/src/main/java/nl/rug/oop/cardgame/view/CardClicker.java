@@ -9,8 +9,8 @@ import java.awt.event.MouseEvent;
 
 public class CardClicker extends MouseInputAdapter {
 
-    private Game game;
-    private GamePanel panel;
+    private final Game game;
+    private final GamePanel panel;
 
     /**
      * Create a new card dragger that receives mouse events from the DrawPanel
@@ -28,6 +28,7 @@ public class CardClicker extends MouseInputAdapter {
     public void mousePressed(MouseEvent event) {
         if (panel.getSelected() != null) {
             Rectangle bounds = panel.getMapCards().get(panel.getSelected());
+            System.out.println(bounds.y);
             bounds.y += 20;
             panel.repaint();
         }
