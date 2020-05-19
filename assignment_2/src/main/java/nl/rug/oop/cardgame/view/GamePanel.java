@@ -124,7 +124,6 @@ public class GamePanel extends JPanel implements Observer {
         paintPlayerHand();
         for (Card card : game.getPlayerHand()) {
             Rectangle bounds = mapCards.get(card);
-            System.out.println(bounds.y);
             g.drawImage(CardTextures.getTexture(card)
                     , bounds.x, bounds.y, cardWidth(), cardHeight(), this);
 

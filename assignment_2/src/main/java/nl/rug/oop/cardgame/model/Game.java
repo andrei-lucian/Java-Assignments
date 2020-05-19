@@ -66,9 +66,11 @@ public class Game extends Observable implements Observer {
     /** The main game loop where player and computer take turns */
     public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
-            System.out.println("Card to match: "+ currentCard.getFace() + "_" + currentCard.getSuit());
-            playerTurn(chosenCard, player, currentCard, faceDown, faceUp);
-            computerTurn(computer, currentCard, faceDown, faceUp);
+            if(chosenCard != null){
+                System.out.println(chosenCard);
+                playerTurn(chosenCard, player, currentCard, faceDown, faceUp);
+                computerTurn(computer, currentCard, faceDown, faceUp);
+            }
         }
     }
 

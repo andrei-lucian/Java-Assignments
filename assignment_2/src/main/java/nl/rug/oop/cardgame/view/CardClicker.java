@@ -37,10 +37,7 @@ public class CardClicker extends MouseInputAdapter {
             Card card = game.getPlayerHand().get(i);
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
-                System.out.println(card);
                 game.setChosenCard(card);
-                //System.out.println(panel.getSelected());
-                //bounds.y -= 20;
                 break;
             }
         }
@@ -49,7 +46,6 @@ public class CardClicker extends MouseInputAdapter {
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());
         if (deckBounds.contains(event.getPoint())){
             game.setChosenCard(game.getFaceDown().peekTopCard());
-            //game.getPlayer().drawCard(game.getFaceDown());
         }
     }
 }
