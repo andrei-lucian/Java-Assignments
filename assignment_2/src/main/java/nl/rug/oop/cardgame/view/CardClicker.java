@@ -26,18 +26,15 @@ public class CardClicker extends MouseInputAdapter {
 
     @Override
     public void mousePressed(MouseEvent event) {
-        if (panel.getSelected() != null) {
-            Rectangle bounds = panel.getMapCards().get(panel.getSelected());
-            System.out.println(bounds.y);
-            bounds.y += 20;
-            panel.repaint();
-        }
-        panel.setSelected(null);
+
         for (int i = game.getPlayerHand().size() - 1; i >= 0; i--) {
             Card card = game.getPlayerHand().get(i);
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
-                game.setChosenCard(card);
+                System.out.println(card);
+                game.getiCard().setCard(card);
+                System.out.println(game.getiCard().getCard());
+                //System.out.println(game.getChosenCard());
                 break;
             }
         }
@@ -45,6 +42,7 @@ public class CardClicker extends MouseInputAdapter {
         Rectangle deckBounds;
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());
         if (deckBounds.contains(event.getPoint())){
+            //game.getPlayer().drawCard(game.getFaceDown());
             game.setChosenCard(game.getFaceDown().peekTopCard());
         }
     }
