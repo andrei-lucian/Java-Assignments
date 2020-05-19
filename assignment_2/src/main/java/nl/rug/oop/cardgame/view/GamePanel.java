@@ -96,7 +96,6 @@ public class GamePanel extends JPanel implements Observer {
         //storing last card and its bounds in order to draw from deck
         Rectangle bounds = new Rectangle(posX, posY, cardWidth(), cardHeight());
         drawCards.put(lastCard, bounds);
-        System.out.println(bounds);
     }
 
     /**
@@ -124,12 +123,11 @@ public class GamePanel extends JPanel implements Observer {
         paintPlayerHand();
         for (Card card : game.getPlayerHand()) {
             Rectangle bounds = mapCards.get(card);
-            if (bounds != null) {
-                g.drawImage(CardTextures.getTexture(card)
-                        , bounds.x, bounds.y, cardWidth(), cardHeight(), this);
+            System.out.println(bounds.y);
+            g.drawImage(CardTextures.getTexture(card)
+                    , bounds.x, bounds.y, cardWidth(), cardHeight(), this);
 
-                g.drawRect(bounds.x, bounds.y, cardWidth(), cardHeight());
-            }
+            g.drawRect(bounds.x, bounds.y, cardWidth(), cardHeight());
         }
     }
 
