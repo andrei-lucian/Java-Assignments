@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+//Comment
 public class GamePanel extends JPanel implements Observer {
 
     private static final Color BACKGROUND_COLOR = new Color(10, 120, 81, 255);
