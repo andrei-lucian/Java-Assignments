@@ -7,8 +7,6 @@ import nl.rug.oop.cardgame.model.participants.Player;
 import nl.rug.oop.cardgame.view.ClickableCard;
 import nl.rug.oop.cardgame.view.GameFrame;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,11 +18,23 @@ public class Game extends Observable implements Observer {
     CurrentCard currentCard = new CurrentCard();
     Player player = new Player();
     Computer computer = new Computer();
-    private GameFrame gameFrame = new GameFrame(this);
-
-    private Card chosenCard;
+    private GameFrame gameFrame;
+    public Card chosenCard;
     Deck faceDown = Dealer.newFaceDownDeck();
     Deck faceUp = new Deck();
+    private int x = 2;
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public Game(){
+        gameFrame = new GameFrame(this);
+    }
 
     public Card getChosenCard() {
         return chosenCard;
@@ -81,7 +91,13 @@ public class Game extends Observable implements Observer {
         Dealer.revealCard(faceDown, faceUp);
         currentCard.setFace(faceUp.peekTopCard().getFace());
         currentCard.setSuit(faceUp.peekTopCard().getSuit());
-        gameLoop(player, computer, faceUp, faceDown);
+        System.out.println(x);
+        while(!exitGame){
+            if(x==10){
+                System.out.println(x);
+            }
+        }
+        //gameLoop(player, computer, faceUp, faceDown);
     }
 
     private void playerTurn(Card card, Player player, CurrentCard currentCard, Deck faceDown, Deck faceUp){
