@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-//Comment
 public class GamePanel extends JPanel implements Observer {
 
     private static final Color BACKGROUND_COLOR = new Color(10, 120, 81, 255);
@@ -25,19 +24,10 @@ public class GamePanel extends JPanel implements Observer {
     private static final double CARD_HEIGHT = 60.0;
     private final Map<Card, Rectangle> mapCards;
     private final HashMap<Card, Rectangle> drawCards;
-    private Card selected;
     private Card lastCard;
-
-    public Card getSelected() {
-        return selected;
-    }
 
     public Map<Card, Rectangle> getMapCards() {
         return this.mapCards;
-    }
-
-    public void setSelected(Card selected) {
-        this.selected = selected;
     }
 
     public GamePanel(Game game) {
@@ -53,17 +43,12 @@ public class GamePanel extends JPanel implements Observer {
 
     private void paintFaceUpDeck(Graphics g) {
         int depth = 0;
-
         for (Card card : game.getFaceUp().getCards()) {
-
             int posX = getWidth() - getSpacing() - cardWidth()
                     + depth - Card.values().length;
-
             int posY = getSpacing() + Y_OFFSET - CARD_SPACING * depth;
-
             g.drawImage(CardTextures.getTexture(card)
                     , posX, posY, cardWidth(), cardHeight(), this);
-
             g.drawRect(posX, posY, cardWidth(), cardHeight());
             ++depth;
         }

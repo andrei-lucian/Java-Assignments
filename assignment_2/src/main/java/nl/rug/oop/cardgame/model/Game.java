@@ -19,7 +19,7 @@ public class Game extends Observable implements Observer {
     Player player = new Player();
     Computer computer = new Computer();
     private GameFrame gameFrame;
-    public Card chosenCard;
+    private Card chosenCard;
     Deck faceDown = Dealer.newFaceDownDeck();
     Deck faceUp = new Deck();
     private int x = 2;
@@ -32,7 +32,7 @@ public class Game extends Observable implements Observer {
         this.x = x;
     }
 
-    public Game(){
+    public Game() {
         gameFrame = new GameFrame(this);
     }
 
@@ -52,21 +52,17 @@ public class Game extends Observable implements Observer {
         return faceUp;
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
     public ArrayList<Card> getPlayerHand(){
         return player.getCardList();
     }
 
-    public ArrayList<ClickableCard> getClickableCards() {
-        ArrayList<ClickableCard> clickableCards = new ArrayList<>();
-        for (Card card: player.getCardList()){
+    public ArrayList<ClickableCard> getClickableCards(){
+        ArrayList<ClickableCard> cc = new ArrayList<>();
+        for (Card card : player.getCardList()){
             ClickableCard click = new ClickableCard(card);
-            clickableCards.add(click);
+            cc.add(click);
         }
-        return clickableCards;
+        return cc;
     }
 
     public ArrayList<Card> getComputerHand() {
@@ -76,12 +72,12 @@ public class Game extends Observable implements Observer {
     /** The main game loop where player and computer take turns */
     public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
-            if(chosenCard != null){
-                System.out.println(chosenCard);
+            if(chosenCard!=null) {
+                //System.out.println(getChosenCard());
                 playerTurn(chosenCard, player, currentCard, faceDown, faceUp);
                 computerTurn(computer, currentCard, faceDown, faceUp);
             }
-        }
+       }
     }
 
     /** Sets up the game (deals cards, reveals the top card,
@@ -153,7 +149,7 @@ public class Game extends Observable implements Observer {
     }
 
     @Override
-    public void update(Observable observable, Object message) {
+    public void update(Observable observable, Object o) {
         setChanged();
         notifyObservers();
     }

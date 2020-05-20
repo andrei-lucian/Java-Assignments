@@ -7,10 +7,6 @@ import java.util.ArrayList;
 /** Superclass of Player and Computer */
 public abstract class Participant {
 
-    public void setCardList(ArrayList<Card> cardList) {
-        this.cardList = cardList;
-    }
-
     protected ArrayList<Card> cardList;
 
     public ArrayList<Card> getCardList() {
