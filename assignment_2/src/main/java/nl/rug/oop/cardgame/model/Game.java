@@ -140,7 +140,6 @@ public class Game extends Observable implements Observer {
                 currentCard.setFace(participantCard.getFace());
                 if (participantCard.getFace() == Card.Face.EIGHT) {
                     while (!suitChosen) {
-                        //System.out.println("hello");
                         if (clickedSuit != null) {
                             currentCard.setSuit(clickedSuit);
                             suitChosen = true;
