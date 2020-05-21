@@ -27,11 +27,11 @@ public class GamePanel extends JPanel implements Observer {
     private final HashMap<Card, Rectangle> drawCards;
     private Card lastCard;
 
-    //private SelectSuitMenu popUpMenu = new SelectSuitMenu();
+    private SelectSuitMenu popUpMenu = new SelectSuitMenu();
 
     public GamePanel(Game game) {
         this.game = game;
-        //this.setComponentPopupMenu(popUpMenu);
+        this.setComponentPopupMenu(popUpMenu);
         setBackground(BACKGROUND_COLOR);
         setVisible(true);
         setOpaque(true);
@@ -41,9 +41,9 @@ public class GamePanel extends JPanel implements Observer {
         drawCards = new HashMap<>();
     }
 
-    /*public SelectSuitMenu getPopUpMenu() {
+    public SelectSuitMenu getPopUpMenu() {
         return popUpMenu;
-    }*/
+    }
 
     public Map<Card, Rectangle> getMapCards() {
         return this.mapCards;
