@@ -19,9 +19,4 @@ public class GameFrame extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-    private Card chosenCard = null;
-
-    public void setChosenCard(Card card){
-        chosenCard = card;
-    }
 }

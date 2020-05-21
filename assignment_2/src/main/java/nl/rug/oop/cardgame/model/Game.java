@@ -7,9 +7,7 @@ import nl.rug.oop.cardgame.model.participants.Player;
 import nl.rug.oop.cardgame.view.ClickableCard;
 import nl.rug.oop.cardgame.view.GameFrame;
 
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 public class Game extends Observable implements Observer {
 
@@ -23,10 +21,9 @@ public class Game extends Observable implements Observer {
     Deck faceDown = Dealer.newFaceDownDeck();
     Deck faceUp = new Deck();
     private int x = 2;
-
-    public int getX() {
-        return x;
-    }
+    private boolean playerTurn = true;
+    private boolean computerTurn = false;
+    private final Timer timer = new Timer();
 
     public void setX(int x) {
         this.x = x;
@@ -60,15 +57,6 @@ public class Game extends Observable implements Observer {
         return player.getCardList();
     }
 
-    public ArrayList<ClickableCard> getClickableCards() {
-        ArrayList<ClickableCard> clickableCards = new ArrayList<>();
-        for (Card card: player.getCardList()){
-            ClickableCard click = new ClickableCard(card);
-            clickableCards.add(click);
-        }
-        return clickableCards;
-    }
-
     public ArrayList<Card> getComputerHand() {
         return computer.getCardList();
     }
@@ -78,9 +66,21 @@ public class Game extends Observable implements Observer {
         while(!exitGame){
             if(chosenCard != null){
                 System.out.println(chosenCard);
-                playerTurn(chosenCard, player, currentCard, faceDown, faceUp);
-                computerTurn(computer, currentCard, faceDown, faceUp);
+                if (playerTurn) {
+                    playerTurn(chosenCard, player, currentCard, faceDown, faceUp);
+                    chosenCard = null;
+                }
+                if (computerTurn) {
+                    timer.schedule(new TimerTask(){
+                        @Override
+                        public void run(){
+                            computerTurn(computer, currentCard, faceDown, faceUp);
+                        }
+                    }, 2000);
+                }
             }
+            setChanged();
+            notifyObservers();
         }
     }
 
@@ -92,12 +92,7 @@ public class Game extends Observable implements Observer {
         currentCard.setFace(faceUp.peekTopCard().getFace());
         currentCard.setSuit(faceUp.peekTopCard().getSuit());
         System.out.println(x);
-        while(!exitGame){
-            if(x==10){
-                System.out.println(x);
-            }
-        }
-        //gameLoop(player, computer, faceUp, faceDown);
+        gameLoop(player, computer, faceUp, faceDown);
     }
 
     private void playerTurn(Card card, Player player, CurrentCard currentCard, Deck faceDown, Deck faceUp){
@@ -108,6 +103,8 @@ public class Game extends Observable implements Observer {
             System.out.println("Face down deck ran out, dealer switched it.");
         }
         setNewValues(currentCard, player);
+        playerTurn = false;
+        computerTurn = true;
         setChanged();
         notifyObservers();
     }
@@ -127,6 +124,8 @@ public class Game extends Observable implements Observer {
         setNewValues(currentCard, computer);
         setChanged();
         notifyObservers();
+        computerTurn = false;
+        playerTurn = true;
     }
 
     /** Sets the new values (face and suit) for the currentCard object,

@@ -25,23 +25,6 @@ public class Player extends Participant {
         return null;
     }
 
-    /** Player chooses a card from the terminal (within bounds) */
-    /*private int chosenOption() {
-        boolean outOfBounds = true;
-        int option = 0;
-        while (outOfBounds) {
-            System.out.println("Which card do you want to play? (-1) Draw a card.");
-            //this.inspectAllCards();
-            option = CatchNonInts.inputOption();
-            if (option < -1 || option >= this.noOfCards()) {
-                System.out.println("Not an option, try again.");
-            } else {
-                outOfBounds = false;
-            }
-        }
-        return option;
-    }*/
-
     /** Makes sure the player selects a valid card */
     private boolean accordingToRules(Card card, Card.Face face, Card.Suit suit){
         if (card.getFace() == face || card.getSuit() == suit || card.getFace() == Card.Face.EIGHT) {
@@ -62,12 +45,6 @@ public class Player extends Participant {
      */
     public Card playCard(Card card, Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit) {
         while (true) {
-            /*(int option = chosenOption();
-            if (option == -1) {
-                System.out.println("You drew a card");
-                this.drawCard(faceDown);
-                return null;
-            } else {*/
             if (card == faceDown.peekTopCard()) {
                 drawCard(faceDown);
                 return null;
@@ -77,6 +54,9 @@ public class Player extends Participant {
                     this.putDownCard(faceUp, card);
                     System.out.println("You played:  " + card);
                     return card;
+                }
+                else {
+                    return null;
                 }
             }
         }
