@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Observer {
         setOpaque(true);
         addMouseListener(new CardClicker(this.game, this));
         game.addObserver(this);
-        mapCards = new HashMap<>(game.getPlayerHand().size()* 5);
+        mapCards = new HashMap<>(game.getPlayerCards().size()* 5);
         drawCards = new HashMap<>();
     }
 
@@ -95,9 +95,9 @@ public class GamePanel extends JPanel implements Observer {
     public void paintPlayerHand() {
         mapCards.clear();
         int move = cardWidth() / 2;
-        int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
+        int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerCards().size() / 4.0)));
         int posY = (getHeight() - 20) - cardHeight();
-        for (Card card : game.getPlayerHand()) {
+        for (Card card : game.getPlayerCards()) {
 
             Rectangle bounds = new Rectangle(posX + move, posY, cardWidth(), cardHeight());
             mapCards.put(card, bounds);
@@ -107,7 +107,7 @@ public class GamePanel extends JPanel implements Observer {
 
     private void paintCard(Graphics g){
         paintPlayerHand();
-        for (Card card : game.getPlayerHand()) {
+        for (Card card : game.getPlayerCards()) {
             Rectangle bounds = mapCards.get(card);
             g.drawImage(CardTextures.getTexture(card)
                     , bounds.x, bounds.y, cardWidth(), cardHeight(), this);

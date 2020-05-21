@@ -78,6 +78,9 @@ public class Player extends Participant {
                     System.out.println("You played:  " + card);
                     return card;
                 }
+                else {
+                    return null;
+                }
             }
         }
     }
