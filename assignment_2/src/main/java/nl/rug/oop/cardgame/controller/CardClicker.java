@@ -38,6 +38,9 @@ public class CardClicker extends MouseInputAdapter {
             Card card = game.getPlayerHand().get(i);
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
+                if (card.getFace() == Card.Face.EIGHT){
+                    panel.getPopUpMenu().show(panel, 600, 400);
+                }
                 game.setClickedCard(card);
                 break;
             }
@@ -51,5 +54,9 @@ public class CardClicker extends MouseInputAdapter {
             game.setClickedCard(game.getFaceDown().peekTopCard());
             System.out.println("You drew a card.");
         }
+    }
+
+    public void eightClicked(MouseEvent event){
+
     }
 }
