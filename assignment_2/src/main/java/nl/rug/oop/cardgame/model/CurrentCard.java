@@ -17,7 +17,6 @@ public class CurrentCard {
         this.face = face;
     }
 
-
     public Card.Suit getSuit() {
         return suit;
     }
