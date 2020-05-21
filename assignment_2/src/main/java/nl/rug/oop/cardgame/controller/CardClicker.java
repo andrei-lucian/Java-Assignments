@@ -27,8 +27,10 @@ public class CardClicker extends MouseInputAdapter {
 
     @Override
     public void mousePressed(MouseEvent event) {
-        playerCardClicked(event);
-        deckClicked(event);
+        if (game.isPlayerTurn()) {
+            playerCardClicked(event);
+            deckClicked(event);
+        }
     }
 
     public void playerCardClicked(MouseEvent event){
