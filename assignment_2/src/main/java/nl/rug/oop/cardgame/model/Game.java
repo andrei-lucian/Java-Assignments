@@ -4,37 +4,28 @@ import nl.rug.oop.cardgame.model.elements.Deck;
 import nl.rug.oop.cardgame.model.participants.Computer;
 import nl.rug.oop.cardgame.model.participants.Participant;
 import nl.rug.oop.cardgame.model.participants.Player;
-import nl.rug.oop.cardgame.view.ClickableCard;
 import nl.rug.oop.cardgame.view.GameFrame;
+import nl.rug.oop.cardgame.view.PlayerHand;
 
 import java.util.*;
 
 public class Game extends Observable implements Observer {
 
-    private static boolean exitGame = false;
-    Card participantCard;
-    CurrentCard currentCard = new CurrentCard();
-    Player player = new Player();
-    Computer computer = new Computer();
     private GameFrame gameFrame;
-    public Card chosenCard;
+    private Card chosenCard;
     Deck faceDown = Dealer.newFaceDownDeck();
     Deck faceUp = new Deck();
-    private int x = 2;
     private boolean playerTurn = true;
     private boolean computerTurn = false;
     private final Timer timer = new Timer();
+    private static boolean exitGame = false;
+    private final Player player = new Player();
+    private final Computer computer = new Computer();
+    private Card participantCard;
+    private final CurrentCard currentCard = new CurrentCard();
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public Game(){
+    public Game() {
         gameFrame = new GameFrame(this);
-    }
-
-    public Card getChosenCard() {
-        return chosenCard;
     }
 
     public void setChosenCard(Card chosenCard) {
@@ -49,15 +40,11 @@ public class Game extends Observable implements Observer {
         return faceUp;
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
     public ArrayList<Card> getPlayerHand(){
         return player.getCardList();
     }
 
-    public ArrayList<Card> getComputerHand() {
+    public ArrayList<Card> getComputerHand(){
         return computer.getCardList();
     }
 
@@ -91,7 +78,6 @@ public class Game extends Observable implements Observer {
         Dealer.revealCard(faceDown, faceUp);
         currentCard.setFace(faceUp.peekTopCard().getFace());
         currentCard.setSuit(faceUp.peekTopCard().getSuit());
-        System.out.println(x);
         gameLoop(player, computer, faceUp, faceDown);
     }
 
@@ -152,7 +138,7 @@ public class Game extends Observable implements Observer {
     }
 
     @Override
-    public void update(Observable observable, Object message) {
+    public void update(Observable observable, Object o) {
         setChanged();
         notifyObservers();
     }
