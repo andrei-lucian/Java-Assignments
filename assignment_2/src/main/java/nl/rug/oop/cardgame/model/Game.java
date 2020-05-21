@@ -171,10 +171,6 @@ public class Game extends Observable {
         return computer.getCardList();
     }
 
-    public GameFrame getGameFrame() {
-        return gameFrame;
-    }
-
     public void setClickedSuit(Card.Suit clickedSuit) {
         this.clickedSuit = clickedSuit;
     }

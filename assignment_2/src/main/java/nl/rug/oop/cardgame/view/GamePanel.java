@@ -10,7 +10,6 @@ import nl.rug.oop.cardgame.view.textures.CardTextures;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class GamePanel extends JPanel implements Observer {
@@ -161,10 +160,6 @@ public class GamePanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        try {
-            EventQueue.invokeAndWait(this::repaint);
-        } catch (InterruptedException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        repaint();
     }
 }

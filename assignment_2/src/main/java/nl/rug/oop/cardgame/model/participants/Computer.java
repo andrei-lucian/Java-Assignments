@@ -64,10 +64,6 @@ public class Computer extends Participant {
         return cardOptions;
     }
 
-    public void printCardOptions(){
-
-    }
-
     /**
      * Returns the number of 8 cards the computer has.
      * @param cards An ArrayList of the computer's cards.

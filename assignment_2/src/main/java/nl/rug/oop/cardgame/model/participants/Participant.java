@@ -32,8 +32,5 @@ public abstract class Participant {
         deck.addOnTop(card);
         this.cardList.remove(card);
     }
-    
-    /** Choose a suit - via interaction in Player, via algorithm in Computer */
-    public abstract Card.Suit chooseSuit();
 
 }

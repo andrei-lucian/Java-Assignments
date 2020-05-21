@@ -1,7 +1,6 @@
 package nl.rug.oop.cardgame.view;
 
 import nl.rug.oop.cardgame.model.Game;
-import nl.rug.oop.cardgame.model.elements.Card;
 
 import javax.swing.*;
 import java.awt.*;
