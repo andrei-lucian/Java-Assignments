@@ -52,8 +52,4 @@ public class CardClicker extends MouseInputAdapter {
             System.out.println("You drew a card.");
         }
     }
-
-    public void showMenu(MouseEvent event){
-
-    }
 }
