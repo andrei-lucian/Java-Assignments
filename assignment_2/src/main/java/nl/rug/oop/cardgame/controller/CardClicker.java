@@ -35,6 +35,7 @@ public class CardClicker extends MouseInputAdapter {
         }
     }
 
+    /** Plays card when card is clicker */
     public void playerCardClicked(MouseEvent event){
         for (int i = game.getPlayerHand().size() - 1; i >= 0; i--) {
             Card card = game.getPlayerHand().get(i);
@@ -50,7 +51,8 @@ public class CardClicker extends MouseInputAdapter {
             }
         }
     }
-    
+
+    /** Draws card when the deck is clicked */
     public void deckClicked(MouseEvent event){
         Rectangle deckBounds;
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());
