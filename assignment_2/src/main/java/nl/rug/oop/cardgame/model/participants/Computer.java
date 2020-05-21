@@ -64,6 +64,10 @@ public class Computer extends Participant {
         return cardOptions;
     }
 
+    public void printCardOptions(){
+
+    }
+
     /**
      * Returns the number of 8 cards the computer has.
      * @param cards An ArrayList of the computer's cards.
@@ -88,7 +92,7 @@ public class Computer extends Participant {
      */
     public Card playCard(Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit) {
         ArrayList<Card> cardOptions = this.findCardOptions(suit, face);
-        System.out.println("\nComputer's card are :");
+        System.out.println("Computer's cards are : " );
         for (Card card : cardOptions){
             System.out.println(card);
         }
@@ -124,11 +128,11 @@ public class Computer extends Participant {
      */
     public Card chooseCard(ArrayList<Card> cardOptions, int eights){
         Random r = new Random();
-        int rand = r.nextInt(cardOptions.size() - 1);
+        int rand = r.nextInt(cardOptions.size());
         Card card = cardOptions.get(rand);
 
         while (card.getFace() == Card.Face.EIGHT && eights != cardOptions.size()) {
-            rand = r.nextInt(cardOptions.size() - 1);
+            rand = r.nextInt(cardOptions.size());
             card = cardOptions.get(rand);
         }
         return card;

@@ -55,6 +55,12 @@ public class Game extends Observable implements Observer {
         return computer.getCardList();
     }
 
+    public void printComputerHand(){
+        for (Card card : computer.getCardList()){
+            System.out.println(card);
+        }
+    }
+
     /** Sets up the game (deals cards, reveals the top card,
      * sets the current face and suit) and calls the game loop */
     public void startGame(){
@@ -62,6 +68,7 @@ public class Game extends Observable implements Observer {
         Dealer.revealCard(faceDown, faceUp);
         currentCard.setFace(faceUp.peekTopCard().getFace());
         currentCard.setSuit(faceUp.peekTopCard().getSuit());
+        printComputerHand();
         gameLoop(player, computer, faceUp, faceDown);
     }
 
