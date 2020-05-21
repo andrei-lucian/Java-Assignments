@@ -104,28 +104,26 @@ public class Game extends Observable implements Observer {
                 played = true;
             }
         }
-        checkWinCondition(player);
-        if (faceDown.isEmpty()){
-            Dealer.transferDeck(faceUp, faceDown);
-            System.out.println("Face down deck ran out, dealer switched it.");
-        }
-        setNewValues(currentCard, player);
-        playerTurn = false;
+        updateConditions(computer, currentCard, faceDown, faceUp);
         computerTurn = true;
-        setChanged();
-        notifyObservers();
+        playerTurn = false;
     }
 
     private void computerTurn(Computer computer, CurrentCard currentCard, Deck faceDown, Deck faceUp){
         participantCard = computer.playCard(faceDown, faceUp, currentCard.getFace(), currentCard.getSuit()); //player either puts down or draws a card
-        checkWinCondition(computer);
+        updateConditions(computer, currentCard, faceDown, faceUp);
+        computerTurn = false;
+        playerTurn = true;
+    }
+
+    /**Checks the current game status and updates it accordingly */
+    private void updateConditions(Participant participant, CurrentCard currentCard, Deck faceDown, Deck faceUp){
+        checkWinCondition(participant);
         if (faceDown.isEmpty()){
             Dealer.transferDeck(faceUp, faceDown);
             System.out.println("Face down deck ran out, dealer switched it.");
         }
-        setNewValues(currentCard, computer);
-        computerTurn = false;
-        playerTurn = true;
+        setNewValues(currentCard, participant);
         setChanged();
         notifyObservers();
     }

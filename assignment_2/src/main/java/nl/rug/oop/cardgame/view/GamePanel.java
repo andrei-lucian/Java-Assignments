@@ -27,23 +27,23 @@ public class GamePanel extends JPanel implements Observer {
     private final HashMap<Card, Rectangle> drawCards;
     private Card lastCard;
 
-    //private SelectSuitMenu popUpMenu = new SelectSuitMenu();
+    private SelectSuitMenu popUpMenu = new SelectSuitMenu();
 
     public GamePanel(Game game) {
         this.game = game;
-        //this.setComponentPopupMenu(popUpMenu);
+        this.setComponentPopupMenu(popUpMenu);
         setBackground(BACKGROUND_COLOR);
         setVisible(true);
         setOpaque(true);
         addMouseListener(new CardClicker(this.game, this));
         game.addObserver(this);
-        mapCards = new HashMap<>(game.getPlayerHand().size()* 5);
+        mapCards = new HashMap<>(54);
         drawCards = new HashMap<>();
     }
 
-    /*public SelectSuitMenu getPopUpMenu() {
+    public SelectSuitMenu getPopUpMenu() {
         return popUpMenu;
-    }*/
+    }
 
     public Map<Card, Rectangle> getMapCards() {
         return this.mapCards;
@@ -117,7 +117,6 @@ public class GamePanel extends JPanel implements Observer {
         int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
         int posY = (getHeight() - 20) - cardHeight();
         for (Card card : game.getPlayerHand()) {
-
             Rectangle bounds = new Rectangle(posX + move, posY, cardWidth(), cardHeight());
             mapCards.put(card, bounds);
             posX += cardWidth() / 2;
