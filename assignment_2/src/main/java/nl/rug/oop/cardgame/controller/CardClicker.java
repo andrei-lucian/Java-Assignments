@@ -52,7 +52,7 @@ public class CardClicker extends MouseInputAdapter {
         }
     }
 
-    /** Draws card when the deck is clicked */
+        /** Draws card when the deck is clicked */
     public void deckClicked(MouseEvent event){
         Rectangle deckBounds;
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());

@@ -50,7 +50,6 @@ public class Game extends Observable {
     public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
             if(clickedCard != null) {
-            //System.out.println(chosenCard);
                 if(playerTurn) {
                     playerTurn(player, currentCard, faceDown, faceUp);
                     clickedCard = null;
@@ -85,7 +84,7 @@ public class Game extends Observable {
     }
 
     private void computerTurn(Computer computer, CurrentCard currentCard, Deck faceDown, Deck faceUp){
-        participantCard = computer.playCard(faceDown, faceUp, currentCard.getFace(), currentCard.getSuit()); //player either puts down or draws a card
+        participantCard = computer.playCard(faceDown, faceUp, currentCard.getFace(), currentCard.getSuit());
         updateConditions(computer, faceDown, faceUp);
         setNewValuesComputer(currentCard, computer);
         computerTurn = false;
