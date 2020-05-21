@@ -4,6 +4,7 @@ import nl.rug.oop.cardgame.model.Game;
 import nl.rug.oop.cardgame.model.elements.Card;
 import nl.rug.oop.cardgame.view.GamePanel;
 
+import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -39,7 +40,17 @@ public class CardClicker extends MouseInputAdapter {
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
                 if (card.getFace() == Card.Face.EIGHT){
-                    panel.getPopUpMenu();
+                    //panel.getPopUpMenu();
+                    Object[] possibilities = {"hearts", "diamonds", "spades", "clubs"};
+                    String suit = (String) JOptionPane.showInputDialog(panel, "Choose a suit:\n",
+                            "Customized Dialog", JOptionPane.PLAIN_MESSAGE, null, possibilities, "hearts");
+
+                    switch(suit){
+                        case "hearts": game.setClickedSuit(Card.Suit.HEARTS);
+                        case "diamonds":game.setClickedSuit(Card.Suit.DIAMONDS);
+                        case "spades": game.setClickedSuit(Card.Suit.SPADES);
+                        case "clubs": game.setClickedSuit(Card.Suit.CLUBS);
+                    }
                 }
                 game.setClickedCard(card);
                 break;

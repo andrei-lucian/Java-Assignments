@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class SelectSuitMenu{
 
-    SelectSuitMenu(Game game){
+    SelectSuitMenu(Game game, GamePanel panel){
         //    JMenuItem hearts = new JMenuItem("Hearts");
         //    JMenuItem diamonds = new JMenuItem("Diamonds");
         //    JMenuItem spades = new JMenuItem("Spades");
@@ -28,16 +28,16 @@ public class SelectSuitMenu{
         //        spades.addActionListener(e -> game.setClickedSuit(Card.Suit.SPADES));
         //        clubs.addActionListener(e -> game.setClickedSuit(Card.Suit.CLUBS));
         //    }
-        GameFrame frame = game.getGameFrame();
-        Object[] possibilities = {"hearts", "diamonds", "spades", "clubs"};
-        String suit = (String)JOptionPane.showInputDialog(frame, "Choose a suit:\n",
-                "Customized Dialog", JOptionPane.PLAIN_MESSAGE, null, possibilities, "hearts");
-
-        switch(suit){
-            case "hearts": game.setClickedSuit(Card.Suit.HEARTS);
-            case "diamonds":game.setClickedSuit(Card.Suit.DIAMONDS);
-            case "spades": game.setClickedSuit(Card.Suit.SPADES);
-            case "clubs": game.setClickedSuit(Card.Suit.CLUBS);
-        }
+        //GameFrame frame = game.getGameFrame();
+//        Object[] possibilities = {"hearts", "diamonds", "spades", "clubs"};
+//        String suit = (String)JOptionPane.showInputDialog(panel, "Choose a suit:\n",
+//                "Customized Dialog", JOptionPane.PLAIN_MESSAGE, null, possibilities, "hearts");
+//
+//        switch(suit){
+//            case "hearts": game.setClickedSuit(Card.Suit.HEARTS);
+//            case "diamonds":game.setClickedSuit(Card.Suit.DIAMONDS);
+//            case "spades": game.setClickedSuit(Card.Suit.SPADES);
+//            case "clubs": game.setClickedSuit(Card.Suit.CLUBS);
+//        }
     }
 }
