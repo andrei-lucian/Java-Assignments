@@ -1,6 +1,5 @@
 package nl.rug.oop.cardgame.view;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
 import nl.rug.oop.cardgame.controller.CardClicker;
 import nl.rug.oop.cardgame.model.Game;
 import nl.rug.oop.cardgame.model.elements.Card;
@@ -11,6 +10,7 @@ import nl.rug.oop.cardgame.view.textures.CardTextures;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class GamePanel extends JPanel implements Observer {
@@ -166,6 +166,10 @@ public class GamePanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        repaint();
+        try {
+            EventQueue.invokeAndWait(this::repaint);
+        } catch (InterruptedException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 }
