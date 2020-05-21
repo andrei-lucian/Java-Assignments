@@ -15,19 +15,12 @@ public class Game extends Observable implements Observer {
     Deck faceUp = new Deck();
     private final Player player = new Player();
     private final Computer computer = new Computer();
-
     private final Timer timer = new Timer();
     private static boolean exitGame = false;
-
     private Card participantCard;
     private Card clickedCard;
     private final CurrentCard currentCard = new CurrentCard();
     private Card topCard;
-
-    public boolean isPlayerTurn() {
-        return playerTurn;
-    }
-
     private boolean playerTurn = true;
     private boolean computerTurn = false;
 
@@ -35,24 +28,8 @@ public class Game extends Observable implements Observer {
         gameFrame = new GameFrame(this);
     }
 
-    public void setClickedCard(Card clickedCard) {
-        this.clickedCard = clickedCard;
-    }
-
-    public Deck getFaceDown() {
-        return faceDown;
-    }
-
-    public Deck getFaceUp() {
-        return faceUp;
-    }
-
-    public ArrayList<Card> getPlayerHand(){
-        return player.getCardList();
-    }
-
-    public ArrayList<Card> getComputerHand(){
-        return computer.getCardList();
+    public boolean isPlayerTurn() {
+        return playerTurn;
     }
 
     public void printComputerHand(){
@@ -158,5 +135,25 @@ public class Game extends Observable implements Observer {
     public void update(Observable observable, Object o) {
         setChanged();
         notifyObservers();
+    }
+
+    public void setClickedCard(Card clickedCard) {
+        this.clickedCard = clickedCard;
+    }
+
+    public Deck getFaceDown() {
+        return faceDown;
+    }
+
+    public Deck getFaceUp() {
+        return faceUp;
+    }
+
+    public ArrayList<Card> getPlayerHand(){
+        return player.getCardList();
+    }
+
+    public ArrayList<Card> getComputerHand(){
+        return computer.getCardList();
     }
 }
