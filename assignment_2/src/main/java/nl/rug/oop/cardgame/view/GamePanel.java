@@ -1,5 +1,6 @@
 package nl.rug.oop.cardgame.view;
 
+import com.sun.org.apache.bcel.internal.generic.Select;
 import nl.rug.oop.cardgame.controller.CardClicker;
 import nl.rug.oop.cardgame.model.Game;
 import nl.rug.oop.cardgame.model.elements.Card;
@@ -26,8 +27,11 @@ public class GamePanel extends JPanel implements Observer {
     private final HashMap<Card, Rectangle> drawCards;
     private Card lastCard;
 
+    private SelectSuitMenu popUpMenu = new SelectSuitMenu();
+
     public GamePanel(Game game) {
         this.game = game;
+        this.setComponentPopupMenu(popUpMenu);
         setBackground(BACKGROUND_COLOR);
         setVisible(true);
         setOpaque(true);
@@ -35,6 +39,10 @@ public class GamePanel extends JPanel implements Observer {
         game.addObserver(this);
         mapCards = new HashMap<>(game.getPlayerHand().size()* 5);
         drawCards = new HashMap<>();
+    }
+
+    public SelectSuitMenu getPopUpMenu() {
+        return popUpMenu;
     }
 
     public Map<Card, Rectangle> getMapCards() {

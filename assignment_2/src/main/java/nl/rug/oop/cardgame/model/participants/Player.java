@@ -23,16 +23,14 @@ public class Player extends Participant {
             drawCard(faceDown);
             return card;
         }
+        else if (accordingToRules(card, face, suit)) {
+            this.putDownCard(faceUp, card);
+            System.out.println("You played:  " + card);
+            return card;
+            }
         else {
-            if (accordingToRules(card, face, suit)) {
-                this.putDownCard(faceUp, card);
-                System.out.println("You played:  " + card);
-                return card;
+            return null;
             }
-            else {
-                return null;
-            }
-        }
     }
 
     /** Player chooses a suit in case they put down an 8 */
