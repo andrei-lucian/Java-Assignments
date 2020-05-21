@@ -23,6 +23,7 @@ public class Game extends Observable implements Observer {
     private final Computer computer = new Computer();
     private Card participantCard;
     private final CurrentCard currentCard = new CurrentCard();
+    private Card topCard;
 
     public Game() {
         gameFrame = new GameFrame(this);
@@ -48,13 +49,23 @@ public class Game extends Observable implements Observer {
         return computer.getCardList();
     }
 
+    /** Sets up the game (deals cards, reveals the top card,
+     * sets the current face and suit) and calls the game loop */
+    public void startGame(){
+        Dealer.deal5Cards(player, computer, faceDown);
+        Dealer.revealCard(faceDown, faceUp);
+        currentCard.setFace(faceUp.peekTopCard().getFace());
+        currentCard.setSuit(faceUp.peekTopCard().getSuit());
+        gameLoop(player, computer, faceUp, faceDown);
+    }
+
     /** The main game loop where player and computer take turns */
     public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
             if(chosenCard != null){
                 System.out.println(chosenCard);
                 if (playerTurn) {
-                    playerTurn(chosenCard, player, currentCard, faceDown, faceUp);
+                    playerTurn(player, currentCard, faceDown, faceUp);
                     chosenCard = null;
                 }
                 if (computerTurn) {
@@ -71,18 +82,16 @@ public class Game extends Observable implements Observer {
         }
     }
 
-    /** Sets up the game (deals cards, reveals the top card,
-     * sets the current face and suit) and calls the game loop */
-    public void startGame(){
-        Dealer.deal5Cards(player, computer, faceDown);
-        Dealer.revealCard(faceDown, faceUp);
-        currentCard.setFace(faceUp.peekTopCard().getFace());
-        currentCard.setSuit(faceUp.peekTopCard().getSuit());
-        gameLoop(player, computer, faceUp, faceDown);
-    }
-
-    private void playerTurn(Card card, Player player, CurrentCard currentCard, Deck faceDown, Deck faceUp){
-        participantCard = player.playCard(card, faceDown, faceUp, currentCard.getFace(), currentCard.getSuit());
+    private void playerTurn(Player player, CurrentCard currentCard, Deck faceDown, Deck faceUp){
+        boolean played = false;
+        while (!played) {
+            topCard = faceDown.peekTopCard();
+            participantCard = player.playCard(this.chosenCard, faceDown, faceUp, currentCard.getFace(), currentCard.getSuit());
+            if (participantCard != null){
+                played = true;
+                System.out.println(played);
+            }
+        }
         checkWinCondition(player);
         if (faceDown.isEmpty()){
             Dealer.transferDeck(faceUp, faceDown);
@@ -118,12 +127,14 @@ public class Game extends Observable implements Observer {
      * depending on what the participant's action is */
     private void setNewValues(CurrentCard currentCard, Participant participant) {
         if (participantCard != null) {
-            currentCard.setFace(participantCard.getFace());
-            if (participantCard.getFace() == Card.Face.EIGHT) {
-                currentCard.setSuit(participant.chooseSuit());
-                System.out.println("The suit has been switched to: " + currentCard.getSuit());
-            } else {
-                currentCard.setSuit(participantCard.getSuit());
+            if (participantCard!=topCard) {
+                currentCard.setFace(participantCard.getFace());
+                if (participantCard.getFace() == Card.Face.EIGHT) {
+                    currentCard.setSuit(participant.chooseSuit());
+                    System.out.println("The suit has been switched to: " + currentCard.getSuit());
+                } else {
+                    currentCard.setSuit(participantCard.getSuit());
+                }
             }
         }
     }

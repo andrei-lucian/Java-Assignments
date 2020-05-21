@@ -27,13 +27,7 @@ public class Player extends Participant {
 
     /** Makes sure the player selects a valid card */
     private boolean accordingToRules(Card card, Card.Face face, Card.Suit suit){
-        if (card.getFace() == face || card.getSuit() == suit || card.getFace() == Card.Face.EIGHT) {
-            return true;
-        }
-        else {
-            System.out.println("This card does not match the requirements, try again.");
-            return false;
-        }
+        return card.getFace() == face || card.getSuit() == suit || card.getFace() == Card.Face.EIGHT;
     }
 
     /**
@@ -44,20 +38,18 @@ public class Player extends Participant {
      * @param suit The suit to be matched.
      */
     public Card playCard(Card card, Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit) {
-        while (true) {
-            if (card == faceDown.peekTopCard()) {
-                drawCard(faceDown);
-                return null;
+        if (card == faceDown.peekTopCard()) {
+            drawCard(faceDown);
+            return card;
+        }
+        else {
+            if (accordingToRules(card, face, suit)) {
+                this.putDownCard(faceUp, card);
+                System.out.println("You played:  " + card);
+                return card;
             }
             else {
-                if (accordingToRules(card, face, suit)) {
-                    this.putDownCard(faceUp, card);
-                    System.out.println("You played:  " + card);
-                    return card;
-                }
-                else {
-                    return null;
-                }
+                return null;
             }
         }
     }
