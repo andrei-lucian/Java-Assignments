@@ -23,6 +23,11 @@ public class Game extends Observable implements Observer {
     private Card topCard;
     private boolean playerTurn = true;
     private boolean computerTurn = false;
+    private Card.Suit clickedSuit;
+
+    public void setClickedSuit(Card.Suit clickedSuit) {
+        this.clickedSuit = clickedSuit;
+    }
 
     public Game() {
         gameFrame = new GameFrame(this);
@@ -81,39 +86,40 @@ public class Game extends Observable implements Observer {
                 played = true;
             }
         }
-        updateConditions(computer, currentCard, faceDown, faceUp);
+        updateConditions(computer, faceDown, faceUp);
+        setNewValuesPlayer(currentCard);
         computerTurn = true;
         playerTurn = false;
     }
 
     private void computerTurn(Computer computer, CurrentCard currentCard, Deck faceDown, Deck faceUp){
         participantCard = computer.playCard(faceDown, faceUp, currentCard.getFace(), currentCard.getSuit()); //player either puts down or draws a card
-        updateConditions(computer, currentCard, faceDown, faceUp);
+        updateConditions(computer, faceDown, faceUp);
+        setNewValuesComputer(currentCard, computer);
         computerTurn = false;
         playerTurn = true;
     }
 
     /**Checks the current game status and updates it accordingly */
-    private void updateConditions(Participant participant, CurrentCard currentCard, Deck faceDown, Deck faceUp){
+    private void updateConditions(Participant participant, Deck faceDown, Deck faceUp){
         checkWinCondition(participant);
         if (faceDown.isEmpty()){
             Dealer.transferDeck(faceUp, faceDown);
             System.out.println("Face down deck ran out, dealer switched it.");
         }
-        setNewValues(currentCard, participant);
         setChanged();
         notifyObservers();
     }
 
+
     /** Sets the new values (face and suit) for the currentCard object,
      * depending on what the participant's action is */
-    private void setNewValues(CurrentCard currentCard, Participant participant) {
+    private void setNewValuesComputer(CurrentCard currentCard, Computer computer) {
         if (participantCard != null) {
             if (participantCard!=topCard) {
                 currentCard.setFace(participantCard.getFace());
                 if (participantCard.getFace() == Card.Face.EIGHT) {
-                    currentCard.setSuit(participant.chooseSuit());
-                    System.out.println("The suit has been switched to: " + currentCard.getSuit());
+                        currentCard.setSuit(computer.chooseSuit());
                 } else {
                     currentCard.setSuit(participantCard.getSuit());
                 }
@@ -121,6 +127,31 @@ public class Game extends Observable implements Observer {
         }
         //System.out.println("Current card is :" + currentCard.getFace() + "_" + currentCard.getSuit());
     }
+
+    private void setNewValuesPlayer(CurrentCard currentCard){
+        boolean suitChosen = false;
+        if (participantCard != null) {
+            if (participantCard != topCard) {
+                currentCard.setFace(participantCard.getFace());
+                if (participantCard.getFace() == Card.Face.EIGHT) {
+                    while (!suitChosen) {
+                        //System.out.println("hello");
+                        if (clickedSuit != null) {
+                            currentCard.setSuit(clickedSuit);
+                            suitChosen = true;
+                            System.out.println("The suit has been switched to: " + currentCard.getSuit());
+                        }
+                        setChanged();
+                        notifyObservers();
+                    }
+                }
+                else {
+                    currentCard.setSuit(participantCard.getSuit());
+                }
+            }
+        }
+    }
+
 
     /** If one of the players has no cards left then they win and the game is over */
     public void checkWinCondition(Participant participant) {
