@@ -1,7 +1,8 @@
-package nl.rug.oop.cardgame.view;
+package nl.rug.oop.cardgame.controller;
 
 import nl.rug.oop.cardgame.model.Game;
 import nl.rug.oop.cardgame.model.elements.Card;
+import nl.rug.oop.cardgame.view.GamePanel;
 
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
@@ -39,7 +40,7 @@ public class CardClicker extends MouseInputAdapter {
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());
         if (deckBounds.contains(event.getPoint())){
             game.setChosenCard(game.getFaceDown().peekTopCard());
-            System.out.println("Card drawn");
+            System.out.println("You drew a card.");
         }
     }
 }

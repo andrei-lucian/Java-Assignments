@@ -63,7 +63,7 @@ public class Game extends Observable implements Observer {
     public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
             if(chosenCard != null){
-                System.out.println(chosenCard);
+                //System.out.println(chosenCard);
                 if (playerTurn) {
                     playerTurn(player, currentCard, faceDown, faceUp);
                     chosenCard = null;
@@ -87,9 +87,10 @@ public class Game extends Observable implements Observer {
         while (!played) {
             topCard = faceDown.peekTopCard();
             participantCard = player.playCard(this.chosenCard, faceDown, faceUp, currentCard.getFace(), currentCard.getSuit());
+            //System.out.println("Player no of cards " + player.noOfCards());
             if (participantCard != null){
                 played = true;
-                System.out.println(played);
+                //System.out.println(played);
             }
         }
         checkWinCondition(player);
@@ -111,6 +112,7 @@ public class Game extends Observable implements Observer {
      * 4. The new values for currentCard are set */
     private void computerTurn(Computer computer, CurrentCard currentCard, Deck faceDown, Deck faceUp){
         participantCard = computer.playCard(faceDown, faceUp, currentCard.getFace(), currentCard.getSuit()); //player either puts down or draws a card
+        //System.out.println("Computer no of cards " + computer.noOfCards());
         checkWinCondition(computer); //check if this results in the player winning
         if (faceDown.isEmpty()){
             Dealer.transferDeck(faceUp, faceDown);

@@ -1,5 +1,6 @@
 package nl.rug.oop.cardgame.view;
 
+import nl.rug.oop.cardgame.controller.CardClicker;
 import nl.rug.oop.cardgame.model.Game;
 import nl.rug.oop.cardgame.model.elements.Card;
 import nl.rug.oop.cardgame.view.textures.CardBack;
@@ -9,10 +10,7 @@ import nl.rug.oop.cardgame.view.textures.CardTextures;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 public class GamePanel extends JPanel implements Observer {
 
@@ -119,7 +117,7 @@ public class GamePanel extends JPanel implements Observer {
     private void paintComputerHand(Graphics g) {
         BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
         int move = 0;
-        for(int x = 0; x <= game.getComputerHand().size(); x++) {
+        for(int x = 0; x <= game.getComputerHand().size() -1 ; x++) {
             int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getComputerHand().size() / 4.0)));
             int posY = 20;
 
@@ -133,11 +131,16 @@ public class GamePanel extends JPanel implements Observer {
 
     @Override
     public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        paintCard(g);
-        paintComputerHand(g);
-        paintFaceDownDeck(g);
-        paintFaceUpDeck(g);
+        try {
+            super.paintComponent(g);
+            paintCard(g);
+            paintComputerHand(g);
+            paintFaceDownDeck(g);
+            paintFaceUpDeck(g);
+        }
+        catch (ConcurrentModificationException e){
+            System.out.println("cc error!!");
+        }
     }
 
     /**
