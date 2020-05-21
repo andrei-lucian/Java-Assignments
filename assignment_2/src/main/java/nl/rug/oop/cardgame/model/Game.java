@@ -8,15 +8,9 @@ import nl.rug.oop.cardgame.view.GameFrame;
 
 import java.util.*;
 
-public class Game extends Observable implements Observer {
-
-    public GameFrame getGameFrame() {
-        return gameFrame;
-    }
+public class Game extends Observable {
 
     private GameFrame gameFrame;
-    Deck faceDown = Dealer.newFaceDownDeck();
-    Deck faceUp = new Deck();
     private final Player player = new Player();
     private final Computer computer = new Computer();
     private final Timer timer = new Timer();
@@ -28,17 +22,11 @@ public class Game extends Observable implements Observer {
     private boolean playerTurn = true;
     private boolean computerTurn = false;
     private Card.Suit clickedSuit;
-
-    public void setClickedSuit(Card.Suit clickedSuit) {
-        this.clickedSuit = clickedSuit;
-    }
+    Deck faceDown = Dealer.newFaceDownDeck();
+    Deck faceUp = new Deck();
 
     public Game() {
         gameFrame = new GameFrame(this);
-    }
-
-    public boolean isPlayerTurn() {
-        return playerTurn;
     }
 
     public void printComputerHand(){
@@ -115,7 +103,6 @@ public class Game extends Observable implements Observer {
         notifyObservers();
     }
 
-
     /** Sets the new values (face and suit) for the currentCard object,
      * depending on what the participant's action is */
     private void setNewValuesComputer(CurrentCard currentCard, Computer computer) {
@@ -130,7 +117,6 @@ public class Game extends Observable implements Observer {
                 }
             }
         }
-        //System.out.println("Current card is :" + currentCard.getFace() + "_" + currentCard.getSuit());
     }
 
     private void setNewValuesPlayer(CurrentCard currentCard){
@@ -156,7 +142,6 @@ public class Game extends Observable implements Observer {
         }
     }
 
-
     /** If one of the players has no cards left then they win and the game is over */
     public void checkWinCondition(Participant participant) {
         if (participant.noOfCards() == 0) {
@@ -164,12 +149,6 @@ public class Game extends Observable implements Observer {
             exitGame = true;
             System.exit(0);
         }
-    }
-
-    @Override
-    public void update(Observable observable, Object o) {
-        setChanged();
-        notifyObservers();
     }
 
     public void setClickedCard(Card clickedCard) {
@@ -190,5 +169,17 @@ public class Game extends Observable implements Observer {
 
     public ArrayList<Card> getComputerHand(){
         return computer.getCardList();
+    }
+
+    public GameFrame getGameFrame() {
+        return gameFrame;
+    }
+
+    public void setClickedSuit(Card.Suit clickedSuit) {
+        this.clickedSuit = clickedSuit;
+    }
+
+    public boolean isPlayerTurn() {
+        return playerTurn;
     }
 }
