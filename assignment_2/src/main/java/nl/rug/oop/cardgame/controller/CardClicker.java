@@ -36,9 +36,8 @@ public class CardClicker extends MouseInputAdapter {
             Card card = game.getPlayerHand().get(i);
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
-                game.setClickedCard(card);
-                if (card.getFace() == Card.Face.EIGHT){
-
+                if (game.isPlayerTurn()) {
+                    game.setClickedCard(card);
                 }
                 break;
             }
