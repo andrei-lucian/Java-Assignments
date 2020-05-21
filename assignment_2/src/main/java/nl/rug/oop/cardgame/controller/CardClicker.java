@@ -36,9 +36,7 @@ public class CardClicker extends MouseInputAdapter {
             Card card = game.getPlayerHand().get(i);
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
-                if (game.isPlayerTurn()) {
-                    game.setClickedCard(card);
-                }
+                game.setClickedCard(card);
                 break;
             }
         }

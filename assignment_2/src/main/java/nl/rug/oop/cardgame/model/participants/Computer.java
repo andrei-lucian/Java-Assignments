@@ -88,6 +88,10 @@ public class Computer extends Participant {
      */
     public Card playCard(Deck faceDown, Deck faceUp, Card.Face face, Card.Suit suit) {
         ArrayList<Card> cardOptions = this.findCardOptions(suit, face);
+        System.out.println("\nComputer's card are :");
+        for (Card card : cardOptions){
+            System.out.println(card);
+        }
         Card card;
         int noOfEights = countEights(cardOptions); //count the number of 8s in their hand
 

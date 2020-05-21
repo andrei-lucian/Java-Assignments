@@ -24,13 +24,6 @@ public class Game extends Observable implements Observer {
     private final CurrentCard currentCard = new CurrentCard();
     private Card topCard;
 
-    public boolean isPlayerTurn() {
-        return playerTurn;
-    }
-
-    private boolean playerTurn = true;
-    private boolean computerTurn = false;
-
     public Game() {
         gameFrame = new GameFrame(this);
     }
@@ -69,19 +62,15 @@ public class Game extends Observable implements Observer {
     public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
             if(clickedCard != null) {
-                //System.out.println(chosenCard);
-                if (playerTurn) {
-                    playerTurn(player, currentCard, faceDown, faceUp);
-                    clickedCard = null;
-                }
-                if (computerTurn) {
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            computerTurn(computer, currentCard, faceDown, faceUp);
-                        }
-                    }, 2000);
-                }
+            //System.out.println(chosenCard);
+                playerTurn(player, currentCard, faceDown, faceUp);
+                clickedCard = null;
+                //timer.schedule(new TimerTask() {
+                    //@Override
+                    //public void run() {
+                        computerTurn(computer, currentCard, faceDown, faceUp);
+                    //}
+                //}, 2000);
             }
             setChanged();
             notifyObservers();
@@ -103,8 +92,6 @@ public class Game extends Observable implements Observer {
             System.out.println("Face down deck ran out, dealer switched it.");
         }
         setNewValues(currentCard, player);
-        playerTurn = false;
-        computerTurn = true;
         setChanged();
         notifyObservers();
     }
@@ -117,8 +104,6 @@ public class Game extends Observable implements Observer {
             System.out.println("Face down deck ran out, dealer switched it.");
         }
         setNewValues(currentCard, computer);
-        computerTurn = false;
-        playerTurn = true;
         setChanged();
         notifyObservers();
     }
@@ -137,6 +122,7 @@ public class Game extends Observable implements Observer {
                 }
             }
         }
+        //System.out.println("Current card is :" + currentCard.getFace() + "_" + currentCard.getSuit());
     }
 
     /** If one of the players has no cards left then they win and the game is over */
