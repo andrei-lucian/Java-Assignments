@@ -14,7 +14,7 @@ public class CardClicker extends MouseInputAdapter {
     private final GamePanel panel;
 
     /**
-     * Create a new card dragger that receives mouse events from the DrawPanel
+     * Create a new card clicker that receives mouse events from the DrawPanel
      * supplied to this constructor
      *
      * @param game The actual Game
@@ -27,19 +27,26 @@ public class CardClicker extends MouseInputAdapter {
 
     @Override
     public void mousePressed(MouseEvent event) {
+        playerCardClicked(event);
+        deckClicked(event);
+    }
+
+    public void playerCardClicked(MouseEvent event){
         for (int i = game.getPlayerHand().size() - 1; i >= 0; i--) {
             Card card = game.getPlayerHand().get(i);
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
-                game.setChosenCard(card);
+                game.setClickedCard(card);
                 break;
             }
         }
-        //draw from deck
+    }
+
+    public void deckClicked(MouseEvent event){
         Rectangle deckBounds;
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());
         if (deckBounds.contains(event.getPoint())){
-            game.setChosenCard(game.getFaceDown().peekTopCard());
+            game.setClickedCard(game.getFaceDown().peekTopCard());
             System.out.println("You drew a card.");
         }
     }

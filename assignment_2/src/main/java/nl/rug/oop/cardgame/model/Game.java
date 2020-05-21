@@ -5,23 +5,22 @@ import nl.rug.oop.cardgame.model.participants.Computer;
 import nl.rug.oop.cardgame.model.participants.Participant;
 import nl.rug.oop.cardgame.model.participants.Player;
 import nl.rug.oop.cardgame.view.GameFrame;
-import nl.rug.oop.cardgame.view.PlayerHand;
 
 import java.util.*;
 
 public class Game extends Observable implements Observer {
 
     private GameFrame gameFrame;
-    private Card chosenCard;
     Deck faceDown = Dealer.newFaceDownDeck();
     Deck faceUp = new Deck();
-    private boolean playerTurn = true;
-    private boolean computerTurn = false;
-    private final Timer timer = new Timer();
-    private static boolean exitGame = false;
     private final Player player = new Player();
     private final Computer computer = new Computer();
+
+    private final Timer timer = new Timer();
+    private static boolean exitGame = false;
+
     private Card participantCard;
+    private Card clickedCard;
     private final CurrentCard currentCard = new CurrentCard();
     private Card topCard;
 
@@ -29,8 +28,8 @@ public class Game extends Observable implements Observer {
         gameFrame = new GameFrame(this);
     }
 
-    public void setChosenCard(Card chosenCard) {
-        this.chosenCard = chosenCard;
+    public void setClickedCard(Card clickedCard) {
+        this.clickedCard = clickedCard;
     }
 
     public Deck getFaceDown() {
@@ -62,20 +61,16 @@ public class Game extends Observable implements Observer {
     /** The main game loop where player and computer take turns */
     public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         while(!exitGame){
-            if(chosenCard != null){
+            if(clickedCard != null){
                 //System.out.println(chosenCard);
-                if (playerTurn) {
-                    playerTurn(player, currentCard, faceDown, faceUp);
-                    chosenCard = null;
-                }
-                if (computerTurn) {
-                    timer.schedule(new TimerTask(){
-                        @Override
-                        public void run(){
-                            computerTurn(computer, currentCard, faceDown, faceUp);
-                        }
-                    }, 2000);
-                }
+                playerTurn(player, currentCard, faceDown, faceUp);
+                clickedCard = null;
+                timer.schedule(new TimerTask(){
+                    @Override
+                    public void run(){
+                        computerTurn(computer, currentCard, faceDown, faceUp);
+                    }
+                }, 2000);
             }
             setChanged();
             notifyObservers();
@@ -86,11 +81,9 @@ public class Game extends Observable implements Observer {
         boolean played = false;
         while (!played) {
             topCard = faceDown.peekTopCard();
-            participantCard = player.playCard(this.chosenCard, faceDown, faceUp, currentCard.getFace(), currentCard.getSuit());
-            //System.out.println("Player no of cards " + player.noOfCards());
+            participantCard = player.playCard(this.clickedCard, faceDown, faceUp, currentCard.getFace(), currentCard.getSuit());
             if (participantCard != null){
                 played = true;
-                //System.out.println(played);
             }
         }
         checkWinCondition(player);
@@ -99,20 +92,12 @@ public class Game extends Observable implements Observer {
             System.out.println("Face down deck ran out, dealer switched it.");
         }
         setNewValues(currentCard, player);
-        playerTurn = false;
-        computerTurn = true;
         setChanged();
         notifyObservers();
     }
 
-    /** A participant in the game takes a turn.
-     * 1. The participant places down or draws a card
-     * 2. The winning condition is checked
-     * 3. The faceDown deck is reset if it is empty
-     * 4. The new values for currentCard are set */
     private void computerTurn(Computer computer, CurrentCard currentCard, Deck faceDown, Deck faceUp){
         participantCard = computer.playCard(faceDown, faceUp, currentCard.getFace(), currentCard.getSuit()); //player either puts down or draws a card
-        //System.out.println("Computer no of cards " + computer.noOfCards());
         checkWinCondition(computer); //check if this results in the player winning
         if (faceDown.isEmpty()){
             Dealer.transferDeck(faceUp, faceDown);
@@ -121,8 +106,6 @@ public class Game extends Observable implements Observer {
         setNewValues(currentCard, computer);
         setChanged();
         notifyObservers();
-        computerTurn = false;
-        playerTurn = true;
     }
 
     /** Sets the new values (face and suit) for the currentCard object,

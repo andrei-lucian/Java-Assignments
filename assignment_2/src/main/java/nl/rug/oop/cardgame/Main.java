@@ -1,6 +1,5 @@
 package nl.rug.oop.cardgame;
 import nl.rug.oop.cardgame.model.Game;
-import nl.rug.oop.cardgame.view.GameFrame;
 
 import java.util.Scanner;
 
