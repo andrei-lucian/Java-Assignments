@@ -86,7 +86,7 @@ public class Game extends Observable implements Observer {
                 played = true;
             }
         }
-        updateConditions(computer, faceDown, faceUp);
+        updateConditions(player, faceDown, faceUp);
         setNewValuesPlayer(currentCard);
         computerTurn = true;
         playerTurn = false;
@@ -119,7 +119,8 @@ public class Game extends Observable implements Observer {
             if (participantCard!=topCard) {
                 currentCard.setFace(participantCard.getFace());
                 if (participantCard.getFace() == Card.Face.EIGHT) {
-                        currentCard.setSuit(computer.chooseSuit());
+                    currentCard.setSuit(computer.chooseSuit());
+                    System.out.println("The suit has been switched to: " + currentCard.getSuit());
                 } else {
                     currentCard.setSuit(participantCard.getSuit());
                 }
