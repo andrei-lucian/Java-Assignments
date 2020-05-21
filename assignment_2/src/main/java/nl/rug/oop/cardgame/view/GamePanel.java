@@ -32,7 +32,6 @@ public class GamePanel extends JPanel implements Observer {
     public GamePanel(Game game) {
         this.game = game;
         popUpMenu = new SelectSuitMenu(this.game);
-        this.setComponentPopupMenu(popUpMenu);
         setBackground(BACKGROUND_COLOR);
         setVisible(true);
         setOpaque(true);

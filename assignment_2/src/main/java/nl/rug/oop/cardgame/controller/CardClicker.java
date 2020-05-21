@@ -39,7 +39,7 @@ public class CardClicker extends MouseInputAdapter {
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
                 if (card.getFace() == Card.Face.EIGHT){
-                    panel.getPopUpMenu().show(panel, 600, 400);
+                    panel.getPopUpMenu();
                 }
                 game.setClickedCard(card);
                 break;

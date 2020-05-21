@@ -10,6 +10,10 @@ import java.util.*;
 
 public class Game extends Observable implements Observer {
 
+    public GameFrame getGameFrame() {
+        return gameFrame;
+    }
+
     private GameFrame gameFrame;
     Deck faceDown = Dealer.newFaceDownDeck();
     Deck faceUp = new Deck();
