@@ -41,7 +41,7 @@ public class CardClicker extends MouseInputAdapter {
             Rectangle bounds = panel.getMapCards().get(card);
             if (bounds.contains(event.getPoint())) {
                 if (card.getFace() == Card.Face.EIGHT){
-                    Object[] possibilities = {"hearts", "diamonds", "clubs", "spades"};
+                    Object[] possibilities = {"hearts", "diamonds", "spades", "clubs"};
                     try{
                         String suit = (String) JOptionPane.showInputDialog(null, "Choose a suit:\n",
                                 "Customized Dialog", JOptionPane.PLAIN_MESSAGE, null, possibilities, "hearts");
@@ -49,8 +49,8 @@ public class CardClicker extends MouseInputAdapter {
                         switch(suit){
                             case "hearts": game.setClickedSuit(Card.Suit.HEARTS); selected = true; break;
                             case "diamonds":game.setClickedSuit(Card.Suit.DIAMONDS); selected = true; break;
-                            case "spades": game.setClickedSuit(Card.Suit.CLUBS); selected = true; break;
-                            case "clubs": game.setClickedSuit(Card.Suit.SPADES); selected = true; break;
+                            case "spades": game.setClickedSuit(Card.Suit.SPADES); selected = true; break;
+                            case "clubs": game.setClickedSuit(Card.Suit.CLUBS); selected = true; break;
                             default: selected = false;
                         }
                     }
