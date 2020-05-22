@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
+import java.util.Timer;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GamePanel extends JPanel implements Observer {
 
@@ -25,6 +27,7 @@ public class GamePanel extends JPanel implements Observer {
     private final Map<Card, Rectangle> mapCards;
     private final HashMap<Card, Rectangle> drawCards;
     private Card lastCard;
+    private final Timer timer = new Timer();
 
     public GamePanel(Game game) {
         this.game = game;
@@ -149,17 +152,17 @@ public class GamePanel extends JPanel implements Observer {
 
     @Override
     public void paintComponent(Graphics g){
-        try {
+     //   try {
             super.paintComponent(g);
             paintCard(g);
             paintSuit(g);
             paintComputerHand(g);
             paintFaceDownDeck(g);
             paintFaceUpDeck(g);
-        }
-        catch (ConcurrentModificationException e){
-            System.out.println("cc error!!");
-        }
+      //  }
+//        catch (ConcurrentModificationException e){
+//            System.out.println("cc error!!");
+//        }
     }
 
     @Override

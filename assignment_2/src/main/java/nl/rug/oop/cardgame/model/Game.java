@@ -9,6 +9,7 @@ import nl.rug.oop.cardgame.view.GameFrame;
 import javax.swing.*;
 import java.util.*;
 import java.util.Timer;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends Observable {
 
@@ -196,11 +197,11 @@ public class Game extends Observable {
         return faceUp;
     }
 
-    public ArrayList<Card> getPlayerHand(){
+    public CopyOnWriteArrayList<Card> getPlayerHand(){
         return player.getCardList();
     }
 
-    public ArrayList<Card> getComputerHand(){
+    public CopyOnWriteArrayList<Card> getComputerHand(){
         return computer.getCardList();
     }
 

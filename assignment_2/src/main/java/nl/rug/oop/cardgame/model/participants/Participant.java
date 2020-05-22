@@ -3,18 +3,19 @@ import nl.rug.oop.cardgame.model.elements.Card;
 import nl.rug.oop.cardgame.model.elements.Deck;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /** Superclass of Player and Computer */
 public abstract class Participant {
 
-    protected ArrayList<Card> cardList;
+    protected CopyOnWriteArrayList<Card> cardList;
 
-    public ArrayList<Card> getCardList() {
+    public CopyOnWriteArrayList<Card> getCardList() {
         return cardList;
     }
 
     public Participant(){
-        this.cardList = new ArrayList<>();
+        this.cardList = new CopyOnWriteArrayList<Card>();
     }
 
     public int noOfCards(){
