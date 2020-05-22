@@ -13,19 +13,19 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends Observable {
 
-    private Timer timer;
-    private Player player;
-    private Computer computer;
-    private static boolean exitGame;
+    private final Timer timer = new Timer();
+    private final Player player = new Player();
+    private final Computer computer = new Computer();
+    private static boolean exitGame = false;
     private Card participantCard;
     private Card clickedCard;
-    private CurrentCard currentCard;
+    private final CurrentCard currentCard = new CurrentCard();
     private Card topCard;
-    private boolean playerTurn;
-    private boolean computerTurn;
+    private boolean playerTurn = true;
+    private boolean computerTurn = false;
     private Card.Suit clickedSuit;
-    private Deck faceDown;
-    private Deck faceUp;
+    private final Deck faceDown =  Dealer.newFaceDownDeck();
+    private final Deck faceUp = new Deck();
     private String suitString = "";
 
     public String getSuitString() {
@@ -39,20 +39,6 @@ public class Game extends Observable {
     /** Sets up the game (deals cards, reveals the top card,
      * sets the current face and suit) and calls the game loop */
     public void startGame(){
-        timer = new Timer();
-        player = new Player();
-        computer = new Computer();
-        exitGame = false;
-        participantCard = null;
-        clickedCard = null;
-        currentCard = new CurrentCard();
-        topCard = null;
-        playerTurn = true;
-        computerTurn = false;
-        clickedSuit = null;
-        faceDown = Dealer.newFaceDownDeck();
-        faceUp = new Deck();
-        suitString = "";
         Dealer.deal5Cards(player, computer, faceDown);
         Dealer.revealCard(faceDown, faceUp);
         currentCard.setFace(faceUp.peekTopCard().getFace());
