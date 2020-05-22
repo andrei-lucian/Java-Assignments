@@ -144,22 +144,16 @@ public class GamePanel extends JPanel implements Observer {
     public void paintSuit (Graphics g){
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString(game.getSuitString(), 390, 550 );
-        //g.drawLine(350,550,750,550);
     }
 
     @Override
     public void paintComponent(Graphics g){
-     //   try {
-            super.paintComponent(g);
-            paintCard(g);
-            paintSuit(g);
-            paintComputerHand(g);
-            paintFaceDownDeck(g);
-            paintFaceUpDeck(g);
-      //  }
-//        catch (ConcurrentModificationException e){
-//            System.out.println("cc error!!");
-//        }
+        super.paintComponent(g);
+        paintCard(g);
+        paintSuit(g);
+        paintComputerHand(g);
+        paintFaceDownDeck(g);
+        paintFaceUpDeck(g);
     }
 
     @Override
