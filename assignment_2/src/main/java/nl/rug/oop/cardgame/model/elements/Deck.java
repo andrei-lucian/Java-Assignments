@@ -1,20 +1,21 @@
 package nl.rug.oop.cardgame.model.elements;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /** A deck of cards with all the types of cards in it - implemented as a stack */
 public class Deck{
 
-    protected Stack<Card> cards;
+    protected CopyOnWriteArrayList<Card> cards;
     Random random = new Random();
 
     /** Constructor */
     public Deck() {
-        cards = new Stack<>();
+        cards = new CopyOnWriteArrayList<>();
     }
 
     public Card peekTopCard(){
-        return cards.peek();
+        return cards.get(cards.size() - 1);
     }
 
     /** Add all the cards to a deck */
@@ -24,7 +25,7 @@ public class Deck{
 
     /** Add a card to the top of the deck */
     public void addOnTop(Card card) {
-        cards.push(card);
+        cards.add(card);
     }
 
     public void addAnywhere(Card card) {
@@ -32,7 +33,7 @@ public class Deck{
     }
 
     /** Return all the cards in a deck */
-    public Stack<Card> getCards() {
+    public CopyOnWriteArrayList<Card> getCards() {
         return cards;
     }
 
@@ -49,8 +50,7 @@ public class Deck{
     /** Draw a card from a deck */
     public Card draw() {
         if (!isEmpty()) {
-            Card card = cards.pop();
-            return card;
+            return cards.remove(cards.size() - 1);
         }
         return null;
     }
