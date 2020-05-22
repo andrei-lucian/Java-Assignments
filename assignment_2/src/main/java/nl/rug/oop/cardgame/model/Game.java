@@ -1,4 +1,5 @@
 package nl.rug.oop.cardgame.model;
+import nl.rug.oop.cardgame.Main;
 import nl.rug.oop.cardgame.model.elements.Card;
 import nl.rug.oop.cardgame.model.elements.Deck;
 import nl.rug.oop.cardgame.model.participants.Computer;
@@ -6,18 +7,20 @@ import nl.rug.oop.cardgame.model.participants.Participant;
 import nl.rug.oop.cardgame.model.participants.Player;
 import nl.rug.oop.cardgame.view.GameFrame;
 
+import javax.swing.*;
 import java.util.*;
+import java.util.Timer;
 
 public class Game extends Observable {
 
-    private GameFrame gameFrame;
-    private final Player player = new Player();
-    private final Computer computer = new Computer();
+    private final GameFrame gameFrame;
+    private Player player = new Player();
+    private Computer computer = new Computer();
     private final Timer timer = new Timer();
     private static boolean exitGame = false;
     private Card participantCard;
     private Card clickedCard;
-    private final CurrentCard currentCard = new CurrentCard();
+    private CurrentCard currentCard = new CurrentCard();
     private Card topCard;
     private boolean playerTurn = true;
     private boolean computerTurn = false;
@@ -34,11 +37,6 @@ public class Game extends Observable {
         gameFrame = new GameFrame(this);
     }
 
-    public void printComputerHand(){
-        for (Card card : computer.getCardList()){
-            System.out.println(card);
-        }
-    }
 
     /** Sets up the game (deals cards, reveals the top card,
      * sets the current face and suit) and calls the game loop */
@@ -47,8 +45,24 @@ public class Game extends Observable {
         Dealer.revealCard(faceDown, faceUp);
         currentCard.setFace(faceUp.peekTopCard().getFace());
         currentCard.setSuit(faceUp.peekTopCard().getSuit());
-        printComputerHand();
         gameLoop(player, computer, faceUp, faceDown);
+    }
+
+    public void reset(){
+        player = new Player();
+        computer = new Computer();
+        exitGame = false;
+        participantCard = null;
+        clickedCard = null;
+        currentCard = new CurrentCard();
+        topCard = null;
+        playerTurn = true;
+        computerTurn = false;
+        clickedSuit = null;
+        faceDown = Dealer.newFaceDownDeck();
+        faceUp = new Deck();
+        suitString = "";
+        startGame();
     }
 
     /** The main game loop where player and computer take turns */
@@ -154,8 +168,17 @@ public class Game extends Observable {
     public void checkWinCondition(Participant participant) {
         if (participant.noOfCards() == 0) {
             System.out.println("Game over!");
-            exitGame = true;
-            //System.exit(0);
+            int n = JOptionPane.showConfirmDialog(
+                    null,
+                    "Would you like to play again?",
+                    "GAME OVER",
+                    JOptionPane.YES_NO_OPTION);
+            if (n == 1){
+                System.exit(0);
+            }
+            else if (n == 0){
+                reset();
+            }
         }
     }
 
