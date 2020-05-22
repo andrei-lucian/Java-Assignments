@@ -183,6 +183,7 @@ public class Game extends Observable {
                 System.exit(0);
             }
             else if (n == 0){
+                timer.cancel();
                 reset();
             }
         }
