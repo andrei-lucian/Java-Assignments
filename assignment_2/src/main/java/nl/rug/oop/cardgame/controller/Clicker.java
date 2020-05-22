@@ -66,7 +66,7 @@ public class Clicker extends MouseInputAdapter {
         Object[] possibilities = {"hearts", "diamonds", "spades", "clubs"};
         try{
             String suit = (String) JOptionPane.showInputDialog(null, "Choose a suit:\n",
-                    "Customized Dialog", JOptionPane.PLAIN_MESSAGE, null, possibilities, "hearts");
+                    "Choose suit", JOptionPane.PLAIN_MESSAGE, null, possibilities, "hearts");
             switch(suit){
                 case "hearts": game.setClickedSuit(Card.Suit.HEARTS); selected = true; break;
                 case "diamonds":game.setClickedSuit(Card.Suit.DIAMONDS); selected = true; break;
