@@ -16,7 +16,7 @@ public class Game extends Observable {
     private final GameFrame gameFrame;
     private Player player = new Player();
     private Computer computer = new Computer();
-    private final Timer timer = new Timer();
+    private Timer timer = new Timer();
     private static boolean exitGame = false;
     private Card participantCard;
     private Card clickedCard;
@@ -61,6 +61,9 @@ public class Game extends Observable {
         faceDown = Dealer.newFaceDownDeck();
         faceUp = new Deck();
         suitString = "";
+        timer = new Timer();
+        setChanged();
+        notifyObservers();
         startGame();
     }
 
