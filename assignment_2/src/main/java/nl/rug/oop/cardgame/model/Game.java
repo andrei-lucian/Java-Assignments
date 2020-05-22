@@ -13,19 +13,19 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends Observable {
 
-    private Player player = new Player();
-    private Computer computer = new Computer();
     private Timer timer = new Timer();
-    private static boolean exitGame = false;
+    private Player player;
+    private Computer computer;
+    private static boolean exitGame;
     private Card participantCard;
     private Card clickedCard;
-    private CurrentCard currentCard = new CurrentCard();
+    private CurrentCard currentCard;
     private Card topCard;
-    private boolean playerTurn = true;
-    private boolean computerTurn = false;
+    private boolean playerTurn;
+    private boolean computerTurn;
     private Card.Suit clickedSuit;
-    Deck faceDown = Dealer.newFaceDownDeck();
-    Deck faceUp = new Deck();
+    private Deck faceDown;
+    private Deck faceUp;
     private String suitString = "";
 
     public String getSuitString() {
@@ -39,14 +39,6 @@ public class Game extends Observable {
     /** Sets up the game (deals cards, reveals the top card,
      * sets the current face and suit) and calls the game loop */
     public void startGame(){
-        Dealer.deal5Cards(player, computer, faceDown);
-        Dealer.revealCard(faceDown, faceUp);
-        currentCard.setFace(faceUp.peekTopCard().getFace());
-        currentCard.setSuit(faceUp.peekTopCard().getSuit());
-        gameLoop(player, computer, faceUp, faceDown);
-    }
-
-    public void reset(){
         player = new Player();
         computer = new Computer();
         exitGame = false;
@@ -60,10 +52,13 @@ public class Game extends Observable {
         faceDown = Dealer.newFaceDownDeck();
         faceUp = new Deck();
         suitString = "";
-        timer = new Timer();
+        Dealer.deal5Cards(player, computer, faceDown);
+        Dealer.revealCard(faceDown, faceUp);
+        currentCard.setFace(faceUp.peekTopCard().getFace());
+        currentCard.setSuit(faceUp.peekTopCard().getSuit());
         setChanged();
         notifyObservers();
-        startGame();
+        gameLoop(player, computer, faceUp, faceDown);
     }
 
     /** The main game loop where player and computer take turns */
@@ -76,10 +71,10 @@ public class Game extends Observable {
                     clickedCard = null;
                 }
                 if(computerTurn) {
+                    System.out.println("COMPUTER TURN");
                     timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            System.out.println("COMPUTER TURN");
                             computerTurn(computer, currentCard, faceDown, faceUp);
                         }
                     }, 1000);
@@ -181,8 +176,9 @@ public class Game extends Observable {
                 System.exit(0);
             }
             else if (n == 0){
-                timer.cancel();
-                reset();
+                exitGame = true;
+                //timer.cancel();
+                startGame();
             }
         }
     }
