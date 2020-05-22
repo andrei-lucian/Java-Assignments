@@ -168,19 +168,8 @@ public class Game extends Observable {
     public void checkWinCondition(Participant participant) {
         if (participant.noOfCards() == 0) {
             System.out.println("Game over!");
-            int n = JOptionPane.showConfirmDialog(
-                    null,
-                    "Would you like to play again?",
-                    "GAME OVER",
-                    JOptionPane.YES_NO_OPTION);
-            if (n == 1){
-                System.exit(0);
-            }
-            else if (n == 0){
-                exitGame = true;
-                timer.cancel();
-                startGame();
-            }
+            JOptionPane.showMessageDialog(null, "Game over.");
+            System.exit(0);
         }
     }
 
