@@ -129,42 +129,41 @@ public class Game extends Observable {
     /** Sets the new values (face and suit) for the currentCard object,
      * depending on what the participant's action is */
     private void setNewValuesComputer(CurrentCard currentCard, Computer computer) {
-        if (participantCard != null) {
-            if (participantCard!=topCard) {
-                currentCard.setFace(participantCard.getFace());
-                if (participantCard.getFace() == Card.Face.EIGHT) {
-                    currentCard.setSuit(computer.chooseSuit());
-                    suitString = "The computer switched the suit to: " + currentCard.getSuit();
-                    System.out.println("The suit has been switched to: " + currentCard.getSuit());
-                } else {
-                    currentCard.setSuit(participantCard.getSuit());
-                    suitString = "";
-                }
-            }
+        if(checkForEight(participantCard)){
+            currentCard.setSuit(computer.chooseSuit());
+            suitString = "The computer switched the suit to: " + currentCard.getSuit();
+            System.out.println("The suit has been switched to: " + currentCard.getSuit());
         }
     }
 
-    private void setNewValuesPlayer(CurrentCard currentCard){
-        boolean suitChosen = false;
+    private boolean checkForEight(Card participantCard){
         if (participantCard != null) {
             if (participantCard != topCard) {
                 currentCard.setFace(participantCard.getFace());
                 if (participantCard.getFace() == Card.Face.EIGHT) {
-                    while (!suitChosen) {
-                        if (clickedSuit != null) {
-                            currentCard.setSuit(clickedSuit);
-                            suitChosen = true;
-                            suitString = "You switched the suit to: " + currentCard.getSuit();
-                            System.out.println("The suit has been switched to: " + currentCard.getSuit());
-                        }
-                        setChanged();
-                        notifyObservers();
-                    }
-                }
-                else {
+                    return true;
+                } else {
                     currentCard.setSuit(participantCard.getSuit());
                     suitString = "";
+                    return false;
                 }
+            }
+        }
+        return false;
+    }
+
+    private void setNewValuesPlayer(CurrentCard currentCard){
+        boolean suitChosen = false;
+        if(checkForEight(participantCard)){
+            while (!suitChosen) {
+                if (clickedSuit != null) {
+                    currentCard.setSuit(clickedSuit);
+                    suitChosen = true;
+                    suitString = "You switched the suit to: " + currentCard.getSuit();
+                    System.out.println("The suit has been switched to: " + currentCard.getSuit());
+                }
+                setChanged();
+                notifyObservers();
             }
         }
     }
