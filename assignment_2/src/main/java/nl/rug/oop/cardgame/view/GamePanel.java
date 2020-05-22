@@ -106,7 +106,7 @@ public class GamePanel extends JPanel implements Observer {
     public void paintPlayerHand() {
         mapCards.clear();
         int move = cardWidth() / 2;
-        int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0)));
+        int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0))-55);
         int posY = (getHeight() - 20) - cardHeight();
         for (Card card : game.getPlayerHand()) {
             Rectangle bounds = new Rectangle(posX + move, posY, cardWidth(), cardHeight());
@@ -143,7 +143,8 @@ public class GamePanel extends JPanel implements Observer {
 
     public void paintSuit (Graphics g){
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString(game.getSuitString(), 30, 70);
+        g.drawString(game.getSuitString(), 390, 550 );
+        //g.drawLine(350,550,750,550);
     }
 
     @Override

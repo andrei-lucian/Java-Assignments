@@ -70,6 +70,7 @@ public class Game extends Observable {
         while(!exitGame){
             if(clickedCard != null) {
                 if(playerTurn) {
+                    System.out.println("PLAYER TURN");
                     playerTurn(player, currentCard, faceDown, faceUp);
                     clickedCard = null;
                 }
@@ -77,6 +78,7 @@ public class Game extends Observable {
                     timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
+                            System.out.println("COMPUTER TURN");
                             computerTurn(computer, currentCard, faceDown, faceUp);
                         }
                     }, 1000);
@@ -129,7 +131,7 @@ public class Game extends Observable {
                 currentCard.setFace(participantCard.getFace());
                 if (participantCard.getFace() == Card.Face.EIGHT) {
                     currentCard.setSuit(computer.chooseSuit());
-                    suitString = "The computer switched the suit to \n" + currentCard.getSuit();
+                    suitString = "The computer switched the suit to: " + currentCard.getSuit();
                     System.out.println("The suit has been switched to: " + currentCard.getSuit());
                 } else {
                     currentCard.setSuit(participantCard.getSuit());
@@ -149,7 +151,7 @@ public class Game extends Observable {
                         if (clickedSuit != null) {
                             currentCard.setSuit(clickedSuit);
                             suitChosen = true;
-                            suitString = "You switched the suit to \n" + currentCard.getSuit();
+                            suitString = "You switched the suit to: " + currentCard.getSuit();
                             System.out.println("The suit has been switched to: " + currentCard.getSuit());
                         }
                         setChanged();
