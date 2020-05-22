@@ -13,7 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends Observable {
 
-    private Timer timer = new Timer();
+    private Timer timer;
     private Player player;
     private Computer computer;
     private static boolean exitGame;
@@ -39,6 +39,7 @@ public class Game extends Observable {
     /** Sets up the game (deals cards, reveals the top card,
      * sets the current face and suit) and calls the game loop */
     public void startGame(){
+        timer = new Timer();
         player = new Player();
         computer = new Computer();
         exitGame = false;
@@ -177,7 +178,7 @@ public class Game extends Observable {
             }
             else if (n == 0){
                 exitGame = true;
-                //timer.cancel();
+                timer.cancel();
                 startGame();
             }
         }
