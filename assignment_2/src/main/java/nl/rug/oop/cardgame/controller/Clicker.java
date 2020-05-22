@@ -76,7 +76,7 @@ public class Clicker extends MouseInputAdapter {
             }
         }
         catch (NullPointerException e){
-            System.out.println("Please choose a suit or play another card");
+            game.setChooseAgain(true);
         }
     }
 }

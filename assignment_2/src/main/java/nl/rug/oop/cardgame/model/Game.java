@@ -27,6 +27,17 @@ public class Game extends Observable {
     private final Deck faceDown =  Dealer.newFaceDownDeck();
     private final Deck faceUp = new Deck();
     private String suitString = "";
+    private boolean chooseAgain = false;
+
+    public boolean getChooseAgain() {
+        return chooseAgain;
+    }
+
+    public void setChooseAgain(boolean chooseAgain) {
+        this.chooseAgain = chooseAgain;
+        setChanged();
+        notifyObservers();
+    }
 
     public String getSuitString() {
         return suitString;
@@ -77,6 +88,7 @@ public class Game extends Observable {
             participantCard = player.playCard(this.clickedCard, faceDown, faceUp, currentCard.getFace(), currentCard.getSuit());
             if (participantCard != null){
                 played = true;
+                chooseAgain = false;
             }
         }
         updateConditions(player, faceDown, faceUp);

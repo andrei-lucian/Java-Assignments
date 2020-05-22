@@ -146,6 +146,13 @@ public class GamePanel extends JPanel implements Observer {
         g.drawString(game.getSuitString(), 390, 550 );
     }
 
+    public void paintChooseMessage(Graphics g){
+        g.setFont(new Font("Arial", Font.BOLD, 13));
+        if (game.getChooseAgain()){
+            g.drawString("Please choose again", 550, 580);
+        }
+    }
+
     public void paintRules (Graphics g){
         g.setFont(new Font("Arial", Font.BOLD, 13));
         g.drawString("Rules:", 20, 240 );
@@ -165,6 +172,7 @@ public class GamePanel extends JPanel implements Observer {
         super.paintComponent(g);
         paintCard(g);
         paintSuit(g);
+        paintChooseMessage(g);
         paintRules(g);
         paintComputerHand(g);
         paintFaceDownDeck(g);
