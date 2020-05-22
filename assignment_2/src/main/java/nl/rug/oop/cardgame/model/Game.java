@@ -24,6 +24,11 @@ public class Game extends Observable {
     private Card.Suit clickedSuit;
     Deck faceDown = Dealer.newFaceDownDeck();
     Deck faceUp = new Deck();
+    private String suitString = "";
+
+    public String getSuitString() {
+        return suitString;
+    }
 
     public Game() {
         gameFrame = new GameFrame(this);
@@ -110,9 +115,11 @@ public class Game extends Observable {
                 currentCard.setFace(participantCard.getFace());
                 if (participantCard.getFace() == Card.Face.EIGHT) {
                     currentCard.setSuit(computer.chooseSuit());
+                    suitString = "The computer switched the suit to \n" + currentCard.getSuit();
                     System.out.println("The suit has been switched to: " + currentCard.getSuit());
                 } else {
                     currentCard.setSuit(participantCard.getSuit());
+                    suitString = "";
                 }
             }
         }
@@ -128,6 +135,7 @@ public class Game extends Observable {
                         if (clickedSuit != null) {
                             currentCard.setSuit(clickedSuit);
                             suitChosen = true;
+                            suitString = "You switched the suit to \n" + currentCard.getSuit();
                             System.out.println("The suit has been switched to: " + currentCard.getSuit());
                         }
                         setChanged();
@@ -136,6 +144,7 @@ public class Game extends Observable {
                 }
                 else {
                     currentCard.setSuit(participantCard.getSuit());
+                    suitString = "";
                 }
             }
         }
@@ -146,7 +155,7 @@ public class Game extends Observable {
         if (participant.noOfCards() == 0) {
             System.out.println("Game over!");
             exitGame = true;
-            System.exit(0);
+            //System.exit(0);
         }
     }
 

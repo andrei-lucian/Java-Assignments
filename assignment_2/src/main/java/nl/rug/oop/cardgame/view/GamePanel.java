@@ -141,11 +141,17 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
+    public void paintSuit (Graphics g){
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString(game.getSuitString(), 30, 70);
+    }
+
     @Override
     public void paintComponent(Graphics g){
         try {
             super.paintComponent(g);
             paintCard(g);
+            paintSuit(g);
             paintComputerHand(g);
             paintFaceDownDeck(g);
             paintFaceUpDeck(g);
