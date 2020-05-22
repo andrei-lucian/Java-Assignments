@@ -53,12 +53,10 @@ public class Game extends Observable {
         while(!exitGame){
             if(clickedCard != null) {
                 if(playerTurn) {
-                    System.out.println("PLAYER TURN");
                     playerTurn(player, currentCard, faceDown, faceUp);
                     clickedCard = null;
                 }
                 if(computerTurn) {
-                    System.out.println("COMPUTER TURN");
                     timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
@@ -85,7 +83,6 @@ public class Game extends Observable {
         setNewValuesPlayer(currentCard);
         playerTurn = false;
         computerTurn = true;
-        System.out.println("PLAYER TURN OVER");
     }
 
     private void computerTurn(Computer computer, CurrentCard currentCard, Deck faceDown, Deck faceUp){
@@ -94,7 +91,6 @@ public class Game extends Observable {
         setNewValuesComputer(currentCard, computer);
         computerTurn = false;
         playerTurn = true;
-        System.out.println("COMPUTER TURN OVER");
     }
 
     /**Checks the current game status and updates it accordingly */
@@ -102,7 +98,6 @@ public class Game extends Observable {
         checkWinCondition(participant);
         if (faceDown.isEmpty()){
             Dealer.transferDeck(faceUp, faceDown);
-            System.out.println("Face down deck ran out, dealer switched it.");
         }
         setChanged();
         notifyObservers();
@@ -114,7 +109,6 @@ public class Game extends Observable {
         if(checkForEight(participantCard)){
             currentCard.setSuit(computer.chooseSuit());
             suitString = "The computer switched the suit to: " + currentCard.getSuit();
-            System.out.println("The suit has been switched to: " + currentCard.getSuit());
         }
     }
 
@@ -142,7 +136,6 @@ public class Game extends Observable {
                     currentCard.setSuit(clickedSuit);
                     suitChosen = true;
                     suitString = "You switched the suit to: " + currentCard.getSuit();
-                    System.out.println("The suit has been switched to: " + currentCard.getSuit());
                 }
                 setChanged();
                 notifyObservers();
@@ -153,7 +146,6 @@ public class Game extends Observable {
     /** If one of the players has no cards left then they win and the game is over */
     public void checkWinCondition(Participant participant) {
         if (participant.noOfCards() == 0) {
-            System.out.println("Game over!");
             JOptionPane.showMessageDialog(null, "Game over.");
             System.exit(0);
         }
