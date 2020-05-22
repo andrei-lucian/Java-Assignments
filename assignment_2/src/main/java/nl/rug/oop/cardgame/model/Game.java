@@ -1,5 +1,4 @@
 package nl.rug.oop.cardgame.model;
-import nl.rug.oop.cardgame.Main;
 import nl.rug.oop.cardgame.model.elements.Card;
 import nl.rug.oop.cardgame.model.elements.Deck;
 import nl.rug.oop.cardgame.model.participants.Computer;
@@ -36,7 +35,6 @@ public class Game extends Observable {
     public Game() {
         gameFrame = new GameFrame(this);
     }
-
 
     /** Sets up the game (deals cards, reveals the top card,
      * sets the current face and suit) and calls the game loop */
@@ -100,8 +98,9 @@ public class Game extends Observable {
         }
         updateConditions(player, faceDown, faceUp);
         setNewValuesPlayer(currentCard);
-        computerTurn = true;
         playerTurn = false;
+        computerTurn = true;
+        System.out.println("PLAYER TURN OVER");
     }
 
     private void computerTurn(Computer computer, CurrentCard currentCard, Deck faceDown, Deck faceUp){
@@ -110,6 +109,7 @@ public class Game extends Observable {
         setNewValuesComputer(currentCard, computer);
         computerTurn = false;
         playerTurn = true;
+        System.out.println("COMPUTER TURN OVER");
     }
 
     /**Checks the current game status and updates it accordingly */

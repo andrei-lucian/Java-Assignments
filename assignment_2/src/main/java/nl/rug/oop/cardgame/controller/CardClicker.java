@@ -46,6 +46,7 @@ public class CardClicker extends MouseInputAdapter {
                 }
                 if(selected || card.getFace() != Card.Face.EIGHT){
                     game.setClickedCard(card);
+                    selected = false;
                 }
                 break;
             }
