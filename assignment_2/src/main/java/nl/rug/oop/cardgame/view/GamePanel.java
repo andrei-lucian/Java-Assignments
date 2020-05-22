@@ -146,11 +146,26 @@ public class GamePanel extends JPanel implements Observer {
         g.drawString(game.getSuitString(), 390, 550 );
     }
 
+    public void paintRules (Graphics g){
+        g.setFont(new Font("Arial", Font.BOLD, 13));
+        g.drawString("Rules:", 20, 240 );
+        g.drawString("1.Match the suit or number with", 40, 260 );
+        g.drawString("the card on the table.", 40, 280 );
+        g.drawString("2.Eights can be played", 40, 320 );
+        g.drawString("on top of everything", 40, 340 );
+        g.drawString("and they allow you to switch", 40, 360 );
+        g.drawString("to your preferred suit.", 40, 380 );
+        g.drawString("3.Click the deck to draw a card", 40, 420 );
+        g.drawString("if you can't play anything", 40, 440 );
+        g.drawString("3.Finish your hand to win.", 40, 480 );
+    }
+
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         paintCard(g);
         paintSuit(g);
+        paintRules(g);
         paintComputerHand(g);
         paintFaceDownDeck(g);
         paintFaceUpDeck(g);
