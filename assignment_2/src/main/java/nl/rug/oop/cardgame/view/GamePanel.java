@@ -15,13 +15,11 @@ import java.util.*;
 public class GamePanel extends JPanel implements Observer {
 
     private final Game game;
-
     private static final Color BACKGROUND_COLOR = new Color(10, 120, 81, 255);
     private static final int CARD_SPACING = 1;
     private static final int Y_OFFSET = Card.values().length * CARD_SPACING;
     private static final double CARD_WIDTH = 43.6;
     private static final double CARD_HEIGHT = 60.0;
-
     private final Map<Card, Rectangle> mapCards;
     private final HashMap<Card, Rectangle> drawCards;
     private Card lastCard;
@@ -35,25 +33,6 @@ public class GamePanel extends JPanel implements Observer {
         game.addObserver(this);
         mapCards = new HashMap<>(54);
         drawCards = new HashMap<>();
-    }
-
-    public Map<Card, Rectangle> getMapCards() {
-        return this.mapCards;
-    }
-
-    public Map<Card, Rectangle> getDrawBounds() {
-        return drawCards;
-    }
-
-    public Card getLastCard() {
-        return lastCard;
-    }
-
-    /**
-     * Get the scaled spacing between edges and cards
-     */
-    private int getSpacing() {
-        return (int) ((getHeight() * 20) / CARD_HEIGHT);
     }
 
     public int cardWidth() {
@@ -177,6 +156,25 @@ public class GamePanel extends JPanel implements Observer {
         paintComputerHand(g);
         paintFaceDownDeck(g);
         paintFaceUpDeck(g);
+    }
+
+    /**
+     * Get the scaled spacing between edges and cards
+     */
+    private int getSpacing() {
+        return (int) ((getHeight() * 20) / CARD_HEIGHT);
+    }
+
+    public Map<Card, Rectangle> getMapCards() {
+        return this.mapCards;
+    }
+
+    public Map<Card, Rectangle> getDrawBounds() {
+        return drawCards;
+    }
+
+    public Card getLastCard() {
+        return lastCard;
     }
 
     @Override
