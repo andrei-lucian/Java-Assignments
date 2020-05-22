@@ -11,7 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
-import java.util.Timer;
 
 public class GamePanel extends JPanel implements Observer {
 
@@ -26,7 +25,6 @@ public class GamePanel extends JPanel implements Observer {
     private final Map<Card, Rectangle> mapCards;
     private final HashMap<Card, Rectangle> drawCards;
     private Card lastCard;
-    private final Timer timer = new Timer();
 
     public GamePanel(Game game) {
         this.game = game;

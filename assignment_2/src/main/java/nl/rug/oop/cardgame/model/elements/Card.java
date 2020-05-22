@@ -86,7 +86,7 @@ public enum Card {
         TEN,
         JACK,
         QUEEN,
-        KING;
+        KING
     }
 
     /**

@@ -17,13 +17,8 @@ import javax.imageio.ImageIO;
  */
 public class CardBackTextures {
 
-    private static EnumMap<CardBack, BufferedImage> textures;
+    private static final EnumMap<CardBack, BufferedImage> textures;
 
-    /**
-     * This block initializes the textures on launch. It is executed once when
-     * the class is loaded into the JVM (when the program is started) meaning
-     * that this process won't take time during execution.
-     */
     static {
         textures = new EnumMap<>(CardBack.class);
         for (CardBack back : CardBack.values()) {

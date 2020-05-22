@@ -2,7 +2,6 @@ package nl.rug.oop.cardgame.model.participants;
 import nl.rug.oop.cardgame.model.elements.Card;
 import nl.rug.oop.cardgame.model.elements.Deck;
 
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /** Superclass of Player and Computer */
@@ -15,7 +14,7 @@ public abstract class Participant {
     }
 
     public Participant(){
-        this.cardList = new CopyOnWriteArrayList<Card>();
+        this.cardList = new CopyOnWriteArrayList<>();
     }
 
     public int noOfCards(){
