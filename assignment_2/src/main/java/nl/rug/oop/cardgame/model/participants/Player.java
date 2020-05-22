@@ -24,7 +24,6 @@ public class Player extends Participant {
         }
         else if (accordingToRules(card, face, suit)) {
             this.putDownCard(faceUp, card);
-            System.out.println("You played:  " + card);
             return card;
             }
         else {

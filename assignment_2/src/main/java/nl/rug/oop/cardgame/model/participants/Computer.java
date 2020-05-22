@@ -94,19 +94,16 @@ public class Computer extends Participant {
         if (cardOptions.size() == 1) { //if there is only one card then play that card
             card = cardOptions.get(0);
             this.putDownCard(faceUp, card);
-            System.out.println("The computer played: " + card);
             return card;
         }
 
         else if (cardOptions.size() > 1) {
             card = chooseCard(cardOptions, noOfEights);
             this.putDownCard(faceUp, card);
-            System.out.println("The computer played: " + card);
             return card;
         }
         else {
             this.drawCard(faceDown);
-            System.out.println("The computer drew a card");
             return null;
         }
     }

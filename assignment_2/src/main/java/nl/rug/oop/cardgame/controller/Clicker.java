@@ -58,7 +58,6 @@ public class Clicker extends MouseInputAdapter {
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());
         if (deckBounds.contains(event.getPoint())){
             game.setClickedCard(game.getFaceDown().peekTopCard());
-            System.out.println("You drew a card.");
         }
     }
 
