@@ -13,7 +13,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends Observable {
 
-    private final GameFrame gameFrame;
     private Player player = new Player();
     private Computer computer = new Computer();
     private Timer timer = new Timer();
@@ -34,7 +33,7 @@ public class Game extends Observable {
     }
 
     public Game() {
-        gameFrame = new GameFrame(this);
+        new GameFrame(this);
     }
 
     /** Sets up the game (deals cards, reveals the top card,

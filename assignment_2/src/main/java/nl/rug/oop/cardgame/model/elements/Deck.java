@@ -6,8 +6,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /** A deck of cards with all the types of cards in it - implemented as a stack */
 public class Deck{
 
-    protected CopyOnWriteArrayList<Card> cards;
-    Random random = new Random();
+    protected final CopyOnWriteArrayList<Card> cards;
+    private final Random random = new Random();
 
     /** Constructor */
     public Deck() {

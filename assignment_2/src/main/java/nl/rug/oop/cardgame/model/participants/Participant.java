@@ -7,7 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /** Superclass of Player and Computer */
 public abstract class Participant {
 
-    protected CopyOnWriteArrayList<Card> cardList;
+    protected final CopyOnWriteArrayList<Card> cardList;
 
     public CopyOnWriteArrayList<Card> getCardList() {
         return cardList;
