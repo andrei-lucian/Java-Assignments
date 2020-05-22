@@ -17,6 +17,7 @@ public abstract class Participant {
         this.cardList = new CopyOnWriteArrayList<>();
     }
 
+    /** Number of cards the participant has */
     public int noOfCards(){
         return this.cardList.size();
     }

@@ -13,10 +13,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends Observable {
 
-    private final Timer timer = new Timer();
     private final Player player = new Player();
     private final Computer computer = new Computer();
-    private static boolean exitGame = false;
     private Card participantCard;
     private Card clickedCard;
     private final CurrentCard currentCard = new CurrentCard();
@@ -39,10 +37,6 @@ public class Game extends Observable {
         notifyObservers();
     }
 
-    public String getSuitString() {
-        return suitString;
-    }
-
     public Game() {
         new GameFrame(this);
     }
@@ -61,7 +55,8 @@ public class Game extends Observable {
 
     /** The main game loop where player and computer take turns */
     public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
-        while(!exitGame){
+        Timer timer = new Timer();
+        while(true){
             if(clickedCard != null) {
                 if(playerTurn) {
                     playerTurn(player, currentCard, faceDown, faceUp);
@@ -81,6 +76,7 @@ public class Game extends Observable {
         }
     }
 
+    /** The player plays the turn */
     private void playerTurn(Player player, CurrentCard currentCard, Deck faceDown, Deck faceUp){
         boolean played = false;
         while (!played) {
@@ -97,6 +93,7 @@ public class Game extends Observable {
         computerTurn = true;
     }
 
+    /** The computer plays the turn */
     private void computerTurn(Computer computer, CurrentCard currentCard, Deck faceDown, Deck faceUp){
         participantCard = computer.playCard(faceDown, faceUp, currentCard.getFace(), currentCard.getSuit());
         updateConditions(computer, faceDown, faceUp);
@@ -116,7 +113,7 @@ public class Game extends Observable {
     }
 
     /** Sets the new values (face and suit) for the currentCard object,
-     * depending on what the participant's action is */
+     * depending on what the computers action is */
     private void setNewValuesComputer(CurrentCard currentCard, Computer computer) {
         if(checkForEight(participantCard)){
             currentCard.setSuit(computer.chooseSuit());
@@ -124,6 +121,27 @@ public class Game extends Observable {
         }
     }
 
+    /** Sets the new values (face and suit) for the currentCard object,
+     * depending on what the player's action is */
+    private void setNewValuesPlayer(CurrentCard currentCard){
+        boolean suitChosen = false;
+        if(checkForEight(participantCard)){
+            while (!suitChosen) {
+                if (clickedSuit != null) {
+                    currentCard.setSuit(clickedSuit);
+                    suitChosen = true;
+                    suitString = "You switched the suit to: " + currentCard.getSuit();
+                }
+                setChanged();
+                notifyObservers();
+            }
+        }
+    }
+
+    /**
+     * @param participantCard current card that is being played
+     * @return if the card is an 8 or not
+     */
     private boolean checkForEight(Card participantCard){
         if (participantCard != null) {
             if (participantCard != topCard) {
@@ -138,21 +156,6 @@ public class Game extends Observable {
             }
         }
         return false;
-    }
-
-    private void setNewValuesPlayer(CurrentCard currentCard){
-        boolean suitChosen = false;
-        if(checkForEight(participantCard)){
-            while (!suitChosen) {
-                if (clickedSuit != null) {
-                    currentCard.setSuit(clickedSuit);
-                    suitChosen = true;
-                    suitString = "You switched the suit to: " + currentCard.getSuit();
-                }
-                setChanged();
-                notifyObservers();
-            }
-        }
     }
 
     /** If one of the players has no cards left then they win and the game is over */
@@ -189,5 +192,9 @@ public class Game extends Observable {
 
     public boolean isPlayerTurn() {
         return playerTurn;
+    }
+
+    public String getSuitString() {
+        return suitString;
     }
 }
