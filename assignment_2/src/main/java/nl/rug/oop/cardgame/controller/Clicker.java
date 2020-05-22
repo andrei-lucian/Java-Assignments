@@ -9,8 +9,7 @@ import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class CardClicker extends MouseInputAdapter {
-
+public class Clicker extends MouseInputAdapter {
     private final Game game;
     private final GamePanel panel;
     private boolean selected = false;
@@ -22,7 +21,7 @@ public class CardClicker extends MouseInputAdapter {
      * @param game The actual Game
      * @param panel DrawPanel needed to receive mouse events from
      */
-    public CardClicker(Game game, GamePanel panel) {
+    public Clicker(Game game, GamePanel panel) {
         this.game = game;
         this.panel = panel;
     }
@@ -53,7 +52,7 @@ public class CardClicker extends MouseInputAdapter {
         }
     }
 
-        /** Draws card when the deck is clicked */
+    /** Draws card when the deck is clicked */
     public void deckClicked(MouseEvent event){
         Rectangle deckBounds;
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());

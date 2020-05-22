@@ -1,6 +1,6 @@
 package nl.rug.oop.cardgame.view;
 
-import nl.rug.oop.cardgame.controller.CardClicker;
+import nl.rug.oop.cardgame.controller.Clicker;
 import nl.rug.oop.cardgame.model.Game;
 import nl.rug.oop.cardgame.model.elements.Card;
 import nl.rug.oop.cardgame.view.textures.CardBack;
@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 import java.util.Timer;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GamePanel extends JPanel implements Observer {
 
@@ -34,7 +33,7 @@ public class GamePanel extends JPanel implements Observer {
         setBackground(BACKGROUND_COLOR);
         setVisible(true);
         setOpaque(true);
-        addMouseListener(new CardClicker(this.game, this));
+        addMouseListener(new Clicker(this.game, this));
         game.addObserver(this);
         mapCards = new HashMap<>(54);
         drawCards = new HashMap<>();
