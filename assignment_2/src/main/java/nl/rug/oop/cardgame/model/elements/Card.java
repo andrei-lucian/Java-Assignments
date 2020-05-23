@@ -1,7 +1,8 @@
-package nl.rug.oop.cardgame;
+package nl.rug.oop.cardgame.model.elements;
 
 /**
  * Represents the kinds of playing cards found in ubiquitous 54-card decks
+ * This deck has no jokers since they are not used in our game
  *
  * WARNING: enum types implement toString by default. This information is
  * used to load textures in view. If you override toString you may break
@@ -67,11 +68,7 @@ public enum Card {
     TEN_SPADES      (Face.TEN,   Suit.SPADES),
     JACK_SPADES     (Face.JACK,  Suit.SPADES),
     QUEEN_SPADES    (Face.QUEEN, Suit.SPADES),
-    KING_SPADES     (Face.KING,  Suit.SPADES),
-
-    //Jokers
-    BLACK_JOKER     (Face.JOKER, Colour.RED),
-    RED_JOKER       (Face.JOKER, Colour.BLACK);
+    KING_SPADES     (Face.KING,  Suit.SPADES);
 
     /**
      * Represents the faces a card can have
@@ -89,8 +86,7 @@ public enum Card {
         TEN,
         JACK,
         QUEEN,
-        KING,
-        JOKER
+        KING
     }
 
     /**
@@ -141,15 +137,6 @@ public enum Card {
     }
 
     /**
-     * Joker constructor since Jokers don't belong to a suit
-     */
-    Card(Face face, Colour colour) {
-        this.face = face;
-        this.suit = null;
-        this.colour = colour;
-    }
-
-    /**
      * Get the face of this card
      */
     public Face getFace() {
@@ -161,13 +148,6 @@ public enum Card {
      */
     public Suit getSuit() {
         return suit;
-    }
-
-    /**
-     * The colour of this card
-     */
-    public Colour getColour() {
-        return colour;
     }
 
 }
