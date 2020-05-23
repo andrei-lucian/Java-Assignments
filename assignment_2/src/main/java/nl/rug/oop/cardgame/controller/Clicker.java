@@ -15,8 +15,8 @@ public class Clicker extends MouseInputAdapter {
     private boolean selected = false;
 
     /**
-     * Create a new card clicker that receives mouse events from the DrawPanel
-     * supplied to this constructor
+     * Create a new card clicker that receives mouse events from
+     * the DrawPanel supplied to this constructor
      *
      * @param game The actual Game
      * @param panel DrawPanel needed to receive mouse events from
@@ -34,7 +34,8 @@ public class Clicker extends MouseInputAdapter {
         }
     }
 
-    /** Plays card when card is clicker */
+    /** Send the card clicked to the game class
+     * when a card when card is clicked */
     public void playerCardClicked(MouseEvent event){
         for (int i = game.getPlayerHand().size() - 1; i >= 0; i--) {
             Card card = game.getPlayerHand().get(i);
@@ -52,7 +53,8 @@ public class Clicker extends MouseInputAdapter {
         }
     }
 
-    /** Draws card when the deck is clicked */
+    /** Tell the game class that the top card of the
+     * face down deck has been clicked  */
     public void deckClicked(MouseEvent event){
         Rectangle deckBounds;
         deckBounds = panel.getDrawBounds().get(panel.getLastCard());

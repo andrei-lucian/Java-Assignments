@@ -3,7 +3,7 @@ package nl.rug.oop.cardgame.model.elements;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/** A deck of cards with all the types of cards in it - implemented as a stack */
+/** A deck of cards with all the types of cards in it */
 public class Deck{
 
     protected final CopyOnWriteArrayList<Card> cards;

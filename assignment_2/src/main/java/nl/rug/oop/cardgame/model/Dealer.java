@@ -7,6 +7,7 @@ import nl.rug.oop.cardgame.model.participants.Player;
 /** Dealer class - holds all the methods to set up and maintain the game */
 public class Dealer {
 
+    /** Create a new, shuffled deck */
     public static Deck newFaceDownDeck(){
         Deck FaceDownDeck = new Deck();
         FaceDownDeck.addCards();

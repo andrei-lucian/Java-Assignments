@@ -12,10 +12,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
+/** GamePanel class - displays all the GUI elements (view).
+ * It observes what happens in the game class (model)
+ * and updates based on that. */
+
 public class GamePanel extends JPanel implements Observer {
 
     private final Game game;
-    private static final Color BACKGROUND_COLOR = new Color(10, 120, 81, 255);
+    private static final Color BACKGROUND_COLOR = new Color(10, 120, 80, 255);
     private static final int CARD_SPACING = 1;
     private static final int Y_OFFSET = Card.values().length * CARD_SPACING;
     private static final double CARD_WIDTH = 43.6;
@@ -24,6 +28,7 @@ public class GamePanel extends JPanel implements Observer {
     private final HashMap<Card, Rectangle> drawCards;
     private Card lastCard;
 
+    /** Constructor */
     public GamePanel(Game game) {
         this.game = game;
         setBackground(BACKGROUND_COLOR);
@@ -35,18 +40,21 @@ public class GamePanel extends JPanel implements Observer {
         drawCards = new HashMap<>();
     }
 
+    /** Return scaled card width */
     public int cardWidth() {
         if ((getHeight() * CARD_HEIGHT) / (getWidth() * CARD_WIDTH) <= 1.0)
             return (int) ((cardHeight() * CARD_WIDTH) / CARD_HEIGHT);
         return (getWidth() - getSpacing() * 3 - 2 * Card.values().length) / 2;
     }
 
+    /** Return scaled card height */
     public int cardHeight() {
         if ((getHeight() * CARD_HEIGHT) / (getWidth() * CARD_WIDTH) > 1.0)
             return (int) ((cardWidth() * CARD_HEIGHT) / CARD_WIDTH);
         return (getHeight() - getSpacing() * 2 - 2 * Card.values().length);
     }
 
+    /** Paint the face up deck */
     private void paintFaceUpDeck(Graphics g) {
         int depth = 0;
         for (Card card : game.getFaceUp().getCards()) {
@@ -60,6 +68,7 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
+    /** Paint the face down deck */
     private void paintFaceDownDeck(Graphics g) {
         int depth = 0;
         BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
@@ -82,7 +91,8 @@ public class GamePanel extends JPanel implements Observer {
         drawCards.put(lastCard, bounds);
     }
 
-    public void paintPlayerHand() {
+    /** Fill hash map with card and bounds */
+    public void createPlayerHandBounds() {
         mapCards.clear();
         int move = cardWidth() / 2;
         int posX = (int) ((getWidth() / 2) - (cardWidth() * (game.getPlayerHand().size() / 4.0))-55);
@@ -94,8 +104,9 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
-    private void paintCard(Graphics g){
-        paintPlayerHand();
+    /** Paint the computer's hand of cards */
+    private void paintPlayerHand(Graphics g){
+        createPlayerHandBounds();
         for (Card card : game.getPlayerHand()) {
             Rectangle bounds = mapCards.get(card);
             g.drawImage(CardTextures.getTexture(card)
@@ -105,6 +116,7 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
+    /** Paint the computer's hand of cards */
     private void paintComputerHand(Graphics g) {
         BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
         int move = 0;
@@ -120,11 +132,13 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
+    /** Display text if someone changes the suit */
     public void paintSuit (Graphics g){
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString(game.getSuitString(), 390, 550 );
     }
 
+    /** Display message if player didn't choose a suit */
     public void paintChooseMessage(Graphics g){
         g.setFont(new Font("Arial", Font.BOLD, 13));
         if (game.getChooseAgain()){
@@ -132,6 +146,7 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
+    /** Display rules on screen */
     public void paintRules (Graphics g){
         g.setFont(new Font("Arial", Font.BOLD, 13));
         g.drawString("Rules:", 20, 240 );
@@ -146,10 +161,11 @@ public class GamePanel extends JPanel implements Observer {
         g.drawString("3.Finish your hand to win.", 40, 480 );
     }
 
+    /** Paint all the components */
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        paintCard(g);
+        paintPlayerHand(g);
         paintSuit(g);
         paintChooseMessage(g);
         paintRules(g);
@@ -158,17 +174,17 @@ public class GamePanel extends JPanel implements Observer {
         paintFaceUpDeck(g);
     }
 
-    /**
-     * Get the scaled spacing between edges and cards
-     */
+    /** Get the scaled spacing between edges and cards */
     private int getSpacing() {
         return (int) ((getHeight() * 20) / CARD_HEIGHT);
     }
 
+    /** @return Map of player cards and their bounds */
     public Map<Card, Rectangle> getMapCards() {
         return this.mapCards;
     }
 
+    /** @return Map of top card in face down deck */
     public Map<Card, Rectangle> getDrawBounds() {
         return drawCards;
     }

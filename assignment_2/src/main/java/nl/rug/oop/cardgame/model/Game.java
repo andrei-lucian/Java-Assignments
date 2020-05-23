@@ -26,6 +26,7 @@ public class Game extends Observable {
     private final Deck faceUp = new Deck();
     private String suitString = "";
     private boolean chooseAgain = false;
+    private boolean exitGame = false;
 
     public boolean getChooseAgain() {
         return chooseAgain;
@@ -56,7 +57,7 @@ public class Game extends Observable {
     /** The main game loop where player and computer take turns */
     public void gameLoop(Player player, Computer computer, Deck faceUp, Deck faceDown){
         Timer timer = new Timer();
-        while(true){
+        while(!exitGame){
             if(clickedCard != null) {
                 if(playerTurn) {
                     playerTurn(player, currentCard, faceDown, faceUp);
@@ -102,7 +103,8 @@ public class Game extends Observable {
         playerTurn = true;
     }
 
-    /**Checks the current game status and updates it accordingly */
+    /** Checks the current game status (if someone won or the deck needs resetting)
+     * and updates it accordingly */
     private void updateConditions(Participant participant, Deck faceDown, Deck faceUp){
         checkWinCondition(participant);
         if (faceDown.isEmpty()){
@@ -162,6 +164,7 @@ public class Game extends Observable {
     public void checkWinCondition(Participant participant) {
         if (participant.noOfCards() == 0) {
             JOptionPane.showMessageDialog(null, "Game over.");
+            exitGame = true;
             System.exit(0);
         }
     }
