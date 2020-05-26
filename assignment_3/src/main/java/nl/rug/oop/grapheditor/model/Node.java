@@ -7,12 +7,21 @@ import java.util.ArrayList;
 public class Node {
 
     private Rectangle nodeBounds;
+
     private String name;
     private ArrayList<Edge> edges = new ArrayList<>();
 
     public Node(){
         this.nodeBounds = new Rectangle(0,0, 10, 10);
         this.name = "New node";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Rectangle getNodeBounds() {
+        return nodeBounds;
     }
 
     public ArrayList<Edge> getEdges() {
