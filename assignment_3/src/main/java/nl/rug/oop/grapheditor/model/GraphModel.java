@@ -1,7 +1,5 @@
 package nl.rug.oop.grapheditor.model;
-import nl.rug.oop.grapheditor.io.SaveAndLoad;
-
-import java.io.IOException;
+import nl.rug.oop.grapheditor.io.Load;
 import java.util.ArrayList;
 
 /** Keeps track of all the nodes and edges */
@@ -16,8 +14,8 @@ public class GraphModel {
     }
 
     public GraphModel(String filename){
-        this.nodeList = SaveAndLoad.loadNodes(filename);
-        this.edgeList = SaveAndLoad.loadEdges(filename);
+        this.nodeList = Load.loadNodes(filename);
+        this.edgeList = Load.loadEdges(filename);
     }
 
     public ArrayList<Node> getNodeList() {
@@ -31,9 +29,6 @@ public class GraphModel {
     public void addNode(Node node){
         nodeList.add(node);
     }
-
-//    private GraphModel graphModel(GraphModel graphModel, String filename){
-//    }
 
     public void removeNode(Node node){
         nodeList.remove(node);

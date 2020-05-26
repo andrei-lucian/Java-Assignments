@@ -1,53 +1,20 @@
 package nl.rug.oop.grapheditor.io;
 
 import nl.rug.oop.grapheditor.model.Edge;
-import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.model.Node;
-import java.util.Scanner;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class SaveAndLoad {
-
+public class Load {
     static JFrame parentFrame = new JFrame();
-    /** Saves the state of a graph to a specified file  */
-    public static void save(GraphModel graph){
-        File fileToSave = null;
-
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Specify directory and save name");
-
-        int userSelection = fileChooser.showSaveDialog(parentFrame);
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            fileToSave = fileChooser.getSelectedFile();
-            System.out.println("Save as file: " + fileToSave.getAbsolutePath());
-        }
-
-        try {
-            FileWriter myWriter = new FileWriter(fileToSave + ".txt");
-            myWriter.write(graph.getNodeList().size() + " " + graph.getEdgeList().size() + "\n");
-            for (Node node : graph.getNodeList()){
-                Rectangle bounds = node.getNodeBounds();
-                myWriter.write(bounds.x + " " + bounds.y + " " +
-                        bounds.height + " " + bounds.width + " " + node.getName() + "\n");
-            }
-            for (Edge edge : graph.getEdgeList()){
-                myWriter.write(edge.getNode1() + " " + edge.getNode2() + "\n");
-            }
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
 
     public static String chooseFile() {
         final JFileChooser fc = new JFileChooser();
-        //Handle open button action.
         int returnVal = fc.showOpenDialog(parentFrame);
         File file = null;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
