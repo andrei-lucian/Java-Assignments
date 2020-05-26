@@ -1,11 +1,12 @@
 package nl.rug.oop.grapheditor.model;
-import java.io.Serializable;
+import nl.rug.oop.grapheditor.io.SaveAndLoad;
+
+import java.io.File;
 import java.util.ArrayList;
 
 /** Keeps track of all the nodes and edges */
-public class GraphModel implements Serializable {
+public class GraphModel {
 
-    private static final long serialVersionUID = 1L;
 
     ArrayList<Edge> edgeList = new ArrayList<>();
     ArrayList<Node> nodeList = new ArrayList<>();

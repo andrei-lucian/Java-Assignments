@@ -2,6 +2,8 @@ package nl.rug.oop.grapheditor.model;
 
 import nl.rug.oop.grapheditor.io.SaveAndLoad;
 
+import java.io.File;
+
 public class GraphEditor {
 
     public static void main(String[] args) {
@@ -23,6 +25,9 @@ public class GraphEditor {
         graph.addEdge(edge2, node2, node3);
         graph.addEdge(edge3, node3, node1);
 
-        SaveAndLoad.save(graph);
+        //SaveAndLoad.save(graph);
+        SaveAndLoad.load(new File("file.txt"));
+
     }
+
 }

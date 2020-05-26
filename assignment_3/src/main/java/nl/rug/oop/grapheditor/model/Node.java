@@ -1,13 +1,10 @@
 package nl.rug.oop.grapheditor.model;
 import java.awt.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /** A node in a graph - has a name, and its
  * coordinates and size are represented by a rectangle */
-public class Node implements Serializable {
-
-    private static final long serialVersionUID = 2L;
+public class Node {
 
     private Rectangle nodeBounds;
 

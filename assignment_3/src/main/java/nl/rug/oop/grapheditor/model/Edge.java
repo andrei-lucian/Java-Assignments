@@ -1,11 +1,7 @@
 package nl.rug.oop.grapheditor.model;
 
-import java.io.Serializable;
-
 /** Represents an edge - always connects 2 nodes */
-public class Edge implements Serializable {
-
-    private static final long serialVersionUID = 3L;
+public class Edge {
 
     private int node1;
     private int node2;
