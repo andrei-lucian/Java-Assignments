@@ -1,9 +1,15 @@
 package nl.rug.oop.grapheditor.model;
+import nl.rug.oop.grapheditor.io.SaveAndLoad;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /** Keeps track of all the nodes and edges */
 public class GraphModel {
 
+    public GraphModel(String filename){
+        this = graphModel(null, filename);
+    }
     ArrayList<Edge> edgeList = new ArrayList<>();
     ArrayList<Node> nodeList = new ArrayList<>();
 
@@ -17,6 +23,19 @@ public class GraphModel {
 
     public void addNode(Node node){
         nodeList.add(node);
+    }
+
+    private GraphModel graphModel(GraphModel graphModel, String filename){
+        try {
+            graphModel = SaveAndLoad.load("fileName");
+            System.out.println("Model loaded.");
+        } catch (IOException e) {
+            System.out.println("Could not load from the file");
+        } catch (ClassNotFoundException e) {
+            System.out.println("The savefile could not be used to load a player");
+        }
+        System.out.println("Could not load previous game, starting from scratch instead.");
+        return graphModel;
     }
 
     public void removeNode(Node node){

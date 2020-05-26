@@ -45,7 +45,7 @@ public class SaveAndLoad {
     }
 
     public static GraphModel load(String fileName) throws IOException, ClassNotFoundException {
-        File saveDirectory = new File("savedGames");
+        File saveDirectory = new File("savedModels");
 
         try(FileInputStream fileInputStream = new FileInputStream(saveDirectory + File.separator + fileName + ".txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
@@ -53,6 +53,7 @@ public class SaveAndLoad {
             return (GraphModel)objectInputStream.readObject();
         }
     }
+
    /* public static GraphModel load(GraphModel graph, String fileName){
         try {
             graph = Serializer.loadGraphModel(fileName);
