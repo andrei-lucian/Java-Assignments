@@ -1,5 +1,6 @@
 package nl.rug.oop.grapheditor.io;
 
+import com.sun.org.apache.xml.internal.serializer.Serializer;
 import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.model.Node;
@@ -16,7 +17,7 @@ public class SaveAndLoad {
         JFrame parentFrame = new JFrame();
 
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Specify a file to save");
+        fileChooser.setDialogTitle("Specify directory and save name");
 
         int userSelection = fileChooser.showSaveDialog(parentFrame);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
@@ -42,4 +43,27 @@ public class SaveAndLoad {
             e.printStackTrace();
         }
     }
+
+    public static GraphModel load(String fileName) throws IOException, ClassNotFoundException {
+        File saveDirectory = new File("savedGames");
+
+        try(FileInputStream fileInputStream = new FileInputStream(saveDirectory + File.separator + fileName + ".txt");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+
+            return (GraphModel)objectInputStream.readObject();
+        }
+    }
+   /* public static GraphModel load(GraphModel graph, String fileName){
+        try {
+            graph = Serializer.loadGraphModel(fileName);
+            System.out.println("Game loaded.");
+            return graph;
+        } catch (IOException e) {
+            System.out.println("Could not load from the file");
+        } catch (ClassNotFoundException e) {
+            System.out.println("The savefile could not be used to load a player");
+        }
+        System.out.println("Could not load previous game, starting from scratch instead.");
+        return graph;
+    }*/
 }

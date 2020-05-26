@@ -4,7 +4,6 @@ import java.util.ArrayList;
 /** Keeps track of all the nodes and edges */
 public class GraphModel {
 
-
     ArrayList<Edge> edgeList = new ArrayList<>();
     ArrayList<Node> nodeList = new ArrayList<>();
 
