@@ -32,4 +32,11 @@ public class Node {
         edges.add(edge);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNodeBounds(Rectangle nodeBounds) {
+        this.nodeBounds = nodeBounds;
+    }
 }

@@ -4,7 +4,11 @@ import nl.rug.oop.grapheditor.io.SaveAndLoad;
 public class GraphEditor {
 
     public static void main(String[] args) {
-        GraphModel graph = new GraphModel();
+
+
+        String loadPath = SaveAndLoad.chooseFile();
+
+        GraphModel graph = new GraphModel(loadPath);
 
         Node node1 = new Node();
         Node node2 = new Node();

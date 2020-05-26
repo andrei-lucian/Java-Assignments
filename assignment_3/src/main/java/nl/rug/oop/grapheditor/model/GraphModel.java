@@ -7,11 +7,18 @@ import java.util.ArrayList;
 /** Keeps track of all the nodes and edges */
 public class GraphModel {
 
-    public GraphModel(String filename){
-        this = graphModel(null, filename);
+    ArrayList<Edge> edgeList;
+    ArrayList<Node> nodeList;
+
+    public GraphModel(){
+        this.nodeList = new ArrayList<>();
+        this.edgeList = new ArrayList<>();
     }
-    ArrayList<Edge> edgeList = new ArrayList<>();
-    ArrayList<Node> nodeList = new ArrayList<>();
+
+    public GraphModel(String filename){
+        this.nodeList = SaveAndLoad.loadNodes(filename);
+        this.edgeList = SaveAndLoad.loadEdges(filename);
+    }
 
     public ArrayList<Node> getNodeList() {
         return nodeList;
@@ -25,18 +32,8 @@ public class GraphModel {
         nodeList.add(node);
     }
 
-    private GraphModel graphModel(GraphModel graphModel, String filename){
-        try {
-            graphModel = SaveAndLoad.load("fileName");
-            System.out.println("Model loaded.");
-        } catch (IOException e) {
-            System.out.println("Could not load from the file");
-        } catch (ClassNotFoundException e) {
-            System.out.println("The savefile could not be used to load a player");
-        }
-        System.out.println("Could not load previous game, starting from scratch instead.");
-        return graphModel;
-    }
+//    private GraphModel graphModel(GraphModel graphModel, String filename){
+//    }
 
     public void removeNode(Node node){
         nodeList.remove(node);
