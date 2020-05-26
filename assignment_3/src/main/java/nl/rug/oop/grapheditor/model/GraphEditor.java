@@ -9,6 +9,7 @@ public class GraphEditor {
         String loadPath = SaveAndLoad.chooseFile();
 
         GraphModel graph = new GraphModel(loadPath);
+        graph.printEdges();
 
         Node node1 = new Node();
         Node node2 = new Node();

@@ -42,6 +42,15 @@ public class GraphModel {
         }
     }
 
+    public void printEdges(){
+        for(Edge edge : edgeList){
+            System.out.println(edge.getNode1());
+        }
+        for(Node node : nodeList){
+            System.out.println(node.getName());
+        }
+    }
+
     public void addEdge(Edge edge, Node node1, Node node2){
         if (node1!= null && node2!= null){
             edgeList.add(edge);

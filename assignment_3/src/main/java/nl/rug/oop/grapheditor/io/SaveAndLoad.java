@@ -43,7 +43,6 @@ public class SaveAndLoad {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
 
     public static String chooseFile() {
@@ -59,19 +58,14 @@ public class SaveAndLoad {
     }
 
     public static ArrayList<Node> loadNodes(String filename){
-        File save = new File(filename);
-        Scanner sc = null;
-        try {
-            sc = new Scanner(save);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        assert sc != null;
+        Scanner sc = scanFile(filename);
         int numberNodes = sc.nextInt();
+        sc.nextInt();
         ArrayList<Node> nodes = new ArrayList<>();
         for (int x = 0; x < numberNodes; x++){
             Node node = new Node();
             Rectangle rectangle = new Rectangle(sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt());
+            sc.skip(" ");
             node.setNodeBounds(rectangle);
             String name = sc.nextLine();
             node.setName(name);
@@ -81,19 +75,12 @@ public class SaveAndLoad {
     }
 
     public static ArrayList<Edge> loadEdges(String filename){
-        File save = new File(filename);
-        Scanner sc = null;
-        try {
-            sc = new Scanner(save);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        assert sc != null;
+        Scanner sc = scanFile(filename);
         int numberNodes = sc.nextInt();
         int numberEdges = sc.nextInt();
         ArrayList<Edge> edges = new ArrayList<>();
 
-        for(int x = 0; x < numberNodes; x++){
+        for(int x = 0; x <= numberNodes; x++){
             sc.nextLine();
         }
 
@@ -108,17 +95,15 @@ public class SaveAndLoad {
         return edges;
     }
 
-   /* public static GraphModel load(GraphModel graph, String fileName){
+    private static Scanner scanFile(String filename){
+        File save = new File(filename);
+        Scanner sc = null;
         try {
-            graph = Serializer.loadGraphModel(fileName);
-            System.out.println("Game loaded.");
-            return graph;
-        } catch (IOException e) {
-            System.out.println("Could not load from the file");
-        } catch (ClassNotFoundException e) {
-            System.out.println("The savefile could not be used to load a player");
+            sc = new Scanner(save);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        System.out.println("Could not load previous game, starting from scratch instead.");
-        return graph;
-    }*/
+        assert sc != null;
+        return sc;
+    }
 }
