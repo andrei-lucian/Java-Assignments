@@ -1,12 +1,22 @@
 package nl.rug.oop.grapheditor.model;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /** Keeps track of all the nodes and edges */
-public class GraphModel {
+public class GraphModel implements Serializable {
 
-    ArrayList<Node> nodeList = new ArrayList<>();
+    private static final long serialVersionUID = 1L;
+
     ArrayList<Edge> edgeList = new ArrayList<>();
+    ArrayList<Node> nodeList = new ArrayList<>();
+
+    public ArrayList<Node> getNodeList() {
+        return nodeList;
+    }
+
+    public ArrayList<Edge> getEdgeList() {
+        return edgeList;
+    }
 
     public void addNode(Node node){
         nodeList.add(node);
@@ -19,8 +29,11 @@ public class GraphModel {
         }
     }
 
-    public void addEdge(Edge edge){
-        edgeList.add(edge);
+    public void addEdge(Edge edge, Node node1, Node node2){
+        if (node1!= null && node2!= null){
+            edgeList.add(edge);
+            edge.setNodes(nodeList.indexOf(node1), nodeList.indexOf(node2));
+        }
     }
 
     public void removeEdge(Edge edge){
