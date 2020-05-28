@@ -1,9 +1,10 @@
 package nl.rug.oop.grapheditor.model;
 import nl.rug.oop.grapheditor.io.Load;
 import java.util.ArrayList;
+import java.util.Observable;
 
 /** Keeps track of all the nodes and edges */
-public class GraphModel {
+public class GraphModel extends Observable {
 
     ArrayList<Edge> edgeList;
     ArrayList<Node> nodeList;
