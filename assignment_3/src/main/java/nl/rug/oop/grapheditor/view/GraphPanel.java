@@ -1,7 +1,6 @@
 package nl.rug.oop.grapheditor.view;
 import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.model.MenuBar;
 import nl.rug.oop.grapheditor.model.Node;
 
 import javax.swing.*;
@@ -27,6 +26,7 @@ public class GraphPanel extends JPanel implements Observer {
     private void paintNodes(Graphics g){
         for (Node node : model.getNodeList()){
             Rectangle bounds = node.getNodeBounds();
+            g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
             g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
         }
     }

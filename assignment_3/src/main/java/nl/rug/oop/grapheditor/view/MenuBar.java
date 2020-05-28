@@ -1,4 +1,4 @@
-package nl.rug.oop.grapheditor.model;
+package nl.rug.oop.grapheditor.view;
 
 import javax.swing.*;
 
