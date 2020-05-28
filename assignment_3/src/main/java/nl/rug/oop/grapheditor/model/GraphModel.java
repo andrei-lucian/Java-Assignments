@@ -10,6 +10,7 @@ public class GraphModel extends Observable {
     ArrayList<Node> nodeList;
 
     public GraphModel(){
+        //new GraphFrame(this);
         this.nodeList = new ArrayList<>();
         this.edgeList = new ArrayList<>();
     }
@@ -29,6 +30,8 @@ public class GraphModel extends Observable {
 
     public void addNode(Node node){
         nodeList.add(node);
+        setChanged();
+        notifyObservers();
     }
 
     public void removeNode(Node node){
@@ -52,6 +55,8 @@ public class GraphModel extends Observable {
             edgeList.add(edge);
             edge.setNodes(nodeList.indexOf(node1), nodeList.indexOf(node2));
         }
+        setChanged();
+        notifyObservers();
     }
 
     public void removeEdge(Edge edge){

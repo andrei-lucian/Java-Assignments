@@ -6,16 +6,14 @@ import java.awt.*;
 public class GraphFrame extends JFrame {
 
     public GraphFrame(GraphModel graph) {
-        super("Crazy Eights");
+        super("Graph Editor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
+        GraphPanel panel = new GraphPanel(graph);
+        add(panel);
         setPreferredSize(new Dimension(1200, 800));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-        GraphPanel panel = new GraphPanel(graph);
-        add(panel);
-        MenuBar menubar = new MenuBar();
-        add(menubar);
     }
 }

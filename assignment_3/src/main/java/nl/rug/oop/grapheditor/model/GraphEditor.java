@@ -6,7 +6,7 @@ public class GraphEditor {
 
     public static void main(String[] args) {
 
-        /*GraphModel graph = new GraphModel();
+        GraphModel graph = new GraphModel();
 
         Node node1 = new Node();
         Node node2 = new Node();
@@ -24,11 +24,13 @@ public class GraphEditor {
         graph.addEdge(edge2, node2, node3);
         graph.addEdge(edge3, node3, node1);
 
-        Save.save(graph);*/
+        new GraphFrame(graph);
+/*
+        Save.save(graph);
 
         String loadPath = Load.chooseFile();
         GraphModel graph = new GraphModel(loadPath);
-        graph.printEdges();
+        graph.printEdges();*/
 
     }
 }
