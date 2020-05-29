@@ -11,15 +11,13 @@ public class Node extends Observable {
     private String name;
 
     public Node(){
-        this.nodeBounds = new Rectangle(100,100, 100, 150);
+        this.nodeBounds = new Rectangle(100,100, 100, 50);
         this.name = "New node";
     }
 
-    public void setBounds(int x, int y, int width, int height){
+    public void setBounds(int x, int y){
         this.nodeBounds.x = x;
         this.nodeBounds.y = y;
-        this.nodeBounds.width = width;
-        this.nodeBounds.height = height;
     }
 
     public void setNewLocation(int x, int y){
