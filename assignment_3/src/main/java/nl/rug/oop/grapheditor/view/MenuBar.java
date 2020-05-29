@@ -14,7 +14,7 @@ public class MenuBar extends JMenuBar {
     public MenuBar(GraphModel graph){
         this.add(new AddNodeButton(graph));
         this.add(new RemoveNodeButton(graph));
-        //this.add(new AddEdgeButton(graph));
+        this.add(new AddEdgeButton(graph));
         this.add(new RemoveEdgeButton(graph));
     }
 }
