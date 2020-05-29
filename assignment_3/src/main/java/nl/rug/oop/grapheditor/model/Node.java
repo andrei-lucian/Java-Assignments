@@ -7,8 +7,6 @@ import java.util.Observable;
 public class Node extends Observable {
 
     private Rectangle nodeBounds;
-    private int relativeX;
-    private int relativeY;
 
     private String name;
 
@@ -20,10 +18,15 @@ public class Node extends Observable {
     public void setBounds(int x, int y, int width, int height){
         this.nodeBounds.x = x;
         this.nodeBounds.y = y;
-        this.relativeX = 0;
-        this.relativeY = 0;
         this.nodeBounds.width = width;
         this.nodeBounds.height = height;
+    }
+
+    public void setNewLocation(int x, int y){
+        this.nodeBounds.x = x;
+        this.nodeBounds.y = y;
+        setChanged();
+        notifyObservers();
     }
 
     public String getName() {
@@ -40,25 +43,5 @@ public class Node extends Observable {
 
     public void setNodeBounds(Rectangle nodeBounds) {
         this.nodeBounds = nodeBounds;
-    }
-
-    public int getRelativeX() {
-        return relativeX;
-    }
-
-    public int getRelativeY() {
-        return relativeY;
-    }
-
-    public void setRelativeX(int relativeX) {
-        this.relativeX = relativeX;
-        setChanged();
-        notifyObservers();
-    }
-
-    public void setRelativeY(int relativeY) {
-        this.relativeY = relativeY;
-        setChanged();
-        notifyObservers();
     }
 }
