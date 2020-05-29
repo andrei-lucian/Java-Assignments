@@ -44,6 +44,7 @@ public class SelectionController extends MouseAdapter {
         }
         if (!selected){
             graph.setSelectedNode(null);
+            graph.setPreviouslySelectedNode(null);
         }
     }
 

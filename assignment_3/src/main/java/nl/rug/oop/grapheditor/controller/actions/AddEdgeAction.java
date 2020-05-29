@@ -11,15 +11,11 @@ import java.util.Observer;
 
 public class AddEdgeAction extends AbstractAction implements Observer {
     private final GraphModel graph;
-    private Node selectedNode1;
-    private Node selectedNode2;
 
     public AddEdgeAction(GraphModel graph) {
         super("Add an edge");
         this.graph = graph;
         graph.addObserver(this);
-        this.selectedNode1 = graph.getSelectedNode();
-        this.selectedNode2 = graph.getPreviouslySelectedNode();
         fixEnabled();
     }
 

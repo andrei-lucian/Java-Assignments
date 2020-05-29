@@ -48,7 +48,6 @@ public class GraphPanel extends JPanel implements Observer {
 
         }
         if (model.getPreviouslySelectedNode()!=null){
-
             Node node1 = model.getPreviouslySelectedNode();
             Rectangle bounds1 = node1.getNodeBounds();
             g.setColor(Color.YELLOW);
