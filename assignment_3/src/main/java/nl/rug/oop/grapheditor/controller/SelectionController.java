@@ -14,8 +14,6 @@ public class SelectionController extends MouseAdapter {
     private Node draggedNode;
     private int startX;
     private int startY;
-    private int clicked = 0;
-    private Node previousNode = null;
 
     public SelectionController(GraphModel graph, GraphPanel panel) {
         this.graph = graph;
@@ -29,22 +27,14 @@ public class SelectionController extends MouseAdapter {
         boolean selected = false;
         for (Node node : graph.getNodeList()) {
             Rectangle bounds = node.getNodeBounds();
-            if (bounds.contains(event.getPoint()) && clicked != 2) {
+            if (bounds.contains(event.getPoint())) {
                 graph.setSelectedNode(node);
-                previousNode = graph.getSelectedNode();
                 selected = true;
-                clicked++;
                 break;
-            }
-            else{
-                graph.setSelectedNode(node);
-                graph.setPreviouslySelectedNode(previousNode);
-                clicked = 0;
             }
         }
         if (!selected){
             graph.setSelectedNode(null);
-            graph.setPreviouslySelectedNode(null);
         }
     }
 
