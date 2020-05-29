@@ -11,6 +11,8 @@ public class GraphEditor {
         Node node1 = new Node();
         Node node2 = new Node();
         Node node3 = new Node();
+        node2.setBounds(300, 300, 100,100);
+        node3.setBounds(450,100, 50, 50);
 
         graph.addNode(node1);
         graph.addNode(node2);
@@ -25,12 +27,14 @@ public class GraphEditor {
         graph.addEdge(edge3, node3, node1);
 
         new GraphFrame(graph);
-/*
+
+        /*
         Save.save(graph);
 
         String loadPath = Load.chooseFile();
         GraphModel graph = new GraphModel(loadPath);
-        graph.printEdges();*/
+        graph.printEdges();
+        */
 
     }
 }
