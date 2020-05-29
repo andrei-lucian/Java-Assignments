@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class RemoveNodeButton extends JButton {
 
-    public RemoveNodeButton(GraphModel model) {
-        super(new RemoveNodeAction(model));
+    public RemoveNodeButton(GraphModel graph) {
+        super(new RemoveNodeAction(graph));
     }
 }
