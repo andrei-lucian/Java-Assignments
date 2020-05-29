@@ -1,5 +1,7 @@
 package nl.rug.oop.grapheditor.model;
 
+import nl.rug.oop.grapheditor.controller.SelectionController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,6 +12,7 @@ public class GraphFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         GraphPanel panel = new GraphPanel(graph);
+        new SelectionController(graph, panel);
         add(panel);
         setPreferredSize(new Dimension(1200, 800));
         pack();

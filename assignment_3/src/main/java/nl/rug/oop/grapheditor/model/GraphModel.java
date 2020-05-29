@@ -2,15 +2,15 @@ package nl.rug.oop.grapheditor.model;
 import nl.rug.oop.grapheditor.io.Load;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
 /** Keeps track of all the nodes and edges */
-public class GraphModel extends Observable {
+public class GraphModel extends Observable implements Observer {
 
     ArrayList<Edge> edgeList;
     ArrayList<Node> nodeList;
 
     public GraphModel(){
-        //new GraphFrame(this);
         this.nodeList = new ArrayList<>();
         this.edgeList = new ArrayList<>();
     }
@@ -30,15 +30,15 @@ public class GraphModel extends Observable {
 
     public void addNode(Node node){
         nodeList.add(node);
+        node.addObserver(this);
         setChanged();
         notifyObservers();
     }
 
     public void removeNode(Node node){
         nodeList.remove(node);
-        for (Edge edge : node.getEdges()){
-            edgeList.remove(edge);
-        }
+        this.edgeList.removeIf(edge -> edge.getNode1() == this.nodeList.indexOf(node) ||
+                edge.getNode2() == this.nodeList.indexOf(node));
     }
 
     public void printEdges(){
@@ -61,5 +61,11 @@ public class GraphModel extends Observable {
 
     public void removeEdge(Edge edge){
         edgeList.remove(edge);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        setChanged();
+        notifyObservers();
     }
 }

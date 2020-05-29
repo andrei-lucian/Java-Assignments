@@ -22,7 +22,8 @@ public class GraphPanel extends JPanel implements Observer {
     private void paintNodes(Graphics g){
         for (Node node : model.getNodeList()){
             Rectangle bounds = node.getNodeBounds();
-            g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+            g.fillRect(bounds.x + node.getRelativeX(),
+                    bounds.y + node.getRelativeY(), bounds.width, bounds.height);
         }
     }
 
