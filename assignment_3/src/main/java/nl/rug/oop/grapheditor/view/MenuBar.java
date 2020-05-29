@@ -11,18 +11,10 @@ import javax.swing.*;
 /** Menu bar that contains buttons for adding/removing nodes/edges */
 public class MenuBar extends JMenuBar {
 
-    private GraphModel graph;
-
-    AddNodeButton addNode = new AddNodeButton();
-    RemoveNodeButton removeNode = new RemoveNodeButton(graph);
-    AddEdgeButton addEdge = new AddEdgeButton();
-    RemoveEdgeButton removeEdge = new RemoveEdgeButton(graph);
-
     public MenuBar(GraphModel graph){
-        this.graph = graph;
-        this.add(addNode);
-        this.add(removeNode);
-        this.add(addEdge);
-        this.add(removeEdge);
+        this.add(new AddNodeButton(graph));
+        this.add(new RemoveNodeButton(graph));
+        this.add(new AddEdgeButton(graph));
+        this.add(new RemoveEdgeButton(graph));
     }
 }

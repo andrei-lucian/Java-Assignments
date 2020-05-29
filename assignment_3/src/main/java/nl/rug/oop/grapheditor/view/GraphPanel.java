@@ -14,7 +14,7 @@ public class GraphPanel extends JPanel implements Observer {
     private static final Color BACKGROUND_COLOR = new Color(205, 115, 10, 255);
 
     public GraphPanel(GraphModel model){
-        add(new MenuBar());
+        add(new MenuBar(model));
         this.model = model;
         setBackground(BACKGROUND_COLOR);
         setVisible(true);
