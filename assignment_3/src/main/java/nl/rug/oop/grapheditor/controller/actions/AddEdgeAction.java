@@ -18,18 +18,18 @@ public class AddEdgeAction extends AbstractAction implements Observer {
         super("Add an edge");
         this.graph = graph;
         graph.addObserver(this);
-        //this.selectedNode1 = graph.getSelectedNode();
+        this.selectedNode1 = graph.getSelectedNode();
+        this.selectedNode2 = graph.getPreviouslySelectedNode();
         fixEnabled();
     }
 
     private void fixEnabled(){
-        setEnabled(graph.getSelectedNode() != null);
+        setEnabled(graph.getSelectedNode() != null && graph.getPreviouslySelectedNode() != null);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.selectedNode1 = graph.getSelectedNode();
-        this.selectedNode2 = graph.getSelectedNode();
+        System.out.println("hi");
         graph.addEdge(new Edge(),selectedNode1, selectedNode2);
     }
 

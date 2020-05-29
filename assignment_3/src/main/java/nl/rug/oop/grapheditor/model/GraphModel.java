@@ -76,9 +76,10 @@ public class GraphModel extends Observable implements Observer {
         if (node1!= null && node2!= null){
             edgeList.add(edge);
             edge.setNodes(nodeList.indexOf(node1), nodeList.indexOf(node2));
+            setChanged();
+            notifyObservers();
         }
-        setChanged();
-        notifyObservers();
+
     }
 
     public void removeEdge(Edge edge){
