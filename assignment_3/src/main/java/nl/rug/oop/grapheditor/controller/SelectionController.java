@@ -12,6 +12,7 @@ public class SelectionController extends MouseAdapter {
 
     private final GraphModel graph;
     private Node selectedNode;
+    private Node draggedNode;
     private int startX;
     private int startY;
 
@@ -20,6 +21,7 @@ public class SelectionController extends MouseAdapter {
         panel.addMouseListener(this);
         panel.addMouseMotionListener(this);
         selectedNode = null;
+        draggedNode = null;
     }
 
     @Override
@@ -27,28 +29,30 @@ public class SelectionController extends MouseAdapter {
         for (Node node : graph.getNodeList()) {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
-                System.out.println("Node clicked");
+                System.out.println("Node selected");
                 selectedNode = node;
-                startX = event.getX() - node.getNodeBounds().x;
-                startY = event.getY() - node.getNodeBounds().y;
+            }
+            else {
+                selectedNode = null;
             }
         }
     }
 
     @Override
     public void mouseDragged(MouseEvent event) {
-        if (selectedNode!=null) {
-            selectedNode.setNewLocation(event.getX() - startX, event.getY() - startY);
-            System.out.println("Node dragged");
+        for (Node node : graph.getNodeList()) {
+            Rectangle bounds = node.getNodeBounds();
+            if (bounds.contains(event.getPoint())) {
+                //System.out.println("Node clicked");
+                draggedNode = node;
+                startX = event.getX() - node.getNodeBounds().x;
+                startY = event.getY() - node.getNodeBounds().y;
+            }
+        }
+        if (draggedNode!=null) {
+            draggedNode.setNewLocation(event.getX() - startX, event.getY() - startY);
+            //System.out.println("Node dragged");
         }
     }
 
-    @Override
-    public void mouseReleased(MouseEvent event) {
-        if (selectedNode!=null) {
-            selectedNode.setNewLocation(event.getX() - startX, event.getY() - startY);
-            System.out.println("Node released");
-        }
-        selectedNode = null;
-    }
 }
