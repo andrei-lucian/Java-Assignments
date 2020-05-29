@@ -1,7 +1,7 @@
 package nl.rug.oop.grapheditor.model;
 
-import nl.rug.oop.grapheditor.io.Load;
-import nl.rug.oop.grapheditor.io.Save;
+import nl.rug.oop.grapheditor.view.GraphFrame;
+
 public class GraphEditor {
 
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
-package nl.rug.oop.grapheditor.model;
+package nl.rug.oop.grapheditor.view;
 
 import nl.rug.oop.grapheditor.controller.SelectionController;
+import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
 import java.awt.*;
