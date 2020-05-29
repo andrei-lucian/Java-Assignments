@@ -38,8 +38,7 @@ public class SelectionController extends MouseAdapter {
     @Override
     public void mouseDragged(MouseEvent event) {
         if (selectedNode!=null) {
-            selectedNode.setRelativeX(event.getX() - startX);
-            selectedNode.setRelativeY(event.getY() - startY);
+            selectedNode.setNewLocation(event.getX() - startX, event.getY() - startY);
             System.out.println("Node dragged");
         }
     }
@@ -47,8 +46,7 @@ public class SelectionController extends MouseAdapter {
     @Override
     public void mouseReleased(MouseEvent event) {
         if (selectedNode!=null) {
-            selectedNode.setRelativeX(event.getX()-startX);
-            selectedNode.setRelativeY(event.getY()-startY);
+            selectedNode.setNewLocation(event.getX() - startX, event.getY() - startY);
             System.out.println("Node released");
         }
         selectedNode = null;
