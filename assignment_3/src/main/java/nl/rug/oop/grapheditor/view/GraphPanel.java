@@ -1,4 +1,8 @@
-package nl.rug.oop.grapheditor.model;
+package nl.rug.oop.grapheditor.view;
+import nl.rug.oop.grapheditor.model.Edge;
+import nl.rug.oop.grapheditor.model.GraphModel;
+import nl.rug.oop.grapheditor.model.Node;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;

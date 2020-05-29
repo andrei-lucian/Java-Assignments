@@ -1,7 +1,7 @@
 package nl.rug.oop.grapheditor.controller;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.model.GraphPanel;
+import nl.rug.oop.grapheditor.view.GraphPanel;
 import nl.rug.oop.grapheditor.model.Node;
 
 import java.awt.*;
