@@ -9,6 +9,17 @@ public class GraphModel extends Observable implements Observer {
 
     ArrayList<Edge> edgeList;
     ArrayList<Node> nodeList;
+    private Node selectedNode;
+
+    public Node getSelectedNode() {
+        return selectedNode;
+    }
+
+    public void setSelectedNode(Node selectedNode) {
+        this.selectedNode = selectedNode;
+        setChanged();
+        notifyObservers();
+    }
 
     public GraphModel(){
         this.nodeList = new ArrayList<>();

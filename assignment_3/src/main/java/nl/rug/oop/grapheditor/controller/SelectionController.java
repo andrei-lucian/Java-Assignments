@@ -11,8 +11,8 @@ import java.awt.event.MouseEvent;
 public class SelectionController extends MouseAdapter {
 
     private final GraphModel graph;
-    private Node selectedNode;
     private Node draggedNode;
+    private boolean nodeSelected = false;
     private int startX;
     private int startY;
 
@@ -20,7 +20,6 @@ public class SelectionController extends MouseAdapter {
         this.graph = graph;
         panel.addMouseListener(this);
         panel.addMouseMotionListener(this);
-        selectedNode = null;
         draggedNode = null;
     }
 
@@ -29,13 +28,10 @@ public class SelectionController extends MouseAdapter {
         for (Node node : graph.getNodeList()) {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
-                System.out.println("Node selected");
-                selectedNode = node;
-            }
-            else {
-                selectedNode = null;
+                graph.setSelectedNode(node);
             }
         }
+
     }
 
     @Override
@@ -54,5 +50,4 @@ public class SelectionController extends MouseAdapter {
             //System.out.println("Node dragged");
         }
     }
-
 }

@@ -39,11 +39,21 @@ public class GraphPanel extends JPanel implements Observer {
         }
     }
 
+    private void paintSelectedNode(Graphics g){
+        if (model.getSelectedNode()!=null){
+            Node node = model.getSelectedNode();
+            Rectangle bounds = node.getNodeBounds();
+            g.setColor(Color.YELLOW);
+            g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+        }
+    }
+
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         paintNodes(g);
         paintEdges(g);
+        paintSelectedNode(g);
     }
 
     @Override
