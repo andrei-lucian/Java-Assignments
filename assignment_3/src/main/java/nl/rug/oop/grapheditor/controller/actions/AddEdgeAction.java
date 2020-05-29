@@ -20,13 +20,13 @@ public class AddEdgeAction extends AbstractAction implements Observer {
     }
 
     private void fixEnabled(){
-        setEnabled(graph.getSelectedNode() != null && graph.getPreviouslySelectedNode() != null);
+        setEnabled(graph.getSelectedNode() != null && graph.getSelectedNode() != null);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("hi");
-        graph.addEdge(new Edge(),graph.getPreviouslySelectedNode(), graph.getSelectedNode());
+        graph.addEdge(new Edge(),graph.getSelectedNode(), graph.getSelectedNode());
     }
 
     @Override
