@@ -29,8 +29,8 @@ public class SelectionController extends MouseAdapter {
             if (bounds.contains(event.getPoint())) {
                 System.out.println("Node clicked");
                 selectedNode = node;
-                startX = event.getX();
-                startY = event.getY();
+                startX = event.getX() - node.getNodeBounds().x;
+                startY = event.getY() - node.getNodeBounds().y;
             }
         }
     }
