@@ -10,4 +10,5 @@ public class AddEdgeButton extends JButton {
     public AddEdgeButton(GraphModel graph){
         super(new AddEdgeAction(graph));
     }
+
 }
