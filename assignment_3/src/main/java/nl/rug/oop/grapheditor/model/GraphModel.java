@@ -10,6 +10,17 @@ public class GraphModel extends Observable implements Observer {
     ArrayList<Edge> edgeList;
     ArrayList<Node> nodeList;
     private Node selectedNode;
+    private Node previouslySelectedNode;
+
+
+    public Node getPreviouslySelectedNode() {
+        return previouslySelectedNode;
+    }
+
+    public void setPreviouslySelectedNode(Node previouslySelectedNode) {
+        this.previouslySelectedNode = previouslySelectedNode;
+    }
+
 
     public Node getSelectedNode() {
         return selectedNode;
