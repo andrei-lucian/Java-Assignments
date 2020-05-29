@@ -47,8 +47,9 @@ public class GraphModel extends Observable implements Observer {
     }
 
     public void removeNode(Node node){
+        this.edgeList.removeIf(edge -> edge.getNode1() == this.nodeList.indexOf(node) ||
+                edge.getNode2() == this.nodeList.indexOf(node));
         nodeList.remove(node);
-        this.edgeList.removeIf(edge -> edge.getNode1() == this.nodeList.indexOf(node) || edge.getNode2() == this.nodeList.indexOf(node));
     }
 
     public void printEdges(){
