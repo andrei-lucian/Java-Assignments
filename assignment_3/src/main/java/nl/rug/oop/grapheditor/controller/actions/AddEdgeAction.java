@@ -15,7 +15,7 @@ public class AddEdgeAction extends AbstractAction implements Observer {
     private Node selectedNode2;
 
     public AddEdgeAction(GraphModel graph) {
-        super("Remove an edge");
+        super("Add an edge");
         this.graph = graph;
         graph.addObserver(this);
         fixEnabled();
