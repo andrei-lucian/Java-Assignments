@@ -11,8 +11,8 @@ public class GraphEditor {
         Node node1 = new Node();
         Node node2 = new Node();
         Node node3 = new Node();
-        node2.setBounds(300, 300, 100,100);
-        node3.setBounds(450,100, 50, 50);
+        node2.setBounds(300, 300);
+        node3.setBounds(450,100);
 
         graph.addNode(node1);
         graph.addNode(node2);
