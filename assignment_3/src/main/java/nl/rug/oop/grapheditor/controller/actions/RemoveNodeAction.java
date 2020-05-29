@@ -11,7 +11,6 @@ import java.util.Observer;
 public class RemoveNodeAction extends AbstractAction implements Observer {
 
     private GraphModel graph;
-    private Node selectedNode;
 
     public RemoveNodeAction(GraphModel graph) {
         super("Remove a node");
@@ -21,12 +20,13 @@ public class RemoveNodeAction extends AbstractAction implements Observer {
     }
 
     private void fixEnabled(){
-        setEnabled(selectedNode != null);
+        setEnabled(graph.getSelectedNode() != null);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        graph.getNodeList().remove(this.selectedNode);
+        graph.removeNode(graph.getSelectedNode());
+        graph.setSelectedNode(null);
     }
 
     @Override

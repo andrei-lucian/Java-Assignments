@@ -31,7 +31,6 @@ public class SelectionController extends MouseAdapter {
                 graph.setSelectedNode(node);
             }
         }
-
     }
 
     @Override
