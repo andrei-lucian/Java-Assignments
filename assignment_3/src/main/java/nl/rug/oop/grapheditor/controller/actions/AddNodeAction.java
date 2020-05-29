@@ -15,6 +15,7 @@ public class AddNodeAction extends AbstractAction implements Observer {
     public AddNodeAction(GraphModel graph){
         super("Add a node");
         graph.addObserver(this);
+        this.graph = graph;
     }
 
     @Override
@@ -24,6 +25,7 @@ public class AddNodeAction extends AbstractAction implements Observer {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        graph.addNode(new Node());
+        Node node = new Node();
+        graph.addNode(node);
     }
 }
