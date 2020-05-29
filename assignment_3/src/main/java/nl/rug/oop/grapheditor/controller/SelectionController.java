@@ -12,7 +12,6 @@ public class SelectionController extends MouseAdapter {
 
     private final GraphModel graph;
     private Node draggedNode;
-    private boolean nodeSelected = false;
     private int startX;
     private int startY;
 
@@ -25,11 +24,16 @@ public class SelectionController extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent event) {
+        boolean selected = false;
         for (Node node : graph.getNodeList()) {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
                 graph.setSelectedNode(node);
+                selected = true;
             }
+        }
+        if (!selected){
+            graph.setSelectedNode(null);
         }
     }
 
