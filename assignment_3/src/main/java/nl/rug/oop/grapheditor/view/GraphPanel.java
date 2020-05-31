@@ -10,11 +10,12 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+/** JPanel that draws all the components of a graph */
 public class GraphPanel extends JPanel implements Observer {
 
-    private GraphModel graph;
+    private final GraphModel graph;
     private static final Color BACKGROUND_COLOR = new Color(205, 115, 10, 255);
-    private HashMap<Edge, Line2D.Float> edgeMap;
+    private final HashMap<Edge, Line2D.Float> edgeMap;
 
     public GraphPanel(GraphModel graph){
         add(new MenuBar(graph));
@@ -26,10 +27,7 @@ public class GraphPanel extends JPanel implements Observer {
         edgeMap = new HashMap<>();
     }
 
-    public HashMap<Edge, Line2D.Float> getEdgeMap() {
-        return edgeMap;
-    }
-
+    /** Paint all the nodes of a graph */
     private void paintNodes(Graphics g){
         for (Node node : graph.getNodeList()){
             Rectangle bounds = node.getNodeBounds();
@@ -40,6 +38,7 @@ public class GraphPanel extends JPanel implements Observer {
         }
     }
 
+    /** Paint all the edges of a graph */
     private void paintEdges(Graphics g){
         for (Edge edge : graph.getEdgeList()){
             Node n1 = graph.getNodeList().get(edge.getNode1());
@@ -55,7 +54,8 @@ public class GraphPanel extends JPanel implements Observer {
         }
     }
 
-    private void paintSelectedNode(Graphics g){
+    /** Highlight selected node */
+    private void highlightNode(Graphics g){
         if (graph.getSelectedNode()!=null){
             Node node = graph.getSelectedNode();
             Rectangle bounds = node.getNodeBounds();
@@ -64,7 +64,8 @@ public class GraphPanel extends JPanel implements Observer {
         }
     }
 
-    private void paintSelectedEdge(Graphics g){
+    /** Highlight selected edge */
+    private void highlightEdge(Graphics g){
         if (graph.getSelectedEdge()!=null){
             Edge edge = graph.getSelectedEdge();
             Line2D.Float selectedLine = edgeMap.get(edge);
@@ -74,6 +75,7 @@ public class GraphPanel extends JPanel implements Observer {
         }
     }
 
+    /** Paint selecting edge from node to cursor */
     public void paintSelectingEdge(Graphics g){
         if (graph.isCurrentlyAddingEdge()) {
             Graphics2D line = (Graphics2D) g;
@@ -85,14 +87,19 @@ public class GraphPanel extends JPanel implements Observer {
         }
     }
 
+    /** Paint all components of the panel */
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         paintNodes(g);
         paintEdges(g);
-        paintSelectedNode(g);
-        paintSelectedEdge(g);
+        highlightNode(g);
+        highlightEdge(g);
         paintSelectingEdge(g);
+    }
+
+    public HashMap<Edge, Line2D.Float> getEdgeMap() {
+        return edgeMap;
     }
 
     @Override

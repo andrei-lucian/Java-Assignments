@@ -7,7 +7,6 @@ import java.util.Observable;
 public class Node extends Observable {
 
     private Rectangle nodeBounds;
-
     private String name;
 
     public Node(){

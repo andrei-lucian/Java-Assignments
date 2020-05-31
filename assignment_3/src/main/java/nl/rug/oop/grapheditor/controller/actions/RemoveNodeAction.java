@@ -1,24 +1,23 @@
 package nl.rug.oop.grapheditor.controller.actions;
-
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.model.Node;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+/** Remove a node */
 public class RemoveNodeAction extends AbstractAction implements Observer {
 
-    private GraphModel graph;
+    private final GraphModel graph;
 
     public RemoveNodeAction(GraphModel graph) {
-        super("Remove a node");
+        super("Remove node");
         this.graph = graph;
         graph.addObserver(this);
         fixEnabled();
     }
 
+    /** Only show if a node has been selected */
     private void fixEnabled(){
         setEnabled(graph.getSelectedNode() != null);
     }

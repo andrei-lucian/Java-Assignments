@@ -12,16 +12,18 @@ public class RemoveEdgeAction extends AbstractAction implements Observer {
     private final GraphModel graph;
 
     public RemoveEdgeAction(GraphModel graph) {
-        super("Remove an edge");
+        super("Remove edge");
         this.graph = graph;
         graph.addObserver(this);
         fixEnabled();
     }
 
+    /** Only show if an edge has been selected */
     private void fixEnabled(){
         setEnabled(graph.getSelectedEdge()!= null);
     }
 
+    /** Remove a graph's selected edge */
     @Override
     public void actionPerformed(ActionEvent e) {
         graph.removeEdge(graph.getSelectedEdge());

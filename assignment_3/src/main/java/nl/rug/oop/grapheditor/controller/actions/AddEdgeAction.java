@@ -17,10 +17,14 @@ public class AddEdgeAction extends AbstractAction implements Observer {
         fixEnabled();
     }
 
+    /** Only show if a node has been selected */
     private void fixEnabled(){
         setEnabled(graph.getSelectedNode() != null);
     }
 
+    /** Set the state to currently adding edge -
+     * so that SelectionController knows to
+     * set the next selected node as GraphModel's secondNode*/
     @Override
     public void actionPerformed(ActionEvent e) {
         graph.setCurrentlyAddingEdge(true);

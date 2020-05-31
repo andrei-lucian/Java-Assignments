@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+/** Add a node to a graph */
 public class AddNodeAction extends AbstractAction implements Observer {
 
     private GraphModel graph;
@@ -19,12 +20,12 @@ public class AddNodeAction extends AbstractAction implements Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-
+    public void actionPerformed(ActionEvent e) {
+        graph.addNode(new Node());
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        graph.addNode(new Node());
+    public void update(Observable o, Object arg) {
+
     }
 }
