@@ -43,8 +43,8 @@ public class SelectionController extends MouseAdapter {
         }
         for (Edge edge: graph.getEdgeList()){
             Line2D.Float line = panel.getEdgeMap().get(edge);
-            System.out.println(line);
-            if (line.contains(event.getPoint())){
+            //System.out.println(line);
+            if (line.getBounds2D().contains(event.getPoint())){
                 System.out.println("edge selected");
             }
         }
