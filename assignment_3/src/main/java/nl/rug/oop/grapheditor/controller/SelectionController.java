@@ -5,19 +5,23 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.view.GraphPanel;
 import nl.rug.oop.grapheditor.model.Node;
 
+import javax.sound.sampled.Line;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Line2D;
 
 public class SelectionController extends MouseAdapter {
 
     private final GraphModel graph;
+    private final GraphPanel panel;
     private Node draggedNode;
     private int startX;
     private int startY;
 
     public SelectionController(GraphModel graph, GraphPanel panel) {
         this.graph = graph;
+        this.panel = panel;
         panel.addMouseListener(this);
         panel.addMouseMotionListener(this);
         draggedNode = null;
@@ -36,6 +40,13 @@ public class SelectionController extends MouseAdapter {
         }
         if (!nodeSelected){
             graph.setSelectedNode(null);
+        }
+        for (Edge edge: graph.getEdgeList()){
+            Line2D.Float line = panel.getEdgeMap().get(edge);
+            System.out.println(line);
+            if (line.contains(event.getPoint())){
+                System.out.println("edge selected");
+            }
         }
     }
 

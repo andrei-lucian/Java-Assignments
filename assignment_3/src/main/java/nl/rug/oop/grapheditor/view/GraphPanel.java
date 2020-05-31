@@ -6,6 +6,7 @@ import nl.rug.oop.grapheditor.model.Node;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -13,6 +14,7 @@ public class GraphPanel extends JPanel implements Observer {
 
     private GraphModel model;
     private static final Color BACKGROUND_COLOR = new Color(205, 115, 10, 255);
+    private HashMap<Edge, Line2D.Float> edgeMap;
 
     public GraphPanel(GraphModel model){
         add(new MenuBar(model));
@@ -21,6 +23,11 @@ public class GraphPanel extends JPanel implements Observer {
         setVisible(true);
         setOpaque(true);
         model.addObserver(this);
+        edgeMap = new HashMap<>();
+    }
+
+    public HashMap<Edge, Line2D.Float> getEdgeMap() {
+        return edgeMap;
     }
 
     private void paintNodes(Graphics g){
@@ -36,9 +43,12 @@ public class GraphPanel extends JPanel implements Observer {
             Node n2 = model.getNodeList().get(edge.getNode2());
             Rectangle b1 = n1.getNodeBounds();
             Rectangle b2 = n2.getNodeBounds();
-            Graphics2D line = (Graphics2D ) g;
-            line.setStroke(new BasicStroke(4));
-            line.draw(new Line2D.Float(b1.x + b1.width/2, b1.y + b1.height/2, b2.x + b2.width/2, b2.y + b2.height/2));
+            Graphics2D line = (Graphics2D) g;
+            line.setStroke(new BasicStroke(10));
+            Line2D.Float drawnEdge = new Line2D.Float(b1.x + b1.width/2, b1.y + b1.height/2,
+                    b2.x + b2.width/2, b2.y + b2.height/2);
+            line.draw(drawnEdge);
+            edgeMap.put(edge, drawnEdge);
         }
     }
 
