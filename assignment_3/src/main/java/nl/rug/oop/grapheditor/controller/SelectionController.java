@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
 
 public class SelectionController extends MouseAdapter {
 
@@ -31,30 +30,46 @@ public class SelectionController extends MouseAdapter {
     public void mousePressed(MouseEvent event) {
         boolean nodeSelected = false;
         boolean edgeSelected = false;
-        for (Node node : graph.getNodeList()) {
-            Rectangle bounds = node.getNodeBounds();
-            if (bounds.contains(event.getPoint())) {
-                graph.setSelectedNode(node);
-                nodeSelected = true;
-                break;
+        boolean secondNodeSelected = false;
+        if (!graph.isCurrentlyAddingEdge()) {
+            for (Node node : graph.getNodeList()) {
+                Rectangle bounds = node.getNodeBounds();
+                if (bounds.contains(event.getPoint())) {
+                    graph.setSelectedNode(node);
+                    nodeSelected = true;
+                    break;
+                }
+            }
+            if (!nodeSelected) {
+                graph.setSelectedNode(null);
+            }
+
+            for (Edge edge : graph.getEdgeList()) {
+                Line2D.Float line = panel.getEdgeMap().get(edge);
+                if (line.getBounds2D().contains(event.getPoint())) {
+                    graph.setSelectedEdge(edge);
+                    edgeSelected = true;
+                    System.out.println("edge selected");
+                }
+            }
+            if (!edgeSelected) {
+                graph.setSelectedEdge(null);
             }
         }
-        if (!nodeSelected){
-            graph.setSelectedNode(null);
-        }
-        for (Edge edge: graph.getEdgeList()){
-            Line2D.Float line = panel.getEdgeMap().get(edge);
-            //System.out.println(line);
-            Rectangle2D lineBounds = line.getBounds2D();
-            //lineBounds.setRect
-            if (lineBounds.contains(event.getPoint())){
-                graph.setSelectedEdge(edge);
-                edgeSelected = true;
-                System.out.println("edge selected");
+
+        if (graph.isCurrentlyAddingEdge()){
+            for (Node node : graph.getNodeList()) {
+                Rectangle bounds = node.getNodeBounds();
+                if (bounds.contains(event.getPoint())) {
+                    graph.setSecondNode(node);
+                    secondNodeSelected = true;
+                    break;
+                }
             }
-        }
-        if (!edgeSelected){
-            graph.setSelectedEdge(null);
+            if (!secondNodeSelected){
+                graph.setSecondNode(null);
+            }
+            graph.setCurrentlyAddingEdge(false);
         }
     }
 
@@ -72,6 +87,13 @@ public class SelectionController extends MouseAdapter {
         if (draggedNode!=null) {
             draggedNode.setNewLocation(event.getX() - startX, event.getY() - startY);
             //System.out.println("Node dragged");
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent event){
+        if (graph.isCurrentlyAddingEdge()){
+            graph.setMouseCoordinates(event.getX(), event.getY());
         }
     }
 }

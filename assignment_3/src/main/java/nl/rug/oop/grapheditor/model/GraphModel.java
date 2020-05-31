@@ -11,6 +11,50 @@ public class GraphModel extends Observable implements Observer {
     ArrayList<Node> nodeList;
     private Node selectedNode;
     private Edge selectedEdge;
+    private Node secondNode;
+    private int mouseX;
+    private int mouseY;
+    private boolean currentlyAddingEdge;
+
+    public void setSecondNode(Node secondNode) {
+        this.secondNode = secondNode;
+        System.out.println("second node set");
+        connectEdge();
+    }
+
+    public void connectEdge(){
+        if (secondNode!=null){
+            System.out.println("edge added");
+            addEdge(new Edge(), selectedNode, secondNode);
+        }
+        setChanged();
+        notifyObservers();
+    }
+
+    public int getMouseX() {
+        return mouseX;
+    }
+
+    public int getMouseY() {
+        return mouseY;
+    }
+
+    public void setMouseCoordinates(int mouseX, int mouseY) {
+        this.mouseX = mouseX;
+        this.mouseY = mouseY;
+        setChanged();
+        notifyObservers();
+    }
+
+    public boolean isCurrentlyAddingEdge() {
+        return currentlyAddingEdge;
+    }
+
+    public void setCurrentlyAddingEdge(boolean currentlyAddingEdge) {
+        this.currentlyAddingEdge = currentlyAddingEdge;
+        setChanged();
+        notifyObservers();
+    }
 
     public Edge getSelectedEdge() {
         return selectedEdge;

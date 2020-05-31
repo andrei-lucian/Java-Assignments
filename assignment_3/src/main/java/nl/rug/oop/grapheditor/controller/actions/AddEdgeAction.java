@@ -1,8 +1,5 @@
 package nl.rug.oop.grapheditor.controller.actions;
-
-import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.model.Node;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,8 +22,7 @@ public class AddEdgeAction extends AbstractAction implements Observer {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("hi");
-        //graph.addEdge(new Edge(), graph.getSelectedNode(), graph.getSelectedNode());
+        graph.setCurrentlyAddingEdge(true);
     }
 
     @Override
