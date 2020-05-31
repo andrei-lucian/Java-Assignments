@@ -5,11 +5,11 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.view.GraphPanel;
 import nl.rug.oop.grapheditor.model.Node;
 
-import javax.sound.sampled.Line;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 
 public class SelectionController extends MouseAdapter {
 
@@ -30,6 +30,7 @@ public class SelectionController extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent event) {
         boolean nodeSelected = false;
+        boolean edgeSelected = false;
         for (Node node : graph.getNodeList()) {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
@@ -44,9 +45,16 @@ public class SelectionController extends MouseAdapter {
         for (Edge edge: graph.getEdgeList()){
             Line2D.Float line = panel.getEdgeMap().get(edge);
             //System.out.println(line);
-            if (line.getBounds2D().contains(event.getPoint())){
+            Rectangle2D lineBounds = line.getBounds2D();
+            //lineBounds.setRect
+            if (lineBounds.contains(event.getPoint())){
+                graph.setSelectedEdge(edge);
+                edgeSelected = true;
                 System.out.println("edge selected");
             }
+        }
+        if (!edgeSelected){
+            graph.setSelectedEdge(null);
         }
     }
 

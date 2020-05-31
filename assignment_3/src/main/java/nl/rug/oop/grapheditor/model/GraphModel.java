@@ -10,6 +10,17 @@ public class GraphModel extends Observable implements Observer {
     ArrayList<Edge> edgeList;
     ArrayList<Node> nodeList;
     private Node selectedNode;
+    private Edge selectedEdge;
+
+    public Edge getSelectedEdge() {
+        return selectedEdge;
+    }
+
+    public void setSelectedEdge(Edge selectedEdge) {
+        this.selectedEdge = selectedEdge;
+        setChanged();
+        notifyObservers();
+    }
 
     public Node getSelectedNode() {
         return selectedNode;
@@ -49,15 +60,27 @@ public class GraphModel extends Observable implements Observer {
     public void removeNode(Node node){
         edgeList.removeIf(edge -> edge.getNode1() == this.nodeList.indexOf(node) ||
                 edge.getNode2() == this.nodeList.indexOf(node));
+        int indexOfNode = nodeList.indexOf(node);
+        System.out.println("Index is " + indexOfNode);
+        for (Edge edge : edgeList){
+            System.out.println(edge);
+            if (edge.getNode1() > indexOfNode){
+                System.out.println("Node1 " + edge.getNode1());
+                edge.setNode1(edge.getNode1()-1);
+            }
+            if (edge.getNode2() > indexOfNode){
+                System.out.println("Node2 " + edge.getNode2());
+                edge.setNode2(edge.getNode2()-1);
+            }
+        }
         nodeList.remove(node);
     }
 
     public void printEdges(){
         for(Edge edge : edgeList){
+            System.out.println(edge);
             System.out.println(edge.getNode1());
-        }
-        for(Node node : nodeList){
-            System.out.println(node.getName());
+            System.out.println(edge.getNode2());
         }
     }
 
@@ -68,7 +91,6 @@ public class GraphModel extends Observable implements Observer {
             setChanged();
             notifyObservers();
         }
-
     }
 
     public void removeEdge(Edge edge){

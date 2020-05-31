@@ -26,7 +26,7 @@ public class AddEdgeAction extends AbstractAction implements Observer {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("hi");
-        graph.addEdge(new Edge(), graph.getSelectedNode(), graph.getSelectedNode());
+        //graph.addEdge(new Edge(), graph.getSelectedNode(), graph.getSelectedNode());
     }
 
     @Override

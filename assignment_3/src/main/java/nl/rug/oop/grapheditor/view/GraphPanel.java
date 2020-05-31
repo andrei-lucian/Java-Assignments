@@ -6,6 +6,7 @@ import nl.rug.oop.grapheditor.model.Node;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -34,6 +35,9 @@ public class GraphPanel extends JPanel implements Observer {
         for (Node node : model.getNodeList()){
             Rectangle bounds = node.getNodeBounds();
             g.fillRect(bounds.x, bounds.y,  bounds.width, bounds.height);
+            int index = model.getNodeList().indexOf(node);
+            String i = Integer.toString(index);
+            //g.drawString(i, (bounds.x+bounds.width)/2, (bounds.y+bounds.height)/2);
         }
     }
 
@@ -61,12 +65,23 @@ public class GraphPanel extends JPanel implements Observer {
         }
     }
 
+    private void paintSelectedEdge(Graphics g){
+        if (model.getSelectedEdge()!=null){
+            Edge edge = model.getSelectedEdge();
+            Line2D.Float selectedLine = edgeMap.get(edge);
+            Graphics2D line = (Graphics2D) g;
+            line.setColor(Color.YELLOW);
+            line.draw(selectedLine);
+        }
+    }
+
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         paintNodes(g);
         paintEdges(g);
         paintSelectedNode(g);
+        paintSelectedEdge(g);
     }
 
     @Override

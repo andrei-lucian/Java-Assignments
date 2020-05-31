@@ -11,7 +11,6 @@ import java.util.Observer;
 public class RemoveEdgeAction extends AbstractAction implements Observer {
 
     private final GraphModel graph;
-    private Edge selectedEdge;
 
     public RemoveEdgeAction(GraphModel graph) {
         super("Remove an edge");
@@ -21,12 +20,13 @@ public class RemoveEdgeAction extends AbstractAction implements Observer {
     }
 
     private void fixEnabled(){
-        setEnabled(selectedEdge!= null);
+        setEnabled(graph.getSelectedEdge()!= null);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        graph.getEdgeList().remove(this.selectedEdge);
+        graph.getEdgeList().remove(graph.getSelectedEdge());
+        graph.setSelectedEdge(null);
     }
 
     @Override
