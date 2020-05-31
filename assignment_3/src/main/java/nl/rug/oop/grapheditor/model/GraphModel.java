@@ -7,8 +7,8 @@ import java.util.Observer;
 /** Keeps track of all the nodes and edges */
 public class GraphModel extends Observable implements Observer {
 
-    ArrayList<Edge> edgeList;
-    ArrayList<Node> nodeList;
+    private ArrayList<Edge> edgeList;
+    private ArrayList<Node> nodeList;
     private Node selectedNode;
     private Edge selectedEdge;
     private Node secondNode;

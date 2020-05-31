@@ -47,7 +47,7 @@ public class GraphPanel extends JPanel implements Observer {
             Rectangle b1 = n1.getNodeBounds();
             Rectangle b2 = n2.getNodeBounds();
             Graphics2D line = (Graphics2D) g;
-            line.setStroke(new BasicStroke(10));
+            line.setStroke(new BasicStroke(2));
             Line2D.Float drawnEdge = new Line2D.Float(b1.x + b1.width/2, b1.y + b1.height/2,
                     b2.x + b2.width/2, b2.y + b2.height/2);
             line.draw(drawnEdge);
@@ -78,7 +78,7 @@ public class GraphPanel extends JPanel implements Observer {
         if (graph.isCurrentlyAddingEdge()) {
             Graphics2D line = (Graphics2D) g;
             Rectangle nodeBounds = graph.getSelectedNode().getNodeBounds();
-            line.setStroke(new BasicStroke(10));
+            line.setStroke(new BasicStroke(2));
             Line2D.Float drawnEdge = new Line2D.Float(nodeBounds.x + nodeBounds.width / 2,
                     nodeBounds.y + nodeBounds.height / 2, graph.getMouseX(), graph.getMouseY());
             line.draw(drawnEdge);
