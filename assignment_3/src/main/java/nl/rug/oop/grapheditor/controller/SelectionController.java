@@ -78,7 +78,6 @@ public class SelectionController extends MouseAdapter {
         for (Node node : graph.getNodeList()) {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
-                //System.out.println("Node clicked");
                 draggedNode = node;
                 startX = event.getX() - node.getNodeBounds().x;
                 startY = event.getY() - node.getNodeBounds().y;
@@ -86,7 +85,6 @@ public class SelectionController extends MouseAdapter {
         }
         if (draggedNode!=null) {
             draggedNode.setNewLocation(event.getX() - startX, event.getY() - startY);
-            //System.out.println("Node dragged");
         }
     }
 

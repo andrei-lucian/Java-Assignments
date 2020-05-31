@@ -1,6 +1,4 @@
 package nl.rug.oop.grapheditor.controller.actions;
-
-import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
@@ -8,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+/** Remove an edge */
 public class RemoveEdgeAction extends AbstractAction implements Observer {
 
     private final GraphModel graph;
@@ -25,7 +24,7 @@ public class RemoveEdgeAction extends AbstractAction implements Observer {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        graph.getEdgeList().remove(graph.getSelectedEdge());
+        graph.removeEdge(graph.getSelectedEdge());
         graph.setSelectedEdge(null);
     }
 
