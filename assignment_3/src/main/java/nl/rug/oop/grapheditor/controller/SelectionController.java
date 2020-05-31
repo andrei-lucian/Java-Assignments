@@ -26,7 +26,6 @@ public class SelectionController extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent event) {
         boolean nodeSelected = false;
-        boolean secondNodeSelected = false;
         for (Node node : graph.getNodeList()) {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
