@@ -15,8 +15,6 @@ public class SelectionController extends MouseAdapter {
     private final GraphModel graph;
     private final GraphPanel panel;
     private Node draggedNode;
-    private int startX;
-    private int startY;
 
     public SelectionController(GraphModel graph, GraphPanel panel) {
         this.graph = graph;
@@ -75,6 +73,8 @@ public class SelectionController extends MouseAdapter {
 
     @Override
     public void mouseDragged(MouseEvent event) {
+        int startX = 0;
+        int startY = 0;
         for (Node node : graph.getNodeList()) {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
