@@ -1,5 +1,6 @@
 package nl.rug.oop.grapheditor.controller;
 
+import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.view.GraphPanel;
 import nl.rug.oop.grapheditor.model.Node;
@@ -24,17 +25,33 @@ public class SelectionController extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent event) {
-        boolean selected = false;
+        boolean nodeSelected = false;
+        boolean secondNodeSelected = false;
         for (Node node : graph.getNodeList()) {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
                 graph.setSelectedNode(node);
-                selected = true;
+                nodeSelected = true;
                 break;
             }
         }
-        if (!selected){
+        if (!nodeSelected){
             graph.setSelectedNode(null);
+        }
+        if (graph.isAddingEdge()){
+            for (Node node : graph.getNodeList()) {
+                Rectangle bounds = node.getNodeBounds();
+                if (bounds.contains(event.getPoint())) {
+                    graph.setSecondNode(node);
+                    secondNodeSelected = true;
+                    graph.setAddingEdge(false);
+                    break;
+                }
+            }
+            if (!secondNodeSelected){
+                graph.setSecondNode(null);
+                graph.setAddingEdge(false);
+            }
         }
     }
 

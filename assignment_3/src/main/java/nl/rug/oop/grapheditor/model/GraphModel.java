@@ -10,13 +10,34 @@ public class GraphModel extends Observable implements Observer {
     ArrayList<Edge> edgeList;
     ArrayList<Node> nodeList;
     private Node selectedNode;
+    private Node secondNode;
+    private boolean addingEdge = false;
+
+    public boolean isAddingEdge() {
+        return addingEdge;
+    }
+
+    public void setAddingEdge(boolean addingEdge) {
+        this.addingEdge = addingEdge;
+        setChanged();
+        notifyObservers();
+    }
 
     public Node getSelectedNode() {
         return selectedNode;
     }
+    public Node getSecondNode() {
+        return secondNode;
+    }
 
     public void setSelectedNode(Node selectedNode) {
         this.selectedNode = selectedNode;
+        setChanged();
+        notifyObservers();
+    }
+
+    public void setSecondNode(Node secondNode){
+        this.secondNode = secondNode;
         setChanged();
         notifyObservers();
     }

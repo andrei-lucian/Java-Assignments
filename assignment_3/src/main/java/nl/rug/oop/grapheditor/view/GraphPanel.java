@@ -5,6 +5,7 @@ import nl.rug.oop.grapheditor.model.Node;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Line2D;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -35,7 +36,9 @@ public class GraphPanel extends JPanel implements Observer {
             Node n2 = model.getNodeList().get(edge.getNode2());
             Rectangle b1 = n1.getNodeBounds();
             Rectangle b2 = n2.getNodeBounds();
-            g.drawLine(b1.x + b1.width/2, b1.y + b1.height/2, b2.x + b2.width/2, b2.y + b2.height/2);
+            Graphics2D line = (Graphics2D ) g;
+            line.setStroke(new BasicStroke(4));
+            line.draw(new Line2D.Float(b1.x + b1.width/2, b1.y + b1.height/2, b2.x + b2.width/2, b2.y + b2.height/2));
         }
     }
 
@@ -45,7 +48,6 @@ public class GraphPanel extends JPanel implements Observer {
             Rectangle bounds = node.getNodeBounds();
             g.setColor(Color.YELLOW);
             g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
-
         }
     }
 
