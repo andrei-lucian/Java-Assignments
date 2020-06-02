@@ -26,6 +26,6 @@ public class AddNode extends AbstractUndoableEdit {
     public void redo() throws CannotRedoException {
         graph.addNode(new Node());
         //graph.getUndoManager().addEdit(this);
-        super.redo();
+        //super.redo();
     }
 }

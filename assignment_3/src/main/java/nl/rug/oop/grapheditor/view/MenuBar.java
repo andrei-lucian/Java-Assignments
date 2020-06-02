@@ -1,10 +1,7 @@
 package nl.rug.oop.grapheditor.view;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.view.buttons.AddEdgeButton;
-import nl.rug.oop.grapheditor.view.buttons.AddNodeButton;
-import nl.rug.oop.grapheditor.view.buttons.RemoveEdgeButton;
-import nl.rug.oop.grapheditor.view.buttons.RemoveNodeButton;
+import nl.rug.oop.grapheditor.view.buttons.*;
 
 import javax.swing.*;
 
@@ -16,5 +13,6 @@ public class MenuBar extends JMenuBar {
         this.add(new RemoveNodeButton(graph));
         this.add(new AddEdgeButton(graph));
         this.add(new RemoveEdgeButton(graph));
+        this.add(new UndoButton(graph));
     }
 }
