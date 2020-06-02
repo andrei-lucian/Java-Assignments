@@ -39,14 +39,25 @@ public class RemoveNode extends AbstractUndoableEdit {
 
     @Override
     public void redo() throws CannotRedoException {
-        removedNode = graph.getSelectedNode();
-        index = graph.getNodeList().indexOf(removedNode);
-        for (Edge edge : graph.getEdgeList()){
-            if (edge.getNode1() == index || edge.getNode2() == index){
-                connectedEdges.add(edge);
+        if (!canRedo()) {
+            removedNode = graph.getSelectedNode();
+            index = graph.getNodeList().indexOf(removedNode);
+            for (Edge edge : graph.getEdgeList()) {
+                if (edge.getNode1() == index || edge.getNode2() == index) {
+                    connectedEdges.add(edge);
+                }
             }
+            graph.removeNode(graph.getSelectedNode());
         }
-        graph.removeNode(graph.getSelectedNode());
+        else {
+            index = graph.getNodeList().indexOf(removedNode);
+            for (Edge edge : graph.getEdgeList()) {
+                if (edge.getNode1() == index || edge.getNode2() == index) {
+                    connectedEdges.add(edge);
+                }
+            }
+            graph.removeNode(removedNode);
+        }
         graph.setSelectedNode(null);
     }
 }
