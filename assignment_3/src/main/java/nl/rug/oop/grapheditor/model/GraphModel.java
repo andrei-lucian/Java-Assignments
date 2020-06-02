@@ -1,5 +1,4 @@
 package nl.rug.oop.grapheditor.model;
-import nl.rug.oop.grapheditor.controller.actions.Changeable;
 import nl.rug.oop.grapheditor.controller.undoRedo.AddEdge;
 import nl.rug.oop.grapheditor.io.Load;
 
@@ -9,7 +8,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /** Keeps track of all the nodes and edges */
-public class GraphModel extends Observable implements Observer, Changeable {
+public class GraphModel extends Observable implements Observer {
 
     private final ArrayList<Edge> edgeList;
     private final ArrayList<Node> nodeList;
@@ -200,13 +199,4 @@ public class GraphModel extends Observable implements Observer, Changeable {
         notifyObservers();
     }
 
-    @Override
-    public void undo() {
-        this.printEdges();
-    }
-
-    @Override
-    public void redo() {
-
-    }
 }

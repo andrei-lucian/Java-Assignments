@@ -1,12 +1,11 @@
 package nl.rug.oop.grapheditor.model;
-import nl.rug.oop.grapheditor.controller.actions.Changeable;
 
 import java.awt.*;
 import java.util.Observable;
 
 /** A node in a graph - has a name, and its
  * coordinates and size are represented by a rectangle */
-public class Node extends Observable implements Changeable {
+public class Node extends Observable {
 
     private Rectangle nodeBounds;
     private String name;
@@ -44,13 +43,4 @@ public class Node extends Observable implements Changeable {
         this.nodeBounds = nodeBounds;
     }
 
-    @Override
-    public void undo() {
-        System.out.println(this.name);
-    }
-
-    @Override
-    public void redo() {
-
-    }
 }

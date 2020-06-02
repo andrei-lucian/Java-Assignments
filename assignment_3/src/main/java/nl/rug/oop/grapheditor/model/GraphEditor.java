@@ -1,16 +1,13 @@
 package nl.rug.oop.grapheditor.model;
 
-import nl.rug.oop.grapheditor.controller.actions.ChangeManager;
 import nl.rug.oop.grapheditor.view.GraphFrame;
 
 public class GraphEditor {
 
     public static void main(String[] args) {
         GraphModel graph = new GraphModel();
-        ChangeManager manager = new ChangeManager();
 
         Node node1 = new Node();
-        manager.addChangeable(new Node());
         Node node2 = new Node();
         Node node3 = new Node();
         Node node4 = new Node();
@@ -18,7 +15,6 @@ public class GraphEditor {
         node2.setBounds(300, 300);
         node3.setBounds(450,100);
         node4.setBounds(600,600);
-        manager.undo();
 
         graph.addNode(node1);
         graph.addNode(node2);
