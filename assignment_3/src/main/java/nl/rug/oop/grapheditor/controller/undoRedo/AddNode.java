@@ -17,15 +17,14 @@ public class AddNode extends AbstractUndoableEdit {
 
     @Override
     public void undo() throws CannotUndoException {
+        super.undo();
         graph.removeNode(graph.getSelectedNode());
         graph.setSelectedNode(null);
-        super.undo();
     }
 
     @Override
     public void redo() throws CannotRedoException {
         graph.addNode(new Node());
         //graph.getUndoManager().addEdit(this);
-        super.redo();
     }
 }
