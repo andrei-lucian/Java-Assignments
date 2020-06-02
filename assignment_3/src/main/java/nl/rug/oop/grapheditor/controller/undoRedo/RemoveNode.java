@@ -26,6 +26,5 @@ public class RemoveNode extends AbstractUndoableEdit {
         super.redo();
         graph.removeNode(graph.getSelectedNode());
         graph.setSelectedNode(null);
-        graph.getUndoManager().addEdit(this);
     }
 }

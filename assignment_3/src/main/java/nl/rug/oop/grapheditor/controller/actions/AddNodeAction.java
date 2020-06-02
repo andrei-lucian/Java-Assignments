@@ -23,6 +23,7 @@ public class AddNodeAction extends AbstractAction implements Observer {
     @Override
     public void actionPerformed(ActionEvent e) {
         AddNode addNode = new AddNode(graph);
+        graph.getUndoManager().addEdit(addNode);
         addNode.redo();
     }
 
