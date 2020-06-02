@@ -24,7 +24,7 @@ public class AddNodeAction extends AbstractAction implements Observer {
         AddNode addNode = new AddNode(graph);
         addNode.redo();
         graph.getUndoManager().addEdit(addNode);
-        System.out.println(graph.getUndoManager().getUndoOrRedoPresentationName());
+        //System.out.println(graph.getUndoManager().getUndoOrRedoPresentationName());
     }
 
     @Override

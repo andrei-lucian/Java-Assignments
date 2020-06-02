@@ -26,8 +26,8 @@ public class RemoveNodeAction extends AbstractAction implements Observer {
     @Override
     public void actionPerformed(ActionEvent e) {
         RemoveNode removeNode = new RemoveNode(graph);
-        graph.getUndoManager().addEdit(removeNode);
         removeNode.redo();
+        graph.getUndoManager().addEdit(removeNode);
     }
 
     @Override
