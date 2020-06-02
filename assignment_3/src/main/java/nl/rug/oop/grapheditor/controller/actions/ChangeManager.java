@@ -17,7 +17,7 @@ public class ChangeManager {
     //the current index node
     private Node currentIndex = null;
     //the parent node far left node.
-    private Node parentNode = new Node();
+    private final Node parentNode = new Node();
 
     /**
      * Creates a new ChangeManager object which is initially empty.
@@ -29,7 +29,6 @@ public class ChangeManager {
 
     /**
      * Creates a new ChangeManager which is a duplicate of the parameter in both contents and current index.
-     * @param manager
      */
     public ChangeManager(ChangeManager manager){
         this();
@@ -45,7 +44,6 @@ public class ChangeManager {
 
     /**
      * Adds a Changeable to manage.
-     * @param changeable
      */
     public void addChangeable(Changeable changeable){
         Node node = new Node(changeable);
@@ -56,7 +54,6 @@ public class ChangeManager {
 
     /**
      * Determines if an undo can be performed.
-     * @return
      */
 
     public boolean canUndo(){
@@ -65,7 +62,6 @@ public class ChangeManager {
 
     /**
      * Determines if a redo can be performed.
-     * @return
      */
 
     public boolean canRedo(){
@@ -83,6 +79,7 @@ public class ChangeManager {
             throw new IllegalStateException("Cannot undo. Index is out of range.");
         }
         //undo
+        assert currentIndex.changeable != null;
         currentIndex.changeable.undo();
         //set index
         moveLeft();
@@ -122,6 +119,7 @@ public class ChangeManager {
         //reset index
         moveRight();
         //redo
+        assert currentIndex.changeable != null;
         currentIndex.changeable.redo();
     }
 
@@ -130,7 +128,7 @@ public class ChangeManager {
      * @author Greg Cope
      *
      */
-    private class Node {
+    private static class Node {
         private Node left = null;
         private Node right = null;
 

@@ -1,11 +1,12 @@
 package nl.rug.oop.grapheditor.model;
+import nl.rug.oop.grapheditor.controller.actions.Changeable;
 import nl.rug.oop.grapheditor.io.Load;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 /** Keeps track of all the nodes and edges */
-public class GraphModel extends Observable implements Observer {
+public class GraphModel extends Observable implements Observer, Changeable {
 
     private final ArrayList<Edge> edgeList;
     private final ArrayList<Node> nodeList;
@@ -29,10 +30,10 @@ public class GraphModel extends Observable implements Observer {
     }
 
     public void printEdges(){
-        for(Edge edge : edgeList){
+        for(Node edge : nodeList){
             System.out.println(edge);
-            System.out.println(edge.getNode1());
-            System.out.println(edge.getNode2());
+            System.out.println(edge.getNodeBounds());
+            System.out.println(edge.getNodeBounds());
         }
     }
 
@@ -164,5 +165,15 @@ public class GraphModel extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         setChanged();
         notifyObservers();
+    }
+
+    @Override
+    public void undo() {
+        this.printEdges();
+    }
+
+    @Override
+    public void redo() {
+
     }
 }
