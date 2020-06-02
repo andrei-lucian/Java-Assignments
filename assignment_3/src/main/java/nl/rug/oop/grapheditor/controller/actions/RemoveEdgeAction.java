@@ -1,4 +1,5 @@
 package nl.rug.oop.grapheditor.controller.actions;
+import nl.rug.oop.grapheditor.controller.undoRedo.RemoveEdge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
@@ -26,8 +27,9 @@ public class RemoveEdgeAction extends AbstractAction implements Observer {
     /** Remove a graph's selected edge */
     @Override
     public void actionPerformed(ActionEvent e) {
-        graph.removeEdge(graph.getSelectedEdge());
-        graph.setSelectedEdge(null);
+        RemoveEdge removeEdge = new RemoveEdge(graph);
+        removeEdge.redo();
+        graph.getUndoManager().addEdit(removeEdge);
     }
 
     @Override

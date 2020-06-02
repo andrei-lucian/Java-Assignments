@@ -1,5 +1,6 @@
 package nl.rug.oop.grapheditor.model;
 import nl.rug.oop.grapheditor.controller.actions.Changeable;
+import nl.rug.oop.grapheditor.controller.undoRedo.AddEdge;
 import nl.rug.oop.grapheditor.io.Load;
 
 import javax.swing.undo.UndoManager;
@@ -14,6 +15,7 @@ public class GraphModel extends Observable implements Observer, Changeable {
     private final ArrayList<Node> nodeList;
     private Node selectedNode;
     private Edge selectedEdge;
+    private Edge addedEdge;
     private Node secondNode;
     private int mouseX;
     private int mouseY;
@@ -53,6 +55,13 @@ public class GraphModel extends Observable implements Observer, Changeable {
         notifyObservers();
     }
 
+    public void addNode(int index, Node node){
+        nodeList.add(index, node);
+        node.addObserver(this);
+        setChanged();
+        notifyObservers();
+    }
+
     /** Remove a node from a graph */
     public void removeNode(Node node){
         edgeList.removeIf(edge -> edge.getNode1() == this.nodeList.indexOf(node) ||
@@ -83,9 +92,17 @@ public class GraphModel extends Observable implements Observer, Changeable {
         }
     }
 
+    public void addEdge(Edge edge){
+        edgeList.add(edge);
+        setChanged();
+        notifyObservers();
+    }
+
     /** Remove an edge from a graph */
     public void removeEdge(Edge edge){
         edgeList.remove(edge);
+        setChanged();
+        notifyObservers();
     }
 
     /** Set the second selected node if connecting 2 nodes */
@@ -93,13 +110,21 @@ public class GraphModel extends Observable implements Observer, Changeable {
         this.secondNode = secondNode;
         System.out.println("second node set");
         connectEdge();
+        AddEdge addEdge = new AddEdge(this);
+        addEdge.redo();
+        undoManager.addEdit(addEdge);
+    }
+
+    public Edge getAddedEdge() {
+        return addedEdge;
     }
 
     /** Connect 2 nodes together if 'add edge' button is clicked */
     public void connectEdge(){
         if (secondNode!=null){
             System.out.println("edge added");
-            addEdge(new Edge(), selectedNode, secondNode);
+            addedEdge = new Edge();
+            addEdge(addedEdge, selectedNode, secondNode);
         }
         setChanged();
         notifyObservers();
