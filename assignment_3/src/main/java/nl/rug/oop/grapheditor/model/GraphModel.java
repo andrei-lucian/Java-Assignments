@@ -58,15 +58,15 @@ public class GraphModel extends Observable implements Observer, Changeable {
         edgeList.removeIf(edge -> edge.getNode1() == this.nodeList.indexOf(node) ||
                 edge.getNode2() == this.nodeList.indexOf(node));
         int indexOfNode = nodeList.indexOf(node);
-        System.out.println("Index is " + indexOfNode);
+        //System.out.println("Index is " + indexOfNode);
         for (Edge edge : edgeList){
             System.out.println(edge);
             if (edge.getNode1() > indexOfNode){
-                System.out.println("Node1 " + edge.getNode1());
+                //System.out.println("Node1 " + edge.getNode1());
                 edge.setNode1(edge.getNode1()-1);
             }
             if (edge.getNode2() > indexOfNode){
-                System.out.println("Node2 " + edge.getNode2());
+                //System.out.println("Node2 " + edge.getNode2());
                 edge.setNode2(edge.getNode2()-1);
             }
         }

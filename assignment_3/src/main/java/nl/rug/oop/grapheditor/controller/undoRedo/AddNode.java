@@ -10,6 +10,7 @@ import javax.swing.undo.CannotUndoException;
 public class AddNode extends AbstractUndoableEdit {
 
     private GraphModel graph;
+    private Node addedNode;
 
     public AddNode(GraphModel graph){
         this.graph = graph;
@@ -17,14 +18,15 @@ public class AddNode extends AbstractUndoableEdit {
 
     @Override
     public void undo() throws CannotUndoException {
-        graph.removeNode(graph.getSelectedNode());
+        graph.removeNode(addedNode);
         graph.setSelectedNode(null);
         super.undo();
     }
 
     @Override
     public void redo() throws CannotRedoException {
-        graph.addNode(new Node());
+        addedNode = new Node();
+        graph.addNode(addedNode);
         //graph.getUndoManager().addEdit(this);
         //super.redo();
     }

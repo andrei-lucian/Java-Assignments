@@ -2,7 +2,6 @@ package nl.rug.oop.grapheditor.controller.actions;
 
 import nl.rug.oop.grapheditor.controller.undoRedo.AddNode;
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.model.Node;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,7 +24,7 @@ public class AddNodeAction extends AbstractAction implements Observer {
         AddNode addNode = new AddNode(graph);
         addNode.redo();
         graph.getUndoManager().addEdit(addNode);
-        System.out.println(graph.getUndoManager().);
+        System.out.println(graph.getUndoManager().getUndoOrRedoPresentationName());
     }
 
     @Override
