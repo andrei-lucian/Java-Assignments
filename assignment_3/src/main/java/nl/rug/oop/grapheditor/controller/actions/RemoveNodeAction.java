@@ -1,4 +1,5 @@
 package nl.rug.oop.grapheditor.controller.actions;
+import nl.rug.oop.grapheditor.controller.undoRedo.RemoveNode;
 import nl.rug.oop.grapheditor.model.GraphModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,8 +25,8 @@ public class RemoveNodeAction extends AbstractAction implements Observer {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        graph.removeNode(graph.getSelectedNode());
-        graph.setSelectedNode(null);
+        RemoveNode removeNode = new RemoveNode(graph);
+        removeNode.redo();
     }
 
     @Override

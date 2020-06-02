@@ -33,6 +33,10 @@ public class GraphModel extends Observable implements Observer, Changeable {
         this.edgeList = Load.loadEdges(filename);
     }
 
+    public UndoManager getUndoManager() {
+        return undoManager;
+    }
+
     public void printEdges(){
         for(Node edge : nodeList){
             System.out.println(edge);
