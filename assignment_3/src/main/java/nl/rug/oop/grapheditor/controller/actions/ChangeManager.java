@@ -140,6 +140,5 @@ public class ChangeManager {
             changeable = null;
         }
     }
-
 }
 

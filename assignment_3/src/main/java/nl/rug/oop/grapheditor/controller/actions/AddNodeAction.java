@@ -1,5 +1,6 @@
 package nl.rug.oop.grapheditor.controller.actions;
 
+import nl.rug.oop.grapheditor.controller.undoRedo.AddNode;
 import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.model.Node;
 
@@ -21,7 +22,8 @@ public class AddNodeAction extends AbstractAction implements Observer {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        graph.addNode(new Node());
+        AddNode addNode = new AddNode(graph);
+        addNode.redo();
     }
 
     @Override

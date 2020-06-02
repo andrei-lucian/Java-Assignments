@@ -1,6 +1,8 @@
 package nl.rug.oop.grapheditor.model;
 import nl.rug.oop.grapheditor.controller.actions.Changeable;
 import nl.rug.oop.grapheditor.io.Load;
+
+import javax.swing.undo.UndoManager;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -16,11 +18,13 @@ public class GraphModel extends Observable implements Observer, Changeable {
     private int mouseX;
     private int mouseY;
     private boolean currentlyAddingEdge;
+    private UndoManager undoManager;
 
     /** Constructor 1 called when no file name is given */
     public GraphModel(){
         this.nodeList = new ArrayList<>();
         this.edgeList = new ArrayList<>();
+        this.undoManager = new UndoManager();
     }
 
     /** Constructor 2 called when file name is given in terminal */
