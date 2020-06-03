@@ -13,6 +13,8 @@ public class MenuPanel extends JPanel implements Observer {
         this.setLayout(new BorderLayout());
         add(new TopMenuBar(graph), BorderLayout.NORTH);
         add(new MenuBar(graph), BorderLayout.SOUTH);
+        this.setPreferredSize(new Dimension(1200, 50));
+        this.setMaximumSize(new Dimension(1200, 50));
         setVisible(true);
         setOpaque(true);
         graph.addObserver(this);
