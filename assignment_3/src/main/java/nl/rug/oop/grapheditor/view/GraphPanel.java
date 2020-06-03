@@ -14,10 +14,11 @@ import java.util.Observer;
 public class GraphPanel extends JPanel implements Observer {
 
     private final GraphModel graph;
-    private static final Color BACKGROUND_COLOR = new Color(205, 115, 10, 255);
+    private static final Color BACKGROUND_COLOR = new Color(61, 63, 65, 255);
     private final HashMap<Edge, Line2D.Float> edgeMap;
 
     public GraphPanel(GraphModel graph){
+        add(new TopMenuBar());
         add(new MenuBar(graph));
         this.graph = graph;
         setBackground(BACKGROUND_COLOR);
@@ -31,10 +32,8 @@ public class GraphPanel extends JPanel implements Observer {
     private void paintNodes(Graphics g){
         for (Node node : graph.getNodeList()){
             Rectangle bounds = node.getNodeBounds();
+            g.setColor(new Color(185, 186, 186, 255));
             g.fillRect(bounds.x, bounds.y,  bounds.width, bounds.height);
-            int index = graph.getNodeList().indexOf(node);
-            String i = Integer.toString(index);
-            //g.drawString(i, (bounds.x+bounds.width)/2, (bounds.y+bounds.height)/2);
         }
     }
 
@@ -47,6 +46,7 @@ public class GraphPanel extends JPanel implements Observer {
             Rectangle b2 = n2.getNodeBounds();
             Graphics2D line = (Graphics2D) g;
             line.setStroke(new BasicStroke(2));
+            line.setColor(new Color(185, 186, 186, 255));
             Line2D.Float drawnEdge = new Line2D.Float(b1.x + b1.width/2, b1.y + b1.height/2,
                     b2.x + b2.width/2, b2.y + b2.height/2);
             line.draw(drawnEdge);
@@ -59,7 +59,7 @@ public class GraphPanel extends JPanel implements Observer {
         if (graph.getSelectedNode()!=null){
             Node node = graph.getSelectedNode();
             Rectangle bounds = node.getNodeBounds();
-            g.setColor(Color.YELLOW);
+            g.setColor(Color.ORANGE);
             g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
         }
     }
@@ -70,7 +70,7 @@ public class GraphPanel extends JPanel implements Observer {
             Edge edge = graph.getSelectedEdge();
             Line2D.Float selectedLine = edgeMap.get(edge);
             Graphics2D line = (Graphics2D) g;
-            line.setColor(Color.YELLOW);
+            line.setColor(Color.ORANGE);
             line.draw(selectedLine);
         }
     }
