@@ -10,15 +10,14 @@ import java.awt.event.ActionListener;
 
 public class TopMenuBar extends JMenuBar implements ActionListener {
 
-    private GraphModel graph;
-    private final JMenu fileMenu;
+    private final GraphModel graph;
     private final JMenuItem saveButton;
     private final JMenuItem newGraphButton;
     private final JMenuItem loadFromGraphButton;
 
     public TopMenuBar(GraphModel graph){
         this.graph = graph;
-        fileMenu = new JMenu("File");
+        JMenu fileMenu = new JMenu("File");
         this.add(fileMenu);
         saveButton = new JMenuItem("Save graph");
         newGraphButton = new JMenuItem("New empty graph");
@@ -38,14 +37,15 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
         }
         if (e.getSource() == newGraphButton) {
             graph.getUndoManager().discardAllEdits();
-            graph.setNodeList(null);
-            graph.setEdgeList(null);
+            graph.setSelectedNode(null);
+            graph.setSelectedEdge(null);
+            graph.getNodeList().clear();
+            graph.getNodeList().clear();
         }
 
         if (e.getSource() == loadFromGraphButton) {
             String loadPath = Load.chooseFile();
             System.out.println(loadPath);
-
             graph.getUndoManager().discardAllEdits();
             graph.setNodeList(Load.loadNodes(loadPath));
             graph.setEdgeList(Load.loadEdges(loadPath));
