@@ -1,5 +1,6 @@
 package nl.rug.oop.grapheditor.controller;
 
+import nl.rug.oop.grapheditor.controller.undoRedo.MoveNode;
 import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.view.GraphPanel;
@@ -49,8 +50,16 @@ public class SelectionController extends MouseAdapter {
                 draggedNode = node;
                 startX = event.getX() - node.getNodeBounds().x;
                 startY = event.getY() - node.getNodeBounds().y;
+
+                MoveNode moveNode = new MoveNode(graph);
+                graph.getUndoManager().addEdit(moveNode);
+                graph.setMovedNode(draggedNode);
+                graph.setMovedNodeStartX(startX);
+                graph.setMovedNodeStartY(startY);
+                moveNode.redo();
             }
         }
+
         if (draggedNode!=null) {
             draggedNode.setNewLocation(event.getX() - startX, event.getY() - startY);
         }

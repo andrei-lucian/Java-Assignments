@@ -20,6 +20,34 @@ public class GraphModel extends Observable implements Observer {
     private int mouseY;
     private boolean currentlyAddingEdge;
     private UndoManager undoManager;
+    private Node movedNode;
+
+    public Node getMovedNode() {
+        return movedNode;
+    }
+
+    public void setMovedNode(Node movedNode) {
+        this.movedNode = movedNode;
+    }
+
+    public int getMovedNodeStartX() {
+        return movedNodeStartX;
+    }
+
+    public void setMovedNodeStartX(int movedNodeStartX) {
+        this.movedNodeStartX = movedNodeStartX;
+    }
+
+    public int getMovedNodeStartY() {
+        return movedNodeStartY;
+    }
+
+    public void setMovedNodeStartY(int movedNodeStartY) {
+        this.movedNodeStartY = movedNodeStartY;
+    }
+
+    private int movedNodeStartX;
+    private int movedNodeStartY;
 
     /** Constructor 1 called when no file name is given */
     public GraphModel(){
