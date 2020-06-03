@@ -29,6 +29,7 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
         saveButton.addActionListener(this);
         newGraphButton.addActionListener(this);
         loadFromGraphButton.addActionListener(this);
+        this.setBorder(null);
     }
 
     @Override

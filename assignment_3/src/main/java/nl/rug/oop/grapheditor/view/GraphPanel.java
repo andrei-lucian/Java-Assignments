@@ -25,6 +25,7 @@ public class GraphPanel extends JPanel implements Observer {
         setBackground(BACKGROUND_COLOR);
         setVisible(true);
         setOpaque(true);
+        this.setBorder(null);
         graph.addObserver(this);
         edgeMap = new HashMap<>();
     }
