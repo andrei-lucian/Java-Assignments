@@ -3,6 +3,7 @@ package nl.rug.oop.grapheditor.view;
 import nl.rug.oop.grapheditor.io.Load;
 import nl.rug.oop.grapheditor.io.Save;
 import nl.rug.oop.grapheditor.model.GraphModel;
+import nl.rug.oop.grapheditor.model.Node;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -48,6 +49,9 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
             System.out.println(loadPath);
             graph.getUndoManager().discardAllEdits();
             graph.setNodeList(Load.loadNodes(loadPath));
+            for (Node node : graph.getNodeList()){
+                node.addObserver(graph);
+            }
             graph.setEdgeList(Load.loadEdges(loadPath));
         }
     }
