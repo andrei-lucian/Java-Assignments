@@ -1,4 +1,4 @@
 package nl.rug.oop.grapheditor.controller.menuActions;
 
-public class saveGraphJMenuItem {
+public class SaveGraphJMenuItem {
 }
