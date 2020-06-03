@@ -18,7 +18,7 @@ public class GraphPanel extends JPanel implements Observer {
     private final HashMap<Edge, Line2D.Float> edgeMap;
 
     public GraphPanel(GraphModel graph){
-        add(new TopMenuBar());
+        add(new TopMenuBar(graph));
         add(new MenuBar(graph));
         this.graph = graph;
         setBackground(BACKGROUND_COLOR);
@@ -30,27 +30,31 @@ public class GraphPanel extends JPanel implements Observer {
 
     /** Paint all the nodes of a graph */
     private void paintNodes(Graphics g){
-        for (Node node : graph.getNodeList()){
-            Rectangle bounds = node.getNodeBounds();
-            g.setColor(new Color(185, 186, 186, 255));
-            g.fillRect(bounds.x, bounds.y,  bounds.width, bounds.height);
+        if (graph.getNodeList()!=null) {
+            for (Node node : graph.getNodeList()) {
+                Rectangle bounds = node.getNodeBounds();
+                g.setColor(new Color(185, 186, 186, 255));
+                g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+            }
         }
     }
 
     /** Paint all the edges of a graph */
     private void paintEdges(Graphics g){
-        for (Edge edge : graph.getEdgeList()){
-            Node n1 = graph.getNodeList().get(edge.getNode1());
-            Node n2 = graph.getNodeList().get(edge.getNode2());
-            Rectangle b1 = n1.getNodeBounds();
-            Rectangle b2 = n2.getNodeBounds();
-            Graphics2D line = (Graphics2D) g;
-            line.setStroke(new BasicStroke(2));
-            line.setColor(new Color(185, 186, 186, 255));
-            Line2D.Float drawnEdge = new Line2D.Float(b1.x + b1.width/2, b1.y + b1.height/2,
-                    b2.x + b2.width/2, b2.y + b2.height/2);
-            line.draw(drawnEdge);
-            edgeMap.put(edge, drawnEdge);
+        if (graph.getEdgeList()!=null) {
+            for (Edge edge : graph.getEdgeList()) {
+                Node n1 = graph.getNodeList().get(edge.getNode1());
+                Node n2 = graph.getNodeList().get(edge.getNode2());
+                Rectangle b1 = n1.getNodeBounds();
+                Rectangle b2 = n2.getNodeBounds();
+                Graphics2D line = (Graphics2D) g;
+                line.setStroke(new BasicStroke(2));
+                line.setColor(new Color(185, 186, 186, 255));
+                Line2D.Float drawnEdge = new Line2D.Float(b1.x + b1.width / 2, b1.y + b1.height / 2,
+                        b2.x + b2.width / 2, b2.y + b2.height / 2);
+                line.draw(drawnEdge);
+                edgeMap.put(edge, drawnEdge);
+            }
         }
     }
 

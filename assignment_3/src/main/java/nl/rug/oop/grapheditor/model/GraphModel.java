@@ -10,8 +10,20 @@ import java.util.Observer;
 /** Keeps track of all the nodes and edges */
 public class GraphModel extends Observable implements Observer {
 
-    private final ArrayList<Edge> edgeList;
-    private final ArrayList<Node> nodeList;
+    public void setEdgeList(ArrayList<Edge> edgeList) {
+        this.edgeList = edgeList;
+        setChanged();
+        notifyObservers();
+    }
+
+    public void setNodeList(ArrayList<Node> nodeList) {
+        this.nodeList = nodeList;
+        setChanged();
+        notifyObservers();
+    }
+
+    private ArrayList<Edge> edgeList;
+    private ArrayList<Node> nodeList;
     private Node selectedNode;
     private Edge selectedEdge;
     private Edge addedEdge;

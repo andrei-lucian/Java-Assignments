@@ -1,4 +1,8 @@
 package nl.rug.oop.grapheditor.controller.menuActions;
 
-public class NewGraphJMenuItem {
+import javax.swing.*;
+
+public class NewGraphJMenuItem extends JMenuItem {
+
+
 }

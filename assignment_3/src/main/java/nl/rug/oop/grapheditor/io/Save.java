@@ -33,7 +33,7 @@ public class Save {
             for (Node node : graph.getNodeList()){
                 Rectangle bounds = node.getNodeBounds();
                 myWriter.write(bounds.x + " " + bounds.y + " " +
-                        bounds.height + " " + bounds.width + " " + node.getName() + "\n");
+                        bounds.width + " " + bounds.height + " " + node.getName() + "\n");
             }
             for (Edge edge : graph.getEdgeList()){
                 myWriter.write(edge.getNode1() + " " + edge.getNode2() + "\n");

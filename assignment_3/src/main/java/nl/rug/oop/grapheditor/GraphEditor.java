@@ -10,7 +10,7 @@ public class GraphEditor {
     public static void main(String[] args) {
         GraphModel graph = new GraphModel();
 
-        Node node1 = new Node();
+       /* Node node1 = new Node();
         Node node2 = new Node();
         Node node3 = new Node();
         Node node4 = new Node();
@@ -32,13 +32,12 @@ public class GraphEditor {
         graph.addEdge(edge1, node1, node2);
         graph.addEdge(edge2, node2, node3);
         graph.addEdge(edge3, node3, node1);
-        graph.addEdge(edge4, node3, node4);
+        graph.addEdge(edge4, node3, node4);*/
 
         new GraphFrame(graph);
 
         /*
         Save.save(graph);
-
         String loadPath = Load.chooseFile();
         GraphModel graph = new GraphModel(loadPath);
         graph.printEdges();
