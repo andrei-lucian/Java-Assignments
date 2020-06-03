@@ -19,6 +19,7 @@ public class SelectionController extends MouseAdapter {
     private final GraphModel graph;
     private final GraphPanel panel;
     private Node draggedNode;
+    boolean nodeSelected;
 
     public SelectionController(GraphModel graph, GraphPanel panel) {
         this.graph = graph;
@@ -78,7 +79,7 @@ public class SelectionController extends MouseAdapter {
 
     /** Select the node that has been clicked on */
     private void selectNode(MouseEvent event){
-        boolean nodeSelected = false;
+        nodeSelected = false;
         for (Node node : graph.getNodeList()) {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
@@ -96,13 +97,15 @@ public class SelectionController extends MouseAdapter {
     private void selectEdge(MouseEvent event){
         boolean edgeSelected = false;
         for (Edge edge : graph.getEdgeList()) {
-        Line2D.Float line = panel.getEdgeMap().get(edge);
-        if (line.getBounds2D().contains(event.getPoint())) {
-            graph.setSelectedEdge(edge);
-            edgeSelected = true;
-            System.out.println("edge selected");
+            Line2D.Float line = panel.getEdgeMap().get(edge);
+            if (line.getBounds2D().contains(event.getPoint())) {
+                graph.setSelectedEdge(edge);
+                if(!nodeSelected){
+                    edgeSelected = true;
+                }
+                System.out.println("edge selected");
+            }
         }
-    }
         if (!edgeSelected) {
             graph.setSelectedEdge(null);
         }
