@@ -20,6 +20,7 @@ public class SelectionController extends MouseAdapter {
     private final GraphPanel panel;
     private Node draggedNode;
     boolean nodeSelected;
+    boolean nodeBeingDragged = false;
 
     public SelectionController(GraphModel graph, GraphPanel panel) {
         this.graph = graph;
@@ -51,13 +52,6 @@ public class SelectionController extends MouseAdapter {
                 draggedNode = node;
                 startX = event.getX() - node.getNodeBounds().x;
                 startY = event.getY() - node.getNodeBounds().y;
-
-                MoveNode moveNode = new MoveNode(graph);
-                graph.getUndoManager().addEdit(moveNode);
-                graph.setMovedNode(draggedNode);
-                graph.setMovedNodeStartX(startX);
-                graph.setMovedNodeStartY(startY);
-                moveNode.redo();
             }
         }
 
@@ -84,6 +78,12 @@ public class SelectionController extends MouseAdapter {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
                 graph.setSelectedNode(node);
+                MoveNode moveNode = new MoveNode(graph);
+                graph.getUndoManager().addEdit(moveNode);
+                graph.setMovedNode(node);
+                graph.setMovedNodeStartX(node.getNodeBounds().x);
+                graph.setMovedNodeStartY(node.getNodeBounds().y);
+                moveNode.redo();
                 nodeSelected = true;
                 break;
             }

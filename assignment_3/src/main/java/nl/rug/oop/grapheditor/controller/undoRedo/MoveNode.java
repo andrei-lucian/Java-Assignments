@@ -1,6 +1,5 @@
 package nl.rug.oop.grapheditor.controller.undoRedo;
 
-import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.model.Node;
 
@@ -14,6 +13,8 @@ public class MoveNode extends AbstractUndoableEdit {
     private Node movedNode;
     private int movedNodeStartX;
     private int movedNoteStartY;
+    private int movedNodeEndX;
+    private int movedNodeEndY;
 
     public MoveNode(GraphModel graph){
         this.graph = graph;
@@ -22,13 +23,24 @@ public class MoveNode extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
-        movedNode.setNewLocation(movedNodeStartX, movedNoteStartY);
+        if (movedNode.getNodeBounds().x != movedNodeStartX &&
+                movedNode.getNodeBounds().y != movedNoteStartY) {
+            movedNodeEndX = movedNode.getNodeBounds().x;
+            movedNodeEndY = movedNode.getNodeBounds().y;
+            movedNode.setNewLocation(movedNodeStartX, movedNoteStartY);
+        }
     }
 
     @Override
     public void redo() throws CannotRedoException {
-        this.movedNode = graph.getMovedNode();
-        this.movedNodeStartX = graph.getMovedNodeStartX();
-        this.movedNoteStartY = graph.getMovedNodeStartY();
+        if (!canRedo()){
+            this.movedNode = graph.getMovedNode();
+            this.movedNodeStartX = graph.getMovedNodeStartX();
+            this.movedNoteStartY = graph.getMovedNodeStartY();
+        }
+        else {
+            movedNode.setNewLocation(movedNodeEndX, movedNodeEndY);
+        }
+
     }
 }
