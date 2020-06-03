@@ -15,6 +15,9 @@ public class GraphPanel extends JPanel implements Observer {
 
     private final GraphModel graph;
     private static final Color BACKGROUND_COLOR = new Color(61, 63, 65, 255);
+    private static final Color NODE_COLOR = new Color(185, 186, 186, 255);
+    private static final Color HIGHLIGHT_COLOR = new Color(25, 127, 231, 255);
+    private static final Color TEXT_COLOR = Color.BLACK;
     private final HashMap<Edge, Line2D.Float> edgeMap;
 
     public GraphPanel(GraphModel graph){
@@ -33,8 +36,11 @@ public class GraphPanel extends JPanel implements Observer {
         if (graph.getNodeList()!=null) {
             for (Node node : graph.getNodeList()) {
                 Rectangle bounds = node.getNodeBounds();
-                g.setColor(new Color(185, 186, 186, 255));
+                g.setColor(NODE_COLOR);
                 g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+                g.setColor(TEXT_COLOR);
+                g.drawString(node.getName(),
+                        (bounds.x + bounds.width/4), (bounds.y+bounds.height/2));
             }
         }
     }
@@ -49,7 +55,7 @@ public class GraphPanel extends JPanel implements Observer {
                 Rectangle b2 = n2.getNodeBounds();
                 Graphics2D line = (Graphics2D) g;
                 line.setStroke(new BasicStroke(2));
-                line.setColor(new Color(185, 186, 186, 255));
+                line.setColor(NODE_COLOR);
                 Line2D.Float drawnEdge = new Line2D.Float(b1.x + b1.width / 2, b1.y + b1.height / 2,
                         b2.x + b2.width / 2, b2.y + b2.height / 2);
                 line.draw(drawnEdge);
@@ -63,8 +69,11 @@ public class GraphPanel extends JPanel implements Observer {
         if (graph.getSelectedNode()!=null){
             Node node = graph.getSelectedNode();
             Rectangle bounds = node.getNodeBounds();
-            g.setColor(Color.ORANGE);
+            g.setColor(HIGHLIGHT_COLOR);
             g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+            g.setColor(Color.BLACK);
+            g.drawString(node.getName(),
+                    (bounds.x + bounds.width/4), (bounds.y+bounds.height/2));
         }
     }
 
@@ -74,7 +83,7 @@ public class GraphPanel extends JPanel implements Observer {
             Edge edge = graph.getSelectedEdge();
             Line2D.Float selectedLine = edgeMap.get(edge);
             Graphics2D line = (Graphics2D) g;
-            line.setColor(Color.ORANGE);
+            line.setColor(HIGHLIGHT_COLOR);
             line.draw(selectedLine);
         }
     }
@@ -85,6 +94,7 @@ public class GraphPanel extends JPanel implements Observer {
             Graphics2D line = (Graphics2D) g;
             Rectangle nodeBounds = graph.getSelectedNode().getNodeBounds();
             line.setStroke(new BasicStroke(2));
+            line.setColor(NODE_COLOR);
             Line2D.Float drawnEdge = new Line2D.Float(nodeBounds.x + nodeBounds.width / 2,
                     nodeBounds.y + nodeBounds.height / 2, graph.getMouseX(), graph.getMouseY());
             line.draw(drawnEdge);
@@ -95,11 +105,11 @@ public class GraphPanel extends JPanel implements Observer {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        paintNodes(g);
-        paintEdges(g);
-        highlightNode(g);
-        highlightEdge(g);
         paintSelectingEdge(g);
+        paintEdges(g);
+        highlightEdge(g);
+        paintNodes(g);
+        highlightNode(g);
     }
 
     public HashMap<Edge, Line2D.Float> getEdgeMap() {
