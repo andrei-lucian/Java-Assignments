@@ -13,8 +13,11 @@ public class GraphFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         GraphPanel panel = new GraphPanel(graph);
+        MenuPanel menuPanel = new MenuPanel(graph);
         new SelectionController(graph, panel);
-        add(panel);
+        this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
+        add(panel, BoxLayout.X_AXIS);
+        add(menuPanel, BoxLayout.Y_AXIS);
         setPreferredSize(new Dimension(1200, 800));
         pack();
         setLocationRelativeTo(null);
