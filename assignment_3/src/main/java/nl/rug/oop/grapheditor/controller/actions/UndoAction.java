@@ -21,7 +21,8 @@ public class UndoAction extends AbstractAction implements Observer {
 
     /** Only show if a node has been selected */
     private void fixEnabled(){
-        graph.getUndoManager().canUndo();
+        setEnabled(graph.getUndoManager().canUndo());
+        System.out.println(graph.getUndoManager().canUndo());
     }
 
     @Override

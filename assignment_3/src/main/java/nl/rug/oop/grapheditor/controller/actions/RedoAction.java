@@ -20,7 +20,7 @@ public class RedoAction extends AbstractAction implements Observer {
 
     /** Only show if a node has been selected */
     private void fixEnabled(){
-        graph.getUndoManager().canRedo();
+        setEnabled(graph.getUndoManager().canRedo());
     }
 
     @Override

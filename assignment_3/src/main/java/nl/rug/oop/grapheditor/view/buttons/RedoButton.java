@@ -10,4 +10,6 @@ public class RedoButton extends JButton {
     public RedoButton(GraphModel graph){
         super(new RedoAction(graph));
     }
+
+
 }

@@ -28,8 +28,8 @@ public class RemoveEdgeAction extends AbstractAction implements Observer {
     @Override
     public void actionPerformed(ActionEvent e) {
         RemoveEdge removeEdge = new RemoveEdge(graph);
-        removeEdge.redo();
         graph.getUndoManager().addEdit(removeEdge);
+        removeEdge.redo();
     }
 
     @Override
