@@ -11,6 +11,7 @@ public class MenuBar extends JMenuBar {
 
     private static final Color BACKGROUND_COLOR = new Color(61, 63, 65, 255);
     public MenuBar(GraphModel graph){
+        this.setLayout(new GridBagLayout());
         this.add(new AddNodeButton(graph));
         this.add(new RemoveNodeButton(graph));
         this.add(new AddEdgeButton(graph));
@@ -19,8 +20,6 @@ public class MenuBar extends JMenuBar {
         this.add(new RedoButton(graph));
         this.setBorder(null);
         setBackground(BACKGROUND_COLOR);
-        //this.setSize(600, 1);
-       // this.setPreferredSize(new Dimension(600, 1));
     }
 
 }
