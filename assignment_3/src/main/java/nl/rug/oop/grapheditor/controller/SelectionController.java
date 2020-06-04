@@ -34,6 +34,7 @@ public class SelectionController extends MouseAdapter {
      * second node if the mouse is pressed */
     @Override
     public void mousePressed(MouseEvent event) {
+        draggedNode = null;
         if (!graph.isCurrentlyAddingEdge()) {
             selectNode(event);
             selectEdge(event);
