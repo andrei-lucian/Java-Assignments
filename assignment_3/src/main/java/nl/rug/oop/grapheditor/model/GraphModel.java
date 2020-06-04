@@ -15,7 +15,7 @@ public class GraphModel extends Observable implements Observer {
     private Node selectedNode;
     private Edge selectedEdge;
     private Edge addedEdge;
-    private Node secondNode;
+    private Node secondNode = null;
     private int mouseX;
     private int mouseY;
     private boolean currentlyAddingEdge;

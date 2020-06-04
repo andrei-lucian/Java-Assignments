@@ -1,6 +1,4 @@
 package nl.rug.oop.grapheditor.controller.actions;
-
-import nl.rug.oop.grapheditor.controller.undoRedo.RemoveNode;
 import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
@@ -22,7 +20,6 @@ public class UndoAction extends AbstractAction implements Observer {
     /** Only show if a node has been selected */
     private void fixEnabled(){
         setEnabled(graph.getUndoManager().canUndo());
-        System.out.println(graph.getUndoManager().canUndo());
     }
 
     @Override
