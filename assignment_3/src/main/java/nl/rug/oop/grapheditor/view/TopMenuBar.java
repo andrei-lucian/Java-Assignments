@@ -42,7 +42,7 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
             graph.setSelectedNode(null);
             graph.setSelectedEdge(null);
             graph.getNodeList().clear();
-            graph.getNodeList().clear();
+            graph.getEdgeList().clear();
         }
 
         if (e.getSource() == loadFromGraphButton) {
