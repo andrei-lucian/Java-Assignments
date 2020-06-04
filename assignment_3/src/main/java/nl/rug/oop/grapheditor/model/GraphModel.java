@@ -99,6 +99,8 @@ public class GraphModel extends Observable implements Observer {
     /** Remove an edge from a graph */
     public void removeEdge(Edge edge){
         edgeList.remove(edge);
+        System.out.println(edgeList.get(0).getNode1());
+        System.out.println(edgeList.get(0).getNode2());
         setChanged();
         notifyObservers();
     }

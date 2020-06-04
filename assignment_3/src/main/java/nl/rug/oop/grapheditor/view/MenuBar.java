@@ -10,6 +10,7 @@ import java.awt.*;
 public class MenuBar extends JMenuBar {
 
     private static final Color BACKGROUND_COLOR = new Color(61, 63, 65, 255);
+
     public MenuBar(GraphModel graph){
         this.setLayout(new GridBagLayout());
         this.add(new AddNodeButton(graph));
