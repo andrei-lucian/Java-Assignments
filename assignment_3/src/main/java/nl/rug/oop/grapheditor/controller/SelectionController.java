@@ -20,8 +20,6 @@ public class SelectionController extends MouseAdapter {
     private final GraphPanel panel;
     private Node draggedNode;
     boolean nodeSelected;
-    private Point startPt;
-    private Point mousePt;
 
     public SelectionController(GraphModel graph, GraphPanel panel) {
         this.graph = graph;
@@ -52,97 +50,13 @@ public class SelectionController extends MouseAdapter {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
                 draggedNode = node;
-                //startX = event.getX() - draggedNode.getNodeBounds().x;
-                //startY = event.getY() - draggedNode.getNodeBounds().y;
-                startPt = event.getPoint();
+                startX = event.getX() - draggedNode.getNodeBounds().x;
+                startY = event.getY() - draggedNode.getNodeBounds().y;
             }
         }
         if (draggedNode!=null) {
-            mousePt = event.getPoint();
-            int dx = mousePt.x - startPt.x;
-            int dy = mousePt.y - startPt.y;
-
-            /*boolean left = leftCheck(event);
-            boolean right = rightCheck(event);
-            boolean top = topCheck(event);
-            boolean bottom = bottomCheck(event);
-            boolean topLeft = topLeftCheck(event);
-            boolean topRight = topRightCheck(event);
-            boolean bottomLeft = bottomLeftCheck(event);
-            boolean bottomRight = bottomRightCheck(event);*/
-
-                //if (!left && !right && !top && !bottom && !topLeft && !topRight && !bottomLeft && !bottomRight) {
-                draggedNode.setNewLocation(draggedNode.getNodeBounds().x + dx,
-                        draggedNode.getNodeBounds().y + dy);
-                mousePt = event.getPoint();
-                //}
+            draggedNode.setNewLocation(event.getX() - startX, event.getY() - startY);
         }
-    }
-
-    private boolean leftCheck(MouseEvent event){
-        if (event.getX() <= 0){
-            draggedNode.setNewLocation(0, event.getY() - startY);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean rightCheck(MouseEvent event){
-        if (event.getX() >= 1200){
-            draggedNode.setNewLocation(1200-draggedNode.getNodeBounds().width, event.getY() - startY);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean topCheck(MouseEvent event){
-        if (event.getY() <= 0){
-            draggedNode.setNewLocation(event.getX() - startX, 0);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean bottomCheck(MouseEvent event){
-        if (event.getY() >= 725){
-            draggedNode.setNewLocation(event.getX() - startX, 725-draggedNode.getNodeBounds().height);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean topRightCheck(MouseEvent event){
-        if (event.getX() + draggedNode.getNodeBounds().width >= 1200 && event.getY() <= 0){
-            draggedNode.setNewLocation(1200, 0);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean topLeftCheck(MouseEvent event){
-        if (event.getX() <= 0 && event.getY() <= 0){
-            draggedNode.setNewLocation(0, 0);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean bottomRightCheck(MouseEvent event){
-        if (event.getX() + draggedNode.getNodeBounds().width >= 1200 &&
-                event.getY() + draggedNode.getNodeBounds().height >= 750){
-            draggedNode.setNewLocation(1200, 750);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean bottomLeftCheck(MouseEvent event){
-        if (event.getX() <= 0 &&
-                event.getY() + draggedNode.getNodeBounds().height >= 750){
-            draggedNode.setNewLocation(0, 750);
-            return true;
-        }
-        return false;
     }
 
     /** If AddEdgeAction button has been clicked,
