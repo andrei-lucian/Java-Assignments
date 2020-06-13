@@ -2,6 +2,7 @@ package nl.rug.oop.grapheditor.view;
 
 import nl.rug.oop.grapheditor.io.Load;
 import nl.rug.oop.grapheditor.io.Save;
+import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.model.Node;
 
@@ -54,6 +55,12 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
                 node.addObserver(graph);
             }
             graph.setEdgeList(Load.loadEdges(loadPath));
+            for (Edge edge: graph.getEdgeList()){
+                System.out.println(edge.getNode1Index());
+                System.out.println(edge.getNode2Index());
+                edge.setNode1(graph.getNodeList().get(edge.getNode1Index()));
+                edge.setNode2(graph.getNodeList().get(edge.getNode2Index()));
+            }
         }
     }
 }

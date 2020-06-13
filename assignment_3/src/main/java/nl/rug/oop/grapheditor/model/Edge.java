@@ -6,6 +6,25 @@ public class Edge {
     private Node node1;
     private Node node2;
 
+    public int getNode1Index() {
+        return node1Index;
+    }
+
+    public void setNode1Index(int node1Index) {
+        this.node1Index = node1Index;
+    }
+
+    public int getNode2Index() {
+        return node2Index;
+    }
+
+    public void setNode2Index(int node2Index) {
+        this.node2Index = node2Index;
+    }
+
+    private int node1Index;
+    private int node2Index;
+
     public Edge(){
 
     }
@@ -35,5 +54,4 @@ public class Edge {
     public Node getNode2() {
         return node2;
     }
-
 }
