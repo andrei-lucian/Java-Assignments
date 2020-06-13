@@ -57,11 +57,11 @@ public class SelectionController extends MouseAdapter {
                 startPt = event.getPoint();
             }
         }
-        mousePt = event.getPoint();
-        int dx = mousePt.x - startPt.x;
-        int dy = mousePt.y - startPt.y;
-
         if (draggedNode!=null) {
+            mousePt = event.getPoint();
+            int dx = mousePt.x - startPt.x;
+            int dy = mousePt.y - startPt.y;
+
             /*boolean left = leftCheck(event);
             boolean right = rightCheck(event);
             boolean top = topCheck(event);
@@ -71,11 +71,11 @@ public class SelectionController extends MouseAdapter {
             boolean bottomLeft = bottomLeftCheck(event);
             boolean bottomRight = bottomRightCheck(event);*/
 
-            //if (!left && !right && !top && !bottom && !topLeft && !topRight && !bottomLeft && !bottomRight) {
-            draggedNode.setNewLocation(draggedNode.getNodeBounds().x + dx,
-                    draggedNode.getNodeBounds().y + dy);
-            mousePt = event.getPoint();
-            //}
+                //if (!left && !right && !top && !bottom && !topLeft && !topRight && !bottomLeft && !bottomRight) {
+                draggedNode.setNewLocation(draggedNode.getNodeBounds().x + dx,
+                        draggedNode.getNodeBounds().y + dy);
+                mousePt = event.getPoint();
+                //}
         }
     }
 
