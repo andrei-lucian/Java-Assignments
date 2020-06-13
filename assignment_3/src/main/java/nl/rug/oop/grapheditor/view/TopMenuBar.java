@@ -33,6 +33,8 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
         this.setBorder(null);
     }
 
+    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == saveButton) {
@@ -47,21 +49,23 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
         }
 
         if (e.getSource() == loadFromGraphButton) {
-            String loadPath = SaveAndLoad.chooseFile();
-            System.out.println(loadPath);
-            graph.getUndoManager().discardAllEdits();
-            graph.setNodeList(Load.loadNodes(loadPath));
-            for (Node node : graph.getNodeList()){
-                node.addObserver(graph);
-            }
-            graph.setEdgeList(Load.loadEdges(loadPath));
-            for (Edge edge: graph.getEdgeList()){
-                Node node1 = graph.getNodeList().get(edge.getNode1Index());
-                Node node2 = graph.getNodeList().get(edge.getNode2Index());
-                edge.setNode1(node1);
-                node1.addEdge(edge);
-                edge.setNode2(node2);
-                node2.addEdge(edge);
+            if(SaveAndLoad.chooseFile()){
+                String loadPath = SaveAndLoad.getFilePath();
+                System.out.println(loadPath);
+                graph.getUndoManager().discardAllEdits();
+                graph.setNodeList(Load.loadNodes(loadPath));
+                for (Node node : graph.getNodeList()){
+                    node.addObserver(graph);
+                }
+                graph.setEdgeList(Load.loadEdges(loadPath));
+                for (Edge edge: graph.getEdgeList()){
+                    Node node1 = graph.getNodeList().get(edge.getNode1Index());
+                    Node node2 = graph.getNodeList().get(edge.getNode2Index());
+                    edge.setNode1(node1);
+                    node1.addEdge(edge);
+                    edge.setNode2(node2);
+                    node2.addEdge(edge);
+                }
             }
         }
     }
