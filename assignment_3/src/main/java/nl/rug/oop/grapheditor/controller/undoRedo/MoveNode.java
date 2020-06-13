@@ -41,6 +41,7 @@ public class MoveNode extends AbstractUndoableEdit {
         else {
             super.redo();
             movedNode.setNewLocation(movedNodeEndX, movedNodeEndY);
+            System.out.println(movedNode + "moved");
         }
     }
 }
