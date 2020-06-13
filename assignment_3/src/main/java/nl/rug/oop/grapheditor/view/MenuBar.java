@@ -19,6 +19,7 @@ public class MenuBar extends JMenuBar {
         this.add(new RemoveEdgeButton(graph));
         this.add(new UndoButton(graph));
         this.add(new RedoButton(graph));
+        this.add(new EditNameButton(graph));
         this.setBorder(null);
         setBackground(BACKGROUND_COLOR);
     }

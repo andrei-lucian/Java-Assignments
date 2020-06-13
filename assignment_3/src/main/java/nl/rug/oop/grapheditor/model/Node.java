@@ -49,6 +49,8 @@ public class Node extends Observable {
 
     public void setName(String name) {
         this.name = name;
+        setChanged();
+        notifyObservers();
     }
 
     public void setNodeBounds(Rectangle nodeBounds) {
