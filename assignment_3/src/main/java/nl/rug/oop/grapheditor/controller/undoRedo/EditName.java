@@ -12,6 +12,8 @@ public class EditName extends AbstractUndoableEdit {
 
     private GraphModel graph;
     private Node node;
+    private String previousName;
+    private String newName;
 
     public EditName(GraphModel graph){
         this.graph = graph;
@@ -19,6 +21,7 @@ public class EditName extends AbstractUndoableEdit {
 
     @Override
     public void undo() throws CannotUndoException {
+        node.setName(previousName);
         super.undo();
     }
 
@@ -26,7 +29,8 @@ public class EditName extends AbstractUndoableEdit {
     public void redo() throws CannotRedoException {
         if(!canRedo()) {
             this.node = graph.getSelectedNode();
-            String newName = (String) JOptionPane.showInputDialog(
+            this.previousName = node.getName();
+            newName = JOptionPane.showInputDialog(
                     null,
                     "Input a new name:",
                     "Edit Node Name");
@@ -35,6 +39,7 @@ public class EditName extends AbstractUndoableEdit {
 
         else {
             super.redo();
+            node.setName(newName);
         }
     }
 }
