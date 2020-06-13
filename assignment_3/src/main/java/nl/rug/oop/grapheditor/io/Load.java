@@ -11,18 +11,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Load {
-    static JFrame parentFrame = new JFrame();
-
-    public static String chooseFile() {
-        final JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showOpenDialog(parentFrame);
-        File file = null;
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            file = fc.getSelectedFile();
-        }
-        assert file != null;
-        return file.getAbsolutePath();
-    }
 
     public static ArrayList<Node> loadNodes(String filename){
         Scanner sc = scanFile(filename);
