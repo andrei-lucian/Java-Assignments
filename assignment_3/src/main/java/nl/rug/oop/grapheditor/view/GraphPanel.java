@@ -45,8 +45,8 @@ public class GraphPanel extends JPanel implements Observer {
     /** Paint all the edges of a graph */
     private void paintEdges(Graphics g){
         for (Edge edge : graph.getEdgeList()){
-            Node n1 = graph.getNodeList().get(edge.getNode1());
-            Node n2 = graph.getNodeList().get(edge.getNode2());
+            Node n1 = edge.getNode1();
+            Node n2 = edge.getNode2();
             Rectangle b1 = n1.getNodeBounds();
             Rectangle b2 = n2.getNodeBounds();
             Graphics2D line = (Graphics2D) g;

@@ -53,10 +53,10 @@ public class Load {
 
         for (int x = 0; x < numberEdges; x++){
             Edge edge = new Edge();
-            int node1 = sc.nextInt();
+            /*int node1 = sc.nextInt();
             int node2 = sc.nextInt();
             edge.setNode1(node1);
-            edge.setNode2(node2);
+            edge.setNode2(node2);*/
             edges.add(edge);
         }
         return edges;

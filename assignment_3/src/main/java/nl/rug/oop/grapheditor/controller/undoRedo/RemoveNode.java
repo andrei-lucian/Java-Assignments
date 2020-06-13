@@ -23,17 +23,17 @@ public class RemoveNode extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
-        graph.addNode(index, removedNode);
-        for (Edge edge : graph.getEdgeList()){
+        graph.addNode(removedNode);
+        /*for (Edge edge : graph.getEdgeList()){
             if (edge.getNode1() >= index){
                 edge.setNode1(edge.getNode1()+1);
             }
             if (edge.getNode2() >= index){
                 edge.setNode2(edge.getNode2()+1);
             }
-        }
+        }*/
         for (Edge edge : connectedEdges){
-            graph.addEdge(edge);
+            graph.addEdge(edge, edge.getNode1(), edge.getNode2());
         }
     }
 
@@ -41,20 +41,16 @@ public class RemoveNode extends AbstractUndoableEdit {
     public void redo() throws CannotRedoException {
         if (!canRedo()) {
             removedNode = graph.getSelectedNode();
-            index = graph.getNodeList().indexOf(removedNode);
-            for (Edge edge : graph.getEdgeList()) {
-                if (edge.getNode1() == index || edge.getNode2() == index) {
-                    connectedEdges.add(edge);
-                }
+            //index = graph.getNodeList().indexOf(removedNode);
+            for (Edge edge : removedNode.getEdges()) {
+                connectedEdges.add(edge);
             }
             graph.removeNode(graph.getSelectedNode());
         }
         else {
-            index = graph.getNodeList().indexOf(removedNode);
-            for (Edge edge : graph.getEdgeList()) {
-                if (edge.getNode1() == index || edge.getNode2() == index) {
-                    connectedEdges.add(edge);
-                }
+            //index = graph.getNodeList().indexOf(removedNode);
+            for (Edge edge : removedNode.getEdges()) {
+                connectedEdges.add(edge);
             }
             graph.removeNode(removedNode);
         }

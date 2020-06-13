@@ -61,7 +61,7 @@ public class GraphModel extends Observable implements Observer {
     }
 
     /** Remove a node from a graph */
-    public void removeNode(Node node){
+    /*public void removeNode(Node node){
         edgeList.removeIf(edge -> edge.getNode1() == this.nodeList.indexOf(node) ||
                 edge.getNode2() == this.nodeList.indexOf(node));
         int indexOfNode = nodeList.indexOf(node);
@@ -78,13 +78,22 @@ public class GraphModel extends Observable implements Observer {
             }
         }
         nodeList.remove(node);
+    }*/
+
+    public void removeNode(Node node){
+        for (Edge edge : node.getEdges()){
+            this.edgeList.remove(edge);
+        }
+        this.nodeList.remove(node);
     }
 
     /** Add an edge to a graph */
     public void addEdge(Edge edge, Node node1, Node node2){
         if (node1!= null && node2!= null){
             edgeList.add(edge);
-            edge.setNodes(nodeList.indexOf(node1), nodeList.indexOf(node2));
+            edge.setNodes(node1, node2);
+            node1.addEdge(edge);
+            node2.addEdge(edge);
             setChanged();
             notifyObservers();
         }
@@ -99,8 +108,6 @@ public class GraphModel extends Observable implements Observer {
     /** Remove an edge from a graph */
     public void removeEdge(Edge edge){
         edgeList.remove(edge);
-        System.out.println(edgeList.get(0).getNode1());
-        System.out.println(edgeList.get(0).getNode2());
         setChanged();
         notifyObservers();
     }

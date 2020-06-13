@@ -20,6 +20,7 @@ public class SelectionController extends MouseAdapter {
     private final GraphPanel panel;
     private Node draggedNode;
     boolean nodeSelected;
+    private Point startPt;
     private Point mousePt;
 
     public SelectionController(GraphModel graph, GraphPanel panel) {
@@ -53,11 +54,12 @@ public class SelectionController extends MouseAdapter {
                 draggedNode = node;
                 //startX = event.getX() - draggedNode.getNodeBounds().x;
                 //startY = event.getY() - draggedNode.getNodeBounds().y;
-                mousePt = event.getPoint();
+                startPt = event.getPoint();
             }
         }
-        int dx = event.getX() - mousePt.x;
-        int dy = event.getY() - mousePt.y;
+        mousePt = event.getPoint();
+        int dx = mousePt.x - startPt.x;
+        int dy = mousePt.y - startPt.y;
 
         if (draggedNode!=null) {
             /*boolean left = leftCheck(event);
