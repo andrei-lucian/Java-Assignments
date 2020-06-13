@@ -56,10 +56,12 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
             }
             graph.setEdgeList(Load.loadEdges(loadPath));
             for (Edge edge: graph.getEdgeList()){
-                System.out.println(edge.getNode1Index());
-                System.out.println(edge.getNode2Index());
-                edge.setNode1(graph.getNodeList().get(edge.getNode1Index()));
-                edge.setNode2(graph.getNodeList().get(edge.getNode2Index()));
+                Node node1 = graph.getNodeList().get(edge.getNode1Index());
+                Node node2 = graph.getNodeList().get(edge.getNode2Index());
+                edge.setNode1(node1);
+                node1.addEdge(edge);
+                edge.setNode2(node2);
+                node2.addEdge(edge);
             }
         }
     }
