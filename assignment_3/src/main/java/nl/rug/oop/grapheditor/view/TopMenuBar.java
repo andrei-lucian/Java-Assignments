@@ -33,7 +33,7 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
         this.setBorder(null);
     }
 
-    
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -41,31 +41,39 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
             Save.save(graph);
         }
         if (e.getSource() == newGraphButton) {
-            graph.getUndoManager().discardAllEdits();
-            graph.setSelectedNode(null);
-            graph.setSelectedEdge(null);
-            graph.getNodeList().clear();
-            graph.getEdgeList().clear();
+            createNewGraph();
         }
 
         if (e.getSource() == loadFromGraphButton) {
-            if(SaveAndLoad.chooseFile()){
-                String loadPath = SaveAndLoad.getFilePath();
-                System.out.println(loadPath);
-                graph.getUndoManager().discardAllEdits();
-                graph.setNodeList(Load.loadNodes(loadPath));
-                for (Node node : graph.getNodeList()){
-                    node.addObserver(graph);
-                }
-                graph.setEdgeList(Load.loadEdges(loadPath));
-                for (Edge edge: graph.getEdgeList()){
-                    Node node1 = graph.getNodeList().get(edge.getNode1Index());
-                    Node node2 = graph.getNodeList().get(edge.getNode2Index());
-                    edge.setNode1(node1);
-                    node1.addEdge(edge);
-                    edge.setNode2(node2);
-                    node2.addEdge(edge);
-                }
+            loadGraph();
+        }
+    }
+
+    private void createNewGraph(){
+        graph.getUndoManager().discardAllEdits();
+        graph.setSelectedNode(null);
+        graph.setSelectedEdge(null);
+        graph.getNodeList().clear();
+        graph.getEdgeList().clear();
+    }
+
+    private void loadGraph(){
+        if(SaveAndLoad.chooseFile()){
+            String loadPath = SaveAndLoad.getFilePath();
+            System.out.println(loadPath);
+            graph.getUndoManager().discardAllEdits();
+            graph.setNodeList(Load.loadNodes(loadPath));
+            for (Node node : graph.getNodeList()){
+                node.addObserver(graph);
+            }
+            graph.setEdgeList(Load.loadEdges(loadPath));
+            for (Edge edge: graph.getEdgeList()){
+                Node node1 = graph.getNodeList().get(edge.getNode1Index());
+                Node node2 = graph.getNodeList().get(edge.getNode2Index());
+                edge.setNode1(node1);
+                node1.addEdge(edge);
+                edge.setNode2(node2);
+                node2.addEdge(edge);
             }
         }
     }
