@@ -39,6 +39,7 @@ public class MoveNode extends AbstractUndoableEdit {
             this.movedNoteStartY = graph.getMovedNodeStartY();
         }
         else {
+            super.redo();
             movedNode.setNewLocation(movedNodeEndX, movedNodeEndY);
         }
     }

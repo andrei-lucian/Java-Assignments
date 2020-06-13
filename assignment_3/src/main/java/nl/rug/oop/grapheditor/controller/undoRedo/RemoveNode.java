@@ -41,14 +41,13 @@ public class RemoveNode extends AbstractUndoableEdit {
     public void redo() throws CannotRedoException {
         if (!canRedo()) {
             removedNode = graph.getSelectedNode();
-            //index = graph.getNodeList().indexOf(removedNode);
             for (Edge edge : removedNode.getEdges()) {
                 connectedEdges.add(edge);
             }
             graph.removeNode(graph.getSelectedNode());
         }
         else {
-            //index = graph.getNodeList().indexOf(removedNode);
+            super.redo();
             for (Edge edge : removedNode.getEdges()) {
                 connectedEdges.add(edge);
             }
