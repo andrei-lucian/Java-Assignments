@@ -19,11 +19,13 @@ public class AddEdge extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
+        System.out.println("add edge undo");
         graph.removeEdge(addedEdge);
     }
 
     @Override
     public void redo() throws CannotRedoException {
+        System.out.println("add edge redo");
         if (!canRedo()){
             addedEdge = graph.getAddedEdge();
         }

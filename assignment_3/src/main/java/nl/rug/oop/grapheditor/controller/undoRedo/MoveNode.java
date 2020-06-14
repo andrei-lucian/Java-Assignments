@@ -23,6 +23,7 @@ public class MoveNode extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
+        System.out.println("move node undo");
         movedNodeEndX = movedNode.getNodeBounds().x;
         movedNodeEndY = movedNode.getNodeBounds().y;
         movedNode.setNewLocation(movedNodeStartX, movedNoteStartY);
@@ -30,6 +31,7 @@ public class MoveNode extends AbstractUndoableEdit {
 
     @Override
     public void redo() throws CannotRedoException {
+        System.out.println("move node redo");
         if (!canRedo()){
             this.movedNode = graph.getSelectedNode();
             this.movedNodeStartX = graph.getMovedNodeStartX();

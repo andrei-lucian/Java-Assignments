@@ -22,11 +22,13 @@ public class EditName extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
+        System.out.println("edit name undo");
         node.setName(previousName);
     }
 
     @Override
     public void redo() throws CannotRedoException {
+        System.out.println("edit name redo");
         if(!canRedo()) {
             this.node = graph.getSelectedNode();
             this.previousName = node.getName();
