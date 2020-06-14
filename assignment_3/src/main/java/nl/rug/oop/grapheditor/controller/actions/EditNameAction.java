@@ -24,6 +24,7 @@ public class EditNameAction extends AbstractAction implements Observer {
     public void actionPerformed(ActionEvent e) {
         EditName editName = new EditName(graph);
         graph.getUndoManager().addEdit(editName);
+        System.out.println("Edit name edit added");
         editName.redo();
     }
 

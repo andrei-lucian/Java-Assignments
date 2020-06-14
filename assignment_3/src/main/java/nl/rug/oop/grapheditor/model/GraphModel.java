@@ -33,7 +33,7 @@ public class GraphModel extends Observable implements Observer {
 
     /** Constructor 2 called when file name is given in terminal */
     public GraphModel(String filename){
-        System.out.println("hello");
+        //System.out.println("hello");
         this.nodeList = Load.loadNodes(filename);
         this.edgeList = Load.loadEdges(filename);
         for (Node node : nodeList){
@@ -102,11 +102,12 @@ public class GraphModel extends Observable implements Observer {
     /** Set the second selected node if connecting 2 nodes */
     public void setSecondNode(Node secondNode) {
         this.secondNode = secondNode;
-        System.out.println("second node set");
+        //System.out.println("second node set");
         connectEdge();
         AddEdge addEdge = new AddEdge(this);
         addEdge.redo();
         undoManager.addEdit(addEdge);
+        System.out.println("Add edge edit added");
     }
 
     public Edge getAddedEdge() {
@@ -116,7 +117,7 @@ public class GraphModel extends Observable implements Observer {
     /** Connect 2 nodes together if 'add edge' button is clicked */
     public void connectEdge(){
         if (secondNode!=null){
-            System.out.println("edge added");
+            //System.out.println("edge added");
             addedEdge = new Edge();
             addEdge(addedEdge, selectedNode, secondNode);
         }
