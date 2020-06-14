@@ -5,7 +5,6 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.model.Node;
 import nl.rug.oop.grapheditor.view.SaveAndLoad;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 
@@ -23,7 +22,7 @@ public class Save {
                         bounds.width + " " + bounds.height + " " + node.getName() + "\n");
             }
             for (Edge edge : graph.getEdgeList()){
-                myWriter.write(edge.getNode1() + " " + edge.getNode2() + "\n");
+                myWriter.write(graph.getNodeList().indexOf(edge.getNode1()) + " " + graph.getNodeList().indexOf(edge.getNode2()) + "\n");
             }
             myWriter.close();
             System.out.println("Successfully wrote to the file.");

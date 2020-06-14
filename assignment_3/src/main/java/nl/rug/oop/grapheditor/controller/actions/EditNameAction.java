@@ -1,4 +1,4 @@
-package nl.rug.oop.grapheditor.view.buttons;
+package nl.rug.oop.grapheditor.controller.actions;
 
 import nl.rug.oop.grapheditor.controller.undoRedo.EditName;
 import nl.rug.oop.grapheditor.controller.undoRedo.RemoveEdge;

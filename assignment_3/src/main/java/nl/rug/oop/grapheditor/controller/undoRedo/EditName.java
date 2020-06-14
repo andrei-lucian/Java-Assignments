@@ -21,8 +21,8 @@ public class EditName extends AbstractUndoableEdit {
 
     @Override
     public void undo() throws CannotUndoException {
-        node.setName(previousName);
         super.undo();
+        node.setName(previousName);
     }
 
     @Override
@@ -34,12 +34,10 @@ public class EditName extends AbstractUndoableEdit {
                     null,
                     "Input a new name:",
                     "Edit Node Name");
-            node.setName(newName);
         }
-
         else {
             super.redo();
-            node.setName(newName);
         }
+        node.setName(newName);
     }
 }

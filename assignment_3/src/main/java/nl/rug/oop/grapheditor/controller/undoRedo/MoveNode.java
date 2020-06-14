@@ -23,12 +23,9 @@ public class MoveNode extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
-        if (movedNode.getNodeBounds().x != movedNodeStartX &&
-                movedNode.getNodeBounds().y != movedNoteStartY) {
-            movedNodeEndX = movedNode.getNodeBounds().x;
-            movedNodeEndY = movedNode.getNodeBounds().y;
-            movedNode.setNewLocation(movedNodeStartX, movedNoteStartY);
-        }
+        movedNodeEndX = movedNode.getNodeBounds().x;
+        movedNodeEndY = movedNode.getNodeBounds().y;
+        movedNode.setNewLocation(movedNodeStartX, movedNoteStartY);
     }
 
     @Override
@@ -41,7 +38,6 @@ public class MoveNode extends AbstractUndoableEdit {
         else {
             super.redo();
             movedNode.setNewLocation(movedNodeEndX, movedNodeEndY);
-            System.out.println(movedNode + "moved");
         }
     }
 }

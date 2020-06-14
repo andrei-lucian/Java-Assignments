@@ -63,33 +63,6 @@ public class GraphModel extends Observable implements Observer {
         notifyObservers();
     }
 
-    public void addNode(int index, Node node){
-        nodeList.add(index, node);
-        node.addObserver(this);
-        setChanged();
-        notifyObservers();
-    }
-
-    /** Remove a node from a graph */
-    /*public void removeNode(Node node){
-        edgeList.removeIf(edge -> edge.getNode1() == this.nodeList.indexOf(node) ||
-                edge.getNode2() == this.nodeList.indexOf(node));
-        int indexOfNode = nodeList.indexOf(node);
-        //System.out.println("Index is " + indexOfNode);
-        for (Edge edge : edgeList){
-            System.out.println(edge);
-            if (edge.getNode1() > indexOfNode){
-                //System.out.println("Node1 " + edge.getNode1());
-                edge.setNode1(edge.getNode1()-1);
-            }
-            if (edge.getNode2() > indexOfNode){
-                //System.out.println("Node2 " + edge.getNode2());
-                edge.setNode2(edge.getNode2()-1);
-            }
-        }
-        nodeList.remove(node);
-    }*/
-
     public void removeNode(Node node){
         for (Edge edge : node.getEdges()){
             this.edgeList.remove(edge);

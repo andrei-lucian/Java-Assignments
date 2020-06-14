@@ -77,18 +77,27 @@ public class SelectionController extends MouseAdapter {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
                 graph.setSelectedNode(node);
-                MoveNode moveNode = new MoveNode(graph);
-                graph.getUndoManager().addEdit(moveNode);
                 graph.setMovedNode(node);
                 graph.setMovedNodeStartX(node.getNodeBounds().x);
                 graph.setMovedNodeStartY(node.getNodeBounds().y);
-                moveNode.redo();
                 nodeSelected = true;
                 break;
             }
         }
         if (!nodeSelected) {
             graph.setSelectedNode(null);
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent event){
+        if (draggedNode != null) {
+            if (draggedNode.getNodeBounds().x != graph.getMovedNodeStartX() ||
+                    draggedNode.getNodeBounds().y != graph.getMovedNodeStartY()) {
+                MoveNode moveNode = new MoveNode(graph);
+                graph.getUndoManager().addEdit(moveNode);
+                moveNode.redo();
+            }
         }
     }
 

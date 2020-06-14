@@ -1,6 +1,6 @@
 package nl.rug.oop.grapheditor.view.buttons;
 
-import nl.rug.oop.grapheditor.controller.actions.RedoAction;
+import nl.rug.oop.grapheditor.controller.actions.EditNameAction;
 import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
