@@ -19,7 +19,7 @@ public class SelectionController extends MouseAdapter {
     private final GraphModel graph;
     private final GraphPanel panel;
     private Node draggedNode;
-    boolean nodeSelected;
+    private boolean nodeSelected;
 
     public SelectionController(GraphModel graph, GraphPanel panel) {
         this.graph = graph;

@@ -23,6 +23,7 @@ public class RemoveNodeAction extends AbstractAction implements Observer {
         setEnabled(graph.getSelectedNode() != null);
     }
 
+    /** Remove node and add action to redo manager */
     @Override
     public void actionPerformed(ActionEvent e) {
         RemoveNode removeNode = new RemoveNode(graph);

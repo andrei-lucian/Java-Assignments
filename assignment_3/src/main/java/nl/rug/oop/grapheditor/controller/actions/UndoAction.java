@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+/** Undoes an action */
 public class UndoAction extends AbstractAction implements Observer {
 
     private GraphModel graph;
@@ -22,6 +23,7 @@ public class UndoAction extends AbstractAction implements Observer {
         setEnabled(graph.getUndoManager().canUndo());
     }
 
+    /** Undo an action */
     @Override
     public void actionPerformed(ActionEvent e) {
         graph.getUndoManager().undo();

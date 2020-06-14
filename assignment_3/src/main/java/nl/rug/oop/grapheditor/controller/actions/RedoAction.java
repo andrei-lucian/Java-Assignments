@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+/** Redoing an action */
 public class RedoAction extends AbstractAction implements Observer {
 
     private GraphModel graph;
@@ -23,6 +24,7 @@ public class RedoAction extends AbstractAction implements Observer {
         setEnabled(graph.getUndoManager().canRedo());
     }
 
+    /** Redo */
     @Override
     public void actionPerformed(ActionEvent e) {
         graph.getUndoManager().redo();

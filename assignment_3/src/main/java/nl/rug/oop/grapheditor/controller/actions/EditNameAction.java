@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+/** Edit name of node */
 public class EditNameAction extends AbstractAction implements Observer {
 
     private GraphModel graph;
@@ -26,6 +27,7 @@ public class EditNameAction extends AbstractAction implements Observer {
         editName.redo();
     }
 
+    /** Only enable button if there is a node selected */
     private void fixEnabled() {
         setEnabled(graph.getSelectedNode()!= null);
     }
