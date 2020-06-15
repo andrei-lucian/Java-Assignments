@@ -1,7 +1,9 @@
 package nl.rug.oop.grapheditor.view;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import java.io.FileFilter;
 
 public class SaveAndLoad {
 
@@ -21,9 +23,11 @@ public class SaveAndLoad {
     }
 
     public static boolean chooseFile() {
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("graph files", "graph");
         final JFileChooser fc = new JFileChooser();
+        fc.setFileFilter(filter);
         int returnVal = fc.showOpenDialog(parentFrame);
-        File file = null;
+        File file;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             file = fc.getSelectedFile();
             filePath = file.getAbsolutePath();
