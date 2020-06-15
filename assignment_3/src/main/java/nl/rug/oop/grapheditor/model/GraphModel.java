@@ -91,6 +91,10 @@ public class GraphModel extends Observable implements Observer {
     /** Remove an edge from a graph */
     public void removeEdge(Edge edge){
         edgeList.remove(edge);
+        Node node1 = edge.getNode1();
+        Node node2 = edge.getNode2();
+        node1.getEdges().remove(edge);
+        node2.getEdges().remove(edge);
         setChanged();
         notifyObservers();
     }
@@ -106,8 +110,9 @@ public class GraphModel extends Observable implements Observer {
         connectEdge();
         AddEdge addEdge = new AddEdge(this);
         addEdge.redo();
+        System.out.println("Add edge edit added hello");
         undoManager.addEdit(addEdge);
-        System.out.println("Add edge edit added");
+
     }
 
     public Edge getAddedEdge() {
