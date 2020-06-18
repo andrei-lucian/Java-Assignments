@@ -103,6 +103,11 @@ public class GraphModel extends Observable implements Observer {
         return undoManager;
     }
 
+    public void update(){
+        this.setChanged();
+        this.notifyObservers();
+    }
+
     /** Set the second selected node if connecting 2 nodes */
     public void setSecondNode(Node secondNode) {
         this.secondNode = secondNode;

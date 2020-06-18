@@ -100,6 +100,7 @@ public class SelectionController extends MouseAdapter {
                 moveNode.redo();
                 graph.getUndoManager().addEdit(moveNode);
                 System.out.println("Move edit added");
+                graph.update();
             }
         }
     }
