@@ -33,13 +33,39 @@ public class GraphPanel extends JPanel implements Observer {
     /** Paint all the nodes of a graph */
     private void paintNodes(Graphics g){
         for (Node node : graph.getNodeList()){
-            Rectangle bounds = node.getNodeBounds();
-            g.setColor(new Color(185, 186, 186, 255));
-            g.fillRect(bounds.x, bounds.y,  bounds.width, bounds.height);
-            g.setColor(TEXT_COLOR);
-            g.drawString(node.getName(), (bounds.x + bounds.width/4),
-                    (bounds.y+bounds.height/2));
+            paintNodeAndText(node, g, NODE_COLOR, TEXT_COLOR);
         }
+    }
+
+    /** Highlight selected node */
+    private void highlightNode(Graphics g){
+        if (graph.getSelectedNode()!=null){
+            paintNodeAndText(graph.getSelectedNode(), g, HIGHLIGHT_COLOR, TEXT_COLOR);
+        }
+    }
+
+    private void paintNodeAndText(Node node, Graphics g, Color nodeColor, Color textColor){
+        Rectangle bounds = node.getNodeBounds();
+        g.setColor(nodeColor);
+        g.fillRect(bounds.x, bounds.y,  bounds.width, bounds.height);
+        g.setColor(textColor);
+        Graphics2D g2d = (Graphics2D) g.create();
+        Font font = new Font("Arial", Font.BOLD, 20);
+        g2d.setFont(scaleFont(node.getName(), bounds.width, g, font));
+        FontMetrics fm = g2d.getFontMetrics();
+        int x = (bounds.x + (bounds.width/2 - fm.stringWidth(node.getName()) / 2));
+        int y = (bounds.y + bounds.height/2 + fm.getHeight()/4);
+        g2d.drawString(node.getName(), x, y);
+    }
+
+    public static Font scaleFont(String text, int width, Graphics g, Font pFont)
+    {
+        float fontSize = pFont.getSize();
+        float fWidth = g.getFontMetrics(pFont).stringWidth(text);
+        if(fWidth < width)
+            return pFont;
+        fontSize = ((float)width / fWidth) * fontSize;
+        return pFont.deriveFont(fontSize);
     }
 
     /** Paint all the edges of a graph */
@@ -56,19 +82,6 @@ public class GraphPanel extends JPanel implements Observer {
                     b2.x + b2.width/2, b2.y + b2.height/2);
             line.draw(drawnEdge);
             edgeMap.put(edge, drawnEdge);
-        }
-    }
-
-    /** Highlight selected node */
-    private void highlightNode(Graphics g){
-        if (graph.getSelectedNode()!=null){
-            Node node = graph.getSelectedNode();
-            Rectangle bounds = node.getNodeBounds();
-            g.setColor(HIGHLIGHT_COLOR);
-            g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
-            g.setColor(TEXT_COLOR);
-            g.drawString(node.getName(), (bounds.x + bounds.width/4),
-                    (bounds.y+bounds.height/2));
         }
     }
 

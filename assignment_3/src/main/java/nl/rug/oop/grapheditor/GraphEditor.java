@@ -8,5 +8,6 @@ public class GraphEditor {
     public static void main(String[] args) {
         GraphModel graph = new GraphModel();
         new GraphFrame(graph);
+        System.out.println(args);
     }
 }
