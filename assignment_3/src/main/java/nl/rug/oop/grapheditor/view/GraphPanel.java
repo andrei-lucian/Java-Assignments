@@ -33,22 +33,22 @@ public class GraphPanel extends JPanel implements Observer {
     /** Paint all the nodes of a graph */
     private void paintNodes(Graphics g){
         for (Node node : graph.getNodeList()){
-            paintNodeAndText(node, g, NODE_COLOR, TEXT_COLOR);
+            paintNodeAndText(node, g, NODE_COLOR);
         }
     }
 
     /** Highlight selected node */
     private void highlightNode(Graphics g){
         if (graph.getSelectedNode()!=null){
-            paintNodeAndText(graph.getSelectedNode(), g, HIGHLIGHT_COLOR, TEXT_COLOR);
+            paintNodeAndText(graph.getSelectedNode(), g, HIGHLIGHT_COLOR);
         }
     }
 
-    private void paintNodeAndText(Node node, Graphics g, Color nodeColor, Color textColor){
+    private void paintNodeAndText(Node node, Graphics g, Color nodeColor){
         Rectangle bounds = node.getNodeBounds();
         g.setColor(nodeColor);
         g.fillRect(bounds.x, bounds.y,  bounds.width, bounds.height);
-        g.setColor(textColor);
+        g.setColor(GraphPanel.TEXT_COLOR);
         Graphics2D g2d = (Graphics2D) g.create();
         Font font = new Font("Arial", Font.BOLD, 20);
         g2d.setFont(scaleFont(node.getName(), bounds.width, g, font));
@@ -78,8 +78,8 @@ public class GraphPanel extends JPanel implements Observer {
             Graphics2D line = (Graphics2D) g;
             line.setStroke(new BasicStroke(2));
             line.setColor(NODE_COLOR);
-            Line2D.Float drawnEdge = new Line2D.Float(b1.x + b1.width/2, b1.y + b1.height/2,
-                    b2.x + b2.width/2, b2.y + b2.height/2);
+            Line2D.Float drawnEdge = new Line2D.Float(b1.x + (float)b1.width/2, b1.y + (float)b1.height/2,
+                    b2.x + (float)b2.width/2, b2.y + (float)b2.height/2);
             line.draw(drawnEdge);
             edgeMap.put(edge, drawnEdge);
         }
@@ -103,8 +103,8 @@ public class GraphPanel extends JPanel implements Observer {
             Rectangle nodeBounds = graph.getSelectedNode().getNodeBounds();
             line.setStroke(new BasicStroke(2));
             line.setColor(NODE_COLOR);
-            Line2D.Float drawnEdge = new Line2D.Float(nodeBounds.x + nodeBounds.width / 2,
-                    nodeBounds.y + nodeBounds.height / 2, graph.getMouseX(), graph.getMouseY());
+            Line2D.Float drawnEdge = new Line2D.Float(nodeBounds.x + (float)nodeBounds.width / 2,
+                    nodeBounds.y + (float)nodeBounds.height / 2, graph.getMouseX(), graph.getMouseY());
             line.draw(drawnEdge);
         }
     }

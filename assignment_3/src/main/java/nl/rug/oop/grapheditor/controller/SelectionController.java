@@ -78,8 +78,6 @@ public class SelectionController extends MouseAdapter {
             Rectangle bounds = node.getNodeBounds();
             if (bounds.contains(event.getPoint())) {
                 graph.setSelectedNode(node);
-                System.out.println(graph.getSelectedNode());
-                //graph.setMovedNode(node);
                 graph.setMovedNodeStartX(node.getNodeBounds().x);
                 graph.setMovedNodeStartY(node.getNodeBounds().y);
                 nodeSelected = true;
@@ -99,7 +97,6 @@ public class SelectionController extends MouseAdapter {
                 MoveNode moveNode = new MoveNode(graph);
                 moveNode.redo();
                 graph.getUndoManager().addEdit(moveNode);
-                System.out.println("Move edit added");
                 graph.update();
             }
         }
@@ -115,7 +112,6 @@ public class SelectionController extends MouseAdapter {
                 if(!nodeSelected){
                     edgeSelected = true;
                 }
-                //System.out.println("edge selected");
             }
         }
         if (!edgeSelected) {

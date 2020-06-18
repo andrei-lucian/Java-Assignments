@@ -3,7 +3,6 @@ package nl.rug.oop.grapheditor.io;
 import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.Node;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class RemoveNode extends AbstractUndoableEdit {
 
-    private GraphModel graph;
+    private final GraphModel graph;
     private Node removedNode;
-    private ArrayList<Edge> connectedEdges = new ArrayList<>();
+    private final ArrayList<Edge> connectedEdges = new ArrayList<>();
 
     public RemoveNode(GraphModel graph){
         this.graph = graph;
@@ -23,7 +23,6 @@ public class RemoveNode extends AbstractUndoableEdit {
     public void undo() throws CannotUndoException {
         super.undo();
         graph.addNode(removedNode);
-        System.out.println("remove node undo");
         for (Edge edge : connectedEdges){
             graph.addEdge(edge, edge.getNode1(), edge.getNode2());
         }
@@ -31,19 +30,14 @@ public class RemoveNode extends AbstractUndoableEdit {
 
     @Override
     public void redo() throws CannotRedoException {
-        System.out.println("remove node redo");
         if (!canRedo()) {
             removedNode = graph.getSelectedNode();
-            for (Edge edge : removedNode.getEdges()) {
-                connectedEdges.add(edge);
-            }
+            connectedEdges.addAll(removedNode.getEdges());
             graph.removeNode(graph.getSelectedNode());
         }
         else {
             super.redo();
-            for (Edge edge : removedNode.getEdges()) {
-                connectedEdges.add(edge);
-            }
+            connectedEdges.addAll(removedNode.getEdges());
             graph.removeNode(removedNode);
         }
         graph.setSelectedNode(null);

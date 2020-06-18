@@ -12,7 +12,7 @@ import java.lang.Object;
 /** Redoing an action */
 public class RedoAction extends AbstractAction implements Observer {
 
-    private GraphModel graph;
+    private final GraphModel graph;
 
     public RedoAction(GraphModel graph) {
         super("Redo");

@@ -1,5 +1,4 @@
 package nl.rug.oop.grapheditor.controller.actions;
-import nl.rug.oop.grapheditor.controller.undoRedo.AddEdge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;

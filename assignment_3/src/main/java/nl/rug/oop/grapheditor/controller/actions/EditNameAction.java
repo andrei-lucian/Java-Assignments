@@ -1,7 +1,6 @@
 package nl.rug.oop.grapheditor.controller.actions;
 
 import nl.rug.oop.grapheditor.controller.undoRedo.EditName;
-import nl.rug.oop.grapheditor.controller.undoRedo.RemoveEdge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
@@ -12,7 +11,7 @@ import java.util.Observer;
 /** Edit name of node */
 public class EditNameAction extends AbstractAction implements Observer {
 
-    private GraphModel graph;
+    private final GraphModel graph;
     public EditNameAction(GraphModel graph){
         super("Edit node name");
         this.graph = graph;
@@ -24,7 +23,6 @@ public class EditNameAction extends AbstractAction implements Observer {
     public void actionPerformed(ActionEvent e) {
         EditName editName = new EditName(graph);
         graph.getUndoManager().addEdit(editName);
-        System.out.println("Edit name edit added");
         editName.redo();
     }
 

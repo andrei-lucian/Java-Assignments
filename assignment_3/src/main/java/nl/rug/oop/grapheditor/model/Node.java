@@ -11,17 +11,12 @@ public class Node extends Observable {
     private Rectangle nodeBounds;
     private String name;
 
-    private ArrayList<Edge> edges;
+    private final ArrayList<Edge> edges;
 
     public Node(){
         this.nodeBounds = new Rectangle(100,100, 100, 50);
         this.name = "New node";
         this.edges = new ArrayList<>();
-    }
-
-    public void setBounds(int x, int y){
-        this.nodeBounds.x = x;
-        this.nodeBounds.y = y;
     }
 
     public void addEdge(Edge edge){

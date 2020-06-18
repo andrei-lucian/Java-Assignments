@@ -10,7 +10,7 @@ import javax.swing.undo.CannotUndoException;
 
 public class EditName extends AbstractUndoableEdit {
 
-    private GraphModel graph;
+    private final GraphModel graph;
     private Node node;
     private String previousName;
     private String newName;
@@ -22,20 +22,18 @@ public class EditName extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
-        System.out.println("edit name undo");
         node.setName(previousName);
     }
 
     @Override
     public void redo() throws CannotRedoException {
-        System.out.println("edit name redo");
         if(!canRedo()) {
             this.node = graph.getSelectedNode();
             this.previousName = node.getName();
             newName = JOptionPane.showInputDialog(
                     null,
                     "Input a new name:",
-                    "Edit Node Name");
+                    node.getName());
         }
         else {
             super.redo();

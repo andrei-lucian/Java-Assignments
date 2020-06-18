@@ -29,7 +29,6 @@ public class RemoveEdgeAction extends AbstractAction implements Observer {
     public void actionPerformed(ActionEvent e) {
         RemoveEdge removeEdge = new RemoveEdge(graph);
         graph.getUndoManager().addEdit(removeEdge);
-        System.out.println("Remove edge added");
         removeEdge.redo();
     }
 

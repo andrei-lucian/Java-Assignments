@@ -20,7 +20,6 @@ public class GraphModel extends Observable implements Observer {
     private int mouseY;
     private boolean currentlyAddingEdge;
     private UndoManager undoManager;
-    private Node movedNode;
     private int movedNodeStartX;
     private int movedNodeStartY;
 
@@ -33,7 +32,6 @@ public class GraphModel extends Observable implements Observer {
 
     /** Constructor 2 called when file name is given in terminal */
     public GraphModel(String filename){
-        //System.out.println("hello");
         this.nodeList = Load.loadNodes(filename);
         this.edgeList = Load.loadEdges(filename);
         for (Node node : nodeList){
@@ -44,14 +42,6 @@ public class GraphModel extends Observable implements Observer {
             System.out.println(edge.getNode2Index());
             edge.setNode1(nodeList.get(edge.getNode1Index()));
             edge.setNode2(nodeList.get(edge.getNode2Index()));
-        }
-    }
-
-    public void printEdges(){
-        for(Node edge : nodeList){
-            System.out.println(edge);
-            System.out.println(edge.getNodeBounds());
-            System.out.println(edge.getNodeBounds());
         }
     }
 
@@ -111,11 +101,9 @@ public class GraphModel extends Observable implements Observer {
     /** Set the second selected node if connecting 2 nodes */
     public void setSecondNode(Node secondNode) {
         this.secondNode = secondNode;
-        //System.out.println("second node set");
         connectEdge();
         AddEdge addEdge = new AddEdge(this);
         addEdge.redo();
-        System.out.println("Add edge edit added hello");
         undoManager.addEdit(addEdge);
 
     }
@@ -127,7 +115,6 @@ public class GraphModel extends Observable implements Observer {
     /** Connect 2 nodes together if 'add edge' button is clicked */
     public void connectEdge(){
         if (secondNode!=null){
-            //System.out.println("edge added");
             addedEdge = new Edge();
             addEdge(addedEdge, selectedNode, secondNode);
         }
@@ -197,14 +184,6 @@ public class GraphModel extends Observable implements Observer {
 
     public ArrayList<Edge> getEdgeList() {
         return edgeList;
-    }
-
-    public Node getMovedNode() {
-        return movedNode;
-    }
-
-    public void setMovedNode(Node movedNode) {
-        this.movedNode = movedNode;
     }
 
     public int getMovedNodeStartX() {
