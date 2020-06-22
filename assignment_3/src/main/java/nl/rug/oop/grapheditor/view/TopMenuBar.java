@@ -62,6 +62,8 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
             String loadPath = SaveAndLoad.getFilePath();
             System.out.println(loadPath);
             graph.getUndoManager().discardAllEdits();
+            graph.setSelectedEdge(null);
+            graph.setSelectedNode(null);
             graph.setNodeList(Load.loadNodes(loadPath));
             for (Node node : graph.getNodeList()){
                 node.addObserver(graph);
