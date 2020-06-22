@@ -13,6 +13,9 @@ public class Node extends Observable {
 
     private final ArrayList<Edge> edges;
 
+    /**
+     * Initiating a standard node
+     */
     public Node(){
         this.nodeBounds = new Rectangle(100,100, 100, 50);
         this.name = "New node";
@@ -27,6 +30,7 @@ public class Node extends Observable {
         return edges;
     }
 
+    /** Used when the node is moved. */
     public void setNewLocation(int x, int y){
         this.nodeBounds.x = x;
         this.nodeBounds.y = y;

@@ -8,6 +8,7 @@ import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 
+/** Implements removing an edge and the undo and redo of said action*/
 public class RemoveEdge extends AbstractUndoableEdit {
 
     private final GraphModel graph;

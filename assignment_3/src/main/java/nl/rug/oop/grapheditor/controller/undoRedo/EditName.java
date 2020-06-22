@@ -2,6 +2,7 @@ package nl.rug.oop.grapheditor.controller.undoRedo;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.model.Node;
+import nl.rug.oop.grapheditor.view.EditNodeName;
 
 import javax.swing.*;
 import javax.swing.undo.AbstractUndoableEdit;
@@ -14,7 +15,9 @@ public class EditName extends AbstractUndoableEdit {
     private Node node;
     private String previousName;
     private String newName;
+    private boolean setNewName = false;
 
+    /** Implements editing name of node and undoing and redoing said action */
     public EditName(GraphModel graph){
         this.graph = graph;
     }
@@ -30,14 +33,16 @@ public class EditName extends AbstractUndoableEdit {
         if(!canRedo()) {
             this.node = graph.getSelectedNode();
             this.previousName = node.getName();
-            newName = JOptionPane.showInputDialog(
-                    null,
-                    "Input a new name:",
-                    node.getName());
+            if(EditNodeName.setNewNodeName(node.getName())){
+                setNewName = true;
+                newName = EditNodeName.getNewName();
+            }
         }
         else {
             super.redo();
         }
-        node.setName(newName);
+        if(setNewName){
+            node.setName(newName);
+        }
     }
 }

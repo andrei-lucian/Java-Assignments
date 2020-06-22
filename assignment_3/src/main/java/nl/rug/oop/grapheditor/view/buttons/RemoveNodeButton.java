@@ -5,6 +5,9 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
 
+/**
+ * Creates button for removing node
+ */
 public class RemoveNodeButton extends JButton {
 
     public RemoveNodeButton(GraphModel graph) {

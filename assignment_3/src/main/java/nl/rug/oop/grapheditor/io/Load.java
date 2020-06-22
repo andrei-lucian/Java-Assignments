@@ -11,6 +11,11 @@ import java.util.Scanner;
 
 public class Load {
 
+    /**
+     *
+     * @param filename retrieved by the user
+     * @return the nodes found in the given file
+     */
     public static ArrayList<Node> loadNodes(String filename){
         Scanner sc = scanFile(filename);
         int numberNodes = sc.nextInt();
@@ -28,6 +33,11 @@ public class Load {
         return nodes;
     }
 
+    /**
+     *
+     * @param filename retrieved by the user
+     * @return the edges found in the given file
+     */
     public static ArrayList<Edge> loadEdges(String filename){
         Scanner sc = scanFile(filename);
         int numberNodes = sc.nextInt();
@@ -49,6 +59,11 @@ public class Load {
         return edges;
     }
 
+    /**
+     *
+     * @param filename retrieved by the user
+     * @return a scanner that scans the file
+     */
     private static Scanner scanFile(String filename){
         File save = new File(filename);
         Scanner sc = null;

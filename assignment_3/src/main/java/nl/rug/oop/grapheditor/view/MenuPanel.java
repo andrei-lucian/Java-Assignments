@@ -7,6 +7,9 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * This panel is responsible for holding and displaying both menu bars
+ */
 public class MenuPanel extends JPanel implements Observer {
 
     private static final Color BACKGROUND_COLOR = new Color(61, 63, 65, 255);

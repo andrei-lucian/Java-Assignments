@@ -4,11 +4,16 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 
+/** Displays the file chooser when the user decides to save or load a file. */
 public class SaveAndLoad {
 
-    private static JFrame parentFrame = new JFrame();
+    private static final JFrame parentFrame = new JFrame();
     private static String filePath;
 
+    /**
+     * Shows a file chooser and asks user to select save location and filename
+     * @return file to save
+     */
     public static File chooseSaveLocation(){
         File fileToSave = null;
         JFileChooser fileChooser = new JFileChooser();
@@ -21,6 +26,11 @@ public class SaveAndLoad {
         return fileToSave;
     }
 
+    /**
+     *
+     * @return true if user selected a file to load or
+     * false if the user decided to cancel the operation
+     */
     public static boolean chooseFile() {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("graph files", "graph");
         final JFileChooser fc = new JFileChooser();

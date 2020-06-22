@@ -9,6 +9,7 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import java.util.ArrayList;
 
+/** Implements removing a node and the undo and redo of said action*/
 public class RemoveNode extends AbstractUndoableEdit {
 
     private final GraphModel graph;

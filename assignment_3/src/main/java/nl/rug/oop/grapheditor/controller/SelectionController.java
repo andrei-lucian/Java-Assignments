@@ -71,7 +71,9 @@ public class SelectionController extends MouseAdapter {
         }
     }
 
-    /** Select the node that has been clicked on */
+    /** Select the node that has been clicked on
+     * and store the starting coordinates of the node
+     * in case the user decides to move it */
     private void selectNode(MouseEvent event){
         nodeSelected = false;
         for (Node node : graph.getNodeList()) {
@@ -89,6 +91,7 @@ public class SelectionController extends MouseAdapter {
         }
     }
 
+    /** Moves a when the mouse is Released*/
     @Override
     public void mouseReleased(MouseEvent event){
         if (draggedNode != null) {
