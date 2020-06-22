@@ -45,20 +45,4 @@ public class EditName extends AbstractUndoableEdit {
             node.setName(newName);
         }
     }
-
-    /**@Override
-    public void redo() throws CannotRedoException {
-        if(!canRedo()) {
-            this.node = graph.getSelectedNode();
-            this.previousName = node.getName();
-            newName = JOptionPane.showInputDialog(
-                    null,
-                    "Input a new name:",
-                    node.getName());
-        }
-        else {
-            super.redo();
-        }
-        node.setName(newName);
-    }*/
 }
