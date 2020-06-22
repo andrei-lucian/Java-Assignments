@@ -33,17 +33,18 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
         this.setBorder(null);
     }
 
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == saveButton) {
             Save.save(graph);
         }
         if (e.getSource() == newGraphButton) {
-            createNewGraph();
+            switch(SaveAndLoad.saveCheck()){
+                case JOptionPane.YES_OPTION: Save.save(graph); createNewGraph(); break;
+                case JOptionPane.NO_OPTION: createNewGraph(); break;
+                case JOptionPane.CANCEL_OPTION: break;
+            }
         }
-
         if (e.getSource() == loadFromGraphButton) {
             loadGraph();
         }

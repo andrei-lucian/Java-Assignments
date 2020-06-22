@@ -3,7 +3,6 @@ package nl.rug.oop.grapheditor.view;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
-import java.io.FileFilter;
 
 public class SaveAndLoad {
 
@@ -37,6 +36,14 @@ public class SaveAndLoad {
             JOptionPane.showMessageDialog(null, "you closed without selecting file");
         }
         return false;
+    }
+
+    public static int saveCheck(){
+        return JOptionPane.showConfirmDialog(
+                null,
+                "Would you like to save the graph?",
+                "Save graph?",
+                JOptionPane.YES_NO_OPTION);
     }
 
     public static String getFilePath() {
