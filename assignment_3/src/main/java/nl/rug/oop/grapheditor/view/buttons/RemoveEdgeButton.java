@@ -5,6 +5,9 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
 
+/**
+ * Creates button for removing edges
+ */
 public class RemoveEdgeButton extends JButton {
 
     public RemoveEdgeButton(GraphModel graph) {

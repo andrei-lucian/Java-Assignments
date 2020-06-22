@@ -7,6 +7,7 @@ import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 
+/** Implements moving a node in the graph and the undo and redo of said action*/
 public class MoveNode extends AbstractUndoableEdit {
 
     private final GraphModel graph;

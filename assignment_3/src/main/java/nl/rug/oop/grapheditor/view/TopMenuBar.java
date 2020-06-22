@@ -10,6 +10,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Menu bar that holds the save/load and start new graph buttons
+ */
+
 public class TopMenuBar extends JMenuBar implements ActionListener {
 
     private final GraphModel graph;
@@ -33,8 +37,6 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
         this.setBorder(null);
     }
 
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == saveButton) {
@@ -49,6 +51,7 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
         }
     }
 
+    /** Resets all variables in order to start a new graph */
     private void createNewGraph(){
         graph.getUndoManager().discardAllEdits();
         graph.setSelectedNode(null);
@@ -57,6 +60,9 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
         graph.getEdgeList().clear();
     }
 
+    /**
+     * Loads all edges and nodes in case the user decides to load a graph.
+     */
     private void loadGraph(){
         if(SaveAndLoad.chooseFile()){
             String loadPath = SaveAndLoad.getFilePath();

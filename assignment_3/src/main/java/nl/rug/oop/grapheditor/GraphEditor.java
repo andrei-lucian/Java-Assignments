@@ -9,4 +9,5 @@ public class GraphEditor {
         GraphModel graph = new GraphModel();
         new GraphFrame(graph);
     }
+
 }

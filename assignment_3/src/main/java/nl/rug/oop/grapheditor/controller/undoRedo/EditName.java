@@ -15,6 +15,7 @@ public class EditName extends AbstractUndoableEdit {
     private String previousName;
     private String newName;
 
+    /** Implements editing name of node and undoing and redoing said action */
     public EditName(GraphModel graph){
         this.graph = graph;
     }

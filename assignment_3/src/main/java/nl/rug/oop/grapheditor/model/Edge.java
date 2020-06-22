@@ -25,13 +25,20 @@ public class Edge {
     private int node1Index;
     private int node2Index;
 
-    public Edge(){
-
-    }
-
+    /**
+     *
+     * @param node1 first node that connects the edge
+     * @param node2 second node that connects the edge
+     */
     public Edge(Node node1, Node node2){
         this.node1 = node1;
         this.node2 = node2;
+    }
+
+    /** Empty constructor used for when the user decides to add an edge
+     * When an edge is added it is initiated empty until both nodes are selected*/
+    public Edge(){
+
     }
 
     public void setNode1(Node node1) {

@@ -8,6 +8,7 @@ import java.util.Observer;
 
 /** Add an edge between two nodes */
 public class AddEdgeAction extends AbstractAction implements Observer {
+
     private final GraphModel graph;
 
     public AddEdgeAction(GraphModel graph) {

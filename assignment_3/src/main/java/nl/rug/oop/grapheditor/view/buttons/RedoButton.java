@@ -5,6 +5,9 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
 
+/**
+ * Creates button for redoing actions
+ */
 public class RedoButton extends JButton {
 
     public RedoButton(GraphModel graph){
