@@ -14,7 +14,6 @@ public class GraphEditor {
             File fp = new File(filepath);
             GraphModel graph = new GraphModel(fp);
             new GraphFrame(graph);
-            int x = 0;
         }
 
         else {
