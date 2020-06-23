@@ -44,6 +44,7 @@ public class GraphPanel extends JPanel implements Observer {
         }
     }
 
+    /** Method used in paintNodes and highlightNode */
     private void paintNodeAndText(Node node, Graphics g, Color nodeColor){
         Rectangle bounds = node.getNodeBounds();
         g.setColor(nodeColor);

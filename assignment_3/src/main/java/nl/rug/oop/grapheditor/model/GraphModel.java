@@ -1,8 +1,11 @@
 package nl.rug.oop.grapheditor.model;
 import nl.rug.oop.grapheditor.controller.undoRedo.AddEdge;
-import nl.rug.oop.grapheditor.io.Load;
+import nl.rug.oop.grapheditor.view.SaveAndLoad;
 
+import javax.swing.*;
 import javax.swing.undo.UndoManager;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -31,17 +34,15 @@ public class GraphModel extends Observable implements Observer {
     }
 
     /** Constructor 2 called when file name is given in terminal */
-    public GraphModel(String filename){
-        this.nodeList = Load.loadNodes(filename);
-        this.edgeList = Load.loadEdges(filename);
-        for (Node node : nodeList){
-            System.out.println(node.getName());
-        }
-        for (Edge edge: edgeList){
-            System.out.println(edge.getNode1Index());
-            System.out.println(edge.getNode2Index());
-            edge.setNode1(nodeList.get(edge.getNode1Index()));
-            edge.setNode2(nodeList.get(edge.getNode2Index()));
+    public GraphModel(File filepath){
+        this.nodeList = new ArrayList<>();
+        this.edgeList = new ArrayList<>();
+        this.undoManager = new UndoManager();
+        try {
+            SaveAndLoad.loadGraph(filepath, this);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            JOptionPane.showMessageDialog(null, "File not found.");
         }
     }
 
@@ -53,6 +54,7 @@ public class GraphModel extends Observable implements Observer {
         notifyObservers();
     }
 
+    /** Remove a node from a graph */
     public void removeNode(Node node){
         for (Edge edge : node.getEdges()){
             this.edgeList.remove(edge);
@@ -72,6 +74,7 @@ public class GraphModel extends Observable implements Observer {
         }
     }
 
+    /** Add an edge to a graph without knowing which nodes it's connected to yet */
     public void addEdge(Edge edge){
         edgeList.add(edge);
         setChanged();
@@ -93,6 +96,8 @@ public class GraphModel extends Observable implements Observer {
         return undoManager;
     }
 
+    /** Update function used in SelectionController so that
+     * the state of the graph is updated once the mouse is released */
     public void update(){
         this.setChanged();
         this.notifyObservers();

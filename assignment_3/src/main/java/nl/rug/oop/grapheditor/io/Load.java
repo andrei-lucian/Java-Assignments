@@ -16,7 +16,7 @@ public class Load {
      * @param filename retrieved by the user
      * @return the nodes found in the given file
      */
-    public static ArrayList<Node> loadNodes(String filename){
+    public static ArrayList<Node> loadNodes(File filename) throws FileNotFoundException {
         Scanner sc = scanFile(filename);
         int numberNodes = sc.nextInt();
         sc.nextInt();
@@ -38,7 +38,7 @@ public class Load {
      * @param filename retrieved by the user
      * @return the edges found in the given file
      */
-    public static ArrayList<Edge> loadEdges(String filename){
+    public static ArrayList<Edge> loadEdges(File filename) throws FileNotFoundException {
         Scanner sc = scanFile(filename);
         int numberNodes = sc.nextInt();
         int numberEdges = sc.nextInt();
@@ -64,15 +64,7 @@ public class Load {
      * @param filename retrieved by the user
      * @return a scanner that scans the file
      */
-    private static Scanner scanFile(String filename){
-        File save = new File(filename);
-        Scanner sc = null;
-        try {
-            sc = new Scanner(save);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        assert sc != null;
-        return sc;
+    private static Scanner scanFile(File filename) throws FileNotFoundException {
+        return new Scanner(filename);
     }
 }

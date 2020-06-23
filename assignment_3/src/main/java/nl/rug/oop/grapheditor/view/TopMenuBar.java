@@ -1,14 +1,13 @@
 package nl.rug.oop.grapheditor.view;
 
-import nl.rug.oop.grapheditor.io.Load;
 import nl.rug.oop.grapheditor.io.Save;
-import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.model.Node;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Menu bar that holds the save/load and start new graph buttons
@@ -44,48 +43,22 @@ public class TopMenuBar extends JMenuBar implements ActionListener {
         }
         if (e.getSource() == newGraphButton) {
             switch(SaveAndLoad.saveCheck()){
-                case JOptionPane.YES_OPTION: Save.save(graph); createNewGraph(); break;
-                case JOptionPane.NO_OPTION: createNewGraph(); break;
+                case JOptionPane.YES_OPTION: Save.save(graph); SaveAndLoad.createNewGraph(graph); break;
+                case JOptionPane.NO_OPTION: SaveAndLoad.createNewGraph(graph); break;
                 case JOptionPane.CANCEL_OPTION: break;
             }
         }
         if (e.getSource() == loadFromGraphButton) {
-            loadGraph();
-        }
-    }
-
-    /** Resets all variables in order to start a new graph */
-    private void createNewGraph(){
-        graph.getUndoManager().discardAllEdits();
-        graph.setSelectedNode(null);
-        graph.setSelectedEdge(null);
-        graph.getNodeList().clear();
-        graph.getEdgeList().clear();
-    }
-
-    /**
-     * Loads all edges and nodes in case the user decides to load a graph.
-     */
-    private void loadGraph(){
-        if(SaveAndLoad.chooseFile()){
-            String loadPath = SaveAndLoad.getFilePath();
-            System.out.println(loadPath);
-            graph.getUndoManager().discardAllEdits();
-            graph.setSelectedEdge(null);
-            graph.setSelectedNode(null);
-            graph.setNodeList(Load.loadNodes(loadPath));
-            for (Node node : graph.getNodeList()){
-                node.addObserver(graph);
-            }
-            graph.setEdgeList(Load.loadEdges(loadPath));
-            for (Edge edge: graph.getEdgeList()){
-                Node node1 = graph.getNodeList().get(edge.getNode1Index());
-                Node node2 = graph.getNodeList().get(edge.getNode2Index());
-                edge.setNode1(node1);
-                node1.addEdge(edge);
-                edge.setNode2(node2);
-                node2.addEdge(edge);
+            if(SaveAndLoad.chooseFile()){
+                File loadPath = SaveAndLoad.getFilePath();
+                System.out.println(loadPath);
+                try {
+                    SaveAndLoad.loadGraph(loadPath, graph);
+                } catch (FileNotFoundException fileNotFoundException) {
+                    System.out.println("File not found");
+                }
             }
         }
     }
+
 }

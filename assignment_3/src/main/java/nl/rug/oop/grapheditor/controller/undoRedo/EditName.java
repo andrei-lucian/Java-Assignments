@@ -4,7 +4,6 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.model.Node;
 import nl.rug.oop.grapheditor.view.EditNodeName;
 
-import javax.swing.*;
 import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
