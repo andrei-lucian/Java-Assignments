@@ -24,7 +24,7 @@ public class RemoveEdgeAction extends AbstractAction implements Observer {
         setEnabled(graph.getSelectedEdge()!= null);
     }
 
-    /** Remove a graph's selected edge */
+    /** Remove a graph's selected edge and add to undo manager */
     @Override
     public void actionPerformed(ActionEvent e) {
         RemoveEdge removeEdge = new RemoveEdge(graph);

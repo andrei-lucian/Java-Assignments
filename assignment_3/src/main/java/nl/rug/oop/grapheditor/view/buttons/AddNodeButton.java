@@ -6,6 +6,9 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * Creates button for adding node
+ */
 public class AddNodeButton extends JButton {
     /**
      * Initialise the properties of this button

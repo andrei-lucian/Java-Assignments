@@ -7,9 +7,10 @@ import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 
+/** Adds an edge to the graph and implements the undo and redo for it */
 public class AddEdge extends AbstractUndoableEdit {
 
-    private GraphModel graph;
+    private final GraphModel graph;
     private Edge addedEdge;
 
     public AddEdge(GraphModel graph){
@@ -18,8 +19,8 @@ public class AddEdge extends AbstractUndoableEdit {
 
     @Override
     public void undo() throws CannotUndoException {
-        graph.removeEdge(addedEdge);
         super.undo();
+        graph.removeEdge(addedEdge);
     }
 
     @Override
@@ -28,6 +29,7 @@ public class AddEdge extends AbstractUndoableEdit {
             addedEdge = graph.getAddedEdge();
         }
         else {
+            super.redo();
             graph.addEdge(addedEdge);
         }
     }

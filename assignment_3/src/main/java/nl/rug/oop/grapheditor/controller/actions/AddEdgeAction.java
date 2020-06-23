@@ -1,5 +1,4 @@
 package nl.rug.oop.grapheditor.controller.actions;
-import nl.rug.oop.grapheditor.controller.undoRedo.AddEdge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
@@ -9,6 +8,7 @@ import java.util.Observer;
 
 /** Add an edge between two nodes */
 public class AddEdgeAction extends AbstractAction implements Observer {
+
     private final GraphModel graph;
 
     public AddEdgeAction(GraphModel graph) {

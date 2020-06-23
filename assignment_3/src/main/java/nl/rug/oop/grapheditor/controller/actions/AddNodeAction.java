@@ -11,7 +11,7 @@ import java.util.Observer;
 /** Add a node to a graph */
 public class AddNodeAction extends AbstractAction implements Observer {
 
-    private GraphModel graph;
+    private final GraphModel graph;
 
     public AddNodeAction(GraphModel graph){
         super("Add a node");
@@ -24,7 +24,6 @@ public class AddNodeAction extends AbstractAction implements Observer {
         AddNode addNode = new AddNode(graph);
         graph.getUndoManager().addEdit(addNode);
         addNode.redo();
-        //System.out.println(graph.getUndoManager().getUndoOrRedoPresentationName());
     }
 
     @Override

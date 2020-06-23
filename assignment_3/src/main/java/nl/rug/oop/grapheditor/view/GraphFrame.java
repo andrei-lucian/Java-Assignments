@@ -6,6 +6,9 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Instantiates the frame of the program
+ */
 public class GraphFrame extends JFrame {
 
     public GraphFrame(GraphModel graph) {

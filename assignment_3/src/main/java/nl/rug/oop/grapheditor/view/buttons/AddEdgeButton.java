@@ -5,6 +5,9 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
 
+/**
+ * Creates button for adding edge
+ */
 public class AddEdgeButton extends JButton {
 
     public AddEdgeButton(GraphModel graph){

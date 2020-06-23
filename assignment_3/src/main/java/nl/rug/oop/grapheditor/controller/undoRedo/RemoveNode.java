@@ -9,12 +9,12 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import java.util.ArrayList;
 
+/** Implements removing a node and the undo and redo of said action*/
 public class RemoveNode extends AbstractUndoableEdit {
 
-    private GraphModel graph;
+    private final GraphModel graph;
     private Node removedNode;
-    private ArrayList<Edge> connectedEdges = new ArrayList<>();
-    int index;
+    private final ArrayList<Edge> connectedEdges = new ArrayList<>();
 
     public RemoveNode(GraphModel graph){
         this.graph = graph;
@@ -23,17 +23,9 @@ public class RemoveNode extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
-        graph.addNode(index, removedNode);
-        for (Edge edge : graph.getEdgeList()){
-            if (edge.getNode1() >= index){
-                edge.setNode1(edge.getNode1()+1);
-            }
-            if (edge.getNode2() >= index){
-                edge.setNode2(edge.getNode2()+1);
-            }
-        }
+        graph.addNode(removedNode);
         for (Edge edge : connectedEdges){
-            graph.addEdge(edge);
+            graph.addEdge(edge, edge.getNode1(), edge.getNode2());
         }
     }
 
@@ -41,21 +33,12 @@ public class RemoveNode extends AbstractUndoableEdit {
     public void redo() throws CannotRedoException {
         if (!canRedo()) {
             removedNode = graph.getSelectedNode();
-            index = graph.getNodeList().indexOf(removedNode);
-            for (Edge edge : graph.getEdgeList()) {
-                if (edge.getNode1() == index || edge.getNode2() == index) {
-                    connectedEdges.add(edge);
-                }
-            }
+            connectedEdges.addAll(removedNode.getEdges());
             graph.removeNode(graph.getSelectedNode());
         }
         else {
-            index = graph.getNodeList().indexOf(removedNode);
-            for (Edge edge : graph.getEdgeList()) {
-                if (edge.getNode1() == index || edge.getNode2() == index) {
-                    connectedEdges.add(edge);
-                }
-            }
+            super.redo();
+            connectedEdges.addAll(removedNode.getEdges());
             graph.removeNode(removedNode);
         }
         graph.setSelectedNode(null);

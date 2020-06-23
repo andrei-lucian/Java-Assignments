@@ -1,8 +1,11 @@
 package nl.rug.oop.grapheditor.model;
 import nl.rug.oop.grapheditor.controller.undoRedo.AddEdge;
-import nl.rug.oop.grapheditor.io.Load;
+import nl.rug.oop.grapheditor.view.SaveAndLoad;
 
+import javax.swing.*;
 import javax.swing.undo.UndoManager;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,7 +23,6 @@ public class GraphModel extends Observable implements Observer {
     private int mouseY;
     private boolean currentlyAddingEdge;
     private UndoManager undoManager;
-    private Node movedNode;
     private int movedNodeStartX;
     private int movedNodeStartY;
 
@@ -32,16 +34,15 @@ public class GraphModel extends Observable implements Observer {
     }
 
     /** Constructor 2 called when file name is given in terminal */
-    public GraphModel(String filename){
-        this.nodeList = Load.loadNodes(filename);
-        this.edgeList = Load.loadEdges(filename);
-    }
-
-    public void printEdges(){
-        for(Node edge : nodeList){
-            System.out.println(edge);
-            System.out.println(edge.getNodeBounds());
-            System.out.println(edge.getNodeBounds());
+    public GraphModel(File filepath){
+        this.nodeList = new ArrayList<>();
+        this.edgeList = new ArrayList<>();
+        this.undoManager = new UndoManager();
+        try {
+            SaveAndLoad.loadGraph(filepath, this);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            JOptionPane.showMessageDialog(null, "File not found.");
         }
     }
 
@@ -53,43 +54,27 @@ public class GraphModel extends Observable implements Observer {
         notifyObservers();
     }
 
-    public void addNode(int index, Node node){
-        nodeList.add(index, node);
-        node.addObserver(this);
-        setChanged();
-        notifyObservers();
-    }
-
     /** Remove a node from a graph */
     public void removeNode(Node node){
-        edgeList.removeIf(edge -> edge.getNode1() == this.nodeList.indexOf(node) ||
-                edge.getNode2() == this.nodeList.indexOf(node));
-        int indexOfNode = nodeList.indexOf(node);
-        //System.out.println("Index is " + indexOfNode);
-        for (Edge edge : edgeList){
-            System.out.println(edge);
-            if (edge.getNode1() > indexOfNode){
-                //System.out.println("Node1 " + edge.getNode1());
-                edge.setNode1(edge.getNode1()-1);
-            }
-            if (edge.getNode2() > indexOfNode){
-                //System.out.println("Node2 " + edge.getNode2());
-                edge.setNode2(edge.getNode2()-1);
-            }
+        for (Edge edge : node.getEdges()){
+            this.edgeList.remove(edge);
         }
-        nodeList.remove(node);
+        this.nodeList.remove(node);
     }
 
     /** Add an edge to a graph */
     public void addEdge(Edge edge, Node node1, Node node2){
         if (node1!= null && node2!= null){
             edgeList.add(edge);
-            edge.setNodes(nodeList.indexOf(node1), nodeList.indexOf(node2));
+            edge.setNodes(node1, node2);
+            node1.addEdge(edge);
+            node2.addEdge(edge);
             setChanged();
             notifyObservers();
         }
     }
 
+    /** Add an edge to a graph without knowing which nodes it's connected to yet */
     public void addEdge(Edge edge){
         edgeList.add(edge);
         setChanged();
@@ -99,8 +84,10 @@ public class GraphModel extends Observable implements Observer {
     /** Remove an edge from a graph */
     public void removeEdge(Edge edge){
         edgeList.remove(edge);
-        System.out.println(edgeList.get(0).getNode1());
-        System.out.println(edgeList.get(0).getNode2());
+        Node node1 = edge.getNode1();
+        Node node2 = edge.getNode2();
+        node1.getEdges().remove(edge);
+        node2.getEdges().remove(edge);
         setChanged();
         notifyObservers();
     }
@@ -109,14 +96,21 @@ public class GraphModel extends Observable implements Observer {
         return undoManager;
     }
 
+    /** Update function used in SelectionController so that
+     * the state of the graph is updated once the mouse is released */
+    public void update(){
+        this.setChanged();
+        this.notifyObservers();
+    }
+
     /** Set the second selected node if connecting 2 nodes */
     public void setSecondNode(Node secondNode) {
         this.secondNode = secondNode;
-        System.out.println("second node set");
         connectEdge();
         AddEdge addEdge = new AddEdge(this);
         addEdge.redo();
         undoManager.addEdit(addEdge);
+
     }
 
     public Edge getAddedEdge() {
@@ -126,7 +120,6 @@ public class GraphModel extends Observable implements Observer {
     /** Connect 2 nodes together if 'add edge' button is clicked */
     public void connectEdge(){
         if (secondNode!=null){
-            System.out.println("edge added");
             addedEdge = new Edge();
             addEdge(addedEdge, selectedNode, secondNode);
         }
@@ -196,14 +189,6 @@ public class GraphModel extends Observable implements Observer {
 
     public ArrayList<Edge> getEdgeList() {
         return edgeList;
-    }
-
-    public Node getMovedNode() {
-        return movedNode;
-    }
-
-    public void setMovedNode(Node movedNode) {
-        this.movedNode = movedNode;
     }
 
     public int getMovedNodeStartX() {

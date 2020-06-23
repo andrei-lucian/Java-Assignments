@@ -7,9 +7,10 @@ import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 
+/** Implements moving a node in the graph and the undo and redo of said action*/
 public class MoveNode extends AbstractUndoableEdit {
 
-    private GraphModel graph;
+    private final GraphModel graph;
     private Node movedNode;
     private int movedNodeStartX;
     private int movedNoteStartY;
@@ -23,22 +24,20 @@ public class MoveNode extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
-        if (movedNode.getNodeBounds().x != movedNodeStartX &&
-                movedNode.getNodeBounds().y != movedNoteStartY) {
-            movedNodeEndX = movedNode.getNodeBounds().x;
-            movedNodeEndY = movedNode.getNodeBounds().y;
-            movedNode.setNewLocation(movedNodeStartX, movedNoteStartY);
-        }
+        movedNodeEndX = movedNode.getNodeBounds().x;
+        movedNodeEndY = movedNode.getNodeBounds().y;
+        movedNode.setNewLocation(movedNodeStartX, movedNoteStartY);
     }
 
     @Override
     public void redo() throws CannotRedoException {
         if (!canRedo()){
-            this.movedNode = graph.getMovedNode();
+            this.movedNode = graph.getSelectedNode();
             this.movedNodeStartX = graph.getMovedNodeStartX();
             this.movedNoteStartY = graph.getMovedNodeStartY();
         }
         else {
+            super.redo();
             movedNode.setNewLocation(movedNodeEndX, movedNodeEndY);
         }
     }
