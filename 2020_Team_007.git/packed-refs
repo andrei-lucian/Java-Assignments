@@ -1,0 +1,8 @@
+# pack-refs with: peeled fully-peeled sorted 
+0c8b279f98c82c6d9e98259e1f91c1aa386ea389 refs/heads/__assignment0
+6c89568b5ddc9afac4b19d5e599bebe04db2ab27 refs/heads/__assignment1
+32721028d73c3652a076fa19d7127841720865f2 refs/heads/__assignment1_1
+662235799b2c1c7ecac1bebf98f7150c09ca5f44 refs/heads/__assignmentcard-game
+ba8be856f7c33b134c51583204f90bf03e907035 refs/heads/__assignmentgraph-editor
+aa1392e155db85d10073c554a62059effe399899 refs/heads/development
+c76be419fd2e895265ffe8a4c2c55013c9f20e6f refs/heads/master
